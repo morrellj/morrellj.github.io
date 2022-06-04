@@ -1,0 +1,16 @@
+body {
+  padding-left: 15px;
+}
+.largeText {
+  width: 250px;
+  height: 100px;
+}
+nav {
+  padding: 15px 15px 15px 0px;
+}
+nav button {
+  margin-right: 10px;
+}
+p {
+  margin: 6px 0px 6px;
+}
