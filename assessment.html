@@ -5,45 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grove Assessment Main Page</title>
-    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/modelSchema.js"></script>
-    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/modelClient.js"></script>
+    <!-- <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelSchema.js"></script>
+    <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelClient.js"></script>
+    <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelElements.js"></script>
+    <link rel = "stylesheet" href="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/assessment.css"/> -->
+    
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/modelElements.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/modelClient.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/modelSchema.js"></script>
     <link rel = "stylesheet" href="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/assessment.css"/>
   </head>
   <body>
-    <div id = "newClientAddDiv">
-        <label for="newClientAddForm">Add a client:</label>
-        <br /><br />
-        <div id = "newClientAddForm" >
-          <p>First name:</p>
-          <input type = "text" id = "addClient-firstName"></input>
-          <br />
-          <p>Surname:</p>
-          <input type = "text" id = "addClient-surname"></input>
-          <br /><br />
-          <button onclick="clientAdd()">Submit</button>
-          <br /><br />
+    <div class="sticky">
+      <div class="flex-container">
+        <div  id = "newClientAddDiv">
+            <button  onclick="toggle(newClientAddForm)">Add a client</button>
+            </label>
+            <br /><br />
+            <div id = "newClientAddForm" hidden= true>
+              <p>First name:</p>
+              <input type = "text" id = "addClient-firstName"></input>
+              <br />
+              <p>Surname:</p>
+              <input type = "text" id = "addClient-surname"></input>
+              <br /><br />
+              <button onclick="clientAdd()">Submit</button>
+              <br /><br />
+            </div>
         </div>
+        <div  id = "clientListDiv">
+          <label for="clientListSelect">Choose a client:</label>
+          <br /><br />
+          <div>
+            <select class="flex-item" onclick="clientSelectAction(this.value)" name="clientListSelect" id="clientListSelect">
+            </select>
+            <button class="flex-item" onclick="clientDelete()">Delete</button>
+          </div>
+        </div>
+      </div>
+      <div class="flex-item" id="clientSelected">
+        <p>Client Selected:</p>
+        <p id="output" style="color:red"></p>
+      </div>
+      <nav class="flex-item" id="buttonNav">
+        <button class="btn" onclick="setPage('demographic')">Demographic</button>
+        <button class="btn" onclick="setPage('preamble')">Premable</button>
+        <button class="btn" onclick="setPage('contactsMedical')">Contacts and Medical</button>
+        <button class="btn" onclick="setPage('schedule')">Schedule</button>
+        <button class="btn" onclick="setPage('chsp')">CHSP</button>
+        <button class="btn" onclick="setPage('medical')">Medical</button>
+        <button class="btn" onclick="setPage('medication')">Medication</button>
+        <button class="btn" onclick="setPage('communication')">Communication</button>
+        <button class="btn" onclick="setPage('carePlan')" >Care Plan</button>
+        <button class="btn" onclick="setPage('All')">All</button>
+      </nav>
     </div>
-    <div id = "ClientListDiv">
-      <label for="clientListSelect">Choose a client:</label>
-      <br /><br />
-      <select onclick="clientSelectAction()" name="clientListSelect" id="clientListSelect">
-      </select>
-      <br /><br />
-      <button onclick="clientDelete()">Delete</button>
-    </div>
-    <div id="clientSelected">
-      <p>Client Selected:</p>
-      <p id="output" style="color:red"></p>
-    </div>
-    <nav>
-      <button onclick="setPage('Preamble')">Premable</button>
-      <button onclick="setPage('Demographic')">Demographic</button>
-      <button onclick="setPage('All')">All</button>
-    </nav>
-    <div id="root">
+    <div id="root" class="root">
     </div>
   </body>
+  <!-- <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/assessment.js"></script> -->
   <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/assessment.js"></script>
 </html>
