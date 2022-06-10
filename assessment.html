@@ -5,11 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grove Assessment Main Page</title>
-    <!-- <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelSchema.js"></script>
+    <!--<script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/fileReader.js"></script> 
+    <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelSchema.js"></script>
     <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelClient.js"></script>
     <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelElements.js"></script>
     <link rel = "stylesheet" href="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/assessment.css"/> -->
-    
+    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/fileReader.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/modelElements.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/modelClient.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/modelSchema.js"></script>
@@ -21,6 +22,7 @@
         <div  id = "newClientAddDiv">
             <button  onclick="toggle(newClientAddForm)">Add a client</button>
             </label>
+            <input id="fileItem" type="file" onchange="csvFileToString()">
             <br /><br />
             <div id = "newClientAddForm" hidden= true>
               <p>First name:</p>
@@ -56,6 +58,10 @@
         <button class="btn" onclick="setPage('medical')">Medical</button>
         <button class="btn" onclick="setPage('medication')">Medication</button>
         <button class="btn" onclick="setPage('communication')">Communication</button>
+        <button class="btn" onclick="setPage('pain')">Pain</button>
+        <button class="btn" onclick="setPage('elimination')">Elimination</button>
+        <button class="btn" onclick="setPage('mobility')">Mobility</button>
+        <button class="btn" onclick="setPage('skin')">Skin</button>
         <button class="btn" onclick="setPage('carePlan')" >Care Plan</button>
         <button class="btn" onclick="setPage('All')">All</button>
       </nav>

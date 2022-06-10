@@ -30,12 +30,13 @@ p {
 }
 input,
 select {
-  width: 265px;
+  width: 25vw;
   margin: 2px;
 }
 
 textarea {
-  width: 265px;
+  width: 30vw;
+  min-width: 30vw;
   min-height: 100px;
   margin: 2px;
 }
@@ -90,5 +91,12 @@ textarea {
 @media (max-width: 800px) {
   .sub-root-1 {
     flex-direction: column;
+  }
+  textarea {
+    min-width: 80vw;
+  }
+  input,
+  select {
+    width: 70vw;
   }
 }

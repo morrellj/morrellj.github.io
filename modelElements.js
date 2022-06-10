@@ -44,6 +44,10 @@ class Elements {
           this[dataField].style.backgroundColor = Client.colors[element];
         }
       });
+      //add default
+      if (value.default) {
+        this[dataField].value = value.default;
+      }
       //unique actions for specific tag types
       switch (value.tag) {
         case "select":
@@ -68,15 +72,6 @@ class Elements {
             console.log("date type");
           }
           break;
-        //   case "medText":
-        //     this[dataField] = function (value) {};
-        //     break;
-        //   case "multiSelect":
-        //     this[dataField] = function (value) {};
-        //     break;
-        //   case "singleSelect":
-        //     this[dataField] = function (value) {};
-        //     break;
         default:
       }
 
@@ -84,7 +79,7 @@ class Elements {
       this.array.push(inputDiv);
     }
     //class functions
-    this.addSpecifiedElementsToTargetDiv = function (tag, targetDiv) {
+    this.addSpecifiedElementsToTargetDiv = function (category, targetDiv) {
       let count = 0;
       let nextDiv;
       function subRootOneDiv() {
@@ -95,29 +90,48 @@ class Elements {
         return tempDiv;
       }
       nextDiv = subRootOneDiv();
-      root.appendChild(nextDiv);
+      targetDiv.appendChild(nextDiv);
       this.array.forEach(function (element) {
-        addNextElement(tag, nextDiv);
-        function addNextElement(tag, target) {
-          if (tag == "All") {
-            target.appendChild(element);
-            count += 1;
-          } else if (element.lastChild.classList.contains(tag)) {
-            target.appendChild(element);
-            count += 1;
-          }
-          if (count % 3 == 0 && count > 0) {
-            nextDiv = subRootOneDiv();
-            root.appendChild(nextDiv);
-          }
-        }
+        // if (element.lastChild.classList.contains("carePlan")) {
+        //   if (count % 3 == 2) {
+        //     let newBlankDiv = blankDiv();
+        //     nextDiv.appendChild(newBlankDiv);
+        //     nextDiv = subRootOneDiv();
+        //     targetDiv.appendChild(nextDiv);
+        //   }
+        //   addNextElement(category, element, nextDiv);
+        //   count += 1;
+        //   if (count % 3 == 0 && count > 0) {
+        //     nextDiv = subRootOneDiv();
+        //     targetDiv.appendChild(nextDiv);
+        //   }
+        // } else {
+        addNextElement(category, element, nextDiv);
+        // }
       });
       while (count % 3 != 0) {
-        nextDiv = document.createElement("div");
-        nextDiv.classList.add("flex-item");
-        nextDiv.classList.add("blank-fill");
-        root.lastChild.appendChild(nextDiv);
+        let newBlank = blankDiv();
+        targetDiv.lastChild.appendChild(newBlank);
         count += 1;
+      }
+      function blankDiv() {
+        let thisBlank = document.createElement("div");
+        thisBlank.classList.add("flex-item");
+        thisBlank.classList.add("blank-fill");
+        return thisBlank;
+      }
+      function addNextElement(category, element, elementDiv) {
+        if (category == "All") {
+          elementDiv.appendChild(element);
+          count += 1;
+        } else if (element.lastChild.classList.contains(category)) {
+          elementDiv.appendChild(element);
+          count += 1;
+        }
+        if (count % 3 == 0 && count > 0) {
+          nextDiv = subRootOneDiv();
+          targetDiv.appendChild(nextDiv);
+        }
       }
     };
     this.updateElements = function (data) {

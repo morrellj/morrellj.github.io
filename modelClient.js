@@ -270,6 +270,36 @@ class Client {
       label: "Religious impact on services.",
       classes: ["largeText", "demographic"],
     },
+    risk: {
+      tag: "select",
+      label: "risk",
+      classes: ["demographic"],
+      selectOptions: [
+        "Living alone or with an individual with similar or greater level of needs",
+        "Receiving nursing services (such as wound management)",
+        "Receiving life-sustaining services including meals, or technologies such as oxygen",
+        "Unlikely to be able to relocate without assistance",
+        "Unable to make an independent decision due to cognitive or other impairment",
+        "Socially or geographically isolated",
+        "Living in a particularly high risk area (e.g. bushfire, flood)",
+        "Difficult to make contact with in the event of an emergency (i.e. have limited or unreliable telephone services or are hearing impaired)",
+      ],
+      multiple: true,
+    },
+    disability: {
+      tag: "select",
+      label: "Disability",
+      classes: ["demographic"],
+      selectOptions: [
+        "Intellectual/learning",
+        "Psychiatric",
+        "Sensory/speech",
+        "Physical/diverse",
+        "None",
+        "Not stated / inadequately described",
+      ],
+      multiple: true,
+    },
     //contacts and medical
     nextOfKin: {
       tag: "input",
@@ -298,37 +328,7 @@ class Client {
     epaEpgAcp: {
       tag: "textarea",
       label: "EPA/EPG/ACP",
-      classes: ["contactsMedical", "medical", "largeText"],
-    },
-    risk: {
-      tag: "select",
-      label: "risk",
-      classes: ["contactsMedical"],
-      selectOptions: [
-        "Living alone or with an individual with similar or greater level of needs",
-        "Receiving nursing services (such as wound management)",
-        "Receiving life-sustaining services including meals, or technologies such as oxygen",
-        "Unlikely to be able to relocate without assistance",
-        "Unable to make an independent decision due to cognitive or other impairment",
-        "Socially or geographically isolated",
-        "Living in a particularly high risk area (e.g. bushfire, flood)",
-        "Difficult to make contact with in the event of an emergency (i.e. have limited or unreliable telephone services or are hearing impaired)",
-      ],
-      multiple: true,
-    },
-    disability: {
-      tag: "select",
-      label: "Carer Status",
-      classes: ["contactsMedical"],
-      selectOptions: [
-        "Intellectual/learning",
-        "Psychiatric",
-        "Sensory/speech",
-        "Physical/diverse",
-        "None",
-        "Not stated / inadequately described",
-      ],
-      multiple: true,
+      classes: ["contactsMedical", "largeText"],
     },
 
     pharmacy: {
@@ -359,6 +359,44 @@ class Client {
       label: "Food allergies",
       classes: ["contactsMedical", "medical", "important", "largeText"],
     },
+    medicalCurrent: {
+      tag: "textarea",
+      label: "Medical current",
+      classes: ["contactsMedical", "medical", "important", "largeText"],
+    },
+    medicalHistory: {
+      tag: "textarea",
+      label: "Medical history",
+      classes: ["contactsMedical", "medical", "important", "largeText"],
+    },
+    surgicalHistory: {
+      tag: "textarea",
+      label: "Surgical current",
+      classes: ["contactsMedical", "medical", "largeText"],
+    },
+    recentHospitalisations: {
+      tag: "textarea",
+      label: "Recent hospitalisations",
+      classes: ["contactsMedical", "medical", "largeText"],
+    },
+    medicalOther: {
+      tag: "textarea",
+      label: "Medical other",
+      classes: ["contactsMedical", "medical", "largeText"],
+    },
+    vaccinations: {
+      tag: "textarea",
+      label: "Vaccinations",
+      classes: ["medical", "largeText"],
+      default: "COVID ?\nFlu ?\nShingles ?\nPneumovax ?\nTetnus ?\n",
+    },
+    acatDate: {
+      tag: "input",
+      label: "ACAT date",
+      type: "date",
+      classes: ["medical"],
+    },
+
     //CHSP
     chspGoals: {
       tag: "textarea",
@@ -545,11 +583,42 @@ class Client {
       classes: ["preamble", "largeText"],
     },
     // medication
-    MedicationList: {
+    medicationSupport: {
+      tag: "textarea",
+      label: "Medication support",
+      classes: ["medication", "largeText"],
+      default: [
+        "No support required\nCarer supports client with medication\nFormal support services required administration/prompt",
+      ],
+    },
+
+    medicationList: {
       tag: "textarea",
       label: "Medication list",
       classes: ["medication", "largeText"],
     },
+    highRiskMedications: {
+      tag: "textarea",
+      label: "High risk medication list",
+      classes: ["medication", "largeText"],
+    },
+    hmr: {
+      tag: "select",
+      multiple: true,
+      label: "HMR",
+      classes: ["medication"],
+      selectOptions: [
+        "HMR recently completed",
+        "HMR discussed",
+        "Client/carer to follow up HMR with GP",
+      ],
+    },
+    medicationOther: {
+      tag: "textarea",
+      label: "Medication other",
+      classes: ["medication", "largeText"],
+    },
+
     medicationSupportPlanFactors: {
       tag: "textarea",
       label: "Medication support plan FACTORS",
@@ -610,6 +679,62 @@ class Client {
       tag: "textarea",
       label: "Communication support plan INTERVENTIONS",
       classes: ["carePlan", "communication", "largeText"],
+    },
+    //Pain
+    painSupportPlanFactors: {
+      tag: "textarea",
+      label: "Pain support plan FACTORS",
+      classes: ["carePlan", "pain", "largeText"],
+    },
+    painSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Pain support plan INTERVENTIONS",
+      classes: ["carePlan", "pain", "largeText"],
+    },
+    //Skin care
+    skinSupportPlanFactors: {
+      tag: "textarea",
+      label: "Skin care support plan FACTORS",
+      classes: ["carePlan", "skin", "largeText"],
+    },
+    skinSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Skin care support plan INTERVENTIONS",
+      classes: ["carePlan", "skin", "largeText"],
+    },
+    //elimination
+
+    eliminationSupportPlanFactors: {
+      tag: "textarea",
+      label: "Elimination support plan FACTORS",
+      classes: ["carePlan", "elimination", "largeText"],
+    },
+    eliminationSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Elimination support plan INTERVENTIONS",
+      classes: ["carePlan", "elimination", "largeText"],
+    },
+    //cleaning
+    cleaningSupportPlanFactors: {
+      tag: "textarea",
+      label: "Cleaning support plan FACTORS",
+      classes: ["carePlan", "cleaning", "largeText"],
+    },
+    cleaningSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Cleaning support plan INTERVENTIONS",
+      classes: ["carePlan", "cleaning", "largeText"],
+    },
+    //transport and mobility
+    mobilitySupportPlanFactors: {
+      tag: "textarea",
+      label: "Mobility/transport support plan FACTORS",
+      classes: ["carePlan", "mobility", "largeText"],
+    },
+    mobilitySupportPlanInterventions: {
+      tag: "textarea",
+      label: "Mobility/transport support plan INTERVENTIONS",
+      classes: ["carePlan", "mobility", "largeText"],
     },
   };
 
