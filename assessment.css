@@ -33,7 +33,9 @@ select {
   width: 25vw;
   margin: 2px;
 }
-
+input[type="checkbox"] {
+  width: auto;
+}
 textarea {
   width: 30vw;
   min-width: 30vw;

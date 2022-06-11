@@ -11,9 +11,14 @@ class Elements {
       inputDiv.classList.add("flex-item");
       let inputLabel = document.createElement("p");
       inputLabel.innerHTML = value.label;
+      //create follow up check box
+      let followUpCheckbox = document.createElement("input");
+      followUpCheckbox.type = "checkbox";
+      followUpCheckbox.name = dataField + "-followUp";
       //append element and label to div
       inputDiv.appendChild(inputLabel);
       inputDiv.appendChild(this[dataField]);
+      inputDiv.appendChild(followUpCheckbox);
       //add ID
       this[dataField].id = dataField;
       //add class list
@@ -124,7 +129,11 @@ class Elements {
         if (category == "All") {
           elementDiv.appendChild(element);
           count += 1;
-        } else if (element.lastChild.classList.contains(category)) {
+        } else if (category == "followUp") {
+          if (element.lastChild.checked == true) {
+            elementDiv.appendChild(element);
+          }
+        } else if (element.childNodes[1].classList.contains(category)) {
           elementDiv.appendChild(element);
           count += 1;
         }

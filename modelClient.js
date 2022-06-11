@@ -753,18 +753,23 @@ class Client {
           for (const [thisKey, value] of Object.entries(Client.schema)) {
             thisData[thisKey] = this[thisKey];
           }
+          thisData.lastModified = new Date();
+          let day = thisData.lastModified.getDate();
+          let month = thisData.lastModified.getMonth();
+          let year = thisData.lastModified.getFullYear();
+          data.lastDate = day + "/" + month + "/" + year;
           console.log(thisData);
           localStorage.setItem(this.key, JSON.stringify(thisData));
         } else {
           alert("Client already named in local storage.");
         }
       });
-    this.update = function (data) {
-      for (const [thisKey, value] of Object.entries(data)) {
-        this[thisKey] = value;
-      }
-      this.save();
-    };
+    // this.update = function (data) {
+    //   for (const [thisKey, value] of Object.entries(data)) {
+    //     this[thisKey] = value;
+    //   }
+    //   this.save();
+    // };
 
     for (const [thisKey, value] of Object.entries(Client.schema)) {
       this[thisKey] = data[thisKey]
@@ -787,6 +792,11 @@ class Client {
       for (const [thisKey, value] of Object.entries(newValues)) {
         data[thisKey] = value;
       }
+      data.lastModified = new Date();
+      let day = data.lastModified.getDate();
+      let month = data.lastModified.getMonth();
+      let year = data.lastModified.getFullYear();
+      data.lastDate = day + "/" + month + "/" + year;
       localStorage.setItem(key, JSON.stringify(data));
     });
   };
