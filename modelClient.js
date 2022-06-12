@@ -3,6 +3,20 @@ class Client {
     carePlan: "#D4F9C8",
     important: "LemonChiffon",
   };
+  static supplementaryProperties = {
+    lastDate: {
+      type: "string",
+      default: Client.getLastDate(),
+    },
+    lastModified: {
+      type: "date",
+      default: new Date(),
+    },
+    followUps: {
+      type: "array",
+      default: [],
+    },
+  };
   static schema = {
     //demographic
     servicePreferences: {
@@ -600,7 +614,9 @@ class Client {
     highRiskMedications: {
       tag: "textarea",
       label: "High risk medication list",
-      classes: ["medication", "largeText"],
+      default:
+        "(ie Sedatives Antidepressants Antiparkinsons Antipsychotics Diuretics Antihypertensives Hypnotics)",
+      classes: ["medication", "largeText", "falls"],
     },
     hmr: {
       tag: "select",
@@ -633,7 +649,7 @@ class Client {
     CommunicationImpairements: {
       tag: "select",
       label: "Communication impairements",
-      classes: ["communication"],
+      classes: ["communicationSensory", "falls"],
       selectOptions: [
         "Hearing impaired",
         "Vision impaired (glasses)",
@@ -644,7 +660,7 @@ class Client {
     CommunicationAids: {
       tag: "select",
       label: "Communication aids",
-      classes: ["communication"],
+      classes: ["communicationSensory"],
       selectOptions: [
         "Wears hearing aids",
         "Wears reading glasses",
@@ -656,7 +672,7 @@ class Client {
     sensory: {
       tag: "select",
       label: "Sensory",
-      classes: ["communication"],
+      classes: ["communicationSensory", "falls"],
       selectOptions: [
         "Sense of smell present",
         "Feels light touch in periperies",
@@ -668,19 +684,47 @@ class Client {
     sensoryOther: {
       tag: "textarea",
       label: "Communication and sensory other",
-      classes: ["communication", "largeText"],
+      classes: ["communicationSensory", "largeText"],
     },
     communicationSupportPlanFactors: {
       tag: "textarea",
       label: "Communication support plan FACTORS",
-      classes: ["carePlan", "communication", "largeText"],
+      classes: ["carePlan", "communicationSensory", "largeText"],
     },
     communicationSupportPlanInterventions: {
       tag: "textarea",
       label: "Communication support plan INTERVENTIONS",
-      classes: ["carePlan", "communication", "largeText"],
+      classes: ["carePlan", "communicationSensory", "largeText"],
     },
-    //Pain
+    //Pain (falls)
+    painScale: {
+      tag: "select",
+      label: "Pain scale",
+      classes: ["pain", "falls"],
+      selectOptions: [
+        "0 No pain",
+        "1 Tolerable (and does not prevent any activities)",
+        "2 Tolerable (but does prevent some activities)",
+        "3 Intolerable (but can use telephone, watch TV, or read)",
+        "4 Intolerable (but cannot use telephone, watch TV, or read)",
+        "5 Intolerable (and unable to verbally communicate because of pain)",
+      ],
+    },
+    painLocation: {
+      tag: "textarea",
+      label: "Pain location",
+      classes: ["largeText", "pain", "falls"],
+    },
+    painFutherAssessment: {
+      tag: "select",
+      label: "Further assessment",
+      selectOptions: [
+        "Pain assessment completed",
+        "Further pain assessment required",
+        "Further pain assessment not required",
+      ],
+      classes: ["pain"],
+    },
     painSupportPlanFactors: {
       tag: "textarea",
       label: "Pain support plan FACTORS",
@@ -702,7 +746,7 @@ class Client {
       label: "Skin care support plan INTERVENTIONS",
       classes: ["carePlan", "skin", "largeText"],
     },
-    //elimination
+    //elimination (falls)
 
     eliminationSupportPlanFactors: {
       tag: "textarea",
@@ -714,27 +758,286 @@ class Client {
       label: "Elimination support plan INTERVENTIONS",
       classes: ["carePlan", "elimination", "largeText"],
     },
-    //cleaning
-    cleaningSupportPlanFactors: {
-      tag: "textarea",
-      label: "Cleaning support plan FACTORS",
-      classes: ["carePlan", "cleaning", "largeText"],
-    },
-    cleaningSupportPlanInterventions: {
-      tag: "textarea",
-      label: "Cleaning support plan INTERVENTIONS",
-      classes: ["carePlan", "cleaning", "largeText"],
-    },
+
     //transport and mobility
+    transport: {
+      tag: "textarea",
+      label: "Transport",
+      classes: ["medical", "mobility", "mealsShoppingSocial", "largeText"],
+    },
+    transfers: {
+      tag: "select",
+      selectOptions: [
+        "Independent transfers",
+        "Standby assist transfers",
+        "Physical assist transfers",
+        "Physical assist x2 transfers",
+        "Not weight bearing",
+      ],
+      label: "Transfers",
+      classes: ["mobility", "falls"],
+    },
+    ambulation: {
+      tag: "select",
+      selectOptions: [
+        "Independent ambulation",
+        "Standby assist ambulation",
+        "Physical assist ambulation",
+        "Physical assist xv2 ambulation",
+      ],
+      label: "Ambulation",
+      classes: ["mobility", "falls"],
+    },
+    mobilityAids: {
+      tag: "select",
+      multiple: true,
+      selectOptions: [
+        "Zimmer frame",
+        "Walking stick",
+        "Four wheeled Walker",
+        "Wheel chair for all ambulation",
+        "Wheel chair for longer distances",
+        "Standing hoist",
+        "Sara steady (or equiv)",
+        "Cradle hoist",
+      ],
+      label: "Mobility aids",
+      classes: ["mobility", "falls"],
+    },
+    otherEquipmentUsed: {
+      tag: "select",
+      multiple: true,
+      selectOptions: [
+        "Shower chair/stool",
+        "Over toilet seat",
+        "High back chair",
+        "Utility chair",
+        "Recliner chair",
+      ],
+      label: "Other equipment used",
+      classes: ["mobility", "environment", "falls"],
+    },
+    otherEquipmentRequired: {
+      tag: "select",
+      multiple: true,
+      selectOptions: [
+        "Shower chair/stool",
+        "Over toilet seat",
+        "High back chair",
+        "Utility chair",
+        "Recliner chair",
+      ],
+      label: "Other equipment required",
+      classes: ["mobility", "environment", "falls"],
+    },
+    homeModificationsInstalled: {
+      tag: "select",
+      multiple: true,
+      selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
+      label: "Mome modifications installed",
+      classes: ["mobility", "environment", "falls"],
+    },
+    homeModificationsRequired: {
+      tag: "select",
+      multiple: true,
+      selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
+      label: "Mome modifications required",
+      classes: ["mobility", "environment", "falls"],
+    },
+    recentFalls: {
+      tag: "select",
+      label: "Recent falls",
+      selectOptions: [
+        "No falls in last 12 months",
+        "One or more falls between 3 and 12 months ago",
+        "One or more falls in the last 3 months",
+      ],
+      classes: ["falls"],
+    },
+    falls: {
+      tag: "select",
+      multiple: true,
+      selectOptions: [
+        "High falls risk",
+        "Further falls/environmental risk assessment/intervention required",
+        "Falls risk interventions in place",
+        "Client has own PERS",
+        "Client requires PERS",
+      ],
+      label: "Falls risk",
+      classes: ["mobility", "environment", "falls"],
+    },
     mobilitySupportPlanFactors: {
       tag: "textarea",
       label: "Mobility/transport support plan FACTORS",
-      classes: ["carePlan", "mobility", "largeText"],
+      classes: ["carePlan", "mobility", "falls", "largeText"],
     },
     mobilitySupportPlanInterventions: {
       tag: "textarea",
       label: "Mobility/transport support plan INTERVENTIONS",
-      classes: ["carePlan", "mobility", "largeText"],
+      classes: ["carePlan", "mobility", "falls", "largeText"],
+    },
+    //environement and personal safety/security
+    environment: {
+      tag: "textarea",
+      label: "Environmental",
+      default:
+        "Refer also to falls risk. Other safety and security issues identified:",
+      classes: ["mobility", "environment", "falls", "largText"],
+    },
+    //social and family
+    socialSupportPlanFactors: {
+      tag: "textarea",
+      label: "Social support plan FACTORS",
+      classes: ["carePlan", "mealsShoppingSocial", "largeText"],
+    },
+    socialSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Social support plan INTERVENTIONS",
+      classes: ["carePlan", "mealsShoppingSocial", "largeText"],
+    },
+    //personal care
+    personalCareSupportPlanFactors: {
+      tag: "textarea",
+      label: "Personal care support plan FACTORS",
+      classes: ["carePlan", "personalCare", "largeText"],
+    },
+    personalCareSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Personal care support plan INTERVENTIONS",
+      classes: ["carePlan", "personalCare", "largeText"],
+    },
+    //meals and shopping
+    mealsAndShoppingSupportPlanFactors: {
+      tag: "textarea",
+      label: "Meals and shopping support plan FACTORS",
+      classes: [
+        "carePlan",
+        "function",
+        "mealsShoppingSocial",
+        "nutrition",
+        "mobility",
+        "largeText",
+      ],
+    },
+    mealsAndShoppingSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Meals and shopping support plan INTERVENTIONS",
+      classes: [
+        "carePlan",
+        "function",
+        "mealsShoppingSocial",
+        "nutrition",
+        "mobility",
+        "largeText",
+      ],
+    },
+    //nutrition
+    nutritionalIntake: {
+      tag: "textarea",
+      label: "Nutritional intake",
+      default:
+        "Percentage of meals eaten:\nDinner:\nLunch:\nBreakfast:\nSnacks:",
+      classes: ["nutriton", "falls", "largeText"],
+    },
+    weightLossGain: {
+      tag: "select",
+      multiple: true,
+      selectOptions: [
+        "Weight Stable",
+        "Unintentional weight loss",
+        "Unintentional weight gain",
+        "High BMI",
+        "Low BMI",
+        "Further nutritional assessment required",
+        "Nutritional assessment completed",
+        "Client has had dietician review",
+        "Dietician referral required",
+      ],
+      label: "Weight",
+      classes: ["nutrition"],
+    },
+    //Biometrics
+    weight: {
+      tag: "input",
+      label: "Weight",
+      type: "text",
+      classes: ["biometrics"],
+    },
+    pulse: {
+      tag: "input",
+      label: "Pulse",
+      type: "text",
+      classes: ["biometrics"],
+    },
+    temperature: {
+      tag: "input",
+      label: "Temperature",
+      type: "text",
+      classes: ["biometrics"],
+    },
+    respiratoryRate: {
+      tag: "input",
+      label: "Respiratory rate",
+      type: "text",
+      classes: ["biometrics"],
+    },
+    bloodPressure: {
+      tag: "input",
+      label: "Blood pressure",
+      type: "text",
+      classes: ["biometrics"],
+    },
+    bloodGlucose: {
+      tag: "input",
+      label: "Blood glucose",
+      type: "text",
+      classes: ["biometrics"],
+    },
+    oxygenSaturation: {
+      tag: "input",
+      label: "Oxygen saturation",
+      type: "text",
+      classes: ["biometrics"],
+    },
+    headToToe: {
+      tag: "textarea",
+      label: "Head to toe",
+      default: "Considerations:",
+      classes: [
+        "biometrics",
+        "skin",
+        "falls",
+        "communicationSensory",
+        "largeText",
+      ],
+    },
+    //cleaning
+    cleaningSupportPlanFactors: {
+      tag: "textarea",
+      label: "Cleaning support plan FACTORS",
+      classes: ["carePlan", "environment", "largeText"],
+    },
+    cleaningSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Cleaning support plan INTERVENTIONS",
+      classes: ["carePlan", "environment", "largeText"],
+    },
+    //HGM
+    HGMSupportPlanFactors: {
+      tag: "textarea",
+      label: "Home and garden plan FACTORS",
+      classes: ["carePlan", "environment", "largeText"],
+    },
+    HGMSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Home and garden support plan INTERVENTIONS",
+      classes: ["carePlan", "environment", "largeText"],
+    },
+    followUpsElement: {
+      tag: "textarea",
+      label: "Follow up notes.",
+      classes: ["followUp", "largeText"],
     },
   };
 
@@ -747,29 +1050,23 @@ class Client {
     }
     (this.key = key),
       // this.data = {};
-      (this.save = function () {
-        if (!localStorage.getItem(this.key)) {
+      (this.save = function (current) {
+        if (!localStorage.getItem(this.key) || current) {
           let thisData = {};
           for (const [thisKey, value] of Object.entries(Client.schema)) {
             thisData[thisKey] = this[thisKey];
           }
           thisData.lastModified = new Date();
-          let day = thisData.lastModified.getDate();
-          let month = thisData.lastModified.getMonth();
-          let year = thisData.lastModified.getFullYear();
-          data.lastDate = day + "/" + month + "/" + year;
-          console.log(thisData);
+          thisData.lastDate = Client.getLastDate();
+          thisData.followUps = this.followUps ? this.followUps : null;
           localStorage.setItem(this.key, JSON.stringify(thisData));
         } else {
           alert("Client already named in local storage.");
         }
       });
-    // this.update = function (data) {
-    //   for (const [thisKey, value] of Object.entries(data)) {
-    //     this[thisKey] = value;
-    //   }
-    //   this.save();
-    // };
+    this.replace = function () {
+      this.save(true);
+    };
 
     for (const [thisKey, value] of Object.entries(Client.schema)) {
       this[thisKey] = data[thisKey]
@@ -778,6 +1075,22 @@ class Client {
         ? value.default
         : null;
     }
+    for (const [thisKey, value] of Object.entries(
+      Client.supplementaryProperties
+    )) {
+      this[thisKey] = data[thisKey]
+        ? data[thisKey]
+        : value.default
+        ? value.default
+        : null;
+    }
+  }
+  static getLastDate() {
+    let thisDate = new Date();
+    let day = thisDate.getDate();
+    let month = thisDate.getMonth() + 1;
+    let year = thisDate.getFullYear();
+    return day + "/" + month + "/" + year;
   }
   static new(key, data) {
     return new Client(key, data);
@@ -793,10 +1106,8 @@ class Client {
         data[thisKey] = value;
       }
       data.lastModified = new Date();
-      let day = data.lastModified.getDate();
-      let month = data.lastModified.getMonth();
-      let year = data.lastModified.getFullYear();
-      data.lastDate = day + "/" + month + "/" + year;
+      data.lastDate = Client.getLastDate();
+      // data.followUps = newValues.followUps ? newValues.followUps : null;
       localStorage.setItem(key, JSON.stringify(data));
     });
   };

@@ -1,26 +1,44 @@
 class Elements {
   constructor(schema) {
-    this.array = [];
+    this.inputElementsArray = [];
 
     for (const [dataField, value] of Object.entries(schema)) {
       //create tag
       this[dataField] = document.createElement(value.tag);
       //create div and label
       let inputDiv = document.createElement("div");
-      inputDiv.id = dataField + "Div";
+      inputDiv.id = dataField;
       inputDiv.classList.add("flex-item");
       let inputLabel = document.createElement("p");
       inputLabel.innerHTML = value.label;
       //create follow up check box
       let followUpCheckbox = document.createElement("input");
       followUpCheckbox.type = "checkbox";
-      followUpCheckbox.name = dataField + "-followUp";
+      followUpCheckbox.oninput = function () {
+        let clientKey = this.name;
+        Client.getClient(clientKey, (client) => {
+          if (this.checked == true) {
+            // update a property in the record that is an array
+            let arr = [];
+            if (client.followUps) {
+              client.followUps.push(this.parentNode.id);
+            } else {
+              arr.push(this.parentNode.id);
+              client.followUps = arr;
+            }
+          } else if (this.checked == false) {
+            let arr = client.followUps.filter((e) => e !== this.parentNode.id);
+            client.followUps = arr;
+          }
+          client.replace();
+        });
+      };
       //append element and label to div
       inputDiv.appendChild(inputLabel);
       inputDiv.appendChild(this[dataField]);
       inputDiv.appendChild(followUpCheckbox);
-      //add ID
-      this[dataField].id = dataField;
+      //add name
+      // this[dataField].name = dataField;
       //add class list
       value.classes.forEach((ele) => {
         this[dataField].classList.add(ele);
@@ -30,7 +48,7 @@ class Elements {
       this[dataField].oninput = function () {
         let changeObject = {};
         if (this.name) {
-          changeObject[this.id] =
+          changeObject[this.parentNode.id] =
             this.tagName == "SELECT"
               ? elements.getMultiSelectValues(this)
               : this.value;
@@ -81,7 +99,7 @@ class Elements {
       }
 
       //push div to array
-      this.array.push(inputDiv);
+      this.inputElementsArray.push(inputDiv);
     }
     //class functions
     this.addSpecifiedElementsToTargetDiv = function (category, targetDiv) {
@@ -96,7 +114,7 @@ class Elements {
       }
       nextDiv = subRootOneDiv();
       targetDiv.appendChild(nextDiv);
-      this.array.forEach(function (element) {
+      this.inputElementsArray.forEach(function (element) {
         // if (element.lastChild.classList.contains("carePlan")) {
         //   if (count % 3 == 2) {
         //     let newBlankDiv = blankDiv();
@@ -130,8 +148,12 @@ class Elements {
           elementDiv.appendChild(element);
           count += 1;
         } else if (category == "followUp") {
-          if (element.lastChild.checked == true) {
+          if (
+            element.childNodes[2].checked == true ||
+            element.childNodes[1].classList.contains(category)
+          ) {
             elementDiv.appendChild(element);
+            count += 1;
           }
         } else if (element.childNodes[1].classList.contains(category)) {
           elementDiv.appendChild(element);
@@ -144,18 +166,25 @@ class Elements {
       }
     };
     this.updateElements = function (data) {
-      this.array.forEach((ele) => {
-        let dataField = ele.lastChild;
-        if (data[dataField.id]) {
+      this.inputElementsArray.forEach((ele) => {
+        let dataField = ele.childNodes[1];
+        if (data[ele.id]) {
           if (dataField.tagName == "SELECT" && dataField.multiple == true) {
             setMultiSelectValues(dataField, data);
           } else {
-            dataField.value = data[dataField.id];
+            dataField.value = data[ele.id];
           }
         } else {
           dataField.value = "";
         }
         dataField.name = data.key;
+        let thisFollowUpsCheckbox = ele.childNodes[2];
+        thisFollowUpsCheckbox.name = data.key;
+        if (data.followUps) {
+          thisFollowUpsCheckbox.checked = data.followUps.includes(ele.id)
+            ? true
+            : false;
+        }
       });
     };
     this.getMultiSelectValues = function (select) {
