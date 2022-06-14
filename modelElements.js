@@ -203,13 +203,14 @@ class Elements {
     };
     function setMultiSelectValues(element, clientData) {
       var options = element.options;
+      let fieldName = element.parentNode.id;
       var opt;
       for (var i = 0, iLen = options.length; i < iLen; i++) {
         options[i].selected = false;
       }
-      if (clientData[element.id]) {
-        if (Array.isArray(clientData[element.id])) {
-          clientData[element.id].map((value) => {
+      if (clientData[fieldName]) {
+        if (Array.isArray(clientData[fieldName])) {
+          clientData[fieldName].map((value) => {
             for (var i = 0, iLen = options.length; i < iLen; i++) {
               opt = options[i];
               if (opt.value == value) {
@@ -217,10 +218,10 @@ class Elements {
               }
             }
           });
-        } else if (typeof clientData[element.id] === "string") {
+        } else if (typeof clientData[fieldName] === "string") {
           for (var i = 0, iLen = options.length; i < iLen; i++) {
             opt = options[i];
-            if (opt.value == clientData[element.id]) {
+            if (opt.value == clientData[fieldName]) {
               opt.selected = true;
             }
           }

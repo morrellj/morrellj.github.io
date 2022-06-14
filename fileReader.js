@@ -7,6 +7,7 @@ function csvFileToString() {
     complete: function (parsedOutput) {
       console.log(parsedOutput);
       theBegginingsOfDB = parsedOutput;
+      let myKeys = Client.schema;
       let keys = parsedOutput.data[0];
       let keyIndex = keys.findIndex((ele) => ele == "key");
       parsedOutput.data.forEach((ele, ind) => {
@@ -14,6 +15,13 @@ function csvFileToString() {
           DB[ele[keyIndex]] = {};
           ele.forEach((field, index) => {
             let final = field.replaceAll("#", "\n ");
+            let hasSchemaKey = myKeys[keys[index]]
+              ? myKeys[keys[index]]
+              : false;
+            let isSelect = hasSchemaKey.tag == "select" ? true : false;
+            if (isSelect) {
+              final = final.split(",");
+            }
             //Need to determine what fields are multiple selects and need to be put back to arrays
             DB[ele[keyIndex]][keys[index]] = final;
           });
