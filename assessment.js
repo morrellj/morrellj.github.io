@@ -109,6 +109,7 @@ function csv() {
   fields.unshift("key");
   fields.unshift("lastModified");
   fields.unshift("lastDate");
+  fields.unshift("followUps");
   let replacer = function (value) {
     return value ? value : "";
   };
@@ -123,7 +124,12 @@ function csv() {
             thisString = thisString + comma + element;
           });
         } else {
-          thisString = row[fieldName];
+          if (row[fieldName]) {
+            let final = row[fieldName].replaceAll("\n", "#");
+            thisString = final;
+          } else {
+            thisString = row[fieldName];
+          }
         }
         return JSON.stringify(replacer(thisString));
       })

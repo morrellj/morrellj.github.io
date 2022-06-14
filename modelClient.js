@@ -2,6 +2,7 @@ class Client {
   static colors = {
     carePlan: "#D4F9C8",
     important: "LemonChiffon",
+    clinical: "lightcyan",
   };
   static supplementaryProperties = {
     lastDate: {
@@ -373,6 +374,24 @@ class Client {
       label: "Food allergies",
       classes: ["contactsMedical", "medical", "important", "largeText"],
     },
+    medicalConditons: {
+      tag: "select",
+      multiple: true,
+      label: "Medical conditons",
+      selectOptions: [
+        "Diabetes type 2",
+        "Diabetes type 1",
+        "COPD",
+        "Asthma",
+        "Chronic Kidney disease",
+        "Heart failure",
+        "Parkinsons",
+        "Dementia",
+        "Osteoarthritis",
+        "Other",
+      ],
+      classes: ["medical"],
+    },
     medicalCurrent: {
       tag: "textarea",
       label: "Medical current",
@@ -404,11 +423,32 @@ class Client {
       classes: ["medical", "largeText"],
       default: "COVID ?\nFlu ?\nShingles ?\nPneumovax ?\nTetnus ?\n",
     },
+    oxygen: {
+      tag: "textarea",
+      label: "Oxygen",
+      default: "Needs:NA\nSupplement:NA",
+      classes: ["medical"],
+    },
+    drugsAlcohol: {
+      tag: "textarea",
+      label: "Drugs and alcohol",
+      classes: ["medical", "falls"],
+    },
     acatDate: {
       tag: "input",
       label: "ACAT date",
       type: "date",
       classes: ["medical"],
+    },
+    medicalNeeds: {
+      tag: "textarea",
+      label: "Medical needs",
+      classes: ["clinical", "medical", "largeText"],
+    },
+    medicalNeedsActions: {
+      tag: "textarea",
+      label: "Medical actions",
+      classes: ["clinical", "medical", "largeText"],
     },
 
     //CHSP
@@ -598,11 +638,13 @@ class Client {
     },
     // medication
     medicationSupport: {
-      tag: "textarea",
+      tag: "select",
       label: "Medication support",
-      classes: ["medication", "largeText"],
-      default: [
-        "No support required\nCarer supports client with medication\nFormal support services required administration/prompt",
+      classes: ["medication"],
+      selectOptions: [
+        "No support required",
+        "Carer supports client with medication",
+        "Formal support services required administration/prompt",
       ],
     },
 
@@ -645,6 +687,16 @@ class Client {
       label: "Medication support plan INTERVENTIONS",
       classes: ["carePlan", "medication", "largeText"],
     },
+    medicationNeeds: {
+      tag: "textarea",
+      label: "Medication needs",
+      classes: ["clinical", "medication", "largeText"],
+    },
+    medicationNeedsActions: {
+      tag: "textarea",
+      label: "Medication actions",
+      classes: ["clinical", "medication", "largeText"],
+    },
     //communication and sensory
     CommunicationImpairements: {
       tag: "select",
@@ -675,9 +727,9 @@ class Client {
       classes: ["communicationSensory", "falls"],
       selectOptions: [
         "Sense of smell present",
-        "Feels light touch in periperies",
-        "No numbness in periperies",
-        "No tingling in periperies",
+        "Feels light touch in peripheries",
+        "No numbness in peripheries",
+        "No tingling in peripheries",
       ],
       multiple: true,
     },
@@ -695,6 +747,47 @@ class Client {
       tag: "textarea",
       label: "Communication support plan INTERVENTIONS",
       classes: ["carePlan", "communicationSensory", "largeText"],
+    },
+    //psychological cognitive sleep
+    sleep: {
+      tag: "textarea",
+      label: "Sleep",
+      classes: ["largeText", "psychological"],
+    },
+    cognitionNeurological: {
+      tag: "textarea",
+      label: "Cognition and neurological",
+      classes: ["largeText", "psychological"],
+    },
+    depression: {
+      tag: "textarea",
+      label: "Depression",
+      classes: ["largeText", "psychological"],
+    },
+    psychologicalOther: {
+      tag: "textarea",
+      label: "Psychological other",
+      classes: ["largeText", "psychological"],
+    },
+    psychologicalSupportPlanFactors: {
+      tag: "textarea",
+      label: "Pyschological support plan FACTORS",
+      classes: ["carePlan", "psychological", "largeText"],
+    },
+    psychologicalSupportPlanInterventions: {
+      tag: "textarea",
+      label: "Pyschological support plan INTERVENTIONS",
+      classes: ["carePlan", "psychological", "largeText"],
+    },
+    pyscholigicalNeeds: {
+      tag: "textarea",
+      label: "Psychological needs",
+      classes: ["clinical", "psychological", "largeText"],
+    },
+    psychologicalActions: {
+      tag: "textarea",
+      label: "Psychological actions",
+      classes: ["clinical", "psychological", "largeText"],
     },
     //Pain (falls)
     painScale: {
@@ -725,6 +818,11 @@ class Client {
       ],
       classes: ["pain"],
     },
+    painOther: {
+      tag: "textarea",
+      label: "Pain other",
+      classes: ["pain"],
+    },
     painSupportPlanFactors: {
       tag: "textarea",
       label: "Pain support plan FACTORS",
@@ -735,7 +833,39 @@ class Client {
       label: "Pain support plan INTERVENTIONS",
       classes: ["carePlan", "pain", "largeText"],
     },
+    painNeeds: {
+      tag: "textarea",
+      label: "Pain needs",
+      classes: ["clinical", "pain", "largeText"],
+    },
+    painActions: {
+      tag: "textarea",
+      label: "Pain actions",
+      classes: ["clinical", "pain", "largeText"],
+    },
     //Skin care
+    woundCare: {
+      tag: "select",
+      label: "Wound Care",
+      selectOptions: ["No wounds", "Wound assessment required"],
+      classes: ["skin"],
+    },
+    pressureInjury: {
+      tag: "select",
+      multiple: true,
+      selectOptions: [
+        "Low risk",
+        "Pressure injury risk assessment required",
+        "Pressure injury risk assessment completed",
+      ],
+      label: "Pressure injury",
+      classes: ["skin"],
+    },
+    skinIntegrity: {
+      tag: "textarea",
+      label: "Skin integrity",
+      classes: ["skin", "clinical"],
+    },
     skinSupportPlanFactors: {
       tag: "textarea",
       label: "Skin care support plan FACTORS",
@@ -746,8 +876,42 @@ class Client {
       label: "Skin care support plan INTERVENTIONS",
       classes: ["carePlan", "skin", "largeText"],
     },
+    skinActions: {
+      tag: "textarea",
+      label: "Skin care clinical actions",
+      classes: ["skin", "clinical", "largeText"],
+    },
     //elimination (falls)
-
+    eliminationUrinary: {
+      tag: "textarea",
+      label: "Urinary",
+      classes: ["elimination", "falls"],
+    },
+    eliminationBowel: {
+      tag: "textarea",
+      label: "Bowel",
+      classes: ["elimination", "falls"],
+    },
+    Toileting: {
+      tag: "select",
+      multiple: true,
+      selectOptions: [
+        "Independent toileting",
+        "Requires assistance with toileting",
+      ],
+      label: "Toileting",
+      classes: ["elimination"],
+    },
+    incontinenceAids: {
+      tag: "textarea",
+      label: "Incontinence aids",
+      classes: ["elimination"],
+    },
+    eliminationOther: {
+      tag: "textarea",
+      label: "Elimination other",
+      classes: ["elimination", "falls"],
+    },
     eliminationSupportPlanFactors: {
       tag: "textarea",
       label: "Elimination support plan FACTORS",
@@ -758,12 +922,21 @@ class Client {
       label: "Elimination support plan INTERVENTIONS",
       classes: ["carePlan", "elimination", "largeText"],
     },
-
+    eliminationNeeds: {
+      tag: "textarea",
+      label: "Elimination needs",
+      classes: ["clinical", "elimination", "largeText"],
+    },
+    eliminationActions: {
+      tag: "textarea",
+      label: "Elimination actions",
+      classes: ["clinical", "elimination", "largeText"],
+    },
     //transport and mobility
     transport: {
       tag: "textarea",
       label: "Transport",
-      classes: ["medical", "mobility", "mealsShoppingSocial", "largeText"],
+      classes: ["medical", "mobility", "mealsShopping", "largeText"],
     },
     transfers: {
       tag: "select",
@@ -867,6 +1040,11 @@ class Client {
       label: "Falls risk",
       classes: ["mobility", "environment", "falls"],
     },
+    mobilityOther: {
+      tag: "textarea",
+      label: "Mobility other",
+      classes: ["mobility", "falls", "largeText"],
+    },
     mobilitySupportPlanFactors: {
       tag: "textarea",
       label: "Mobility/transport support plan FACTORS",
@@ -877,26 +1055,53 @@ class Client {
       label: "Mobility/transport support plan INTERVENTIONS",
       classes: ["carePlan", "mobility", "falls", "largeText"],
     },
+    mobilityFallsNeeds: {
+      tag: "textarea",
+      label: "Mobility and falls needs",
+      classes: ["clinical", "falls", "mobility", "largeText"],
+    },
+    mobilityFallsActions: {
+      tag: "textarea",
+      label: "Mobility and falls actions",
+      classes: ["clinical", "falls", "mobility", "largeText"],
+    },
     //environement and personal safety/security
     environment: {
       tag: "textarea",
       label: "Environmental",
       default:
-        "Refer also to falls risk. Other safety and security issues identified:",
+        "Refer also to falls risk. Other safety and security issues identified: ? key safe",
       classes: ["mobility", "environment", "falls", "largText"],
     },
+
     //social and family
+    carer: {
+      tag: "textarea",
+      label: "Carer factors/carer strain",
+      classes: ["social"],
+    },
+    socialOther: {
+      tag: "textarea",
+      label: "Social other",
+      classes: ["social"],
+    },
     socialSupportPlanFactors: {
       tag: "textarea",
       label: "Social support plan FACTORS",
-      classes: ["carePlan", "mealsShoppingSocial", "largeText"],
+      classes: ["carePlan", "social", "largeText"],
     },
     socialSupportPlanInterventions: {
       tag: "textarea",
       label: "Social support plan INTERVENTIONS",
-      classes: ["carePlan", "mealsShoppingSocial", "largeText"],
+      classes: ["carePlan", "social", "largeText"],
     },
     //personal care
+    PersonalCare: {
+      tag: "textarea",
+      label: "Personal care assessment",
+      default: "Shower/washing/drying:\nDressing/undressing:\nGrooming:",
+      classes: ["personalCare", "largeText"],
+    },
     personalCareSupportPlanFactors: {
       tag: "textarea",
       label: "Personal care support plan FACTORS",
@@ -914,7 +1119,7 @@ class Client {
       classes: [
         "carePlan",
         "function",
-        "mealsShoppingSocial",
+        "mealsShopping",
         "nutrition",
         "mobility",
         "largeText",
@@ -926,7 +1131,7 @@ class Client {
       classes: [
         "carePlan",
         "function",
-        "mealsShoppingSocial",
+        "mealsShopping",
         "nutrition",
         "mobility",
         "largeText",
@@ -937,8 +1142,8 @@ class Client {
       tag: "textarea",
       label: "Nutritional intake",
       default:
-        "Percentage of meals eaten:\nDinner:\nLunch:\nBreakfast:\nSnacks:",
-      classes: ["nutriton", "falls", "largeText"],
+        "Percentage of meals eaten:\nDinner:\nLunch:\nBreakfast:\nSnacks:\nFeeding:",
+      classes: ["nutrition", "falls", "largeText"],
     },
     weightLossGain: {
       tag: "select",
@@ -956,6 +1161,26 @@ class Client {
       ],
       label: "Weight",
       classes: ["nutrition"],
+    },
+    oral: {
+      tag: "textarea",
+      label: "Oral",
+      classes: ["nutrition"],
+    },
+    swallow: {
+      tag: "textarea",
+      label: "Swallow",
+      classes: ["nutrition"],
+    },
+    nutritionNeeds: {
+      tag: "textarea",
+      label: "Nutrition needs",
+      classes: ["clinical", "nutrition", "largeText"],
+    },
+    nutritionNeedsActions: {
+      tag: "textarea",
+      label: "Nutrition actions",
+      classes: ["clinical", "nutrition", "largeText"],
     },
     //Biometrics
     weight: {

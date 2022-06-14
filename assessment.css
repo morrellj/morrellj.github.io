@@ -28,13 +28,21 @@ nav button {
 p {
   margin: 6px 0px 6px;
 }
-input,
-select {
+input {
   width: 25vw;
   margin: 2px;
 }
 input[type="checkbox"] {
   width: auto;
+}
+#root select[multiple="true"] {
+  width: 30vw;
+  min-height: 100px;
+  margin: 2px;
+}
+#root select {
+  width: 30vw;
+  margin: 2px;
 }
 textarea {
   width: 30vw;
@@ -100,5 +108,8 @@ textarea {
   input,
   select {
     width: 70vw;
+  }
+  #root select {
+    width: 80vw;
   }
 }
