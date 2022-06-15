@@ -14,13 +14,16 @@ function csvFileToString() {
         if (ind > 0) {
           DB[ele[keyIndex]] = {};
           ele.forEach((field, index) => {
-            let final = field.replaceAll("#", "\n ");
+            let final = field.replaceAll("#", "\n");
             let hasSchemaKey = myKeys[keys[index]]
               ? myKeys[keys[index]]
               : false;
             let isSelect = hasSchemaKey.tag == "select" ? true : false;
             if (isSelect) {
               final = final.split(",");
+              final = final.map((ele) => {
+                return ele.trim();
+              });
             }
             //Need to determine what fields are multiple selects and need to be put back to arrays
             DB[ele[keyIndex]][keys[index]] = final;

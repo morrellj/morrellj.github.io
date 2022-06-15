@@ -353,16 +353,14 @@ class Client {
       classes: ["contactsMedical", "medical"],
     },
     doctor: {
-      tag: "input",
+      tag: "textarea",
       label: "GP",
-      type: "text",
-      classes: ["contactsMedical", "medical", "important"],
+      classes: ["contactsMedical", "medical", "important", "largeText"],
     },
     specialist: {
-      tag: "input",
+      tag: "textarea",
       label: "Specialists",
-      type: "text",
-      classes: ["contactsMedical", "medical", "important"],
+      classes: ["contactsMedical", "medical", "important", "largeText"],
     },
     allergiesDrug: {
       tag: "textarea",
@@ -986,6 +984,7 @@ class Client {
         "High back chair",
         "Utility chair",
         "Recliner chair",
+        "Hospital bed",
       ],
       label: "Other equipment used",
       classes: ["mobility", "environment", "falls"],
@@ -999,6 +998,7 @@ class Client {
         "High back chair",
         "Utility chair",
         "Recliner chair",
+        "Hospital bed",
       ],
       label: "Other equipment required",
       classes: ["mobility", "environment", "falls"],
@@ -1073,6 +1073,12 @@ class Client {
         "Refer also to falls risk. Other safety and security issues identified: ? key safe",
       classes: ["mobility", "environment", "falls", "largText"],
     },
+    environmentCleaning: {
+      tag: "textarea",
+      label: "Cleaning assessment",
+      default: "",
+      classes: ["environment", "largText"],
+    },
 
     //social and family
     carer: {
@@ -1113,6 +1119,22 @@ class Client {
       classes: ["carePlan", "personalCare", "largeText"],
     },
     //meals and shopping
+    financesOther: {
+      tag: "textarea",
+      label: "Finances other",
+      classes: ["mealsShopping", "function", "largeText"],
+    },
+    mealsAndShoppingOther: {
+      tag: "textarea",
+      label: "Meals and shopping other",
+      classes: [
+        "function",
+        "mealsShopping",
+        "nutrition",
+        "mobility",
+        "largeText",
+      ],
+    },
     mealsAndShoppingSupportPlanFactors: {
       tag: "textarea",
       label: "Meals and shopping support plan FACTORS",
