@@ -680,6 +680,7 @@ class Client {
         "Diuretics",
         "Antihypertensives",
         "Hypnotics",
+          "Anti cholinergic burden"
       ],
       classes: ["medication", "largeText", "falls"],
     },
@@ -1277,10 +1278,7 @@ class Client {
       label: "Cleaning assessment",
       default: "",
       classes: ["environment", "largText"],
-      notes: [
-        "Southern Plus support workers will provide assistance with cleaning weekly/fortnightly for __ hours.",
-        "Cleaning tasks will include\n\nSupport workers will assist with other household tasks as as requested by client as time permits and utilise any spare time to identify other jobs that need doing (empty/put out bins, tidy clean the fridge/microwave/dusting surfaces/skirting/window sills etc.)",
-      ],
+      
     },
     environmentReview: {
       tag: "textarea",

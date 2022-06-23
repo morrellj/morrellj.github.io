@@ -144,19 +144,19 @@ function popUpPop(event) {
             "his/her",
             genderOwnership
           );
-          if (elementToChange.value.search(personalPartString) >= 0) {
+          if (elementToChange.value.indexOf(personalPartString) >= 0) {
             let stringWithoutCarriageReturn = elementToChange.value;
             if (
               elementToChange.value[
-                elementToChange.value.search(personalPartString) - 1
+                elementToChange.value.indexOf(personalPartString) - 1
               ] == "\n"
             ) {
               stringWithoutCarriageReturn = elementToChange.value
-                .slice(0, elementToChange.value.search(personalPartString) - 1)
+                .slice(0, elementToChange.value.indexOf(personalPartString) - 1)
                 .concat(
                   "",
                   elementToChange.value.slice(
-                    elementToChange.value.search(personalPartString)
+                    elementToChange.value.indexOf(personalPartString)
                   )
                 );
             }
@@ -227,7 +227,7 @@ function searchReduce() {
     for (const [key, client] of Object.entries(clients)) {
       let clientName = client.firstName + " " + client.surname;
       clientName = clientName.toLowerCase();
-      if (clientName.search(searchWord) >= 0) {
+      if (clientName.indexOf(searchWord) >= 0) {
         addNewClientSelectOption(client);
       }
     }
