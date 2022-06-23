@@ -1,8 +1,10 @@
 class Client {
   static colors = {
-    carePlan: "#D4F9C8",
-    important: "LemonChiffon",
-    clinical: "lightcyan",
+    carePlan: "#d2f8d2",
+    important: "#f8f8d2",
+    clinical: "#d2d2f8",
+    review: "#f8d2f8",
+    goals: "#e7ebda",
   };
   static supplementaryProperties = {
     lastDate: {
@@ -62,9 +64,9 @@ class Client {
       classes: ["demographic"],
     },
     gender: {
-      tag: "input",
-      type: "text",
+      tag: "select",
       label: "Gender",
+      selectOptions: ["Male", "Female"],
       classes: ["demographic"],
     },
     streetAdress: {
@@ -273,7 +275,6 @@ class Client {
       label: "Carer Status",
       classes: ["demographic"],
       selectOptions: ["No Carer", "Non co resident carer", "Co resident carer"],
-      multiple: true,
     },
     culturalImapact: {
       tag: "textarea",
@@ -321,6 +322,7 @@ class Client {
       label: "NOK",
       type: "text",
       classes: ["contactsMedical", "important"],
+      notes: ["Note one", "Note two", "Note three"],
     },
     primaryContact: {
       tag: "input",
@@ -366,11 +368,13 @@ class Client {
       tag: "textarea",
       label: "Drug allergies",
       classes: ["contactsMedical", "medical", "important", "largeText"],
+      notes: ["No known drug allergies"],
     },
     allergiesFood: {
       tag: "textarea",
       label: "Food allergies",
       classes: ["contactsMedical", "medical", "important", "largeText"],
+      notes: ["No known food allergies"],
     },
     medicalConditons: {
       tag: "select",
@@ -448,7 +452,21 @@ class Client {
       label: "Medical actions",
       classes: ["clinical", "medical", "largeText"],
     },
-
+    medicalSupportPlanGoals: {
+      tag: "textarea",
+      label: "Medical support GOALS",
+      classes: ["medical", "carePlan", "goals", "largeText"],
+    },
+    medicalSupportPlanIntervention: {
+      tag: "textarea",
+      label: "Medical support INTERVENTIONS",
+      classes: ["medical", "carePlan", "largeText"],
+    },
+    medicalReview: {
+      tag: "textarea",
+      label: "Medical",
+      classes: ["medical", "review", "largeText"],
+    },
     //CHSP
     chspGoals: {
       tag: "textarea",
@@ -654,8 +672,15 @@ class Client {
     highRiskMedications: {
       tag: "textarea",
       label: "High risk medication list",
-      default:
-        "(ie Sedatives Antidepressants Antiparkinsons Antipsychotics Diuretics Antihypertensives Hypnotics)",
+      notes: [
+        "Sedatives",
+        "Antidepressants",
+        "Antiparkinsons",
+        "Antipsychotics",
+        "Diuretics",
+        "Antihypertensives",
+        "Hypnotics",
+      ],
       classes: ["medication", "largeText", "falls"],
     },
     hmr: {
@@ -679,11 +704,29 @@ class Client {
       tag: "textarea",
       label: "Medication support plan FACTORS",
       classes: ["carePlan", "medication", "largeText"],
+      notes: [
+        "Client has a self care deficit related to medication administration secondary to ___ ",
+        "No self care deficits identified.",
+        "Client has been prescribed high risk medication [name]",
+      ],
+    },
+    medicationGoals: {
+      tag: "textarea",
+      label: "Medication support plan GOALS",
+      classes: ["carePlan", "medication", "goals", "largeText"],
+      notes: ["Client's medication will be managed safely and effectively"],
     },
     medicationSupportPlanInterventions: {
       tag: "textarea",
       label: "Medication support plan INTERVENTIONS",
       classes: ["carePlan", "medication", "largeText"],
+      notes: [
+        "Southern Plus support workers will prompt client to take medications [days and times].",
+        "Southern Plus support workers will provide physical assistance for client to take medications as directed by client.",
+        "Southern Plus support workers will administer medications to client as per Southern Plus policy [days and times].",
+        "Client's family will support client to manage and take medication in consultation with his/her GP.[days and times].",
+        "Client will continue to manage and self administer his/her own medication in consultation with his/her GP.",
+      ],
     },
     medicationNeeds: {
       tag: "textarea",
@@ -694,6 +737,11 @@ class Client {
       tag: "textarea",
       label: "Medication actions",
       classes: ["clinical", "medication", "largeText"],
+    },
+    medicationReview: {
+      tag: "textarea",
+      label: "Medication",
+      classes: ["review", "medication", "largeText"],
     },
     //communication and sensory
     CommunicationImpairements: {
@@ -740,11 +788,37 @@ class Client {
       tag: "textarea",
       label: "Communication support plan FACTORS",
       classes: ["carePlan", "communicationSensory", "largeText"],
+      notes: [
+        "Client is aware of his/her care needs and can communicate independently.",
+        "Client has a hearing impairment.",
+        "Client has a vision impairement.",
+        "Client has a self care deficit related to communication secondary to ",
+      ],
+    },
+    communicationSupportGoals: {
+      tag: "textarea",
+      label: "Communication support plan GOALS",
+      classes: ["carePlan", "communicationSensory", "goals", "largeText"],
+      notes: [
+        "Client will report he/she is able to communicate his/her care needs effectivley",
+        "Client will report that he/she is able to engage in social interactions in a way that is satisfying for him/her.",
+      ],
     },
     communicationSupportPlanInterventions: {
       tag: "textarea",
       label: "Communication support plan INTERVENTIONS",
       classes: ["carePlan", "communicationSensory", "largeText"],
+      notes: [
+        "Support workers will support client with communication by speaking clearly and not shouting, facing client when speaking, reducing the  distance between them and client, reducing background noise, rephrase the sentence as needed, checking to see that client has understood what has been communicated.",
+        "Support workers will prompt client to wear their hearing aids and glasses.",
+        "Suport workers will assist client to ensure that their hearing aids are working effectively.",
+        "Support workers will assist client to put on his/her glasses and hearing aids.",
+      ],
+    },
+    communicationReview: {
+      tag: "textarea",
+      label: "Communication",
+      classes: ["review", "communicationSensory", "largeText"],
     },
     //psychological cognitive sleep
     sleep: {
@@ -772,10 +846,22 @@ class Client {
       label: "Pyschological support plan FACTORS",
       classes: ["carePlan", "psychological", "largeText"],
     },
+    psychologicalSupportPlanGoals: {
+      tag: "textarea",
+      label: "Pyschological support plan GOALS",
+      classes: ["carePlan", "psychological", "goals", "largeText"],
+      notes: [
+        "Clients carers and support workers will identify what frequently triggers certain behaviours, anxiety and insecurity, what interventions are effective and the outcomes.",
+      ],
+    },
     psychologicalSupportPlanInterventions: {
       tag: "textarea",
       label: "Pyschological support plan INTERVENTIONS",
       classes: ["carePlan", "psychological", "largeText"],
+      notes: [
+        "Clients carers and support workers will assist client to identify potential issues that are causing anxiety or agitation using the CAUSEd anacronym, take appropriate actions and report outcomes.\n\u2022 Communication issues\n\u2022 Activity (is it appropriate and available)\n\u2022 Unwell/Unmet needs\n\u2022 Story (consider what we know about client that may be a clue)\n\u2022 Environment (what environmental factors are contributing to their feelings of anxiety)\n\u2022 dementia.",
+        "Support workers and carers will prompote positive self esteem",
+      ],
     },
     pyscholigicalNeeds: {
       tag: "textarea",
@@ -786,6 +872,11 @@ class Client {
       tag: "textarea",
       label: "Psychological actions",
       classes: ["clinical", "psychological", "largeText"],
+    },
+    psychologicalReview: {
+      tag: "textarea",
+      label: "Psychological",
+      classes: ["review", "psychological", "largeText"],
     },
     //Pain (falls)
     painScale: {
@@ -825,11 +916,25 @@ class Client {
       tag: "textarea",
       label: "Pain support plan FACTORS",
       classes: ["carePlan", "pain", "largeText"],
+      notes: ["Client experiences chronic pain [location]"],
+    },
+    painSupportPlanGoals: {
+      tag: "textarea",
+      label: "Pain support plan GOALS",
+      classes: ["carePlan", "pain", "goals", "largeText"],
+      notes: ["Client will report that his/her pain is managed effectively."],
     },
     painSupportPlanInterventions: {
       tag: "textarea",
       label: "Pain support plan INTERVENTIONS",
       classes: ["carePlan", "pain", "largeText"],
+      notes: [
+        "Client receives symptom management support by the palliative care team.",
+        "No further intervention required by Southern Plus at this time.",
+        "Client self manages pain.",
+        "Southern Plus will facility referral for physiotherapy assessment.",
+        "Southern Plus will facilitate ongoing Physiotherapy for pain management.",
+      ],
     },
     painNeeds: {
       tag: "textarea",
@@ -840,6 +945,11 @@ class Client {
       tag: "textarea",
       label: "Pain actions",
       classes: ["clinical", "pain", "largeText"],
+    },
+    painReview: {
+      tag: "textarea",
+      label: "Pain",
+      classes: ["review", "pain", "largeText"],
     },
     //Skin care
     woundCare: {
@@ -868,16 +978,40 @@ class Client {
       tag: "textarea",
       label: "Skin care support plan FACTORS",
       classes: ["carePlan", "skin", "largeText"],
+      notes: [
+        "Client has impaired skin integrity related to ___ secondary to ____",
+        "Client is at high risk of developing pressure injuries secondary to ___",
+      ],
+    },
+    skinSupportPlanGoals: {
+      tag: "textarea",
+      label: "Skin care support plan GOALS",
+      classes: ["carePlan", "skin", "goals", "largeText"],
+      notes: [
+        "Effective and appropriate wound care/management.",
+        "Skin tears will be prevented.",
+        "Pressure injuries will be prevented.",
+        "Incontinence associated dermatitis will be prevented.",
+      ],
     },
     skinSupportPlanInterventions: {
       tag: "textarea",
       label: "Skin care support plan INTERVENTIONS",
       classes: ["carePlan", "skin", "largeText"],
+      notes: [
+        "Wound care will be provided by ____",
+        "Support workers will prompt/assist client to apply moisturiser to arms and legs twice daily.",
+      ],
     },
     skinActions: {
       tag: "textarea",
       label: "Skin care clinical actions",
       classes: ["skin", "clinical", "largeText"],
+    },
+    skinReview: {
+      tag: "textarea",
+      label: "Skin review",
+      classes: ["review", "skin", "largeText"],
     },
     //elimination (falls)
     eliminationUrinary: {
@@ -914,11 +1048,28 @@ class Client {
       tag: "textarea",
       label: "Elimination support plan FACTORS",
       classes: ["carePlan", "elimination", "largeText"],
+      notes: ["Client experiences incontinence (stress/urge/mixed)"],
+    },
+    eliminationSupportPlanGoals: {
+      tag: "textarea",
+      label: "Elimination support plan GOALS",
+      classes: ["carePlan", "elimination", "goals", "largeText"],
+      notes: [
+        "Client will be able to go out in public without fear of embarrassment",
+        "Client will maintain social continence.",
+        "Prevention of increased incontinence.",
+        "Client continence will be restored.",
+      ],
     },
     eliminationSupportPlanInterventions: {
       tag: "textarea",
       label: "Elimination support plan INTERVENTIONS",
       classes: ["carePlan", "elimination", "largeText"],
+      notes: [
+        "Southern Plus will provide incontinence aids as needed.",
+        "-",
+        "Southern Plus will provide for continence assessment.",
+      ],
     },
     eliminationNeeds: {
       tag: "textarea",
@@ -929,6 +1080,11 @@ class Client {
       tag: "textarea",
       label: "Elimination actions",
       classes: ["clinical", "elimination", "largeText"],
+    },
+    eliminationReview: {
+      tag: "textarea",
+      label: "Elimination",
+      classes: ["review", "elimination", "largeText"],
     },
     //transport and mobility
     transport: {
@@ -1007,37 +1163,50 @@ class Client {
       tag: "select",
       multiple: true,
       selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
-      label: "Mome modifications installed",
+      label: "Home modifications installed",
       classes: ["mobility", "environment", "falls"],
     },
     homeModificationsRequired: {
       tag: "select",
       multiple: true,
       selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
-      label: "Mome modifications required",
+      label: "Home modifications required",
       classes: ["mobility", "environment", "falls"],
     },
-    recentFalls: {
-      tag: "select",
-      label: "Recent falls",
-      selectOptions: [
-        "No falls in last 12 months",
-        "One or more falls between 3 and 12 months ago",
-        "One or more falls in the last 3 months",
+    fallsRisk: {
+      tag: "textarea",
+      label: "Falls risk",
+      notes: [
+        "No falls in last 12 months - (0)",
+        "1 fall in last 12 months - (1)",
+        "2 falls in last 12 months - (2)",
+        "3 or more falls in last 12 months -(3)",
+        "-",
+        "No assistance (completely independent) with instrumental activities of daily living (eg cooking, housework, laundry)(0)",
+        "Supervision with instrumental activities of daily living (eg cooking, housework, laundry)(1)",
+        "Some assistance required with instrumental activities of daily living (eg cooking, housework, laundry)(2)",
+        "Completely dependent with instrumental activities of daily living (eg cooking, housework, laundry)(3)",
+        "-",
+        "No unsteadiness observed (0)",
+        "minimally unsteady (1)",
+        "moderately unsteady (needs supervision) (2)",
+        "consistently and severely unsteady (needs constant hands on assistance) (3)",
+        "-",
+        "0 - 3 Low risk of falls - Further assessment and management if functional/balance problem identified",
+        "4 - 9 High risk of falls - Perform the Full FROP-Com assessment and / or corresponding management recommendations",
       ],
       classes: ["falls"],
     },
-    falls: {
-      tag: "select",
-      multiple: true,
-      selectOptions: [
+    fallsOther: {
+      tag: "textarea",
+      notes: [
         "High falls risk",
         "Further falls/environmental risk assessment/intervention required",
         "Falls risk interventions in place",
         "Client has own PERS",
         "Client requires PERS",
       ],
-      label: "Falls risk",
+      label: "Falls other",
       classes: ["mobility", "environment", "falls"],
     },
     mobilityOther: {
@@ -1049,11 +1218,32 @@ class Client {
       tag: "textarea",
       label: "Mobility/transport support plan FACTORS",
       classes: ["carePlan", "mobility", "falls", "largeText"],
+      notes: [
+        "Client has experienced numerous falls recently.",
+        "Clients mobility is impaired secondary to ___",
+        "Client has had no falls recently.",
+        "Client mobilises independently with/without mobility aids.",
+      ],
+    },
+    mobilitySupportPlanGoals: {
+      tag: "textarea",
+      label: "Mobility/transport support plan GOALS",
+      classes: ["carePlan", "mobility", "goals", "falls", "largeText"],
+      notes: [
+        "Falls will be prevented.",
+        "Client will report he/she feels safe and confident when ambulating.",
+      ],
     },
     mobilitySupportPlanInterventions: {
       tag: "textarea",
       label: "Mobility/transport support plan INTERVENTIONS",
       classes: ["carePlan", "mobility", "falls", "largeText"],
+      notes: [
+        "Southern Plus will facilitate referral for Physiotherapy.",
+        "Southern Plus will provide support to hire ___",
+        "Southern Plus support workers will provide standby assists with mobility ___",
+        "Southern Plus will assist client with transport needs by ___",
+      ],
     },
     mobilityFallsNeeds: {
       tag: "textarea",
@@ -1065,12 +1255,21 @@ class Client {
       label: "Mobility and falls actions",
       classes: ["clinical", "falls", "mobility", "largeText"],
     },
+    mobilityReview: {
+      tag: "textarea",
+      label: "Mobility",
+      classes: ["review", "mobility", "largeText"],
+    },
     //environement and personal safety/security
     environment: {
       tag: "textarea",
       label: "Environmental",
-      default:
-        "Refer also to falls risk. Other safety and security issues identified: ? key safe",
+      notes: [
+        "Client reports working smoke alarms and RCD.",
+        "Walkways uncluttered and clear of tripping hazards and rooms well lit.",
+        "Client reports that he/she is able to sit to stand without undue effort to and from toilet/chairs and bed.",
+        "Unmitigated hazards present (identify) and discussed with client who has/has_not agreed to occupational therapy referral or rectification.",
+      ],
       classes: ["mobility", "environment", "falls", "largText"],
     },
     environmentCleaning: {
@@ -1078,6 +1277,15 @@ class Client {
       label: "Cleaning assessment",
       default: "",
       classes: ["environment", "largText"],
+      notes: [
+        "Southern Plus support workers will provide assistance with cleaning weekly/fortnightly for __ hours.",
+        "Cleaning tasks will include\n\nSupport workers will assist with other household tasks as as requested by client as time permits and utilise any spare time to identify other jobs that need doing (empty/put out bins, tidy clean the fridge/microwave/dusting surfaces/skirting/window sills etc.)",
+      ],
+    },
+    environmentReview: {
+      tag: "textarea",
+      label: "Environment",
+      classes: ["review", "environment", "largeText"],
     },
 
     //social and family
@@ -1095,28 +1303,89 @@ class Client {
       tag: "textarea",
       label: "Social support plan FACTORS",
       classes: ["carePlan", "social", "largeText"],
+      notes: [
+        "Client is at risk of social isolation secondary to ____",
+        "Client is well supported and engages with family and friends independently.",
+      ],
+    },
+    socialSupportPlanGoals: {
+      tag: "textarea",
+      label: "Social support plan GOALS",
+      classes: ["carePlan", "social", "goals", "largeText"],
+      notes: [
+        "Client will report that he/she is satisfied with the amount of social interaction that he/she receives.",
+        "Client will report that frequently engage in activities and have opportunity to build and maintain the relationships that are important to them.",
+      ],
     },
     socialSupportPlanInterventions: {
       tag: "textarea",
       label: "Social support plan INTERVENTIONS",
       classes: ["carePlan", "social", "largeText"],
+      notes: [
+        "Southern Plus support workers will provide extra companionship/social interaction during support services.",
+        "Client will maintain social connections and access the community with the support of family/independently.",
+      ],
+    },
+    socialReview: {
+      tag: "textarea",
+      label: "Social",
+      classes: ["review", "social", "largeText"],
     },
     //personal care
     PersonalCare: {
       tag: "textarea",
       label: "Personal care assessment",
-      default: "Shower/washing/drying:\nDressing/undressing:\nGrooming:",
+      notes: [
+        "Client is independent with washing/drying",
+        "Client is independent with dressing",
+        "Client is independent with grooming",
+        "Client requires standby assistance with washing/drying",
+        "Client requires standby assistance with dressing",
+        "Client requires standby assistance with grooming",
+        "Client requires hands on assistance x 1 with washing/drying",
+        "Client requires hands on assistance x 1 with dressing",
+        "Client requires hands on assistance x 1 grooming",
+        "Client requires hands on assistance x 2 with washing/drying",
+        "Client requires hands on assistance x 2 with dressing",
+        "Client requires hands on assistance x 2 with grooming",
+      ],
+      classes: ["personalCare", "largeText"],
+    },
+    PersonalCareOther: {
+      tag: "textarea",
+      label: "Personal care other",
       classes: ["personalCare", "largeText"],
     },
     personalCareSupportPlanFactors: {
       tag: "textarea",
       label: "Personal care support plan FACTORS",
       classes: ["carePlan", "personalCare", "largeText"],
+      notes: [
+        "Client has difficulty completing self care tasks independently secondary to ___",
+        "Client is independent with all personal care tasks.",
+      ],
+    },
+    personalCareSupportPlanGoals: {
+      tag: "textarea",
+      label: "Personal care support plan GOALS",
+      classes: ["carePlan", "personalCare", "goals", "largeText"],
+      notes: [
+        "Client will maintain independence with personal care.",
+        "Client will report he/she is maintaining a satisfactory level of personal hygiene/dress and grooming.",
+      ],
     },
     personalCareSupportPlanInterventions: {
       tag: "textarea",
       label: "Personal care support plan INTERVENTIONS",
       classes: ["carePlan", "personalCare", "largeText"],
+      notes: [
+        "Southern Plus support workers will assist client with personal care x days per week.",
+      ],
+    },
+    personalCareReview: {
+      tag: "textarea",
+      label: "Personal care",
+      classes: ["review", "personalCare", "largeText"],
     },
     //meals and shopping
     financesOther: {
@@ -1137,7 +1406,7 @@ class Client {
     },
     mealsAndShoppingSupportPlanFactors: {
       tag: "textarea",
-      label: "Meals and shopping support plan FACTORS",
+      label: "Meals/shopping support plan FACTORS",
       classes: [
         "carePlan",
         "function",
@@ -1146,10 +1415,20 @@ class Client {
         "mobility",
         "largeText",
       ],
+      notes: [
+        "Client is able to prepare and cook his/her own meals.",
+        "Client has a self care deficit related to meal preperation secondary to ___",
+      ],
+    },
+    mealsAndShoppingSupportPlanGoals: {
+      tag: "textarea",
+      label: "Meals/shopping support plan GOALS",
+      classes: ["carePlan", "mealsShopping", "goals", "largeText"],
+      notes: ["Client will be adequately nourished and hydrated."],
     },
     mealsAndShoppingSupportPlanInterventions: {
       tag: "textarea",
-      label: "Meals and shopping support plan INTERVENTIONS",
+      label: "Meals/shopping support plan INTERVENTIONS",
       classes: [
         "carePlan",
         "function",
@@ -1158,6 +1437,15 @@ class Client {
         "mobility",
         "largeText",
       ],
+      notes: [
+        "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
+        "Client will contribute to the set up, cost of the food portion of and ongoing ordering of meals.",
+      ],
+    },
+    mealsAndShoppingReview: {
+      tag: "textarea",
+      label: "Meals and shopping",
+      classes: ["review", "mealsShopping", "largeText"],
     },
     //nutrition
     nutritionalIntake: {
@@ -1264,27 +1552,87 @@ class Client {
       tag: "textarea",
       label: "Cleaning support plan FACTORS",
       classes: ["carePlan", "environment", "largeText"],
+      notes: [
+        "Self care deficit related to household cleaning seconday to ___",
+      ],
+    },
+    cleaningSupportPlanGoals: {
+      tag: "textarea",
+      label: "Cleaning support plan GOALS",
+      classes: ["carePlan", "environment", "goals", "largeText"],
+      notes: [
+        "Clients home environment will be maintained in a clean and tidy state.",
+      ],
     },
     cleaningSupportPlanInterventions: {
       tag: "textarea",
       label: "Cleaning support plan INTERVENTIONS",
       classes: ["carePlan", "environment", "largeText"],
+      notes: [
+        "Southern Plus support workers will provide assistance with cleaning weekly/fortnightly for __ hours.",
+        "Cleaning tasks will include\n\nSupport workers will assist with other household tasks as as requested by client as time permits and utilise any spare time to identify other jobs that need doing (empty/put out bins, tidy clean the fridge/microwave/dusting surfaces/skirting/window sills etc.)",
+      ],
     },
     //HGM
     HGMSupportPlanFactors: {
       tag: "textarea",
       label: "Home and garden plan FACTORS",
       classes: ["carePlan", "environment", "largeText"],
+      notes: [
+        "Self care deficit related to maintenance of safe, accessable outdoor areas and access to the home secondary to ___.",
+      ],
+    },
+    HGMSupportPlanGoals: {
+      tag: "textarea",
+      label: "Home and garden plan GOALS",
+      classes: ["carePlan", "environment", "goals", "largeText"],
+      notes: ["Clients home will be accessable and safe"],
     },
     HGMSupportPlanInterventions: {
       tag: "textarea",
       label: "Home and garden support plan INTERVENTIONS",
       classes: ["carePlan", "environment", "largeText"],
+      notes: ["Southern plus will facilitate monthly gardening services."],
+    },
+    otherReviewNotes: {
+      tag: "textarea",
+      label: "Other review notes",
+      classes: ["review", "largeText"],
     },
     followUpsElement: {
       tag: "textarea",
       label: "Follow up notes.",
-      classes: ["followUp", "largeText"],
+      classes: ["followUp", "review", "largeText"],
+    },
+    budgetLastSigned: {
+      tag: "input",
+      type: "date",
+      label: "Budget last signed",
+      classes: ["review"],
+    },
+    supportPlanLastSigned: {
+      tag: "input",
+      type: "date",
+      label: "Support plan last signed",
+      classes: ["review"],
+    },
+    readyForHospitalReview: {
+      tag: "input",
+      type: "date",
+      label: "Ready for hospital reviewed",
+      classes: ["review"],
+    },
+    emergencyPlanReviewed: {
+      tag: "input",
+      type: "date",
+      label: "Emergency plan last reviewed",
+      classes: ["review"],
+    },
+    visualHomeSafetyReviewed: {
+      tag: "input",
+      type: "date",
+      label: "Visual home safety last reviewed",
+      classes: ["review"],
     },
   };
 
@@ -1303,6 +1651,7 @@ class Client {
           for (const [thisKey, value] of Object.entries(Client.schema)) {
             thisData[thisKey] = this[thisKey];
           }
+          thisData.key = this.key;
           thisData.lastModified = new Date();
           thisData.lastDate = Client.getLastDate();
           thisData.followUps = this.followUps ? this.followUps : null;
@@ -1331,6 +1680,28 @@ class Client {
         ? value.default
         : null;
     }
+  }
+  static forEachClientInLocal(callback) {
+    for (const key in localStorage) {
+      if (localStorage.hasOwnProperty(key)) {
+        if (key) {
+          let client = JSON.parse(localStorage.getItem(key));
+          callback(client);
+        }
+      }
+    }
+  }
+  static getAllClients(callback) {
+    let clients = {};
+    for (const key in localStorage) {
+      if (localStorage.hasOwnProperty(key)) {
+        if (key) {
+          let client = JSON.parse(localStorage.getItem(key));
+          clients[client.key] = client;
+        }
+      }
+    }
+    callback(clients);
   }
   static getLastDate() {
     let thisDate = new Date();

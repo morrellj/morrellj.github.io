@@ -3,11 +3,52 @@ body {
   padding-right: 15px;
   width: 100%;
   margin: 8px 0px;
+  font-family: "Lucida Grande", Geneva, Verdana, sans-serif;
 }
 /* .largeText {
   min-width: 265px;
   min-height: 100px;
 } */
+.pop-up {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  padding-bottom: 50px;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* Modal Content */
+.pop-up-content {
+  font-size: 17px;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+.close {
+  color: #313131;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.text-close {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #0088cc;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 #clientListSelect {
   margin: 0px 10px 10px 0px;
 }
@@ -32,6 +73,11 @@ input {
   width: 25vw;
   margin: 2px;
 }
+select {
+  width: 25vw;
+  margin: 2px;
+}
+
 input[type="checkbox"] {
   width: auto;
 }
@@ -53,12 +99,12 @@ textarea {
 * {
   box-sizing: border-box;
 }
+#newClientAddDiv,
 #clientListDiv {
   min-width: 300px;
+  margin: 10px;
 }
-#newClientAddDiv {
-  min-width: 300px;
-}
+
 .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -74,9 +120,10 @@ textarea {
   display: flex;
   flex-direction: row;
   text-align: left;
+  flex-wrap: wrap;
 }
 
-.sub-root-1 {
+.input-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -93,23 +140,32 @@ textarea {
   }
 
 }*/
-@media (max-width: 610px) {
-  .flex-container {
-    flex-direction: column;
-  }
-}
+
 @media (max-width: 800px) {
-  .sub-root-1 {
+  .input-container {
     flex-direction: column;
   }
   textarea {
     min-width: 80vw;
   }
+  #root input,
+  #root select {
+    width: 70vw;
+  }
   input,
   select {
-    width: 70vw;
+    width: 35vw;
   }
   #root select {
     width: 80vw;
+  }
+}
+@media (max-width: 610px) {
+  .flex-container {
+    flex-direction: column;
+  }
+  input,
+  select {
+    width: 70vw;
   }
 }

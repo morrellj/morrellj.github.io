@@ -10,6 +10,7 @@ class Elements {
       inputDiv.id = dataField;
       inputDiv.classList.add("flex-item");
       let inputLabel = document.createElement("p");
+      inputLabel.onclick = popUpPop;
       inputLabel.innerHTML = value.label;
       //create follow up check box
       let followUpCheckbox = document.createElement("input");
@@ -89,10 +90,10 @@ class Elements {
             this[dataField].appendChild(selectOption);
           });
           this[dataField].multiple = value.multiple;
+          this[dataField].size = "6";
           break;
         case "input":
           if ((value.type = "date")) {
-            console.log("date type");
           }
           break;
         default:
@@ -104,38 +105,111 @@ class Elements {
     //class functions
     this.addSpecifiedElementsToTargetDiv = function (category, targetDiv) {
       let count = 0;
-      let nextDiv;
-      function subRootOneDiv() {
+
+      let assessmentRoot = subRootDiv("assessment", ["root"]);
+      let carePlanRoot = subRootDiv("careplan", ["root"]);
+      let clinicalRoot = subRootDiv("clinical", ["root"]);
+      let carePlanDiv = subRootDiv("careplan-1", ["input-container"]);
+      let clinicalDiv = subRootDiv("clinical-1", ["input-container"]);
+      let assessmentDiv = subRootDiv("assessment-1", ["input-container"]);
+
+      let subRootCollection = [assessmentRoot, carePlanRoot, clinicalRoot];
+      subRootCollection.forEach((div) => {
+        targetDiv.appendChild(div);
+      });
+      let inputContainerCollection = [assessmentDiv, carePlanDiv, clinicalDiv];
+      inputContainerCollection.forEach((div) => {
+        let id = div.id.slice(0, -2);
+        document.getElementById(id).appendChild(div);
+      });
+
+      this.inputElementsArray.forEach(function (element) {
+        switch (category) {
+          case "followUp":
+            if (
+              element.childNodes[2].checked == true ||
+              element.childNodes[1].classList.contains(category)
+            ) {
+              assessmentDiv.appendChild(element);
+              if (divFull(assessmentDiv)) {
+                assessmentDiv = getNextDiv(assessmentDiv);
+              }
+            }
+          case "review":
+            if (element.childNodes[1].classList.contains(category)) {
+              assessmentDiv.appendChild(element);
+              if (divFull(assessmentDiv)) {
+                assessmentDiv = getNextDiv(assessmentDiv);
+              }
+            }
+          case "carePlan":
+            if (element.childNodes[1].classList.contains(category)) {
+              assessmentDiv.appendChild(element);
+              if (divFull(assessmentDiv)) {
+                assessmentDiv = getNextDiv(assessmentDiv);
+              }
+            }
+          default:
+            let classList = element.childNodes[1].classList;
+            if (classList.contains(category)) {
+              if (
+                classList.contains("carePlan") ||
+                classList.contains("review")
+              ) {
+                carePlanDiv.appendChild(element);
+                if (divFull(carePlanDiv)) {
+                  carePlanDiv = getNextDiv(carePlanDiv);
+                }
+              } else if (classList.contains("clinical")) {
+                clinicalDiv.appendChild(element);
+                if (divFull(clinicalDiv)) {
+                  clinicalDiv = getNextDiv(clinicalDiv);
+                }
+              } else {
+                assessmentDiv.appendChild(element);
+                if (divFull(assessmentDiv)) {
+                  assessmentDiv = getNextDiv(assessmentDiv);
+                }
+              }
+            }
+        }
+      });
+      inputContainerCollection = [assessmentDiv, carePlanDiv, clinicalDiv];
+      inputContainerCollection.forEach((div) => {
+        while (!divFull(div)) {
+          topUpDiv(div);
+        }
+      });
+
+      function subRootDiv(id, classList = []) {
         let tempDiv = document.createElement("div");
-        tempDiv.id = "subroot-" + count / 3;
-        tempDiv.classList.add("flex-item");
-        tempDiv.classList.add("sub-root-1");
+        tempDiv.id = id;
+        classList.forEach((ele) => {
+          tempDiv.classList.add(ele);
+        });
         return tempDiv;
       }
-      nextDiv = subRootOneDiv();
-      targetDiv.appendChild(nextDiv);
-      this.inputElementsArray.forEach(function (element) {
-        // if (element.lastChild.classList.contains("carePlan")) {
-        //   if (count % 3 == 2) {
-        //     let newBlankDiv = blankDiv();
-        //     nextDiv.appendChild(newBlankDiv);
-        //     nextDiv = subRootOneDiv();
-        //     targetDiv.appendChild(nextDiv);
-        //   }
-        //   addNextElement(category, element, nextDiv);
-        //   count += 1;
-        //   if (count % 3 == 0 && count > 0) {
-        //     nextDiv = subRootOneDiv();
-        //     targetDiv.appendChild(nextDiv);
-        //   }
-        // } else {
-        addNextElement(category, element, nextDiv);
-        // }
-      });
-      while (count % 3 != 0) {
+      function divFull(div) {
+        return div.children.length > 2 ? true : false;
+      }
+      function getNextDiv(div) {
+        let lastCharacters = parseInt(div.id.slice(-2));
+        lastCharacters =
+          lastCharacters < 0
+            ? parseInt(div.id.slice(-1))
+            : parseInt(div.id.slice(-2));
+        let count = lastCharacters + 1;
+        let divId = div.id;
+        let baseIdString = divId.slice(0, divId.indexOf("-"));
+        let newDiv = subRootDiv(baseIdString + "-" + count, [
+          "input-container",
+        ]);
+        document.getElementById(baseIdString).appendChild(newDiv);
+        return newDiv;
+      }
+      function topUpDiv(div) {
         let newBlank = blankDiv();
-        targetDiv.lastChild.appendChild(newBlank);
-        count += 1;
+        div.appendChild(newBlank);
       }
       function blankDiv() {
         let thisBlank = document.createElement("div");
@@ -143,30 +217,10 @@ class Elements {
         thisBlank.classList.add("blank-fill");
         return thisBlank;
       }
-      function addNextElement(category, element, elementDiv) {
-        if (category == "All") {
-          elementDiv.appendChild(element);
-          count += 1;
-        } else if (category == "followUp") {
-          if (
-            element.childNodes[2].checked == true ||
-            element.childNodes[1].classList.contains(category)
-          ) {
-            elementDiv.appendChild(element);
-            count += 1;
-          }
-        } else if (element.childNodes[1].classList.contains(category)) {
-          elementDiv.appendChild(element);
-          count += 1;
-        }
-        if (count % 3 == 0 && count > 0) {
-          nextDiv = subRootOneDiv();
-          targetDiv.appendChild(nextDiv);
-        }
-      }
     };
     this.updateElements = function (data) {
       this.inputElementsArray.forEach((ele) => {
+        ele.childNodes[0].title = data.key;
         let dataField = ele.childNodes[1];
         if (data[ele.id]) {
           if (dataField.tagName == "SELECT" && dataField.multiple == true) {

@@ -1,9 +1,12 @@
 console.log("HI");
 let root = document.getElementById("root");
 let output = document.getElementById("output");
-let clientList = document.getElementById("clientList");
+// let clientList = document.getElementById("clientList");
 let clientListSelect = document.getElementById("clientListSelect");
 let client = {};
+let popUp = document.getElementById("pop-up");
+let popUpContent = document.getElementById("pop-up-content");
+let searchBox = document.getElementById("searchBox");
 
 elements = new Elements(Client.schema);
 
@@ -29,14 +32,8 @@ function setPage(heading) {
 }
 
 //Fill the client selection drop down list
-for (const key in localStorage) {
-  if (localStorage.hasOwnProperty(key)) {
-    if (key) {
-      let client = JSON.parse(localStorage.getItem(key));
-      addNewClientSelectOption(key, client.firstName, client.surname);
-    }
-  }
-}
+Client.forEachClientInLocal(addNewClientSelectOption);
+
 function clientAdd() {
   let firstNameField = document.getElementById("addClient-firstName");
   let surnameNameField = document.getElementById("addClient-surname");
@@ -46,7 +43,7 @@ function clientAdd() {
     surname: surnameNameField.value,
   });
   client.save();
-  addNewClientSelectOption(client.key, client.firstName, client.surname);
+  addNewClientSelectOption(client);
   firstNameField.value = "";
   surnameNameField.value = "";
   clientSelectAction(client.key);
@@ -58,10 +55,10 @@ function clientAdd() {
   }
   toggle(document.getElementById("newClientAddForm"));
 }
-function addNewClientSelectOption(thisKey, thisFirstName, thisSurname) {
+function addNewClientSelectOption(client) {
   let newOption = document.createElement("option");
-  newOption.value = thisKey;
-  newOption.innerHTML = thisFirstName + " " + thisSurname;
+  newOption.value = client.key;
+  newOption.innerHTML = client.firstName + " " + client.surname;
   clientListSelect.appendChild(newOption);
 }
 
@@ -69,10 +66,10 @@ function clientSelectAction(clientKey) {
   Client.getClient(clientKey, function (data) {
     //clientListSelect.value
     output.innerHTML = data.firstName + " " + data.surname;
+    document.title = data.firstName + " " + data.surname;
     elements.updateElements(data);
   });
 }
-
 function clientDelete() {
   alert("Open developer tools and delete manually from local storage.");
 }
@@ -88,6 +85,171 @@ function toggle(element) {
   } else {
     element.hidden = false;
   }
+}
+function popUpPop(event) {
+  let elementSchema = Client.schema[event.target.parentNode.id];
+  if (elementSchema.notes !== undefined && elementSchema.notes !== null) {
+    popUp.style.display = "block";
+    elementSchema.notes.forEach((ele) => {
+      let newParagraph = document.createElement("p");
+      newParagraph.innerHTML = ele;
+      newParagraph.classList.add("temp");
+      newParagraph.name = event.target.parentNode.id;
+      newParagraph.onclick = function () {
+        addOrRemovePartOfElementValue(this.innerHTML, elements[this.name]);
+        elements[this.name].dispatchEvent(new Event("input"));
+        function addOrRemovePartOfElementValue(partString, elementToChange) {
+          let spacer = elementToChange.value == "" ? "" : "\n";
+          let firstName = JSON.parse(
+            localStorage.getItem(elementToChange.name)
+          ).firstName;
+          let preferredName = JSON.parse(
+            localStorage.getItem(elementToChange.name)
+          ).preferredName;
+          firstName =
+            preferredName == null || preferredName == undefined
+              ? firstName
+              : preferredName;
+          let gender = JSON.parse(
+            localStorage.getItem(elementToChange.name)
+          ).gender;
+          let genderId;
+          let genderId2;
+          let genderOwnership;
+          if (!gender) {
+            alert("Gender has not been specified");
+            genderId = "TBA";
+            genderId2 = "TBA";
+            genderOwnership = "TBA";
+            return false;
+          } else {
+            genderId = gender == "Male" ? "he" : "she";
+            genderOwnership = gender == "Male" ? "his" : "her";
+            genderId2 = gender == "Male" ? "him" : "her";
+          }
+          let personalPartString = partString.replaceAll("client", firstName);
+          personalPartString = personalPartString.replaceAll(
+            "Client",
+            firstName
+          );
+          personalPartString = personalPartString.replaceAll(
+            "he/she",
+            genderId
+          );
+          personalPartString = personalPartString.replaceAll(
+            "him/her",
+            genderId2
+          );
+          personalPartString = personalPartString.replaceAll(
+            "his/her",
+            genderOwnership
+          );
+          if (elementToChange.value.search(personalPartString) >= 0) {
+            let stringWithoutCarriageReturn = elementToChange.value;
+            if (
+              elementToChange.value[
+                elementToChange.value.search(personalPartString) - 1
+              ] == "\n"
+            ) {
+              stringWithoutCarriageReturn = elementToChange.value
+                .slice(0, elementToChange.value.search(personalPartString) - 1)
+                .concat(
+                  "",
+                  elementToChange.value.slice(
+                    elementToChange.value.search(personalPartString)
+                  )
+                );
+            }
+
+            if (
+              stringWithoutCarriageReturn.length === personalPartString.length
+            ) {
+              elementToChange.value = "";
+            } else {
+              elementToChange.value = stringWithoutCarriageReturn
+                .replace(personalPartString, "")
+                .trim();
+            }
+          } else {
+            elementToChange.value =
+              elementToChange.value + spacer + personalPartString.trim();
+          }
+        }
+      };
+      popUpContent.appendChild(newParagraph);
+    });
+  } else {
+    popUp.style.display = "block";
+    let newParagraph = document.createElement("p");
+    newParagraph.innerHTML = "There are no notes for this field";
+    newParagraph.classList.add("temp");
+    popUpContent.appendChild(newParagraph);
+  }
+}
+let closeSpans = document.getElementsByClassName("close");
+for (let i = 0; i < closeSpans.length; i++) {
+  closeSpans[i].onclick = function () {
+    this.closest(".pop-up").style.display = "none";
+    let contentList = Array.from(
+      this.closest(".pop-up-content").childNodes
+    ).reverse();
+    contentList.forEach((node) => {
+      let classLS = node.classList; //== undefined || node.classList == null
+      //   ? []
+      //   : node.classList;
+      if (classLS != "pop-up-content-header") {
+        node.remove();
+      }
+    });
+  };
+}
+window.onclick = function (event) {
+  if (event.target.classList.contains("pop-up")) {
+    event.target.style.display = "none";
+
+    let contentList = Array.from(popUpContent.childNodes).reverse();
+    contentList.forEach((node) => {
+      let classLS = node.classList; //== undefined || node.classList == null
+      //   ? []
+      //   : node.classList;
+      if (classLS != "pop-up-content-header") {
+        node.remove();
+      }
+    });
+  }
+};
+
+function searchReduce() {
+  clientListSelect.innerHTML = "";
+  let searchWord = searchBox.value.toLowerCase();
+  searchWord = searchWord.toLowerCase();
+  Client.getAllClients(function reduce(clients) {
+    for (const [key, client] of Object.entries(clients)) {
+      let clientName = client.firstName + " " + client.surname;
+      clientName = clientName.toLowerCase();
+      if (clientName.search(searchWord) >= 0) {
+        addNewClientSelectOption(client);
+      }
+    }
+  });
+}
+
+function consoleReview() {
+  console.log("Five seconds to press the tab key. ");
+  Client.getClient(clientListSelect.value, function (client) {
+    let string = "";
+    for (const [key, value] of Object.entries(Client.schema)) {
+      if (value.classes.includes("review") && client[key] != null) {
+        let substring = value.label;
+        string = string + "\n---- " + substring + ": ----\n" + client[key];
+      }
+    }
+    console.log(string);
+    setTimeout(
+      async () => await window.navigator.clipboard.writeText(string),
+      5000
+    );
+  });
 }
 
 function getAllStorage() {

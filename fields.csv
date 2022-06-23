@@ -1,0 +1,171 @@
+excel,
+ID,ACnumber
+Date,-
+Surname,surname
+First Name,firstName
+Full Name,-
+initial,middleName
+DOB,dateOfBirth
+age,-
+Preferred name,preferredName
+Gender,gender
+Street Address,streetAdress
+Suburb,suburb
+Post code,postCode
+Home Phone,homePhone
+Mobile,mobileNumber
+Email,email
+Country of birth,countryOfBirth
+Family and Social History,aboutMe
+Marital,maritalStatus
+Accom Type,accomodationType
+Living situation,livingSituation
+Carer?,-
+Pension Type Income,pensionTypeIncome
+Pension Status,pensionStatus
+Income assess status,incomeAssetsTest
+DVA,dvaType
+DVA number,dvaNumber
+Medicare,medicareNumber
+Medicare exp,medicareExpiry
+Pension number,pensionNumber
+Ambulance cover,ambulanceCover
+Private Health,privateHealth
+ATSI status,atsiStatus
+Language,language
+Ethnicity,ethnicity
+Religion,religion
+Cultural impact services,-
+Cultural impact services details,culturalImapact
+Cultural impact other,-
+Cultural impact other details,religiousImpact
+Pharmacy,pharmacy
+GP,doctor
+Specialist,specialist
+NOK,nextOfKin
+Primary contact,primaryContact
+Secondary Contact,scondaryContact
+Contacts comments,contactsComments
+Carer status,carerStatus
+EPA_EPG_ACP,-
+EPA_EPG_ACP_details,epaEpgAcp
+Risk,risk
+Disabilities,disability
+Medical history,medicalHistory
+Allergies drug,allergiesDrug
+Allergies food,allergiesFood
+Service preferences,servicePreferences
+Gov portal ,-
+Surveys,-
+Reason for referral,-
+Who are important people in my life? ,importantPeople
+What is important to me? ,whatMatters
+What does a good day look like for me?,goodDay
+What does a bad day look like for me?,badDay
+My strengths are:,strengths
+My likes and dislikes are:,likesDislikes
+Monday AM,mondayAM
+Monday PM,mondayPM
+Monday evening,mondayEve
+Tuesday AM,tuesdayAM
+Tuesday PM,tuesdayPM
+Tuesday evening,tuesdayEve
+Wednesday AM,wednesdayAM
+Wednesday PM,wednesdayPM
+Wednesday evening,wednesdayEve
+Thursday AM,thursdayAM
+Thursday PM,thursdayPM
+Thursday evening,thursdayEve
+Friday AM,fridayAM
+Friday PM,fridayPM
+Friday evening,fridayEve
+Saturday AM,saturdayAM
+Saturday PM,saturdayPM
+Saturday evening,saturdayEve
+Sunday AM,sundayAM
+Sunday PM,sundayPM
+Sunday evening,sundayEve
+CHSP Goals,chspGoals
+CHSP Timeframe,chspTimeframe
+CHSP Plan,chspPlan
+Goals of care,-
+Medical Surgical/Allied health,-
+Medical disabling factors,medicalCurrent
+Medical/Allied health goals,medicalSupportPlanGoals
+Medical/Allied health agreed interventions,medicalSupportPlanIntervention
+Medical Allied health further assessments,-
+Communication and sensory,sensoryOther
+Communication and sensory disabling factors,communicationSupportPlanFactors
+Communication and sensory goals,communicationSupportGoals
+Communication and sensory agreed interventions,communicationSupportPlanInterventions
+Communication and sensory further assessment,-
+Pain,painOther
+Pain disabling factors,painSupportPlanFactors
+Pain goals,painSupportPlanGoals
+Pain agreed interventions,painSupportPlanInterventions
+Pain further assessments,-
+Medication support assessment,medicationOther
+Medication disabling factors,medicationSupportPlanFactors
+Medication goals,medicationGoals
+Medication agreed interventions,medicationSupportPlanInterventions
+Medication further assessments,-
+Psychosocial (Cognition and depression),psychologicalOther
+Cognition disabling factors,psychologicalSupportPlanFactors
+Cognition goals,psychologicalSupportPlanGoals
+Cognition agreed interventions,psychologicalSupportPlanInterventions
+Cognition further assessments,-
+Personal care,PersonalCare
+Personal care disabling factors,personalCareSupportPlanFactors
+Personal goals,personalCareSupportPlanGoals
+Personal care agreed interventions,personalCareSupportPlanInterventions
+Personal care further assessments,-
+Skin Integrity,skinIntegrity
+Skin Integrity disabling factors,skinSupportPlanFactors
+Skin Integrity goals,skinSupportPlanGoals
+Skin Integrity agreed interventions,skinSupportPlanInterventions
+Skin Integrity further assessments,-
+Mobility transfer and falls,mobilityOther
+Mobility disabling factors,mobilitySupportPlanFactors
+Mobility goals,mobilitySupportPlanGoals
+Mobility agreed interventions,mobilitySupportPlanInterventions
+Mobility further assessments,-
+Oxygenation,-
+Physical examination and biometrics,-
+"Nutrition, oral and swallowing",-
+Nutrition disabling factors,nutritionNeeds
+Nutrition goals,-
+Nutrition agreed interventions,nutritionNeedsActions
+Nutrition further assessments,-
+Continence and Elimination,eliminationOther
+Elimination disabling factors,eliminationSupportPlanFactors
+Elimination goals,eliminationSupportPlanGoals
+Elimination agreed interventions,eliminationSupportPlanInterventions
+Elimination further assessments,-
+Sleep and rest assessment,-
+Sleep disabling factors,-
+Sleep goals,-
+Sleep agreed interventions,-
+Sleep further assessments,-
+Drug and alcohol,-
+Drug and alcohol disabling factors,-
+Drug and alcohol goals,-
+Drug and alcohol agreed interventions,-
+Drug and alcohol further assessments,-
+"Household management,  design and safety",environment
+Household disabling factors,cleaningSupportPlanFactors
+Household goals,cleaningSupportPlanGoals
+Household agreed interventions,cleaningSupportPlanInterventions
+Household further assessments,-
+Informal Supports ,carer
+Informal Suports disabling factors,-
+Informal supports goals,-
+Informal Suports agreed interventions,-
+Informal Suports further assessments,-
+Access and Inclusion (isolation),socialOther
+Access and Inclusion disabling factors,socialSupportPlanFactors
+Access and inclusion goals,socialSupportPlanGoals
+Access and Inclusion agreed interventions,socialSupportPlanInterventions
+Access and Inclusion further assessments,-
+Care Team,-
+Advance care Planning,-
+Care routines,-

@@ -12,7 +12,7 @@
     <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelElements.js"></script>
     <link rel = "stylesheet" href="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/assessment.css"/> -->
 
-    <!--<script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment%20light/papaparse.min.js"></script>
+    <!----><script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment%20light/papaparse.min.js"></script>
     <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment%20light/fileReader.js"></script> 
     <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment%20light/modelSchema.js"></script>
     <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment%20light/modelClient.js"></script>
@@ -27,31 +27,40 @@
     <link rel = "stylesheet" href="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/assessment.css"/>-->
   </head>
   <body>
+    <div class="pop-up" id="pop-up" style="display: none;">
+      <div class="pop-up-content" id="pop-up-content">
+        <p id="pop-up-content-header" class="pop-up-content-header">Field notes:<span class="close"> &times</span></p>
+      </div>
+    </div>
     <div class="sticky">
       <div class="flex-container">
-        <div  id = "newClientAddDiv">
-            <button  onclick="toggle(newClientAddForm)">Add a client</button>
-            </label>
-            <input id="fileItem" type="file" onchange="csvFileToString()">
-            <br /><br />
-            <div id = "newClientAddForm" hidden= true>
-              <p>First name:</p>
-              <input type = "text" id = "addClient-firstName"></input>
-              <br />
-              <p>Surname:</p>
-              <input type = "text" id = "addClient-surname"></input>
-              <br /><br />
-              <button onclick="clientAdd()">Submit</button>
-              <br /><br />
-            </div>
-        </div>
         <div  id = "clientListDiv">
-          <label for="clientListSelect">Choose a client:</label>
-          <br /><br />
+          <input type="text" placeholder="search" id="searchBox" oninput="searchReduce()"></input>
+          <br />
           <div>
-            <select class="flex-item" onclick="clientSelectAction(this.value)" name="clientListSelect" id="clientListSelect">
+            <select size="4" class="flex-item" onclick="clientSelectAction(this.value)" name="clientListSelect" id="clientListSelect">
             </select>
+          </div>
+          <div id="clientButtonsDiv" >
             <button class="flex-item" onclick="clientDelete()">Delete</button>
+            <button class="flex-item" onclick="consoleReview()">Review</button>
+          </div>
+        </div>
+        
+        <div  id = "newClientAddDiv">
+          <button  onclick="toggle(newClientAddForm)">Add a client</button>
+          </label>
+          <input id="fileItem" type="file" onchange="csvFileToString()">
+          <br /><br />
+          <div id = "newClientAddForm" hidden= true>
+            <p>First name:</p>
+            <input type = "text" id = "addClient-firstName"></input>
+            <br />
+            <p>Surname:</p>
+            <input type = "text" id = "addClient-surname"></input>
+            <br /><br />
+            <button onclick="clientAdd()">Submit</button>
+            <br /><br />
           </div>
         </div>
       </div>
@@ -61,27 +70,27 @@
       </div>
       <nav class="flex-item" id="buttonNav">
         <button class="btn" onclick="setPage('demographic')">Demographic</button>
-        <button class="btn" onclick="setPage('preamble')">Premable</button>
         <button class="btn" onclick="setPage('contactsMedical')">Contacts and Medical</button>
-        <button class="btn" onclick="setPage('schedule')">Schedule</button>
+        <button class="btn" onclick="setPage('preamble')">Premable</button>
         <button class="btn" onclick="setPage('chsp')">CHSP</button>
+        <button class="btn" onclick="setPage('schedule')">Schedule</button>
+        <button class="btn" onclick="setPage('biometrics')">Biometrics</button>
+        <button class="btn" onclick="setPage('communicationSensory')">Communication/Sensory</button>
+        <button class="btn" onclick="setPage('elimination')">Elimination</button>
+        <button class="btn" onclick="setPage('environment')">Environment</button>
+        <button class="btn" onclick="setPage('falls')">Falls</button>
+        <button class="btn" onclick="setPage('mealsShopping')">Meals/shopping/social</button>
         <button class="btn" onclick="setPage('medical')">Medical</button>
         <button class="btn" onclick="setPage('medication')">Medication</button>
-        <button class="btn" onclick="setPage('communicationSensory')">Communication/Sensory</button>
-        <button class="btn" onclick="setPage('pain')">Pain</button>
-        <button class="btn" onclick="setPage('elimination')">Elimination</button>
-        <button class="btn" onclick="setPage('psychological')">Psych/cognition/sleep</button>
         <button class="btn" onclick="setPage('mobility')">Mobility</button>
-        <button class="btn" onclick="setPage('falls')">Falls</button>
-        <button class="btn" onclick="setPage('personalCare')">Personal care</button>
-        <button class="btn" onclick="setPage('skin')">Skin</button>
         <button class="btn" onclick="setPage('nutrition')">Nutrition</button>
-        <button class="btn" onclick="setPage('biometrics')">Biometrics</button>
-        <button class="btn" onclick="setPage('mealsShopping')">Meals/shopping/social</button>
-        <button class="btn" onclick="setPage('environment')">Environment</button>
+        <button class="btn" onclick="setPage('pain')">Pain</button>
+        <button class="btn" onclick="setPage('personalCare')">Personal care</button>
+        <button class="btn" onclick="setPage('psychological')">Psych/cognition/sleep</button>
+        <button class="btn" onclick="setPage('skin')">Skin</button>
         <button class="btn" onclick="setPage('social')">Social</button>
         <button class="btn" onclick="setPage('carePlan')" >Care Plan</button>
-        <button class="btn" onclick="setPage('All')">All</button>
+        <button class="btn" onclick="setPage('review')">Review</button>
         <button class="btn" onclick="setPage('followUp')">Follow up</button>
       </nav>
     </div>
@@ -89,6 +98,6 @@
     </div>
   </body>
   <!-- <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/assessment.js"></script> -->
-  <!--<script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment%20light/assessment.js"></script> -->
-  <!----> <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/assessment.js"></script>-->
+  <!----><script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment%20light/assessment.js"></script> -->
+  <!----><script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/assessment.js"></script>-->
 </html>

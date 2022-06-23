@@ -18,7 +18,10 @@ function csvFileToString() {
             let hasSchemaKey = myKeys[keys[index]]
               ? myKeys[keys[index]]
               : false;
-            let isSelect = hasSchemaKey.tag == "select" ? true : false;
+            let isSelect =
+              hasSchemaKey.tag == "select" || keys[index] == "followUps"
+                ? true
+                : false;
             if (isSelect) {
               final = final.split(",");
               final = final.map((ele) => {
