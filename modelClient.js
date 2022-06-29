@@ -32,10 +32,17 @@ class Client {
           "https://www.caltcm.org/assets/Pain-file/functional%20pain%20scale%20u%20of%20iowa_2001.pdf",
         ],
       ],
-      psychological: [["PAS", "PAS.pdf"]],
-        medical:[["COPD-Action-Plan", "COPD-Action-Plan.pdf"]]
+      psychological: [
+        ["PAS", "PAS.pdf"],
+        [
+          "Dementia communication guidelines",
+          "Helpsheet-Communication_english.pdf",
+        ],
+      ],
+      medical: [["COPD-Action-Plan", "COPD-Action-Plan.pdf"]],
+      skin: [["Skin tear guidelines", "istap-skin-tears-aged-skin.pdf"]],
+      communicationSensory: [["Whisper test.", "whisper-test.png"]],
     },
-      
   };
   static schema = {
     //demographic
@@ -267,6 +274,7 @@ class Client {
       label: "Language",
       type: "text",
       classes: ["demographic"],
+      default: ["English"],
     },
     ethnicity: {
       tag: "input",
@@ -772,6 +780,8 @@ class Client {
         "Hearing impaired",
         "Vision impaired (glasses)",
         "Vision impaired (blindness)",
+        "No vision impairment",
+        "No hearing impairment",
       ],
       multiple: true,
     },
@@ -803,6 +813,10 @@ class Client {
       tag: "textarea",
       label: "Communication and sensory other",
       classes: ["communicationSensory", "largeText"],
+      notes: [
+        "Client passed whisper test bilaterally.",
+        "Client failed whisper test Right/Left/Both ear/s.",
+      ],
     },
     communicationSupportPlanFactors: {
       tag: "textarea",
@@ -811,7 +825,7 @@ class Client {
       notes: [
         "Client is aware of his/her care needs and can communicate independently.",
         "Client has a hearing impairment.",
-        "Client has a vision impairement.",
+        "Client has a vision impairment.",
         "Client has a self care deficit related to communication secondary to ",
       ],
     },
@@ -830,8 +844,8 @@ class Client {
       classes: ["carePlan", "communicationSensory", "largeText"],
       notes: [
         "Support workers will support client with communication by speaking clearly and not shouting, facing client when speaking, reducing the  distance between them and client, reducing background noise, rephrase the sentence as needed, checking to see that client has understood what has been communicated.",
-        "Support workers will prompt client to wear their hearing aids and glasses.",
-        "Suport workers will assist client to ensure that their hearing aids are working effectively.",
+        "Support workers will prompt client to wear his/her hearing aids and glasses.",
+        "Suport workers will assist client to ensure that his/her hearing aids are working effectively.",
         "Support workers will assist client to put on his/her glasses and hearing aids.",
       ],
     },
@@ -840,6 +854,16 @@ class Client {
       label: "Communication",
       classes: ["review", "communicationSensory", "largeText"],
       notes: ["No changes. Support plan current and effective."],
+    },
+    communicationNeeds: {
+      tag: "textarea",
+      label: "Communication needs",
+      classes: ["clinical", "communicationSensory", "largeText"],
+    },
+    communicationActions: {
+      tag: "textarea",
+      label: "Communication actions",
+      classes: ["clinical", "communicationSensory", "largeText"],
     },
     //psychological cognitive sleep
     sleep: {
@@ -998,6 +1022,9 @@ class Client {
       tag: "textarea",
       label: "Skin integrity",
       classes: ["skin", "clinical"],
+      notes: [
+        "Uses medications that increase risk of skin tears: corticosteroids, anticoagulants, polypharmacy.",
+      ],
     },
     skinSupportPlanFactors: {
       tag: "textarea",
@@ -1006,6 +1033,7 @@ class Client {
       notes: [
         "Client has impaired skin integrity related to ___ secondary to ____",
         "Client is at high risk of developing pressure injuries secondary to ___",
+        "Potential risk for skin tears secondary to age related skin tears/self care deficits/medications.",
       ],
     },
     skinSupportPlanGoals: {
@@ -1025,7 +1053,8 @@ class Client {
       classes: ["carePlan", "skin", "largeText"],
       notes: [
         "Wound care will be provided by ____",
-        "Support workers will prompt/assist client to apply moisturiser to arms and legs twice daily.",
+        "Support workers will prompt and remind client to keep a stock of and apply emollient moisturiser daily.",
+        "Southern Plus will facilitate purchase of skin care products for the prevention of skin tears.",
       ],
     },
     skinActions: {
@@ -1092,9 +1121,8 @@ class Client {
       label: "Elimination support plan INTERVENTIONS",
       classes: ["carePlan", "elimination", "largeText"],
       notes: [
-        "Southern Plus will provide incontinence aids as needed.",
-        "-",
-        "Southern Plus will provide for continence assessment.",
+        "Southern Plus will assist with provision of incontinence aids within the capacity of the budget.",
+        "Southern Plus will provide support to access continence assessment services through - ",
       ],
     },
     eliminationNeeds: {
@@ -1247,7 +1275,7 @@ class Client {
       classes: ["carePlan", "mobility", "falls", "largeText"],
       notes: [
         "Client has experienced numerous falls recently.",
-        "Clients mobility is impaired secondary to ___",
+        "Client's mobility is impaired secondary to ___",
         "Client has had no falls recently.",
         "Client mobilises independently with/without mobility aids.",
       ],
@@ -1444,7 +1472,7 @@ class Client {
       ],
       notes: [
         "Client is able to prepare and cook his/her own meals.",
-        "Client has a self care deficit related to meal preperation secondary to ___",
+        "Client has a self care deficit related to meal preparation secondary to ___",
       ],
     },
     mealsAndShoppingSupportPlanGoals: {
@@ -1581,7 +1609,7 @@ class Client {
       label: "Cleaning support plan FACTORS",
       classes: ["carePlan", "environment", "largeText"],
       notes: [
-        "Self care deficit related to household cleaning seconday to ___",
+        "Self care deficit related to household cleaning secondary to ___",
       ],
     },
     cleaningSupportPlanGoals: {
@@ -1693,30 +1721,29 @@ class Client {
     };
 
     for (const [thisKey, value] of Object.entries(Client.schema)) {
-      if(data[thisKey] == null || data[thisKey] == undefined){
-         data[thisKey] = null
-    }else{
-           this[thisKey] = data[thisKey]
-        ? data[thisKey]
-        : value.default
-        ? value.default
-        : null;
-          
-    }}
+      if (data[thisKey] == null || data[thisKey] == undefined) {
+        data[thisKey] = null;
+      } else {
+        this[thisKey] = data[thisKey]
+          ? data[thisKey]
+          : value.default
+          ? value.default
+          : null;
+      }
+    }
     for (const [thisKey, value] of Object.entries(
       Client.supplementaryProperties
     )) {
-        if(data[thisKey] == null || data[thisKey] == undefined){
-            this[thisKey] = null
-      
-    }else{
-            this[thisKey] = data[thisKey]
-        ? data[thisKey]
-        : value.default
-        ? value.default
-        : null;
-            
-    }}
+      if (data[thisKey] == null || data[thisKey] == undefined) {
+        this[thisKey] = null;
+      } else {
+        this[thisKey] = data[thisKey]
+          ? data[thisKey]
+          : value.default
+          ? value.default
+          : null;
+      }
+    }
   }
   static forEachClientInLocal(callback) {
     for (const key in localStorage) {

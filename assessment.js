@@ -206,9 +206,7 @@ function popUpPop(event) {
     popUpContent.appendChild(newParagraph);
   }
 }
-window.onkeydown = function (e) {
-  console.log(e.code);
-};
+
 controlToggle.onclick = function () {
   if (recordControl.style.display == "none") {
     recordControl.style.display = "flex";
@@ -248,6 +246,20 @@ window.onclick = function (event) {
         node.remove();
       }
     });
+  }
+};
+
+window.onkeydown = function (event) {
+  if (event.altKey) {
+    switch (event.code) {
+      case "KeyH":
+        searchBox.focus();
+        searchBox.value = "";
+        break;
+      case "ArrowUp":
+        controlToggle.dispatchEvent(new Event("click"));
+        break;
+    }
   }
 };
 
