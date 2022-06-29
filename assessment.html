@@ -33,12 +33,12 @@
       </div>
     </div>
     <div class="sticky">
-      <div class="flex-container">
+      <div class="flex-container" id="recordControl" style="display: flex;">
         <div  id = "clientListDiv">
           <input type="text" placeholder="search" id="searchBox" oninput="searchReduce()"></input>
           <br />
           <div>
-            <select size="4" class="flex-item" onclick="clientSelectAction(this.value)" name="clientListSelect" id="clientListSelect">
+            <select size="4" class="flex-item"  onclick="clientSelectAction(this.value)" name="clientListSelect" id="clientListSelect">
             </select>
           </div>
           <div id="clientButtonsDiv" >
@@ -65,7 +65,7 @@
         </div>
       </div>
       <div class="flex-item" id="clientSelected">
-        <p>Client Selected:</p>
+        <p>Client Selected:<span id="controlToggle">&#9651</span></p>
         <p id="output" style="color:red"></p>
       </div>
       <nav class="flex-item" id="buttonNav">

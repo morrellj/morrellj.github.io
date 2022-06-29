@@ -10,30 +10,20 @@ class Elements {
       inputDiv.id = dataField;
       inputDiv.classList.add("flex-item");
       let inputLabel = document.createElement("p");
+      if (value.classes[0] == "review") {
+        if (value.classes.length > 2) {
+          inputLabel.oncontextmenu = function (event) {
+            event.preventDefault();
+            setPage(value.classes[1]);
+          };
+        }
+      }
       inputLabel.onclick = popUpPop;
+
       inputLabel.innerHTML = value.label;
       //create follow up check box
-      let followUpCheckbox = document.createElement("input");
-      followUpCheckbox.type = "checkbox";
-      followUpCheckbox.oninput = function () {
-        let clientKey = this.name;
-        Client.getClient(clientKey, (client) => {
-          if (this.checked == true) {
-            // update a property in the record that is an array
-            let arr = [];
-            if (client.followUps) {
-              client.followUps.push(this.parentNode.id);
-            } else {
-              arr.push(this.parentNode.id);
-              client.followUps = arr;
-            }
-          } else if (this.checked == false) {
-            let arr = client.followUps.filter((e) => e !== this.parentNode.id);
-            client.followUps = arr;
-          }
-          client.replace();
-        });
-      };
+      let followUpCheckbox = newFollowupCheckBox();
+
       //append element and label to div
       inputDiv.appendChild(inputLabel);
       inputDiv.appendChild(this[dataField]);
@@ -101,6 +91,64 @@ class Elements {
 
       //push div to array
       this.inputElementsArray.push(inputDiv);
+    }
+    for (const [dataField, value] of Object.entries(
+      Client.supplementaryProperties.links
+    )) {
+      // let outerDiv = document.createElement("div")
+      let count = 0;
+      value.forEach((link) => {
+        let linksDiv = document.createElement("div");
+        linksDiv.id = dataField + "-links-" + count;
+        linksDiv.classList.add("link", "flex-item");
+        let linksLabel = document.createElement("p");
+        // linksLabel.innerHTML = dataField + " links";
+        let followUpCheckBox = newFollowupCheckBox();
+        followUpCheckBox.classList.add("link-checkbox");
+        let linkElement = document.createElement("a");
+        linkElement.classList.add(dataField, "link-link");
+        linkElement.target = "_blank";
+        let linkAddy =
+          link[1].indexOf("http") >= 0
+            ? link[1]
+            : window.location.href.slice(
+                0,
+                window.location.href.lastIndexOf("/")
+              ) +
+              "/documents/" +
+              link[1];
+        linkElement.href = linkAddy;
+        linkElement.innerHTML = link[0];
+        linksDiv.appendChild(linksLabel);
+        linksDiv.appendChild(linkElement);
+        linksDiv.appendChild(followUpCheckBox);
+        this.inputElementsArray.push(linksDiv);
+        count += 1;
+      });
+    }
+    function newFollowupCheckBox() {
+      let followUpCheckbox = document.createElement("input");
+      followUpCheckbox.type = "checkbox";
+      followUpCheckbox.oninput = function () {
+        let clientKey = this.name;
+        Client.getClient(clientKey, (client) => {
+          if (this.checked == true) {
+            // update a property in the record that is an array
+            let arr = [];
+            if (client.followUps) {
+              client.followUps.push(this.parentNode.id);
+            } else {
+              arr.push(this.parentNode.id);
+              client.followUps = arr;
+            }
+          } else if (this.checked == false) {
+            let arr = client.followUps.filter((e) => e !== this.parentNode.id);
+            client.followUps = arr;
+          }
+          client.replace();
+        });
+      };
+      return followUpCheckbox;
     }
     //class functions
     this.addSpecifiedElementsToTargetDiv = function (category, targetDiv) {

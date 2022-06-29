@@ -18,7 +18,7 @@ body {
   left: 0;
   top: 0;
   width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  height: 50%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
@@ -32,11 +32,15 @@ body {
   border: 1px solid #888;
   width: 80%;
 }
-.close {
+.close,
+#controlToggle {
   color: #313131;
   float: right;
   font-size: 28px;
   font-weight: bold;
+}
+#controlToggle {
+  margin-right: 20px;
 }
 .text-close {
   text-decoration: underline;
@@ -44,7 +48,9 @@ body {
   color: #0088cc;
 }
 .close:hover,
-.close:focus {
+.close:focus,
+#controlToggle:hover,
+#controlToggle:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -112,7 +118,7 @@ textarea {
   background-color: white;
 }
 .root {
-  display: flex;
+  display: x;
   flex-direction: column;
   text-align: center;
 }
@@ -131,7 +137,19 @@ textarea {
 .flex-item {
   flex: 50%;
 }
-
+.link {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.link-checkbox {
+  float: right !important;
+  width: auto !important;
+  margin-right: 8% !important;
+}
+.link-link {
+  float: left;
+  margin-left: 8%;
+}
 /* Responsive layout - makes a one column-layout instead of two-column layout */
 
 /*@media (max-width: 800px) {

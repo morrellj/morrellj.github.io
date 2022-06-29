@@ -19,6 +19,23 @@ class Client {
       type: "array",
       default: [],
     },
+    links: {
+      mobility: [
+        [
+          "FROP",
+          "https://www.nari.net.au/Handlers/Download.ashx?IDMF=6c6b3e92-19e7-4e63-9c2d-e920fa6a7b71",
+        ],
+      ],
+      pain: [
+        [
+          "Functional pain scale",
+          "https://www.caltcm.org/assets/Pain-file/functional%20pain%20scale%20u%20of%20iowa_2001.pdf",
+        ],
+      ],
+      psychological: [["PAS", "PAS.pdf"]],
+        medical:[["COPD-Action-Plan", "COPD-Action-Plan.pdf"]]
+    },
+      
   };
   static schema = {
     //demographic
@@ -465,7 +482,8 @@ class Client {
     medicalReview: {
       tag: "textarea",
       label: "Medical",
-      classes: ["medical", "review", "largeText"],
+      classes: ["review", "medical", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //CHSP
     chspGoals: {
@@ -680,7 +698,7 @@ class Client {
         "Diuretics",
         "Antihypertensives",
         "Hypnotics",
-          "Anti cholinergic burden"
+        "Anti cholinergic burden",
       ],
       classes: ["medication", "largeText", "falls"],
     },
@@ -743,6 +761,7 @@ class Client {
       tag: "textarea",
       label: "Medication",
       classes: ["review", "medication", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //communication and sensory
     CommunicationImpairements: {
@@ -820,6 +839,7 @@ class Client {
       tag: "textarea",
       label: "Communication",
       classes: ["review", "communicationSensory", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //psychological cognitive sleep
     sleep: {
@@ -841,6 +861,7 @@ class Client {
       tag: "textarea",
       label: "Psychological other",
       classes: ["largeText", "psychological"],
+      notes: ["PAS scale completed."],
     },
     psychologicalSupportPlanFactors: {
       tag: "textarea",
@@ -878,6 +899,7 @@ class Client {
       tag: "textarea",
       label: "Psychological",
       classes: ["review", "psychological", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //Pain (falls)
     painScale: {
@@ -912,6 +934,7 @@ class Client {
       tag: "textarea",
       label: "Pain other",
       classes: ["pain"],
+      notes: ["Pain scale completed."],
     },
     painSupportPlanFactors: {
       tag: "textarea",
@@ -951,6 +974,7 @@ class Client {
       tag: "textarea",
       label: "Pain",
       classes: ["review", "pain", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //Skin care
     woundCare: {
@@ -1013,6 +1037,7 @@ class Client {
       tag: "textarea",
       label: "Skin review",
       classes: ["review", "skin", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //elimination (falls)
     eliminationUrinary: {
@@ -1086,6 +1111,7 @@ class Client {
       tag: "textarea",
       label: "Elimination",
       classes: ["review", "elimination", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //transport and mobility
     transport: {
@@ -1196,7 +1222,7 @@ class Client {
         "0 - 3 Low risk of falls - Further assessment and management if functional/balance problem identified",
         "4 - 9 High risk of falls - Perform the Full FROP-Com assessment and / or corresponding management recommendations",
       ],
-      classes: ["falls"],
+      classes: ["falls", "mobility"],
     },
     fallsOther: {
       tag: "textarea",
@@ -1260,6 +1286,7 @@ class Client {
       tag: "textarea",
       label: "Mobility",
       classes: ["review", "mobility", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //environement and personal safety/security
     environment: {
@@ -1278,12 +1305,12 @@ class Client {
       label: "Cleaning assessment",
       default: "",
       classes: ["environment", "largText"],
-      
     },
     environmentReview: {
       tag: "textarea",
       label: "Environment",
       classes: ["review", "environment", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
 
     //social and family
@@ -1328,6 +1355,7 @@ class Client {
       tag: "textarea",
       label: "Social",
       classes: ["review", "social", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //personal care
     PersonalCare: {
@@ -1384,6 +1412,7 @@ class Client {
       tag: "textarea",
       label: "Personal care",
       classes: ["review", "personalCare", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //meals and shopping
     financesOther: {
@@ -1444,6 +1473,7 @@ class Client {
       tag: "textarea",
       label: "Meals and shopping",
       classes: ["review", "mealsShopping", "largeText"],
+      notes: ["No changes. Support plan current and effective."],
     },
     //nutrition
     nutritionalIntake: {
@@ -1663,21 +1693,30 @@ class Client {
     };
 
     for (const [thisKey, value] of Object.entries(Client.schema)) {
-      this[thisKey] = data[thisKey]
+      if(data[thisKey] == null || data[thisKey] == undefined){
+         data[thisKey] = null
+    }else{
+           this[thisKey] = data[thisKey]
         ? data[thisKey]
         : value.default
         ? value.default
         : null;
-    }
+          
+    }}
     for (const [thisKey, value] of Object.entries(
       Client.supplementaryProperties
     )) {
-      this[thisKey] = data[thisKey]
+        if(data[thisKey] == null || data[thisKey] == undefined){
+            this[thisKey] = null
+      
+    }else{
+            this[thisKey] = data[thisKey]
         ? data[thisKey]
         : value.default
         ? value.default
         : null;
-    }
+            
+    }}
   }
   static forEachClientInLocal(callback) {
     for (const key in localStorage) {

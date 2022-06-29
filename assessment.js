@@ -7,6 +7,9 @@ let client = {};
 let popUp = document.getElementById("pop-up");
 let popUpContent = document.getElementById("pop-up-content");
 let searchBox = document.getElementById("searchBox");
+let recordControl = document.getElementById("recordControl");
+let controlToggle = document.getElementById("controlToggle");
+let closeSpans = document.getElementsByClassName("close");
 
 elements = new Elements(Client.schema);
 
@@ -29,6 +32,7 @@ function setPage(heading) {
     child = root.lastElementChild;
   }
   elements.addSpecifiedElementsToTargetDiv(heading, root);
+  window.scroll(0, 0);
 }
 
 //Fill the client selection drop down list
@@ -61,7 +65,6 @@ function addNewClientSelectOption(client) {
   newOption.innerHTML = client.firstName + " " + client.surname;
   clientListSelect.appendChild(newOption);
 }
-
 function clientSelectAction(clientKey) {
   Client.getClient(clientKey, function (data) {
     //clientListSelect.value
@@ -69,15 +72,21 @@ function clientSelectAction(clientKey) {
     document.title = data.firstName + " " + data.surname;
     elements.updateElements(data);
   });
+  controlToggle.dispatchEvent(new Event("click"));
 }
+clientListSelect.onkeyup = function (e) {
+  if (e.code == "Enter") {
+    Client.getClient(this.value, function (data) {
+      //clientListSelect.value
+      output.innerHTML = data.firstName + " " + data.surname;
+      document.title = data.firstName + " " + data.surname;
+      elements.updateElements(data);
+    });
+    controlToggle.dispatchEvent(new Event("click"));
+  }
+};
 function clientDelete() {
   alert("Open developer tools and delete manually from local storage.");
-}
-function refreshState() {
-  let all = document.getElementsByTagName("input");
-  for (let i = 0, max = all.length; i < max; i++) {
-    all[i].value = "x";
-  }
 }
 function toggle(element) {
   if (element.hidden == false) {
@@ -95,8 +104,17 @@ function popUpPop(event) {
       newParagraph.innerHTML = ele;
       newParagraph.classList.add("temp");
       newParagraph.name = event.target.parentNode.id;
+      if (elements[event.target.parentNode.id].value.indexOf(ele) >= 0) {
+        newParagraph.style.color = "red";
+      } else {
+        newParagraph.style.color = "black";
+      }
       newParagraph.onclick = function () {
-        addOrRemovePartOfElementValue(this.innerHTML, elements[this.name]);
+        let result = addOrRemovePartOfElementValue(
+          this.innerHTML,
+          elements[this.name]
+        );
+        this.style.color = result ? "red" : "black";
         elements[this.name].dispatchEvent(new Event("input"));
         function addOrRemovePartOfElementValue(partString, elementToChange) {
           let spacer = elementToChange.value == "" ? "" : "\n";
@@ -170,9 +188,11 @@ function popUpPop(event) {
                 .replace(personalPartString, "")
                 .trim();
             }
+            return false;
           } else {
             elementToChange.value =
               elementToChange.value + spacer + personalPartString.trim();
+            return true;
           }
         }
       };
@@ -186,7 +206,19 @@ function popUpPop(event) {
     popUpContent.appendChild(newParagraph);
   }
 }
-let closeSpans = document.getElementsByClassName("close");
+window.onkeydown = function (e) {
+  console.log(e.code);
+};
+controlToggle.onclick = function () {
+  if (recordControl.style.display == "none") {
+    recordControl.style.display = "flex";
+    this.innerHTML = "&#9651";
+  } else {
+    recordControl.style.display = "none";
+    this.innerHTML = "&#9661";
+  }
+};
+
 for (let i = 0; i < closeSpans.length; i++) {
   closeSpans[i].onclick = function () {
     this.closest(".pop-up").style.display = "none";
