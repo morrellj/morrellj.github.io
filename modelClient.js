@@ -1,3 +1,6 @@
+//wnen creating a review input textarea the first item in the class list must be "review" and
+//the second item must be the relevant category or subpage which will be the parameter for
+//setPage() function triggered by a label oncontextmenu event (right click).
 class Client {
   static colors = {
     carePlan: "#d2f8d2",
@@ -20,56 +23,87 @@ class Client {
       default: [],
     },
     links: {
-      mobility: [
-        [
-          "FROP",
-          "https://www.nari.net.au/Handlers/Download.ashx?IDMF=6c6b3e92-19e7-4e63-9c2d-e920fa6a7b71",
+      mobility: {
+        loneLinks: [
+          [
+            "FROP",
+            "https://www.nari.net.au/Handlers/Download.ashx?IDMF=6c6b3e92-19e7-4e63-9c2d-e920fa6a7b71",
+          ],
         ],
-      ],
-      pain: [
-        [
-          "Functional pain scale",
-          "https://www.caltcm.org/assets/Pain-file/functional%20pain%20scale%20u%20of%20iowa_2001.pdf",
+      },
+      pain: {
+        loneLinks: [
+          [
+            "Functional pain scale",
+            "https://www.caltcm.org/assets/Pain-file/functional%20pain%20scale%20u%20of%20iowa_2001.pdf",
+          ],
         ],
-      ],
-      psychological: [
-        ["PAS", "PAS.pdf"],
-        [
-          "Dementia communication guidelines",
-          "Helpsheet-Communication_english.pdf",
+      },
+      psychological: {
+        loneLinks: [
+          ["PAS", "PAS.pdf"],
+          [
+            "Beyond Blue anxiety and depression checklist.",
+            "https://www.beyondblue.org.au/the-facts/anxiety-and-depression-checklist-k10",
+          ],
         ],
-        [
-          "DBMAS resources",
-          "https://www.dementia.com.au/resource-hub?audience=healthcare-provider&topic=general",
+        groupLinks: [
+          [
+            "Dementia communication guidelines (PDF)",
+            "Helpsheet-Communication_english.pdf",
+          ],
+          [
+            "DBMAS resources",
+            "https://www.dementia.com.au/resource-hub?audience=healthcare-provider&topic=general",
+          ],
+          [
+            "Dementia Australia resources",
+            "https://www.dementia.org.au/resources/help-sheets",
+          ],
         ],
-        [
-          "Dementia Australia resources",
-          "https://www.dementia.org.au/resources/help-sheets",
+      },
+      medical: {
+        loneLinks: [["COPD-Action-Plan", "COPD-Action-Plan.pdf"]],
+      },
+      skin: {
+        loneLinks: [
+          ["Skin tear guidelines", "istap-skin-tears-aged-skin.pdf"],
+          [
+            "Braden scale",
+            "RC - Braden Scale - Predicting Pressure Sore Risk.DOCX",
+          ],
+          ["Pressure injury guidelines", "ACSQHC_factsheet_pressureinjury.pdf"],
+          [
+            "Dressings in PI prevention",
+            "Dressing_for_PI_Prevention_Algorithm.pdf",
+          ],
         ],
-      ],
-      medical: [["COPD-Action-Plan", "COPD-Action-Plan.pdf"]],
-      skin: [
-        ["Skin tear guidelines", "istap-skin-tears-aged-skin.pdf"],
-        [
-          "Braden scale",
-          "RC - Braden Scale - Predicting Pressure Sore Risk.DOCX",
+      },
+      communicationSensory: {
+        loneLinks: [
+          ["Whisper test.", "whisper-test.png"],
+          [
+            "Dementia communication guidelines",
+            "Helpsheet-Communication_english.pdf",
+          ],
         ],
-        ["Pressure injury guidelines", "ACSQHC_factsheet_pressureinjury.pdf"],
-        [
-          "Dressings in PI prevention",
-          "Dressing_for_PI_Prevention_Algorithm.pdf",
+      },
+      carePlan: {
+        loneLinks: [
+          [
+            "Nurseslabs care plans",
+            "https://nurseslabs.com/nursing-care-plans/",
+          ],
         ],
-      ],
-      communicationSensory: [
-        ["Whisper test.", "whisper-test.png"],
-        [
-          "Dementia communication guidelines",
-          "Helpsheet-Communication_english.pdf",
+      },
+      nutrition: {
+        loneLinks: [
+          [
+            "Eating Assessment Tool (EAT-10)",
+            "https://www.nestlehealthscience.com/health-management/gastro-intestinal/dysphagia/eat-10",
+          ],
         ],
-      ],
-      carePlan: [
-        ["Nurseslabs care plans", "https://nurseslabs.com/nursing-care-plans/"],
-      ],
+      },
     },
   };
   static schema = {
@@ -479,7 +513,18 @@ class Client {
       tag: "textarea",
       label: "Vaccinations",
       classes: ["medical", "largeText"],
-      default: "COVID ?\nFlu ?\nShingles ?\nPneumovax ?\nTetnus ?\n",
+      notes: [
+        "COVID vaccinations up to date",
+        "COVID vaccinations pending",
+        "Flu vaccinations up to date.",
+        "Flu vaccinations pending.",
+        "Shingles vacinations up to date.",
+        "Shingles vacinations pending.",
+        "Pneumovax vaccinations up to date",
+        "Pneumovax vaccinations pending",
+        "Tetnus vaccinations up to date.",
+        "Tetnus vaccinations pending.",
+      ],
     },
     oxygen: {
       tag: "textarea",
@@ -1572,8 +1617,12 @@ class Client {
     nutritionalIntake: {
       tag: "textarea",
       label: "Nutritional intake",
-      default:
-        "Percentage of meals eaten:\nDinner:\nLunch:\nBreakfast:\nSnacks:\nFeeding:",
+      notes: [
+        "Percentage of meals eaten\nDinner:\nLunch:\nBreakfast:\nSnacks:\nFeeding:",
+        "24-hour recall",
+        "Food frequency questionnaire",
+        "Food group questionnaire",
+      ],
       classes: ["nutrition", "falls", "largeText"],
     },
     mst: {
@@ -1602,12 +1651,23 @@ class Client {
     oral: {
       tag: "textarea",
       label: "Oral",
+      notes: [
+        "Client has his/her own teeth",
+        "Client has full denture.",
+        "Client has partial denture",
+        "No dental or oral issues.",
+      ],
       classes: ["nutrition"],
     },
     swallow: {
       tag: "textarea",
       label: "Swallow",
       classes: ["nutrition"],
+      notes: [
+        "No indications of swallow defecit - ie coughing when eating, choking, dealayed or difficulty swallowing, pooling of food.",
+        "Further assessment/swallowing screen indicated.",
+        "Referral to speach pathologist indicated.",
+      ],
     },
     nutritionNeeds: {
       tag: "textarea",
@@ -1624,7 +1684,7 @@ class Client {
       tag: "input",
       label: "Weight",
       type: "text",
-      classes: ["biometrics"],
+      classes: ["biometrics", "nutrition"],
     },
     pulse: {
       tag: "input",
@@ -1665,7 +1725,6 @@ class Client {
     headToToe: {
       tag: "textarea",
       label: "Head to toe",
-      default: "Considerations:",
       classes: [
         "biometrics",
         "skin",

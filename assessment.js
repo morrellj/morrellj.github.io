@@ -95,8 +95,30 @@ function toggle(element) {
     element.hidden = false;
   }
 }
+function linkPopUpPop(event) {
+  removePopUpContent();
+  let category = event.target.id.split("-")[0];
+  let elementSchema = Client.supplementaryProperties.links[category].groupLinks;
+  popUp.style.display = "block";
+  elementSchema.forEach((ele) => {
+    let linkDiv = document.createElement("div");
+    let linkElement = document.createElement("a");
+    linkDiv.classList.add("link");
+    linkDiv.appendChild(linkElement);
+    linkElement.innerHTML = ele[0];
+    linkElement.target = "_blank";
+    let linkAddy =
+      ele[1].indexOf("http") >= 0
+        ? ele[1]
+        : window.location.href.slice(0, window.location.href.lastIndexOf("/")) +
+          "/documents/" +
+          ele[1];
+    linkElement.href = linkAddy;
+    popUpContent.appendChild(linkDiv);
+  });
+}
 function popUpPop(event) {
-  removePopUpContent()
+  removePopUpContent();
   let elementSchema = Client.schema[event.target.parentNode.id];
   if (elementSchema.notes !== undefined && elementSchema.notes !== null) {
     popUp.style.display = "block";
@@ -221,25 +243,25 @@ controlToggle.onclick = function () {
 for (let i = 0; i < closeSpans.length; i++) {
   closeSpans[i].onclick = function () {
     this.closest(".pop-up").style.display = "none";
-    removePopUpContent()
+    removePopUpContent();
   };
 }
 window.onclick = function (event) {
   if (event.target.classList.contains("pop-up")) {
     event.target.style.display = "none";
-    removePopUpContent()
+    removePopUpContent();
   }
 };
-function removePopUpContent(){
+function removePopUpContent() {
   let contentList = Array.from(popUpContent.childNodes).reverse();
-    contentList.forEach((node) => {
-      let classLS = node.classList; //== undefined || node.classList == null
-      //   ? []
-      //   : node.classList;
-      if (classLS != "pop-up-content-header") {
-        node.remove();
-      }
-    });
+  contentList.forEach((node) => {
+    let classLS = node.classList; //== undefined || node.classList == null
+    //   ? []
+    //   : node.classList;
+    if (classLS != "pop-up-content-header") {
+      node.remove();
+    }
+  });
 }
 
 window.onkeydown = function (event) {
@@ -302,8 +324,8 @@ function getAllStorage() {
 
   return values;
 }
-function exportData(){
-  writeToCSVfile(csv(), "ALClientData.csv")
+function exportData() {
+  writeToCSVfile(csv(), "ALClientData.csv");
 }
 function csv() {
   let allClients = getAllStorage();

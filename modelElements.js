@@ -10,7 +10,7 @@ class Elements {
       inputDiv.id = dataField;
       inputDiv.classList.add("flex-item");
       let inputLabel = document.createElement("p");
-      if (value.classes[0] == "review") {
+      if (value.classes.indexOf("review") >= 0) {
         if (value.classes.length > 2) {
           inputLabel.oncontextmenu = function (event) {
             event.preventDefault();
@@ -92,39 +92,61 @@ class Elements {
       //push div to array
       this.inputElementsArray.push(inputDiv);
     }
+    //Create links elements
     for (const [dataField, value] of Object.entries(
       Client.supplementaryProperties.links
     )) {
-      // let outerDiv = document.createElement("div")
-      let count = 0;
-      value.forEach((link) => {
-        let linksDiv = document.createElement("div");
-        linksDiv.id = dataField + "-links-" + count;
-        linksDiv.classList.add("link", "flex-item");
+      //iterate lone links
+      if (value.loneLinks) {
+        let count = 0;
+        value.loneLinks.forEach((link) => {
+          let linksDiv = document.createElement("div");
+          linksDiv.id = dataField + "-links-" + count;
+          linksDiv.classList.add("link", "flex-item");
+          let linksLabel = document.createElement("p");
+          // linksLabel needed for addSpecifiedElementsToTargetDiv() to work at switch
+          //default as it is node[0]
+          let followUpCheckBox = newFollowupCheckBox();
+          followUpCheckBox.classList.add("link-checkbox");
+          let linkElement = document.createElement("a");
+          linkElement.classList.add(dataField, "link-link");
+          linkElement.target = "_blank";
+          let linkAddy =
+            link[1].indexOf("http") >= 0
+              ? link[1]
+              : window.location.href.slice(
+                  0,
+                  window.location.href.lastIndexOf("/")
+                ) +
+                "/documents/" +
+                link[1];
+          linkElement.href = linkAddy;
+          linkElement.innerHTML = link[0];
+          linksDiv.appendChild(linksLabel);
+          linksDiv.appendChild(linkElement);
+          linksDiv.appendChild(followUpCheckBox);
+          this.inputElementsArray.push(linksDiv);
+          count += 1;
+        });
+      }
+      //set up group links div
+      if (value.groupLinks) {
+        let groupLinkDiv = document.createElement("div");
+        groupLinkDiv.id = dataField + "-groupLinkDiv";
+        groupLinkDiv.classList.add("link", "flex-item");
         let linksLabel = document.createElement("p");
-        // linksLabel.innerHTML = dataField + " links";
-        let followUpCheckBox = newFollowupCheckBox();
-        followUpCheckBox.classList.add("link-checkbox");
-        let linkElement = document.createElement("a");
-        linkElement.classList.add(dataField, "link-link");
-        linkElement.target = "_blank";
-        let linkAddy =
-          link[1].indexOf("http") >= 0
-            ? link[1]
-            : window.location.href.slice(
-                0,
-                window.location.href.lastIndexOf("/")
-              ) +
-              "/documents/" +
-              link[1];
-        linkElement.href = linkAddy;
-        linkElement.innerHTML = link[0];
-        linksDiv.appendChild(linksLabel);
-        linksDiv.appendChild(linkElement);
-        linksDiv.appendChild(followUpCheckBox);
-        this.inputElementsArray.push(linksDiv);
-        count += 1;
-      });
+        // linksLabel needed for addSpecifiedElementsToTargetDiv() to work at switch
+        //default as it is node[0]
+        let linksLink = document.createElement("a");
+        linksLink.classList.add(dataField, "link-link");
+        linksLink.id = `${dataField}-groupLink`;
+        linksLink.onclick = linkPopUpPop;
+        linksLink.innerHTML = "Click for more links...";
+        linksLink.href = "#";
+        groupLinkDiv.appendChild(linksLabel);
+        groupLinkDiv.appendChild(linksLink);
+        this.inputElementsArray.push(groupLinkDiv);
+      }
     }
     function newFollowupCheckBox() {
       let followUpCheckbox = document.createElement("input");
