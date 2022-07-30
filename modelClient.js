@@ -38,10 +38,38 @@ class Client {
           "Dementia communication guidelines",
           "Helpsheet-Communication_english.pdf",
         ],
+        [
+          "DBMAS resources",
+          "https://www.dementia.com.au/resource-hub?audience=healthcare-provider&topic=general",
+        ],
+        [
+          "Dementia Australia resources",
+          "https://www.dementia.org.au/resources/help-sheets",
+        ],
       ],
       medical: [["COPD-Action-Plan", "COPD-Action-Plan.pdf"]],
-      skin: [["Skin tear guidelines", "istap-skin-tears-aged-skin.pdf"]],
-      communicationSensory: [["Whisper test.", "whisper-test.png"]],
+      skin: [
+        ["Skin tear guidelines", "istap-skin-tears-aged-skin.pdf"],
+        [
+          "Braden scale",
+          "RC - Braden Scale - Predicting Pressure Sore Risk.DOCX",
+        ],
+        ["Pressure injury guidelines", "ACSQHC_factsheet_pressureinjury.pdf"],
+        [
+          "Dressings in PI prevention",
+          "Dressing_for_PI_Prevention_Algorithm.pdf",
+        ],
+      ],
+      communicationSensory: [
+        ["Whisper test.", "whisper-test.png"],
+        [
+          "Dementia communication guidelines",
+          "Helpsheet-Communication_english.pdf",
+        ],
+      ],
+      carePlan: [
+        ["Nurseslabs care plans", "https://nurseslabs.com/nursing-care-plans/"],
+      ],
     },
   };
   static schema = {
@@ -134,6 +162,7 @@ class Client {
       type: "text",
       label: "Country of Birth",
       classes: ["demographic"],
+      notes: ["Australia"],
     },
     maritalStatus: {
       tag: "select",
@@ -305,11 +334,13 @@ class Client {
       tag: "textarea",
       label: "Cultural impact on services.",
       classes: ["largeText", "demographic"],
+      notes: ["No cultural concerns impacting on service delivery."],
     },
     religiousImpact: {
       tag: "textarea",
       label: "Religious impact on services.",
       classes: ["largeText", "demographic"],
+      notes: ["No religious concerns impacting on service delivery."],
     },
     risk: {
       tag: "select",
@@ -471,11 +502,17 @@ class Client {
       tag: "textarea",
       label: "Medical needs",
       classes: ["clinical", "medical", "largeText"],
+      notes: [
+        "Client articulates/has a documented chronic disease management plan including access to urgent medical support",
+      ],
     },
     medicalNeedsActions: {
       tag: "textarea",
       label: "Medical actions",
       classes: ["clinical", "medical", "largeText"],
+      notes: [
+        "Southern Plus nurse to provide further support/education/referral to establish chronic disease management plan",
+      ],
     },
     medicalSupportPlanGoals: {
       tag: "textarea",
@@ -486,6 +523,9 @@ class Client {
       tag: "textarea",
       label: "Medical support INTERVENTIONS",
       classes: ["medical", "carePlan", "largeText"],
+      notes: [
+        "Southern Plus support workers will provide assistance with transport to and from medical and other health related appointments",
+      ],
     },
     medicalReview: {
       tag: "textarea",
@@ -826,7 +866,7 @@ class Client {
         "Client is aware of his/her care needs and can communicate independently.",
         "Client has a hearing impairment.",
         "Client has a vision impairment.",
-        "Client has a self care deficit related to communication secondary to ",
+        "Client has impaired verbal communication ",
       ],
     },
     communicationSupportGoals: {
@@ -847,6 +887,7 @@ class Client {
         "Support workers will prompt client to wear his/her hearing aids and glasses.",
         "Suport workers will assist client to ensure that his/her hearing aids are working effectively.",
         "Support workers will assist client to put on his/her glasses and hearing aids.",
+        "Utilise communication techniques that enable people living with dementia. Refer to help sheet.",
       ],
     },
     communicationReview: {
@@ -891,6 +932,14 @@ class Client {
       tag: "textarea",
       label: "Pyschological support plan FACTORS",
       classes: ["carePlan", "psychological", "largeText"],
+      notes: [
+        "Disturbed Sleep Pattern",
+        "Anxiety",
+        "Chronic Confusion",
+        "Disturbed Thought Process",
+        "Impaired Memory",
+        "Wandering",
+      ],
     },
     psychologicalSupportPlanGoals: {
       tag: "textarea",
@@ -918,6 +967,13 @@ class Client {
       tag: "textarea",
       label: "Psychological actions",
       classes: ["clinical", "psychological", "largeText"],
+      notes: [
+        "Add dementia specific interventions to support plan",
+        "Southern Plus clinical team to conduct further dementia specific assessment and care planning (ie HDR scale, behaviour management)",
+        "Assist client/carer with referral to DBAMS and/or Dementia Australia",
+        "Provide DBMAS/Dementia Australia help sheets (i.e. understanding apathy/communication...)",
+        "Support plan current and effective",
+      ],
     },
     psychologicalReview: {
       tag: "textarea",
@@ -1008,11 +1064,9 @@ class Client {
       classes: ["skin"],
     },
     pressureInjury: {
-      tag: "select",
-      multiple: true,
-      selectOptions: [
-        "Low risk",
-        "Pressure injury risk assessment required",
+      tag: "textarea",
+      notes: [
+        "Pressure injury risk assessment pending",
         "Pressure injury risk assessment completed",
       ],
       label: "Pressure injury",
@@ -1024,6 +1078,8 @@ class Client {
       classes: ["skin", "clinical"],
       notes: [
         "Uses medications that increase risk of skin tears: corticosteroids, anticoagulants, polypharmacy.",
+        "Assessment indicates high risk for pressure injury.",
+        "Assessment indicates low risk for pressure injury.",
       ],
     },
     skinSupportPlanFactors: {
@@ -1061,6 +1117,15 @@ class Client {
       tag: "textarea",
       label: "Skin care clinical actions",
       classes: ["skin", "clinical", "largeText"],
+      notes: [
+        "S: pressure redistribution support surface in place/for OT assessment",
+        "S: Regular skin inspection to be incorporated into support plan and/or client/carer education provided",
+        "K: keep moving client/carer education provided.",
+        "I: manage incontinence - refer to continence management assessment.",
+        "N: optimise nutrition - refer to nutritional assessment.",
+        "D: dressings for prevention indicated/not indicated",
+        "Wound care plan to be implemented",
+      ],
     },
     skinReview: {
       tag: "textarea",
@@ -1367,7 +1432,7 @@ class Client {
       classes: ["carePlan", "social", "goals", "largeText"],
       notes: [
         "Client will report that he/she is satisfied with the amount of social interaction that he/she receives.",
-        "Client will report that frequently engage in activities and have opportunity to build and maintain the relationships that are important to them.",
+        "Client will report that frequently engage in activities and have opportunity to build and maintain the relationships that are important to him/her.",
       ],
     },
     socialSupportPlanInterventions: {
@@ -1511,22 +1576,28 @@ class Client {
         "Percentage of meals eaten:\nDinner:\nLunch:\nBreakfast:\nSnacks:\nFeeding:",
       classes: ["nutrition", "falls", "largeText"],
     },
-    weightLossGain: {
-      tag: "select",
-      multiple: true,
-      selectOptions: [
-        "Weight Stable",
-        "Unintentional weight loss",
-        "Unintentional weight gain",
-        "High BMI",
-        "Low BMI",
-        "Further nutritional assessment required",
-        "Nutritional assessment completed",
-        "Client has had dietician review",
-        "Dietician referral required",
+    mst: {
+      tag: "textarea",
+
+      notes: [
+        "No weight loss in last six months (0)",
+        "Client has lost 1-5kg weight in the last six months without trying (1)",
+        "Client has lost 6-10kg weight in the last six months without trying (2)",
+        "Client has lost 11-15kg weight in the last six months without trying (3)",
+        "Client has lost >15kg weight in the last six months without trying (4)",
+        "Unsure of weight loss in last six months. (2)",
+        "---",
+        "Client has been eating three quarters or more of usual intake and no loss of appetite (0)",
+        "Client been eating poorly (for example, less than three quarters of usual intake) because of a decreased appetite (1)",
+        "---",
+        "0 - 1 Low risk of malnutrition - is eating well with no recent weight loss",
+        "2 Medium risk of malnutrition - is eating poorly AND experienced recent weight loss of less than 5kg",
+        "3-5 High risk of malnutrition - is eating poorly AND experienced recent weight loss of more than 5kg",
       ],
-      label: "Weight",
-      classes: ["nutrition"],
+      label: "MST",
+      classes: ["nutrition", "largeText"],
+      default:
+        "The significance of the amount of weight loss will depend on the body weight of the resident.  For instance, a 3kg weight loss in a 40kg resident is significant",
     },
     oral: {
       tag: "textarea",
@@ -1635,7 +1706,7 @@ class Client {
       label: "Home and garden plan FACTORS",
       classes: ["carePlan", "environment", "largeText"],
       notes: [
-        "Self care deficit related to maintenance of safe, accessable outdoor areas and access to the home secondary to ___.",
+        "Self care deficit related to maintenance of safe, accessible outdoor areas and access to the home secondary to ___.",
       ],
     },
     HGMSupportPlanGoals: {
@@ -1649,6 +1720,54 @@ class Client {
       label: "Home and garden support plan INTERVENTIONS",
       classes: ["carePlan", "environment", "largeText"],
       notes: ["Southern plus will facilitate monthly gardening services."],
+    },
+    otReferral: {
+      tag: "textarea",
+      label: "OT referral",
+      classes: [
+        "skin",
+        "environment",
+        "mobility",
+        "falls",
+        "clinical",
+        "referral",
+        "pain",
+      ],
+      notes: [
+        "OT referral and follow up of recommendations for pressure injury prevention/management devices",
+        "OT referral and follow up of recommendations for environmental/seating/functional home safety review",
+        "OT referral and follow up of recommendations for pain management equipment",
+      ],
+    },
+    ptReferral: {
+      tag: "textarea",
+      label: "PT referral",
+      classes: ["mobility", "falls", "clinical", "referral", "pain"],
+      notes: [
+        "PT referral and follow up for falls prevention and mobility assessment.",
+        "PT referral and follow up for mobility equipment assessment/recommendations.",
+        "PT referral and follow up for pain management.",
+      ],
+    },
+    gpRefferral: {
+      tag: "textarea",
+      label: "GP referral",
+      classes: [
+        "medical",
+        "referral",
+        "clinical",
+        "falls",
+        "nutrition",
+        "pain",
+        "psychological",
+        "medication",
+      ],
+      notes: [
+        "GP referral and follow up for HMMR - information provided to client",
+        "GP referral and follow up for nutritional review",
+        "GP referral and follow up for review of vaccination status.",
+        "GP referral and follow up for review chronic disease management plans including access to urgent medical attention",
+      ],
     },
     otherReviewNotes: {
       tag: "textarea",

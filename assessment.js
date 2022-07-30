@@ -96,6 +96,7 @@ function toggle(element) {
   }
 }
 function popUpPop(event) {
+  removePopUpContent()
   let elementSchema = Client.schema[event.target.parentNode.id];
   if (elementSchema.notes !== undefined && elementSchema.notes !== null) {
     popUp.style.display = "block";
@@ -220,24 +221,17 @@ controlToggle.onclick = function () {
 for (let i = 0; i < closeSpans.length; i++) {
   closeSpans[i].onclick = function () {
     this.closest(".pop-up").style.display = "none";
-    let contentList = Array.from(
-      this.closest(".pop-up-content").childNodes
-    ).reverse();
-    contentList.forEach((node) => {
-      let classLS = node.classList; //== undefined || node.classList == null
-      //   ? []
-      //   : node.classList;
-      if (classLS != "pop-up-content-header") {
-        node.remove();
-      }
-    });
+    removePopUpContent()
   };
 }
 window.onclick = function (event) {
   if (event.target.classList.contains("pop-up")) {
     event.target.style.display = "none";
-
-    let contentList = Array.from(popUpContent.childNodes).reverse();
+    removePopUpContent()
+  }
+};
+function removePopUpContent(){
+  let contentList = Array.from(popUpContent.childNodes).reverse();
     contentList.forEach((node) => {
       let classLS = node.classList; //== undefined || node.classList == null
       //   ? []
@@ -246,8 +240,7 @@ window.onclick = function (event) {
         node.remove();
       }
     });
-  }
-};
+}
 
 window.onkeydown = function (event) {
   if (event.altKey) {
@@ -291,7 +284,7 @@ function consoleReview() {
     console.log(string);
     setTimeout(
       async () => await window.navigator.clipboard.writeText(string),
-      5000
+      2000
     );
   });
 }
@@ -308,6 +301,9 @@ function getAllStorage() {
   }
 
   return values;
+}
+function exportData(){
+  writeToCSVfile(csv(), "ALClientData.csv")
 }
 function csv() {
   let allClients = getAllStorage();
