@@ -8,6 +8,11 @@ function exportData() {
 }
 function csv() {
   let allClients = getAllStorage();
+  let allFields = {};
+  Object.keys(Client.schema).forEach((key) => {
+    allFields[key] = "";
+  });
+  allClients.unshift(allFields);
   let csv = Papa.unparse(allClients);
   return csv;
 }
