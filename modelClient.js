@@ -63,7 +63,16 @@ class Client {
         ],
       },
       medical: {
-        loneLinks: [["COPD-Action-Plan", "COPD-Action-Plan.pdf"]],
+        groupLinks: [
+            [
+                "COPD-Action-Plan", 
+                "COPD-Action-Plan.pdf"
+            ],
+            [
+                "Reducing ICS in Asthma sufferers", 
+                "https://www.nps.org.au/australian-prescriber/articles/how-to-step-down-asthma-preventer-treatment-in-patients-with-well-controlled-asthma-more-is-not-always-better?_cldee=Ddcru9bIlyGXhWQ3KHRJmjboRyw4eYs-8S3pd1VCuBndHPMd5VlZ1IEf1xfPpaWa&recipientid=contact-4f0fee49810cec1194ca0050568a45a5-39e351ab1fca4c5ab725bdc2887ae41b&utm_source=ClickDimensions&utm_medium=email&utm_campaign=Australian%20Prescriber%20August%202022&esid=b25db8bb-8808-ed11-94d4-000d3ad1b576"
+            ]
+        ],
       },
       skin: {
         loneLinks: [
@@ -96,6 +105,13 @@ class Client {
           ],
         ],
       },
+    medication:{
+        groupLinks:[
+            ["Anticholinergic medications",
+             "https://www.dementia.org.au/sites/default/files/helpsheets/Helpsheet-DementiaQandA24_AnticholinergicDrugs_english.pdf"
+            ]
+            ]
+    },
       nutrition: {
         loneLinks: [
           [
@@ -932,6 +948,13 @@ class Client {
         "Support workers will prompt client to wear his/her hearing aids and glasses.",
         "Suport workers will assist client to ensure that his/her hearing aids are working effectively.",
         "Support workers will assist client to put on his/her glasses and hearing aids.",
+          "Be flexible and always allow plenty oftime for a response.",
+          "Use touch to keep the client’s attention and to communicate feelings of warmth and affection",
+          "Remain calm and talk in a gentle, matter of fact way",
+          "Keep sentences short and simple, focusing on one idea at a time",
+          "Always allow plenty of time for what you have said to be understood",
+          "Use non verbal cues to aid communication (touch, pointing, hold hands to maintain attention, smile.",
+          "Ensure environment is condusive to communication (avoid loud competing noises TV or radio, stay still and within line of sight, maintain routines and familiar surroundings/people)",
         "Utilise communication techniques that enable people living with dementia. Refer to help sheet.",
       ],
     },
@@ -990,7 +1013,7 @@ class Client {
       tag: "textarea",
       label: "Pyschological support plan GOALS",
       classes: ["carePlan", "psychological", "goals", "largeText"],
-      notes: [
+      notes: ["Client will report he/she feels safe and secure most of the time.",
         "Clients carers and support workers will identify what frequently triggers certain behaviours, anxiety and insecurity, what interventions are effective and the outcomes.",
       ],
     },
@@ -1120,7 +1143,7 @@ class Client {
     skinIntegrity: {
       tag: "textarea",
       label: "Skin integrity",
-      classes: ["skin", "clinical"],
+      classes: ["skin",],
       notes: [
         "Uses medications that increase risk of skin tears: corticosteroids, anticoagulants, polypharmacy.",
         "Assessment indicates high risk for pressure injury.",
@@ -1664,7 +1687,7 @@ class Client {
       label: "Swallow",
       classes: ["nutrition"],
       notes: [
-        "No indications of swallow defecit - ie coughing when eating, choking, dealayed or difficulty swallowing, pooling of food.",
+        "Client reports no swallowing problem.",
         "Further assessment/swallowing screen indicated.",
         "Referral to speach pathologist indicated.",
       ],

@@ -294,7 +294,6 @@ function searchReduce() {
 }
 
 function consoleReview() {
-  console.log("Five seconds to press the tab key. ");
   Client.getClient(clientListSelect.value, function (client) {
     let string = "";
     for (const [key, value] of Object.entries(Client.schema)) {
@@ -306,7 +305,7 @@ function consoleReview() {
     console.log(string);
     setTimeout(
       async () => await window.navigator.clipboard.writeText(string),
-      2000
+      500
     );
   });
 }
@@ -323,66 +322,6 @@ function getAllStorage() {
   }
 
   return values;
-}
-function exportData() {
-  writeToCSVfile(csv(), "ALClientData.csv");
-}
-function csv() {
-  let allClients = getAllStorage();
-  let fields = Object.keys(Client.schema);
-  fields.unshift("key");
-  fields.unshift("lastModified");
-  fields.unshift("lastDate");
-  fields.unshift("followUps");
-  let replacer = function (value) {
-    return value ? value : "";
-  };
-  let csv = allClients.map(function (row) {
-    //iterating
-    return fields
-      .map(function (fieldName) {
-        let thisString = "";
-        if (Array.isArray(row[fieldName])) {
-          row[fieldName].forEach((element, index) => {
-            let comma = index > 0 ? ", " : "";
-            thisString = thisString + comma + element;
-          });
-        } else {
-          if (row[fieldName]) {
-            let final = row[fieldName].replaceAll("\n", "#");
-            thisString = final;
-          } else {
-            thisString = row[fieldName];
-          }
-        }
-        return JSON.stringify(replacer(thisString));
-      })
-      .join(",");
-  });
-  csv.unshift(fields.join(","));
-  csv = csv.join("\r\n");
-  console.log(csv);
-  return csv;
-}
-function writeToCSVfile(csv, name) {
-  let blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-  if (navigator.msSaveBlob) {
-    // IE 10+
-    navigator.msSaveBlob(blob, name);
-  } else {
-    let link = document.createElement("a");
-    if (link.download !== undefined) {
-      // feature detection
-      // Browsers that support HTML5 download attribute
-      let url = URL.createObjectURL(blob);
-      link.setAttribute("href", url);
-      link.setAttribute("download", name);
-      link.style.visibility = "hidden";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  }
 }
 
 function checkLocalStorage() {
