@@ -267,11 +267,13 @@ function removePopUpContent() {
 window.onkeydown = function (event) {
   if (event.altKey) {
     switch (event.code) {
-      case "KeyH":
+      case "ArrowLeft":
+      case "ArrowRight":
         searchBox.focus();
         searchBox.value = "";
         break;
       case "ArrowUp":
+      case "ArrowDown":
         controlToggle.dispatchEvent(new Event("click"));
         break;
     }
