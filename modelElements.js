@@ -43,7 +43,7 @@ class Elements {
             this.tagName == "SELECT"
               ? elements.getMultiSelectValues(this)
               : this.value;
-          Client.updateClient(this.name, changeObject);
+          store.dispatch("update", { id: this.name, data: changeObject });
         } else {
           alert("Select a client");
         }
