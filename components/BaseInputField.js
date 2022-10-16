@@ -3,36 +3,18 @@ class BaseInputField extends Builder {
     super();
     let self = this;
     self.fieldSettings = props.fieldSettings;
-    self.template = {
-      $_inputDiv: {
+    (self.schema = {
+      $_baseInputField: {
         tag: "div",
         props: { id: self.fieldSettings.fieldName, classList: ["flex-item"] },
         children: {
-          $_inputLabel: {
-            tag: "p",
-            props: {
-              onclick: popUpPop,
-              oncontextmenu: this.contextClick,
-              innerHTML: self.fieldSettings.label,
-            },
-          },
-          [`$_${self.fieldSettings.fieldName}`]: {},
+          $_inputLabel: new InputLabel(self.fieldSettings).schema,
+
+          $_dataField: new DataField(self.fieldSettings).schema,
         },
       },
-    };
+    }),
+      (this.tester = self.schema.$_baseInputField.children.$_inputLabel.props);
+    self.manufacture(self.schema);
   }
-  contextClick = () => {
-    if (self.fieldSettings.classes.indexOf("review") >= 0) {
-      if (self.fieldSettings.classes.length > 2) {
-        return function (event) {
-          event.preventDefault();
-          setPage(self.fieldSettings.classes[1]);
-        };
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
-  };
 }

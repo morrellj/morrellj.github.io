@@ -1,7 +1,6 @@
 console.log("HI");
 let root = document.getElementById("root");
 let output = document.getElementById("output");
-// let clientList = document.getElementById("clientList");
 let clientListSelect = document.getElementById("clientListSelect");
 let client = {};
 let popUp = document.getElementById("pop-up");
@@ -11,7 +10,7 @@ let recordControl = document.getElementById("recordControl");
 let controlToggle = document.getElementById("controlToggle");
 let closeSpans = document.getElementsByClassName("close");
 
-elements = new Elements(Client.schema);
+elements = new Elements(clientRecordFieldSettings);
 
 var header = document.getElementById("buttonNav");
 var btns = header.getElementsByClassName("btn");
@@ -36,28 +35,9 @@ function setPage(heading) {
 }
 
 //Fill the client selection drop down list
-Client.forEachClientInLocal(addNewClientSelectOption);
-
-function clientAdd() {
-  let firstNameField = document.getElementById("addClient-firstName");
-  let surnameNameField = document.getElementById("addClient-surname");
-  let newKey = firstNameField.value + "_" + surnameNameField.value;
-  let client = new Client(newKey, {
-    firstName: firstNameField.value,
-    surname: surnameNameField.value,
-  });
-  client.save();
+// Client.forEachClientInLocal(addNewClientSelectOption);
+for (const [key, client] of Object.entries(store.state)) {
   addNewClientSelectOption(client);
-  firstNameField.value = "";
-  surnameNameField.value = "";
-  clientSelectAction(client.key);
-  let options = clientListSelect.options;
-  let opt;
-  for (let i = 0, iLen = options.length; i < iLen; i++) {
-    opt = options[i];
-    opt.selected = opt.value == client.key ? true : false;
-  }
-  toggle(document.getElementById("newClientAddForm"));
 }
 function addNewClientSelectOption(client) {
   let newOption = document.createElement("option");
@@ -66,25 +46,45 @@ function addNewClientSelectOption(client) {
   clientListSelect.appendChild(newOption);
 }
 function clientSelectAction(clientKey) {
-  Client.getClient(clientKey, function (data) {
-    //clientListSelect.value
-    output.innerHTML = data.firstName + " " + data.surname;
-    document.title = data.firstName + " " + data.surname;
-    elements.updateElements(data);
-  });
+  output.innerHTML =
+    store.state[clientKey].firstName + " " + store.state[clientKey].surname;
+  document.title =
+    store.state[clientKey].firstName + " " + store.state[clientKey].surname;
+  elements.updateElements(store.state[clientKey]);
   controlToggle.dispatchEvent(new Event("click"));
+  setPage("demographic");
 }
 clientListSelect.onkeyup = function (e) {
   if (e.code == "Enter") {
-    Client.getClient(this.value, function (data) {
-      //clientListSelect.value
-      output.innerHTML = data.firstName + " " + data.surname;
-      document.title = data.firstName + " " + data.surname;
-      elements.updateElements(data);
-    });
+    let data = store.state[this.value];
+    output.innerHTML = data.firstName + " " + data.surname;
+    document.title = data.firstName + " " + data.surname;
+    elements.updateElements(data);
     controlToggle.dispatchEvent(new Event("click"));
+    setPage("demographic");
   }
 };
+function clientAdd() {
+  let firstNameField = document.getElementById("addClient-firstName");
+  let surnameNameField = document.getElementById("addClient-surname");
+  let newKey = firstNameField.value + "_" + surnameNameField.value;
+  let newClient = store.dispatch("add", {
+    firstName: firstNameField.value,
+    surname: surnameNameField.value,
+  });
+  addNewClientSelectOption(newClient);
+  firstNameField.value = "";
+  surnameNameField.value = "";
+  clientSelectAction(newClient.key);
+  let options = clientListSelect.options;
+  let opt;
+  for (let i = 0, iLen = options.length; i < iLen; i++) {
+    opt = options[i];
+    opt.selected = opt.value == newClient.key ? true : false;
+  }
+  toggle(document.getElementById("newClientAddForm"));
+}
+
 function clientDelete() {
   alert("Open developer tools and delete manually from local storage.");
 }
@@ -98,7 +98,7 @@ function toggle(element) {
 function linkPopUpPop(event) {
   removePopUpContent();
   let category = event.target.id.split("-")[0];
-  let elementSchema = Client.supplementaryProperties.links[category].groupLinks;
+  let elementSchema = Elements.links[category].groupLinks;
   popUp.style.display = "block";
   elementSchema.forEach((ele) => {
     let linkDiv = document.createElement("div");
@@ -119,7 +119,7 @@ function linkPopUpPop(event) {
 }
 function popUpPop(event) {
   removePopUpContent();
-  let elementSchema = Client.schema[event.target.parentNode.id];
+  let elementSchema = clientRecordFieldSettings[event.target.parentNode.id];
   if (elementSchema.notes !== undefined && elementSchema.notes !== null) {
     popUp.style.display = "block";
     elementSchema.notes.forEach((ele) => {
@@ -127,7 +127,9 @@ function popUpPop(event) {
       newParagraph.innerHTML = ele;
       newParagraph.classList.add("temp");
       newParagraph.name = event.target.parentNode.id;
-      if (elements[event.target.parentNode.id].value.indexOf(ele) >= 0) {
+      if (
+        elements[event.target.parentNode.id].$_dataField.value.indexOf(ele) >= 0
+      ) {
         newParagraph.style.color = "red";
       } else {
         newParagraph.style.color = "black";
@@ -135,25 +137,19 @@ function popUpPop(event) {
       newParagraph.onclick = function () {
         let result = addOrRemovePartOfElementValue(
           this.innerHTML,
-          elements[this.name]
+          elements[this.name].$_dataField
         );
         this.style.color = result ? "red" : "black";
-        elements[this.name].dispatchEvent(new Event("input"));
+        elements[this.name].$_dataField.dispatchEvent(new Event("input"));
         function addOrRemovePartOfElementValue(partString, elementToChange) {
           let spacer = elementToChange.value == "" ? "" : "\n";
-          let firstName = JSON.parse(
-            localStorage.getItem(elementToChange.name)
-          ).firstName;
-          let preferredName = JSON.parse(
-            localStorage.getItem(elementToChange.name)
-          ).preferredName;
+          let firstName = store.state[elementToChange.name].firstName;
+          let preferredName = store.state[elementToChange.name].preferredName;
           firstName =
             preferredName == null || preferredName == undefined
               ? firstName
               : preferredName;
-          let gender = JSON.parse(
-            localStorage.getItem(elementToChange.name)
-          ).gender;
+          let gender = store.state[elementToChange.name].gender;
           let genderId;
           let genderId2;
           let genderOwnership;
@@ -269,6 +265,7 @@ window.onkeydown = function (event) {
     switch (event.code) {
       case "ArrowLeft":
       case "ArrowRight":
+        event.preventDefault();
         searchBox.focus();
         searchBox.value = "";
         break;
@@ -284,32 +281,34 @@ function searchReduce() {
   clientListSelect.innerHTML = "";
   let searchWord = searchBox.value.toLowerCase();
   searchWord = searchWord.toLowerCase();
-  Client.getAllClients(function reduce(clients) {
-    for (const [key, client] of Object.entries(clients)) {
-      let clientName = client.firstName + " " + client.surname;
-      clientName = clientName.toLowerCase();
-      if (clientName.indexOf(searchWord) >= 0) {
-        addNewClientSelectOption(client);
-      }
+  // Client.getAllClients(function reduce(clients) {
+  let clients = store.state;
+  for (const [key, client] of Object.entries(clients)) {
+    let clientName = client.firstName + " " + client.surname;
+    clientName = clientName.toLowerCase();
+    if (clientName.indexOf(searchWord) >= 0) {
+      addNewClientSelectOption(client);
     }
-  });
+  }
+  // });
 }
 
 function consoleReview() {
-  Client.getClient(clientListSelect.value, function (client) {
-    let string = "";
-    for (const [key, value] of Object.entries(Client.schema)) {
-      if (value.classes.includes("review") && client[key] != null) {
-        let substring = value.label;
-        string = string + "\n---- " + substring + ": ----\n" + client[key];
-      }
+  // Client.getClient(clientListSelect.value, function (client) {
+  let client = store.state[clientListSelect.value];
+  let string = "";
+  for (const [key, value] of Object.entries(clientRecordFieldSettings)) {
+    if (value.classes.includes("review") && client[key] != null) {
+      let substring = value.label;
+      string = string + "\n---- " + substring + ": ----\n" + client[key];
     }
-    console.log(string);
-    setTimeout(
-      async () => await window.navigator.clipboard.writeText(string),
-      500
-    );
-  });
+  }
+  console.log(string);
+  setTimeout(
+    async () => await window.navigator.clipboard.writeText(string),
+    500
+  );
+  // });
 }
 
 function getAllStorage() {

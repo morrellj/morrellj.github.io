@@ -1,20 +1,85 @@
 let actions = {
   update(context, changeObject) {
-    changeObject.data.lastModified = new Date();
-    changeObject.data.lastDate = ""; //Client.getLastDate();
-    //need to check validity of changeObject key
-    context.commit("update", changeObject);
+    addDateStamps(changeObject.data);
+    return context.commit("update", changeObject);
+  },
+  add(context, newObject) {
+    let commitObject = {};
+    //must contain firstName, surname properties
+    if (
+      !newObject.hasOwnProperty("firstName") ||
+      !newObject.hasOwnProperty("surname")
+    ) {
+      console.error(
+        "New client object must contain a 'firstName' and a 'surname' property at a minumum."
+      );
+      return false;
+    }
+    //add client key property
+    newObject.key = `${newObject.firstName}_${newObject.surname}`;
+    //add all other properties as per schema
+    for (const [thisKey, value] of Object.entries(clientRecordFieldSettings)) {
+      newObject[thisKey] = newObject[thisKey]
+        ? newObject[thisKey]
+        : value.default
+        ? value.default
+        : null;
+    }
+    // for (const [thisKey, value] of Object.entries(
+    //   Client.supplementaryProperties
+    // )) {
+    //   newObject[thisKey] = newObject[thisKey]
+    //     ? newObject[thisKey]
+    //     : value.default
+    //     ? value.default
+    //     : null;
+    // }
+    addDateStamps(newObject);
+    commitObject.id = newObject.key;
+    commitObject.data = newObject;
+    return context.commit("add", commitObject);
+  },
+  remove(context, changeObject) {
+    context.commit("remove", changeObject);
   },
 };
-
+function addDateStamps(obj) {
+  obj.lastModified = new Date();
+  let thisDate = new Date();
+  let day = thisDate.getDate();
+  let month = thisDate.getMonth() + 1;
+  let year = thisDate.getFullYear();
+  obj.lastDate = day + "/" + month + "/" + year;
+}
 let mutations = {
   update(state, changeObject) {
     let client = state[changeObject.id];
+    if (!client) {
+      console.error("Client record with matching key not found.");
+      return state;
+    }
     for (const [thisKey, value] of Object.entries(changeObject.data)) {
       client[thisKey] = value;
     }
-    // update storage here or in the Proxy?
     state[changeObject.id] = client;
+    return state;
+  },
+  add(state, newObject) {
+    if (state[newObject.id]) {
+      console.error(
+        "Record with same first and second name already exists. Records not changed"
+      );
+      return state;
+    }
+    state[newObject.id] = newObject.data;
+    return state;
+  },
+  remove(state, changeObject) {
+    if (state[changeObject.id]) {
+      delete state[changeObject.id];
+      return state;
+    }
+    console.error("Record with the entered id does not exist.");
     return state;
   },
 };
@@ -63,20 +128,21 @@ class DataBase {
       console.error(`Action "${actionKey} doesn't exist.`);
       return false;
     }
-    self.actions[actionKey](self, changeObject);
+    return self.actions[actionKey](self, changeObject);
   }
 
   commit(mutationKey, changeObject) {
     let self = this;
     // other good practice items
     if (typeof self.mutations[mutationKey] !== "function") {
-      console.log(`Mutation "${mutationKey}" doesn't exist`);
+      console.error(`Mutation "${mutationKey}" doesn't exist`);
       return false;
     }
     localStorage.setItem(
       this.#dataBaseName,
       JSON.stringify(self.mutations[mutationKey](self.state, changeObject))
     );
+    return self.state[changeObject.id];
   }
 }
 
