@@ -11,6 +11,7 @@ class BaseInputField extends Builder {
           $_inputLabel: new InputLabel(self.fieldSettings).schema,
 
           $_dataField: new DataField(self.fieldSettings).schema,
+          $_checkBox: new FollowUpCheckBox(self.fieldSettings).schema,
         },
       },
     }),

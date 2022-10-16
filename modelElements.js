@@ -27,13 +27,13 @@ class Elements {
       // inputLabel.onclick = popUpPop;
       // inputLabel.innerHTML = value.label;
 
-      //create follow up check box
-      let followUpCheckbox = newFollowupCheckBox();
+      // create follow up check box
+      // let followUpCheckbox = newFollowupCheckBox();
 
       //append element and label to div
       // inputDiv.appendChild(inputLabel);
       // inputDiv.appendChild(this[dataField]);
-      this[dataField].element.appendChild(followUpCheckbox);
+      // this[dataField].element.appendChild(followUpCheckbox);
       //add name
       // this[dataField].name = dataField;
       //add class list
