@@ -4,7 +4,11 @@ class FollowUpCheckBox {
     self.fieldSettings = fieldSettings;
     self.schema = {
       tag: "input",
-      props: { type: "checkbox", oninput: this.oninput },
+      props: {
+        type: "checkbox",
+        oninput: this.oninput,
+        classList: fieldSettings.classes,
+      },
     };
   }
   oninput = function () {

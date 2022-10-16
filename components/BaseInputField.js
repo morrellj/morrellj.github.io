@@ -15,7 +15,6 @@ class BaseInputField extends Builder {
         },
       },
     }),
-      (this.tester = self.schema.$_baseInputField.children.$_inputLabel.props);
-    self.manufacture(self.schema);
+      self.manufacture(self.schema);
   }
 }
