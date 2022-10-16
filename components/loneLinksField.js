@@ -17,6 +17,8 @@ class LoneLinksField extends Builder {
           classList: ["flex-item", "link"],
         },
         children: {
+          // linksLabel needed for addSpecifiedElementsToTargetDiv() to work at switch
+          //default as it is node[0]
           $_linksLabel: { tag: "p", props: {} },
           $_linksField: new Link(self.fieldSettings).schema,
           $_checkBox: new FollowUpCheckBox(self.fieldSettings).schema,
@@ -27,5 +29,3 @@ class LoneLinksField extends Builder {
     self.manufacture(self.schema);
   }
 }
-
-new Lin();
