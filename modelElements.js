@@ -102,77 +102,85 @@ class Elements {
     for (const [dataField, value] of Object.entries(Elements.links)) {
       //iterate lone links
       if (value.loneLinks) {
-        let count = 0;
+        // let count = 0;
         value.loneLinks.forEach((link) => {
-          let linksDiv = document.createElement("div");
-          linksDiv.id = dataField + "-links-" + count;
-          linksDiv.classList.add("link", "flex-item");
-          let linksLabel = document.createElement("p");
-          // linksLabel needed for addSpecifiedElementsToTargetDiv() to work at switch
-          //default as it is node[0]
-          let followUpCheckBox = newFollowupCheckBox();
-          followUpCheckBox.classList.add("link-checkbox");
-          let linkElement = document.createElement("a");
-          linkElement.classList.add(dataField, "link-link");
-          linkElement.target = "_blank";
-          let linkAddy =
-            link[1].indexOf("http") >= 0
-              ? link[1]
-              : window.location.href.slice(
-                  0,
-                  window.location.href.lastIndexOf("/")
-                ) +
-                "/documents/" +
-                link[1];
-          linkElement.href = linkAddy;
-          linkElement.innerHTML = link[0];
-          linksDiv.appendChild(linksLabel);
-          linksDiv.appendChild(linkElement);
-          linksDiv.appendChild(followUpCheckBox);
-          this.inputElementsArray.push(linksDiv);
-          count += 1;
+          this.inputElementsArray.push(
+            new LoneLinksField({
+              fieldSettings: { fieldName: dataField, link: link },
+            }).element
+          );
+          // let linksDiv = document.createElement("div");
+          // linksDiv.id = dataField + "-links-" + count;
+          // linksDiv.classList.add("link", "flex-item");
+          // let linksLabel = document.createElement("p");
+          // // linksLabel needed for addSpecifiedElementsToTargetDiv() to work at switch
+          // //default as it is node[0]
+          // let followUpCheckBox = newFollowupCheckBox();
+          // followUpCheckBox.classList.add("link-checkbox");
+          // let linkElement = document.createElement("a");
+          // linkElement.classList.add(dataField, "link-link");
+          // linkElement.target = "_blank";
+          // let linkAddy =
+          //   link[1].indexOf("http") >= 0
+          //     ? link[1]
+          //     : window.location.href.slice(
+          //         0,
+          //         window.location.href.lastIndexOf("/")
+          //       ) +
+          //       "/documents/" +
+          //       link[1];
+          // linkElement.href = linkAddy;
+          // linkElement.innerHTML = link[0];
+          // linksDiv.appendChild(linksLabel);
+          // linksDiv.appendChild(linkElement);
+          // linksDiv.appendChild(followUpCheckBox);
+          // this.inputElementsArray.push(linksDiv);
+          // count += 1;
         });
       }
       //set up group links div
       if (value.groupLinks) {
-        let groupLinkDiv = document.createElement("div");
-        groupLinkDiv.id = dataField + "-groupLinkDiv";
-        groupLinkDiv.classList.add("link", "flex-item");
-        let linksLabel = document.createElement("p");
-        // linksLabel needed for addSpecifiedElementsToTargetDiv() to work at switch
-        //default as it is node[0]
-        let linksLink = document.createElement("a");
-        linksLink.classList.add(dataField, "link-link");
-        linksLink.id = `${dataField}-groupLink`;
-        linksLink.onclick = linkPopUpPop;
-        linksLink.innerHTML = "Click for more links...";
-        linksLink.href = "#";
-        groupLinkDiv.appendChild(linksLabel);
-        groupLinkDiv.appendChild(linksLink);
-        this.inputElementsArray.push(groupLinkDiv);
+        // let groupLinkDiv = document.createElement("div");
+        // groupLinkDiv.id = dataField + "-groupLinkDiv";
+        // groupLinkDiv.classList.add("link", "flex-item");
+        // let linksLabel = document.createElement("p");
+        // // linksLabel needed for addSpecifiedElementsToTargetDiv() to work at switch
+        // //default as it is node[0]
+        // let linksLink = document.createElement("a");
+        // linksLink.classList.add(dataField, "link-link");
+        // linksLink.id = `${dataField}-groupLink`;
+        // linksLink.onclick = linkPopUpPop;
+        // linksLink.innerHTML = "Click for more links...";
+        // linksLink.href = "#";
+        // groupLinkDiv.appendChild(linksLabel);
+        // groupLinkDiv.appendChild(linksLink);
+        this.inputElementsArray.push(
+          new GroupLinksField({ fieldSettings: { fieldName: dataField } })
+            .element
+        );
       }
     }
-    function newFollowupCheckBox() {
-      let followUpCheckbox = document.createElement("input");
-      followUpCheckbox.type = "checkbox";
-      followUpCheckbox.oninput = function () {
-        // let clientKey = this.name;
-        // Client.getClient(clientKey, (client) => {
-        let client = store.state[this.name];
-        let arr = [];
-        if (client.followUps) {
-          arr = [...client.followUps];
-        }
-        if (this.checked == true) {
-          // update a property in the record that is an array
-          arr.push(this.parentNode.id);
-        } else if (this.checked == false) {
-          arr = arr.filter((e) => e !== this.parentNode.id);
-        }
-        store.dispatch("update", { id: this.name, data: { followUps: arr } });
-      };
-      return followUpCheckbox;
-    }
+    // function newFollowupCheckBox() {
+    //   let followUpCheckbox = document.createElement("input");
+    //   followUpCheckbox.type = "checkbox";
+    //   followUpCheckbox.oninput = function () {
+    //     // let clientKey = this.name;
+    //     // Client.getClient(clientKey, (client) => {
+    //     let client = store.state[this.name];
+    //     let arr = [];
+    //     if (client.followUps) {
+    //       arr = [...client.followUps];
+    //     }
+    //     if (this.checked == true) {
+    //       // update a property in the record that is an array
+    //       arr.push(this.parentNode.id);
+    //     } else if (this.checked == false) {
+    //       arr = arr.filter((e) => e !== this.parentNode.id);
+    //     }
+    //     store.dispatch("update", { id: this.name, data: { followUps: arr } });
+    //   };
+    //   return followUpCheckbox;
+    // }
     //class functions
     this.addSpecifiedElementsToTargetDiv = function (category, targetDiv) {
       let count = 0;

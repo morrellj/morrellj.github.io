@@ -30,7 +30,6 @@ class GroupLinksField extends Builder {
               href: "#",
             },
           },
-          // $_checkBox: new FollowUpCheckBox(self.fieldSettings).schema,
         },
       },
     };
