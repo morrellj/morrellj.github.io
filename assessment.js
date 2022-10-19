@@ -50,7 +50,8 @@ function clientSelectAction(clientKey) {
     store.state[clientKey].firstName + " " + store.state[clientKey].surname;
   document.title =
     store.state[clientKey].firstName + " " + store.state[clientKey].surname;
-  elements.updateElements(store.state[clientKey]);
+  elements.updateElements(store.dispatch("setActiveRecord", { id: clientKey }));
+  // console.log(store.dispatch("setActiveRecord", { id: clientKey }));
   controlToggle.dispatchEvent(new Event("click"));
   setPage("demographic");
 }
@@ -60,6 +61,7 @@ clientListSelect.onkeyup = function (e) {
     output.innerHTML = data.firstName + " " + data.surname;
     document.title = data.firstName + " " + data.surname;
     elements.updateElements(data);
+    console.log(store.dispatch("setActiveRecord", { id: this.value }));
     controlToggle.dispatchEvent(new Event("click"));
     setPage("demographic");
   }
@@ -295,12 +297,14 @@ function searchReduce() {
 
 function consoleReview() {
   // Client.getClient(clientListSelect.value, function (client) {
-  let client = store.state[clientListSelect.value];
+  let client = store.state[store.state.activeRecord];
   let string = "";
   for (const [key, value] of Object.entries(clientRecordFieldSettings)) {
-    if (value.classes.includes("review") && client[key] != null) {
-      let substring = value.label;
-      string = string + "\n---- " + substring + ": ----\n" + client[key];
+    if (value.classes) {
+      if (value.classes.includes("review") && client[key] != null) {
+        let substring = value.label;
+        string = string + "\n---- " + substring + ": ----\n" + client[key];
+      }
     }
   }
   console.log(string);
@@ -310,20 +314,27 @@ function consoleReview() {
   );
   // });
 }
-
-function getAllStorage() {
-  let values = [],
-    keys = Object.keys(localStorage),
-    i = keys.length;
-
-  while (i--) {
-    let client = JSON.parse(localStorage.getItem(keys[i]));
-    client.key = keys[i];
-    values.push(client);
+function getAllRecordsAsArray() {
+  let values = [];
+  for (let [key, value] of Object.entries(store.state)) {
+    if (key != "activeRecord") values.push(store.state[key]);
   }
 
   return values;
 }
+// function getAllStorage() {
+//   let values = [],
+//     keys = Object.keys(localStorage),
+//     i = keys.length;
+
+//   while (i--) {
+//     let client = JSON.parse(localStorage.getItem(keys[i]));
+//     client.key = keys[i];
+//     values.push(client);
+//   }
+
+//   return values;
+// }
 
 function checkLocalStorage() {
   var _lsTotal = 0,

@@ -27,12 +27,15 @@ class DataField {
   }
   dataFieldOnInput = function () {
     let changeObject = {};
-    if (this.name) {
+    if (store.state.activeRecord) {
       changeObject[this.parentNode.id] =
         this.tagName == "SELECT"
           ? elements.getMultiSelectValues(this)
           : this.value;
-      store.dispatch("update", { id: this.name, data: changeObject });
+      store.dispatch("update", {
+        id: store.state.activeRecord,
+        data: changeObject,
+      });
     } else {
       alert("Select a client");
     }

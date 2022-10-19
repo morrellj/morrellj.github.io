@@ -42,6 +42,12 @@ let actions = {
   remove(context, changeObject) {
     context.commit("remove", changeObject);
   },
+  setActiveRecord(context, key) {
+    return context.commit("setActiveRecord", key);
+  },
+  replaceMany(context, changeObject) {
+    return context.commit("replaceMany", changeObject);
+  },
 };
 function addDateStamps(obj) {
   obj.lastModified = new Date();
@@ -80,6 +86,21 @@ let mutations = {
       return state;
     }
     console.error("Record with the entered id does not exist.");
+    return state;
+  },
+  setActiveRecord(state, key) {
+    state.activeRecord = key.id;
+    return state;
+  },
+  replaceMany(state, changeObject) {
+    let yes = confirm(
+      "WARNING: this will irreversably replace all data in the the local storage item. Back up current data to retain integrity. Continue?"
+    );
+    if (yes) {
+      for (let [key, value] of Object.entries(changeObject)) {
+        state[key] = value;
+      }
+    }
     return state;
   },
 };
