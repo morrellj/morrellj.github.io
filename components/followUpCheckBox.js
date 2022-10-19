@@ -12,7 +12,7 @@ class FollowUpCheckBox {
     };
   }
   oninput = function () {
-    let client = store.state[this.name];
+    let client = store.state.records[this.name];
     let arr = [];
     if (client.followUps) {
       arr = [...client.followUps];

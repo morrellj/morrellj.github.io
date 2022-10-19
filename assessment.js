@@ -36,7 +36,7 @@ function setPage(heading) {
 
 //Fill the client selection drop down list
 // Client.forEachClientInLocal(addNewClientSelectOption);
-for (const [key, client] of Object.entries(store.state)) {
+for (const [key, client] of Object.entries(store.state.records)) {
   addNewClientSelectOption(client);
 }
 function addNewClientSelectOption(client) {
@@ -47,9 +47,13 @@ function addNewClientSelectOption(client) {
 }
 function clientSelectAction(clientKey) {
   output.innerHTML =
-    store.state[clientKey].firstName + " " + store.state[clientKey].surname;
+    store.state.records[clientKey].firstName +
+    " " +
+    store.state.records[clientKey].surname;
   document.title =
-    store.state[clientKey].firstName + " " + store.state[clientKey].surname;
+    store.state.records[clientKey].firstName +
+    " " +
+    store.state.records[clientKey].surname;
   elements.updateElements(store.dispatch("setActiveRecord", { id: clientKey }));
   // console.log(store.dispatch("setActiveRecord", { id: clientKey }));
   controlToggle.dispatchEvent(new Event("click"));
@@ -57,7 +61,7 @@ function clientSelectAction(clientKey) {
 }
 clientListSelect.onkeyup = function (e) {
   if (e.code == "Enter") {
-    let data = store.state[this.value];
+    let data = store.state.records[this.value];
     output.innerHTML = data.firstName + " " + data.surname;
     document.title = data.firstName + " " + data.surname;
     elements.updateElements(data);
@@ -145,13 +149,14 @@ function popUpPop(event) {
         elements[this.name].$_dataField.dispatchEvent(new Event("input"));
         function addOrRemovePartOfElementValue(partString, elementToChange) {
           let spacer = elementToChange.value == "" ? "" : "\n";
-          let firstName = store.state[elementToChange.name].firstName;
-          let preferredName = store.state[elementToChange.name].preferredName;
+          let firstName = store.state.records[elementToChange.name].firstName;
+          let preferredName =
+            store.state.records[elementToChange.name].preferredName;
           firstName =
             preferredName == null || preferredName == undefined
               ? firstName
               : preferredName;
-          let gender = store.state[elementToChange.name].gender;
+          let gender = store.state.records[elementToChange.name].gender;
           let genderId;
           let genderId2;
           let genderOwnership;
@@ -284,7 +289,7 @@ function searchReduce() {
   let searchWord = searchBox.value.toLowerCase();
   searchWord = searchWord.toLowerCase();
   // Client.getAllClients(function reduce(clients) {
-  let clients = store.state;
+  let clients = store.state.records;
   for (const [key, client] of Object.entries(clients)) {
     let clientName = client.firstName + " " + client.surname;
     clientName = clientName.toLowerCase();
@@ -297,7 +302,7 @@ function searchReduce() {
 
 function consoleReview() {
   // Client.getClient(clientListSelect.value, function (client) {
-  let client = store.state[store.state.activeRecord];
+  let client = store.state.records[store.state.activeRecord];
   let string = "";
   for (const [key, value] of Object.entries(clientRecordFieldSettings)) {
     if (value.classes) {
@@ -316,8 +321,8 @@ function consoleReview() {
 }
 function getAllRecordsAsArray() {
   let values = [];
-  for (let [key, value] of Object.entries(store.state)) {
-    if (key != "activeRecord") values.push(store.state[key]);
+  for (let [key, value] of Object.entries(store.state.records)) {
+    if (key != "activeRecord") values.push(store.state.records[key]);
   }
 
   return values;

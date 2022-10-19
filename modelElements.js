@@ -166,7 +166,7 @@ class Elements {
     //   followUpCheckbox.oninput = function () {
     //     // let clientKey = this.name;
     //     // Client.getClient(clientKey, (client) => {
-    //     let client = store.state[this.name];
+    //     let client = store.state.records[this.name];
     //     let arr = [];
     //     if (client.followUps) {
     //       arr = [...client.followUps];

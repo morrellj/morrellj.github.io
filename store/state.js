@@ -59,7 +59,7 @@ function addDateStamps(obj) {
 }
 let mutations = {
   update(state, changeObject) {
-    let client = state[changeObject.id];
+    let client = state.records[changeObject.id];
     if (!client) {
       console.error("Client record with matching key not found.");
       return state;
@@ -67,30 +67,30 @@ let mutations = {
     for (const [thisKey, value] of Object.entries(changeObject.data)) {
       client[thisKey] = value;
     }
-    state[changeObject.id] = client;
-    return state;
+    state.records[changeObject.id] = client;
+    return state.records;
   },
   add(state, newObject) {
-    if (state[newObject.id]) {
+    if (state.records[newObject.id]) {
       console.error(
         "Record with same first and second name already exists. Records not changed"
       );
-      return state;
+      return state.records;
     }
-    state[newObject.id] = newObject.data;
-    return state;
+    state.records[newObject.id] = newObject.data;
+    return state.records;
   },
   remove(state, changeObject) {
-    if (state[changeObject.id]) {
-      delete state[changeObject.id];
-      return state;
+    if (state.records[changeObject.id]) {
+      delete state.records[changeObject.id];
+      return state.records;
     }
     console.error("Record with the entered id does not exist.");
-    return state;
+    return state.records;
   },
   setActiveRecord(state, key) {
     state.activeRecord = key.id;
-    return state;
+    return state.records;
   },
   replaceMany(state, changeObject) {
     let yes = confirm(
@@ -98,10 +98,10 @@ let mutations = {
     );
     if (yes) {
       for (let [key, value] of Object.entries(changeObject)) {
-        state[key] = value;
+        state.records[key] = value;
       }
     }
-    return state;
+    return state.records;
   },
 };
 
@@ -111,10 +111,10 @@ class DataBase {
   #dataBaseName = "assessment_light";
   #getData() {
     if (JSON.parse(localStorage.getItem(this.#dataBaseName))) {
-      return JSON.parse(localStorage.getItem(this.#dataBaseName));
+      return { records: JSON.parse(localStorage.getItem(this.#dataBaseName)) };
     } else {
       localStorage.setItem(this.#dataBaseName, {});
-      return {};
+      return { records: {} };
     }
   }
   constructor(params) {
@@ -130,10 +130,11 @@ class DataBase {
 
     self.mutations = params.mutations || {};
 
-    self.state = new Proxy(this.#getData() || {}, {
+    self.state = new Proxy(this.#getData() || { records: {} }, {
       //the object returned by #getData will persist?
       set: function (state, key, value) {
         state[key] = value;
+        console.log(value);
         //update storage here or in the mutator?
         self.events.publish("stateChange", self.state);
       },
@@ -163,7 +164,7 @@ class DataBase {
       this.#dataBaseName,
       JSON.stringify(self.mutations[mutationKey](self.state, changeObject))
     );
-    return self.state[changeObject.id];
+    return self.state.records[changeObject.id];
   }
 }
 
