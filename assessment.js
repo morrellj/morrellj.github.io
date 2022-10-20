@@ -2,7 +2,7 @@ console.log("HI");
 let root = document.getElementById("root");
 let output = document.getElementById("output");
 let clientListSelect = document.getElementById("clientListSelect");
-let client = {};
+// let client = {};
 let popUp = document.getElementById("pop-up");
 let popUpContent = document.getElementById("pop-up-content");
 let searchBox = document.getElementById("searchBox");
@@ -24,13 +24,13 @@ for (var i = 0; i < btns.length; i++) {
   });
 }
 
-function setPage(heading) {
+function setPage(category) {
   let child = root.lastElementChild;
   while (child) {
     root.removeChild(child);
     child = root.lastElementChild;
   }
-  elements.addSpecifiedElementsToTargetDiv(heading, root);
+  elements.addSpecifiedElementsToTargetDiv(category, root);
   window.scroll(0, 0);
 }
 

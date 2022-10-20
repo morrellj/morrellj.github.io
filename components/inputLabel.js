@@ -11,13 +11,13 @@ class InputLabel {
       },
     };
   }
-  contextClick = () => {
-    if (self.fieldSettings.classes.indexOf("review") >= 0) {
-      if (self.fieldSettings.classes.length > 2) {
-        return function (event) {
-          event.preventDefault();
-          setPage(self.fieldSettings.classes[1]);
-        };
+  contextClick = (event) => {
+    if (this.fieldSettings.classes.indexOf("review") >= 0) {
+      if (this.fieldSettings.classes.length > 2) {
+        // return function (event) {
+        event.preventDefault();
+        setPage(this.fieldSettings.classes[1]);
+        // };
       } else {
         return null;
       }
