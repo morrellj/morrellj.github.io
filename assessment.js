@@ -12,18 +12,6 @@ let closeSpans = document.getElementsByClassName("close");
 
 elements = new Elements(clientRecordFieldSettings);
 
-var header = document.getElementById("buttonNav");
-var btns = header.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function () {
-    var current = document.getElementsByClassName("active");
-    if (current[0]) {
-      current[0].className = current[0].className.replace(" active", "");
-    }
-    this.className += " active";
-  });
-}
-
 function setPage(category) {
   let child = root.lastElementChild;
   while (child) {
@@ -32,6 +20,11 @@ function setPage(category) {
   }
   elements.addSpecifiedElementsToTargetDiv(category, root);
   window.scroll(0, 0);
+  let current = document.getElementsByClassName("active");
+  if (current[0]) {
+    current[0].className = current[0].className.replace(" active", "");
+  }
+  document.getElementById(category + "-btn").className += " active";
 }
 
 //Fill the client selection drop down list
@@ -55,7 +48,6 @@ function clientSelectAction(clientKey) {
     " " +
     store.state.records[clientKey].surname;
   elements.updateElements(store.dispatch("setActiveRecord", { id: clientKey }));
-  // console.log(store.dispatch("setActiveRecord", { id: clientKey }));
   controlToggle.dispatchEvent(new Event("click"));
   setPage("demographic");
 }
@@ -64,8 +56,9 @@ clientListSelect.onkeyup = function (e) {
     let data = store.state.records[this.value];
     output.innerHTML = data.firstName + " " + data.surname;
     document.title = data.firstName + " " + data.surname;
-    elements.updateElements(data);
-    console.log(store.dispatch("setActiveRecord", { id: this.value }));
+    elements.updateElements(
+      store.dispatch("setActiveRecord", { id: this.value })
+    );
     controlToggle.dispatchEvent(new Event("click"));
     setPage("demographic");
   }
@@ -90,7 +83,6 @@ function clientAdd() {
   }
   toggle(document.getElementById("newClientAddForm"));
 }
-
 function clientDelete() {
   alert("Open developer tools and delete manually from local storage.");
 }
@@ -232,7 +224,6 @@ function popUpPop(event) {
     popUpContent.appendChild(newParagraph);
   }
 }
-
 controlToggle.onclick = function () {
   if (recordControl.style.display == "none") {
     recordControl.style.display = "flex";
@@ -242,7 +233,6 @@ controlToggle.onclick = function () {
     this.innerHTML = "&#9661";
   }
 };
-
 for (let i = 0; i < closeSpans.length; i++) {
   closeSpans[i].onclick = function () {
     this.closest(".pop-up").style.display = "none";
@@ -266,7 +256,6 @@ function removePopUpContent() {
     }
   });
 }
-
 window.onkeydown = function (event) {
   if (event.altKey) {
     switch (event.code) {
@@ -283,7 +272,6 @@ window.onkeydown = function (event) {
     }
   }
 };
-
 function searchReduce() {
   clientListSelect.innerHTML = "";
   let searchWord = searchBox.value.toLowerCase();
@@ -299,7 +287,6 @@ function searchReduce() {
   }
   // });
 }
-
 function consoleReview() {
   // Client.getClient(clientListSelect.value, function (client) {
   let client = store.state.records[store.state.activeRecord];
@@ -327,20 +314,6 @@ function getAllRecordsAsArray() {
 
   return values;
 }
-// function getAllStorage() {
-//   let values = [],
-//     keys = Object.keys(localStorage),
-//     i = keys.length;
-
-//   while (i--) {
-//     let client = JSON.parse(localStorage.getItem(keys[i]));
-//     client.key = keys[i];
-//     values.push(client);
-//   }
-
-//   return values;
-// }
-
 function checkLocalStorage() {
   var _lsTotal = 0,
     _xLen,

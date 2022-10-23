@@ -50,6 +50,8 @@
     </div>
     <div class="sticky">
       <button id="exportButton" onclick="exportData()">Export data</button>
+      <button id="cleartReviewBtn" onclick="elements.clearAndBackUpReviewFields()">Clear review</button>
+      <button id="clearAssessmentBtn" onclick="elements.clearAndBackUpAssessmentFields()">Clear assessment</button>
       <div class="flex-container" id="recordControl" style="display: flex;">
         <div  id = "clientListDiv">
           <input type="text" placeholder="search" id="searchBox" oninput="searchReduce()"></input>
@@ -86,29 +88,29 @@
         <p id="output" style="color:red"></p>
       </div>
       <nav class="flex-item" id="buttonNav">
-        <button class="btn" onclick="setPage('demographic')">Demographic</button>
-        <button class="btn" onclick="setPage('contactsMedical')">Contacts and Medical</button>
-        <button class="btn" onclick="setPage('preamble')">Premable</button>
-        <button class="btn" onclick="setPage('chsp')">CHSP</button>
-        <button class="btn" onclick="setPage('schedule')">Schedule</button>
-        <button class="btn" onclick="setPage('biometrics')">Biometrics</button>
-        <button class="btn" onclick="setPage('communicationSensory')">Communication/Sensory</button>
-        <button class="btn" onclick="setPage('elimination')">Elimination</button>
-        <button class="btn" onclick="setPage('environment')">Environment</button>
-        <button class="btn" onclick="setPage('falls')">Falls</button>
-        <button class="btn" onclick="setPage('mealsShopping')">Meals/shopping/social</button>
-        <button class="btn" onclick="setPage('medical')">Medical</button>
-        <button class="btn" onclick="setPage('medication')">Medication</button>
-        <button class="btn" onclick="setPage('mobility')">Mobility</button>
-        <button class="btn" onclick="setPage('nutrition')">Nutrition</button>
-        <button class="btn" onclick="setPage('pain')">Pain</button>
-        <button class="btn" onclick="setPage('personalCare')">Personal care</button>
-        <button class="btn" onclick="setPage('psychological')">Psych/cognition/sleep</button>
-        <button class="btn" onclick="setPage('skin')">Skin</button>
-        <button class="btn" onclick="setPage('social')">Social</button>
-        <button class="btn" onclick="setPage('carePlan')" >Care Plan</button>
-        <button class="btn" onclick="setPage('review')">Review</button>
-        <button class="btn" onclick="setPage('followUp')">Follow up</button>
+        <button class="btn" onclick="setPage('demographic')" id="demographic-btn">Demographic</button>
+        <button class="btn" onclick="setPage('contactsMedical')" id="contactsMedical-btn">Contacts and Medical</button>
+        <button class="btn" onclick="setPage('preamble')" id="preamble-btn">Premable</button>
+        <button class="btn" onclick="setPage('chsp')" id="chsp-btn">CHSP</button>
+        <button class="btn" onclick="setPage('schedule')" id="schedule-btn">Schedule</button>
+        <button class="btn" onclick="setPage('biometrics')" id="biometrics-btn">Biometrics</button>
+        <button class="btn" onclick="setPage('communicationSensory')" id="communicationSensory-btn">Communication/Sensory</button>
+        <button class="btn" onclick="setPage('elimination')" id="elimination-btn">Elimination</button>
+        <button class="btn" onclick="setPage('environment')" id="environment-btn">Environment</button>
+        <button class="btn" onclick="setPage('falls')" id="falls-btn">Falls</button>
+        <button class="btn" onclick="setPage('mealsShopping')" id="mealsShopping-btn">Meals/shopping/social</button>
+        <button class="btn" onclick="setPage('medical')" id="medical-btn">Medical</button>
+        <button class="btn" onclick="setPage('medication')" id="medication-btn">Medication</button>
+        <button class="btn" onclick="setPage('mobility')" id="mobility-btn">Mobility</button>
+        <button class="btn" onclick="setPage('nutrition')" id="nutrition-btn">Nutrition</button>
+        <button class="btn" onclick="setPage('pain')" id="pain-btn">Pain</button>
+        <button class="btn" onclick="setPage('personalCare')" id="personalCare-btn">Personal care</button>
+        <button class="btn" onclick="setPage('psychological')" id="psychological-btn">Psych/cognition/sleep</button>
+        <button class="btn" onclick="setPage('skin')" id="skin-btn">Skin</button>
+        <button class="btn" onclick="setPage('social')" id="social-btn">Social</button>
+        <button class="btn" onclick="setPage('carePlan')" id="carePlan-btn">Care Plan</button>
+        <button class="btn" onclick="setPage('review')" id="review-btn">Review</button>
+        <button class="btn" onclick="setPage('followUp')" id="followUp-btn">Follow up</button>
       </nav>
     </div>
     <div id="root" class="root">

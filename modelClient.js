@@ -2,126 +2,6 @@
 //the second item must be the relevant category or subpage which will be the parameter for
 //setPage() function triggered by a label oncontextmenu event (right click).
 let clientRecordFieldSettings = {
-  // static colors = {
-  //   carePlan: "#d2f8d2",
-  //   important: "#f8f8d2",
-  //   clinical: "#d2d2f8",
-  //   review: "#f8d2f8",
-  //   goals: "#e7ebda",
-  // };
-  // static supplementaryProperties = {
-  //   lastDate: {
-  //     type: "string",
-  //     default: Client.getLastDate(),
-  //   },
-  //   lastModified: {
-  //     type: "date",
-  //     default: new Date(),
-  //   },
-  //   followUps: {
-  //     type: "array",
-  //     default: [],
-  //   },
-  //   links: {
-  //     mobility: {
-  //       loneLinks: [
-  //         [
-  //           "FROP",
-  //           "https://www.nari.net.au/Handlers/Download.ashx?IDMF=6c6b3e92-19e7-4e63-9c2d-e920fa6a7b71",
-  //         ],
-  //       ],
-  //     },
-  //     pain: {
-  //       loneLinks: [
-  //         [
-  //           "Functional pain scale",
-  //           "https://www.caltcm.org/assets/Pain-file/functional%20pain%20scale%20u%20of%20iowa_2001.pdf",
-  //         ],
-  //       ],
-  //     },
-  //     psychological: {
-  //       loneLinks: [
-  //         ["PAS", "PAS.pdf"],
-  //         [
-  //           "Beyond Blue anxiety and depression checklist.",
-  //           "https://www.beyondblue.org.au/the-facts/anxiety-and-depression-checklist-k10",
-  //         ],
-  //       ],
-  //       groupLinks: [
-  //         [
-  //           "Dementia communication guidelines (PDF)",
-  //           "Helpsheet-Communication_english.pdf",
-  //         ],
-  //         [
-  //           "DBMAS resources",
-  //           "https://www.dementia.com.au/resource-hub?audience=healthcare-provider&topic=general",
-  //         ],
-  //         [
-  //           "Dementia Australia resources",
-  //           "https://www.dementia.org.au/resources/help-sheets",
-  //         ],
-  //       ],
-  //     },
-  //     medical: {
-  //       groupLinks: [
-  //         ["COPD-Action-Plan", "COPD-Action-Plan.pdf"],
-  //         [
-  //           "Reducing ICS in Asthma sufferers",
-  //           "https://www.nps.org.au/australian-prescriber/articles/how-to-step-down-asthma-preventer-treatment-in-patients-with-well-controlled-asthma-more-is-not-always-better?_cldee=Ddcru9bIlyGXhWQ3KHRJmjboRyw4eYs-8S3pd1VCuBndHPMd5VlZ1IEf1xfPpaWa&recipientid=contact-4f0fee49810cec1194ca0050568a45a5-39e351ab1fca4c5ab725bdc2887ae41b&utm_source=ClickDimensions&utm_medium=email&utm_campaign=Australian%20Prescriber%20August%202022&esid=b25db8bb-8808-ed11-94d4-000d3ad1b576",
-  //         ],
-  //       ],
-  //     },
-  //     skin: {
-  //       loneLinks: [
-  //         ["Skin tear guidelines", "istap-skin-tears-aged-skin.pdf"],
-  //         [
-  //           "Braden scale",
-  //           "RC - Braden Scale - Predicting Pressure Sore Risk.DOCX",
-  //         ],
-  //         ["Pressure injury guidelines", "ACSQHC_factsheet_pressureinjury.pdf"],
-  //         [
-  //           "Dressings in PI prevention",
-  //           "Dressing_for_PI_Prevention_Algorithm.pdf",
-  //         ],
-  //       ],
-  //     },
-  //     communicationSensory: {
-  //       loneLinks: [
-  //         ["Whisper test.", "whisper-test.png"],
-  //         [
-  //           "Dementia communication guidelines",
-  //           "Helpsheet-Communication_english.pdf",
-  //         ],
-  //       ],
-  //     },
-  //     carePlan: {
-  //       loneLinks: [
-  //         [
-  //           "Nurseslabs care plans",
-  //           "https://nurseslabs.com/nursing-care-plans/",
-  //         ],
-  //       ],
-  //     },
-  //     medication: {
-  //       groupLinks: [
-  //         [
-  //           "Anticholinergic medications",
-  //           "https://www.dementia.org.au/sites/default/files/helpsheets/Helpsheet-DementiaQandA24_AnticholinergicDrugs_english.pdf",
-  //         ],
-  //       ],
-  //     },
-  //     nutrition: {
-  //       loneLinks: [
-  //         [
-  //           "Eating Assessment Tool (EAT-10)",
-  //           "https://www.nestlehealthscience.com/health-management/gastro-intestinal/dysphagia/eat-10",
-  //         ],
-  //       ],
-  //     },
-  //   },
-  // };
-  // static schema = {
-  //demographic
   servicePreferences: {
     tag: "textarea",
     label: "Service preferences",
@@ -526,7 +406,7 @@ let clientRecordFieldSettings = {
   vaccinations: {
     tag: "textarea",
     label: "Vaccinations",
-    classes: ["medical", "largeText"],
+    classes: ["medical", "largeText", "assessment"],
     notes: [
       "COVID vaccinations up to date",
       "COVID vaccinations pending",
@@ -544,12 +424,12 @@ let clientRecordFieldSettings = {
     tag: "textarea",
     label: "Oxygen",
     default: "Needs:NA\nSupplement:NA",
-    classes: ["medical"],
+    classes: ["medical", "assessment"],
   },
   drugsAlcohol: {
     tag: "textarea",
     label: "Drugs and alcohol",
-    classes: ["medical", "falls"],
+    classes: ["medical", "falls", "assessment"],
   },
   acatDate: {
     tag: "input",
@@ -560,7 +440,7 @@ let clientRecordFieldSettings = {
   medicalNeeds: {
     tag: "textarea",
     label: "Medical needs",
-    classes: ["clinical", "medical", "largeText"],
+    classes: ["clinical", "medical", "largeText", "assessment"],
     notes: [
       "Client articulates/has a documented chronic disease management plan including access to urgent medical support",
     ],
@@ -568,7 +448,7 @@ let clientRecordFieldSettings = {
   medicalNeedsActions: {
     tag: "textarea",
     label: "Medical actions",
-    classes: ["clinical", "medical", "largeText"],
+    classes: ["clinical", "medical", "largeText", "assessment"],
     notes: [
       "Southern Plus nurse to provide further support/education/referral to establish chronic disease management plan",
     ],
@@ -781,7 +661,7 @@ let clientRecordFieldSettings = {
   medicationSupport: {
     tag: "select",
     label: "Medication support",
-    classes: ["medication"],
+    classes: ["medication", "assessment"],
     selectOptions: [
       "No support required",
       "Carer supports client with medication",
@@ -792,7 +672,7 @@ let clientRecordFieldSettings = {
   medicationList: {
     tag: "textarea",
     label: "Medication list",
-    classes: ["medication", "largeText"],
+    classes: ["medication", "largeText", "assessment"],
   },
   highRiskMedications: {
     tag: "textarea",
@@ -807,13 +687,13 @@ let clientRecordFieldSettings = {
       "Hypnotics",
       "Anti cholinergic burden",
     ],
-    classes: ["medication", "largeText", "falls"],
+    classes: ["medication", "largeText", "falls", "assessment"],
   },
   hmr: {
     tag: "select",
     multiple: true,
     label: "HMR",
-    classes: ["medication"],
+    classes: ["medication", "assessment"],
     selectOptions: [
       "HMR recently completed",
       "HMR discussed",
@@ -823,7 +703,7 @@ let clientRecordFieldSettings = {
   medicationOther: {
     tag: "textarea",
     label: "Medication other",
-    classes: ["medication", "largeText"],
+    classes: ["medication", "largeText", "assessment"],
   },
 
   medicationSupportPlanFactors: {
@@ -857,12 +737,12 @@ let clientRecordFieldSettings = {
   medicationNeeds: {
     tag: "textarea",
     label: "Medication needs",
-    classes: ["clinical", "medication", "largeText"],
+    classes: ["clinical", "medication", "largeText", "assessment"],
   },
   medicationNeedsActions: {
     tag: "textarea",
     label: "Medication actions",
-    classes: ["clinical", "medication", "largeText"],
+    classes: ["clinical", "medication", "largeText", "assessment"],
   },
   medicationReview: {
     tag: "textarea",
@@ -874,7 +754,7 @@ let clientRecordFieldSettings = {
   CommunicationImpairements: {
     tag: "select",
     label: "Communication impairements",
-    classes: ["communicationSensory", "falls"],
+    classes: ["communicationSensory", "falls", "assessment"],
     selectOptions: [
       "Hearing impaired",
       "Vision impaired (glasses)",
@@ -887,7 +767,7 @@ let clientRecordFieldSettings = {
   CommunicationAids: {
     tag: "select",
     label: "Communication aids",
-    classes: ["communicationSensory"],
+    classes: ["communicationSensory", "assessment"],
     selectOptions: [
       "Wears hearing aids",
       "Wears reading glasses",
@@ -899,7 +779,7 @@ let clientRecordFieldSettings = {
   sensory: {
     tag: "select",
     label: "Sensory",
-    classes: ["communicationSensory", "falls"],
+    classes: ["communicationSensory", "falls", "assessment"],
     selectOptions: [
       "Sense of smell present",
       "Feels light touch in peripheries",
@@ -911,7 +791,7 @@ let clientRecordFieldSettings = {
   sensoryOther: {
     tag: "textarea",
     label: "Communication and sensory other",
-    classes: ["communicationSensory", "largeText"],
+    classes: ["communicationSensory", "largeText", "assessment"],
     notes: [
       "Client passed whisper test bilaterally.",
       "Client failed whisper test Right/Left/Both ear/s.",
@@ -965,33 +845,33 @@ let clientRecordFieldSettings = {
   communicationNeeds: {
     tag: "textarea",
     label: "Communication needs",
-    classes: ["clinical", "communicationSensory", "largeText"],
+    classes: ["clinical", "communicationSensory", "largeText", "assessment"],
   },
   communicationActions: {
     tag: "textarea",
     label: "Communication actions",
-    classes: ["clinical", "communicationSensory", "largeText"],
+    classes: ["clinical", "communicationSensory", "largeText", "assessment"],
   },
   //psychological cognitive sleep
   sleep: {
     tag: "textarea",
     label: "Sleep",
-    classes: ["largeText", "psychological"],
+    classes: ["largeText", "psychological", "assessment"],
   },
   cognitionNeurological: {
     tag: "textarea",
     label: "Cognition and neurological",
-    classes: ["largeText", "psychological"],
+    classes: ["largeText", "psychological", "assessment"],
   },
   depression: {
     tag: "textarea",
     label: "Depression",
-    classes: ["largeText", "psychological"],
+    classes: ["largeText", "psychological", "assessment"],
   },
   psychologicalOther: {
     tag: "textarea",
     label: "Psychological other",
-    classes: ["largeText", "psychological"],
+    classes: ["largeText", "psychological", "assessment"],
     notes: ["PAS scale completed."],
   },
   psychologicalSupportPlanFactors: {
@@ -1028,12 +908,12 @@ let clientRecordFieldSettings = {
   pyscholigicalNeeds: {
     tag: "textarea",
     label: "Psychological needs",
-    classes: ["clinical", "psychological", "largeText"],
+    classes: ["clinical", "psychological", "largeText", "assessment"],
   },
   psychologicalActions: {
     tag: "textarea",
     label: "Psychological actions",
-    classes: ["clinical", "psychological", "largeText"],
+    classes: ["clinical", "psychological", "largeText", "assessment"],
     notes: [
       "Add dementia specific interventions to support plan",
       "Southern Plus clinical team to conduct further dementia specific assessment and care planning (ie HDR scale, behaviour management)",
@@ -1052,7 +932,7 @@ let clientRecordFieldSettings = {
   painScale: {
     tag: "select",
     label: "Pain scale",
-    classes: ["pain", "falls"],
+    classes: ["pain", "falls", "assessment"],
     selectOptions: [
       "0 No pain",
       "1 Tolerable (and does not prevent any activities)",
@@ -1065,7 +945,7 @@ let clientRecordFieldSettings = {
   painLocation: {
     tag: "textarea",
     label: "Pain location",
-    classes: ["largeText", "pain", "falls"],
+    classes: ["largeText", "pain", "falls", "assessment"],
   },
   painFutherAssessment: {
     tag: "select",
@@ -1075,12 +955,12 @@ let clientRecordFieldSettings = {
       "Further pain assessment required",
       "Further pain assessment not required",
     ],
-    classes: ["pain"],
+    classes: ["pain", "assessment"],
   },
   painOther: {
     tag: "textarea",
     label: "Pain other",
-    classes: ["pain"],
+    classes: ["pain", "assessment"],
     notes: ["Pain scale completed."],
   },
   painSupportPlanFactors: {
@@ -1110,12 +990,12 @@ let clientRecordFieldSettings = {
   painNeeds: {
     tag: "textarea",
     label: "Pain needs",
-    classes: ["clinical", "pain", "largeText"],
+    classes: ["clinical", "pain", "largeText", "assessment"],
   },
   painActions: {
     tag: "textarea",
     label: "Pain actions",
-    classes: ["clinical", "pain", "largeText"],
+    classes: ["clinical", "pain", "largeText", "assessment"],
   },
   painReview: {
     tag: "textarea",
@@ -1127,7 +1007,7 @@ let clientRecordFieldSettings = {
   woundCare: {
     tag: "select",
     label: "Wound Care",
-    selectOptions: ["No wounds", "Wound assessment required"],
+    selectOptions: ["No wounds", "Wound assessment required", "assessment"],
     classes: ["skin"],
   },
   pressureInjury: {
@@ -1137,12 +1017,12 @@ let clientRecordFieldSettings = {
       "Pressure injury risk assessment completed",
     ],
     label: "Pressure injury",
-    classes: ["skin"],
+    classes: ["skin", "assessment"],
   },
   skinIntegrity: {
     tag: "textarea",
     label: "Skin integrity",
-    classes: ["skin"],
+    classes: ["skin", "assessment"],
     notes: [
       "Uses medications that increase risk of skin tears: corticosteroids, anticoagulants, polypharmacy.",
       "Assessment indicates high risk for pressure injury.",
@@ -1183,7 +1063,7 @@ let clientRecordFieldSettings = {
   skinActions: {
     tag: "textarea",
     label: "Skin care clinical actions",
-    classes: ["skin", "clinical", "largeText"],
+    classes: ["skin", "clinical", "largeText", "assessment"],
     notes: [
       "S: pressure redistribution support surface in place/for OT assessment",
       "S: Regular skin inspection to be incorporated into support plan and/or client/carer education provided",
@@ -1204,12 +1084,12 @@ let clientRecordFieldSettings = {
   eliminationUrinary: {
     tag: "textarea",
     label: "Urinary",
-    classes: ["elimination", "falls"],
+    classes: ["elimination", "falls", "assessment"],
   },
   eliminationBowel: {
     tag: "textarea",
     label: "Bowel",
-    classes: ["elimination", "falls"],
+    classes: ["elimination", "falls", "assessment"],
   },
   Toileting: {
     tag: "select",
@@ -1219,17 +1099,17 @@ let clientRecordFieldSettings = {
       "Requires assistance with toileting",
     ],
     label: "Toileting",
-    classes: ["elimination"],
+    classes: ["elimination", "assessment"],
   },
   incontinenceAids: {
     tag: "textarea",
     label: "Incontinence aids",
-    classes: ["elimination"],
+    classes: ["elimination", "assessment"],
   },
   eliminationOther: {
     tag: "textarea",
     label: "Elimination other",
-    classes: ["elimination", "falls"],
+    classes: ["elimination", "falls", "assessment"],
   },
   eliminationSupportPlanFactors: {
     tag: "textarea",
@@ -1260,12 +1140,12 @@ let clientRecordFieldSettings = {
   eliminationNeeds: {
     tag: "textarea",
     label: "Elimination needs",
-    classes: ["clinical", "elimination", "largeText"],
+    classes: ["clinical", "elimination", "largeText", "assessment"],
   },
   eliminationActions: {
     tag: "textarea",
     label: "Elimination actions",
-    classes: ["clinical", "elimination", "largeText"],
+    classes: ["clinical", "elimination", "largeText", "assessment"],
   },
   eliminationReview: {
     tag: "textarea",
@@ -1277,7 +1157,13 @@ let clientRecordFieldSettings = {
   transport: {
     tag: "textarea",
     label: "Transport",
-    classes: ["medical", "mobility", "mealsShopping", "largeText"],
+    classes: [
+      "medical",
+      "mobility",
+      "mealsShopping",
+      "largeText",
+      "assessment",
+    ],
   },
   transfers: {
     tag: "select",
@@ -1289,7 +1175,7 @@ let clientRecordFieldSettings = {
       "Not weight bearing",
     ],
     label: "Transfers",
-    classes: ["mobility", "falls"],
+    classes: ["mobility", "falls", "assessment"],
   },
   ambulation: {
     tag: "select",
@@ -1300,7 +1186,7 @@ let clientRecordFieldSettings = {
       "Physical assist xv2 ambulation",
     ],
     label: "Ambulation",
-    classes: ["mobility", "falls"],
+    classes: ["mobility", "falls", "assessment"],
   },
   mobilityAids: {
     tag: "select",
@@ -1316,7 +1202,7 @@ let clientRecordFieldSettings = {
       "Cradle hoist",
     ],
     label: "Mobility aids",
-    classes: ["mobility", "falls"],
+    classes: ["mobility", "falls", "assessment"],
   },
   otherEquipmentUsed: {
     tag: "select",
@@ -1330,7 +1216,7 @@ let clientRecordFieldSettings = {
       "Hospital bed",
     ],
     label: "Other equipment used",
-    classes: ["mobility", "environment", "falls"],
+    classes: ["mobility", "environment", "falls", "assessment"],
   },
   otherEquipmentRequired: {
     tag: "select",
@@ -1344,21 +1230,21 @@ let clientRecordFieldSettings = {
       "Hospital bed",
     ],
     label: "Other equipment required",
-    classes: ["mobility", "environment", "falls"],
+    classes: ["mobility", "environment", "falls", "assessment"],
   },
   homeModificationsInstalled: {
     tag: "select",
     multiple: true,
     selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
     label: "Home modifications installed",
-    classes: ["mobility", "environment", "falls"],
+    classes: ["mobility", "environment", "falls", "assessment"],
   },
   homeModificationsRequired: {
     tag: "select",
     multiple: true,
     selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
     label: "Home modifications required",
-    classes: ["mobility", "environment", "falls"],
+    classes: ["mobility", "environment", "falls", "assessment"],
   },
   fallsRisk: {
     tag: "textarea",
@@ -1382,7 +1268,7 @@ let clientRecordFieldSettings = {
       "0 - 3 Low risk of falls - Further assessment and management if functional/balance problem identified",
       "4 - 9 High risk of falls - Perform the Full FROP-Com assessment and / or corresponding management recommendations",
     ],
-    classes: ["falls", "mobility"],
+    classes: ["falls", "mobility", "assessment"],
   },
   fallsOther: {
     tag: "textarea",
@@ -1394,12 +1280,12 @@ let clientRecordFieldSettings = {
       "Client requires PERS",
     ],
     label: "Falls other",
-    classes: ["mobility", "environment", "falls"],
+    classes: ["mobility", "environment", "falls", "assessment"],
   },
   mobilityOther: {
     tag: "textarea",
     label: "Mobility other",
-    classes: ["mobility", "falls", "largeText"],
+    classes: ["mobility", "falls", "largeText", "assessment"],
   },
   mobilitySupportPlanFactors: {
     tag: "textarea",
@@ -1435,12 +1321,12 @@ let clientRecordFieldSettings = {
   mobilityFallsNeeds: {
     tag: "textarea",
     label: "Mobility and falls needs",
-    classes: ["clinical", "falls", "mobility", "largeText"],
+    classes: ["clinical", "falls", "mobility", "largeText", "assessment"],
   },
   mobilityFallsActions: {
     tag: "textarea",
     label: "Mobility and falls actions",
-    classes: ["clinical", "falls", "mobility", "largeText"],
+    classes: ["clinical", "falls", "mobility", "largeText", "assessment"],
   },
   mobilityReview: {
     tag: "textarea",
@@ -1458,13 +1344,13 @@ let clientRecordFieldSettings = {
       "Client reports that he/she is able to sit to stand without undue effort to and from toilet/chairs and bed.",
       "Unmitigated hazards present (identify) and discussed with client who has/has_not agreed to occupational therapy referral or rectification.",
     ],
-    classes: ["mobility", "environment", "falls", "largText"],
+    classes: ["mobility", "environment", "falls", "largText", "assessment"],
   },
   environmentCleaning: {
     tag: "textarea",
     label: "Cleaning assessment",
     default: "",
-    classes: ["environment", "largText"],
+    classes: ["environment", "largText", "assessment"],
   },
   environmentReview: {
     tag: "textarea",
@@ -1477,12 +1363,12 @@ let clientRecordFieldSettings = {
   carer: {
     tag: "textarea",
     label: "Carer factors/carer strain",
-    classes: ["social"],
+    classes: ["social", "assessment"],
   },
   socialOther: {
     tag: "textarea",
     label: "Social other",
-    classes: ["social"],
+    classes: ["social", "assessment"],
   },
   socialSupportPlanFactors: {
     tag: "textarea",
@@ -1535,12 +1421,12 @@ let clientRecordFieldSettings = {
       "Client requires hands on assistance x 2 with dressing",
       "Client requires hands on assistance x 2 with grooming",
     ],
-    classes: ["personalCare", "largeText"],
+    classes: ["personalCare", "largeText", "assessment"],
   },
   PersonalCareOther: {
     tag: "textarea",
     label: "Personal care other",
-    classes: ["personalCare", "largeText"],
+    classes: ["personalCare", "largeText", "assessment"],
   },
   personalCareSupportPlanFactors: {
     tag: "textarea",
@@ -1578,7 +1464,7 @@ let clientRecordFieldSettings = {
   financesOther: {
     tag: "textarea",
     label: "Finances other",
-    classes: ["mealsShopping", "function", "largeText"],
+    classes: ["mealsShopping", "function", "largeText", "assessment"],
   },
   mealsAndShoppingOther: {
     tag: "textarea",
@@ -1589,6 +1475,7 @@ let clientRecordFieldSettings = {
       "nutrition",
       "mobility",
       "largeText",
+      "assessment",
     ],
   },
   mealsAndShoppingSupportPlanFactors: {
@@ -1645,7 +1532,7 @@ let clientRecordFieldSettings = {
       "Food frequency questionnaire",
       "Food group questionnaire",
     ],
-    classes: ["nutrition", "falls", "largeText"],
+    classes: ["nutrition", "falls", "largeText", "assessment"],
   },
   mst: {
     tag: "textarea",
@@ -1666,7 +1553,7 @@ let clientRecordFieldSettings = {
       "3-5 High risk of malnutrition - is eating poorly AND experienced recent weight loss of more than 5kg",
     ],
     label: "MST",
-    classes: ["nutrition", "largeText"],
+    classes: ["nutrition", "largeText", "assessment"],
     default:
       "The significance of the amount of weight loss will depend on the body weight of the resident.  For instance, a 3kg weight loss in a 40kg resident is significant",
   },
@@ -1679,12 +1566,12 @@ let clientRecordFieldSettings = {
       "Client has partial denture",
       "No dental or oral issues.",
     ],
-    classes: ["nutrition"],
+    classes: ["nutrition", "assessment"],
   },
   swallow: {
     tag: "textarea",
     label: "Swallow",
-    classes: ["nutrition"],
+    classes: ["nutrition", "assessment"],
     notes: [
       "Client reports no swallowing problem.",
       "Further assessment/swallowing screen indicated.",
@@ -1694,55 +1581,55 @@ let clientRecordFieldSettings = {
   nutritionNeeds: {
     tag: "textarea",
     label: "Nutrition needs",
-    classes: ["clinical", "nutrition", "largeText"],
+    classes: ["clinical", "nutrition", "largeText", "assessment"],
   },
   nutritionNeedsActions: {
     tag: "textarea",
     label: "Nutrition actions",
-    classes: ["clinical", "nutrition", "largeText"],
+    classes: ["clinical", "nutrition", "largeText", "assessment"],
   },
   //Biometrics
   weight: {
     tag: "input",
     label: "Weight",
     type: "text",
-    classes: ["biometrics", "nutrition"],
+    classes: ["biometrics", "nutrition", "assessment"],
   },
   pulse: {
     tag: "input",
     label: "Pulse",
     type: "text",
-    classes: ["biometrics"],
+    classes: ["biometrics", "assessment"],
   },
   temperature: {
     tag: "input",
     label: "Temperature",
     type: "text",
-    classes: ["biometrics"],
+    classes: ["biometrics", "assessment"],
   },
   respiratoryRate: {
     tag: "input",
     label: "Respiratory rate",
     type: "text",
-    classes: ["biometrics"],
+    classes: ["biometrics", "assessment"],
   },
   bloodPressure: {
     tag: "input",
     label: "Blood pressure",
     type: "text",
-    classes: ["biometrics"],
+    classes: ["biometrics", "assessment"],
   },
   bloodGlucose: {
     tag: "input",
     label: "Blood glucose",
     type: "text",
-    classes: ["biometrics"],
+    classes: ["biometrics", "assessment"],
   },
   oxygenSaturation: {
     tag: "input",
     label: "Oxygen saturation",
     type: "text",
-    classes: ["biometrics"],
+    classes: ["biometrics", "assessment"],
   },
   headToToe: {
     tag: "textarea",
@@ -1753,6 +1640,7 @@ let clientRecordFieldSettings = {
       "falls",
       "communicationSensory",
       "largeText",
+      "assessment",
     ],
   },
   //cleaning
@@ -1811,6 +1699,7 @@ let clientRecordFieldSettings = {
       "clinical",
       "referral",
       "pain",
+      "assessment",
     ],
     notes: [
       "OT referral and follow up of recommendations for pressure injury prevention/management devices",
@@ -1821,7 +1710,14 @@ let clientRecordFieldSettings = {
   ptReferral: {
     tag: "textarea",
     label: "PT referral",
-    classes: ["mobility", "falls", "clinical", "referral", "pain"],
+    classes: [
+      "mobility",
+      "falls",
+      "clinical",
+      "referral",
+      "pain",
+      "assessment",
+    ],
     notes: [
       "PT referral and follow up for falls prevention and mobility assessment.",
       "PT referral and follow up for mobility equipment assessment/recommendations.",
@@ -1840,6 +1736,7 @@ let clientRecordFieldSettings = {
       "pain",
       "psychological",
       "medication",
+      "assessment",
     ],
     notes: [
       "GP referral and follow up for HMMR - information provided to client",

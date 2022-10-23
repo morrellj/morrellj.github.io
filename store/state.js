@@ -46,6 +46,9 @@ let actions = {
     return context.commit("setActiveRecord", key);
   },
   replaceMany(context, changeObject) {
+    for (let [key, value] of Object.entries(changeObject)) {
+      addDateStamps(value);
+    }
     return context.commit("replaceMany", changeObject);
   },
 };
@@ -65,7 +68,14 @@ let mutations = {
       return state;
     }
     for (const [thisKey, value] of Object.entries(changeObject.data)) {
-      client[thisKey] = value;
+      if (
+        client[thisKey].constructor === Object &&
+        value.constructor !== Object
+      ) {
+        client[thisKey].current = value;
+      } else {
+        client[thisKey] = value;
+      }
     }
     state.records[changeObject.id] = client;
     return state.records;
