@@ -307,24 +307,28 @@ Elements.prototype.addSpecifiedElementsToTargetDiv = function (
 };
 Elements.prototype.clearAndBackUpReviewFields = function () {
   if (!confirm("Are you sure?")) return;
+  let changeObject = {};
   for (const [key, value] of Object.entries(this)) {
     if (key == "inputElementsArray") continue;
     if (value.$_dataField.type == "date") continue;
     if (value.$_dataField.classList) {
       if (value.$_dataField.classList.contains("review")) {
-        store.dispatch("update", {
-          id: store.state.activeRecord,
-          data: {
-            [`${key}`]: { current: "", previous: value.$_dataField.value },
-          },
-        });
+        changeObject[`${key}`] = {
+          current: "",
+          previous: value.$_dataField.value,
+        };
       }
     }
   }
+  store.dispatch("update", {
+    id: store.state.activeRecord,
+    data: changeObject,
+  });
   this.updateElements(store.state.records[store.state.activeRecord]);
 };
 Elements.prototype.clearAndBackUpAssessmentFields = function () {
   if (!confirm("Are you sure?")) return;
+  let changeObject = {};
   for (const [key, value] of Object.entries(this)) {
     if (key == "inputElementsArray") continue;
     let oldValue =
@@ -334,17 +338,16 @@ Elements.prototype.clearAndBackUpAssessmentFields = function () {
     oldValue = Array.isArray(oldValue) ? [...oldValue] : oldValue;
     if (value.$_dataField.classList) {
       if (value.$_dataField.classList.contains("assessment")) {
-        store.dispatch("update", {
-          id: store.state.activeRecord,
-          data: {
-            [`${key}`]: {
-              current: "",
-              previous: oldValue,
-            },
-          },
-        });
+        changeObject[`${key}`] = {
+          current: "",
+          previous: oldValue,
+        };
       }
     }
   }
+  store.dispatch("update", {
+    id: store.state.activeRecord,
+    data: changeObject,
+  });
   this.updateElements(store.state.records[store.state.activeRecord]);
 };

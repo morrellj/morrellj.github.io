@@ -309,9 +309,16 @@ function consoleReview() {
 function getAllRecordsAsArray() {
   let values = [];
   for (let [key, value] of Object.entries(store.state.records)) {
-    if (key != "activeRecord") values.push(store.state.records[key]);
+    let exportable = {};
+    for (let [fieldName, fieldValue] of Object.entries(value)) {
+      if (fieldValue.constructor === Object) {
+        exportable[fieldName] = fieldValue.current;
+      } else {
+        exportable[fieldName] = fieldValue;
+      }
+    }
+    values.push(exportable);
   }
-
   return values;
 }
 function checkLocalStorage() {
