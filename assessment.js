@@ -141,14 +141,15 @@ function popUpPop(event) {
         elements[this.name].$_dataField.dispatchEvent(new Event("input"));
         function addOrRemovePartOfElementValue(partString, elementToChange) {
           let spacer = elementToChange.value == "" ? "" : "\n";
-          let firstName = store.state.records[elementToChange.name].firstName;
+          let firstName =
+            store.state.records[store.state.activeRecord].firstName;
           let preferredName =
-            store.state.records[elementToChange.name].preferredName;
+            store.state.records[store.state.activeRecord].preferredName;
           firstName =
             preferredName == null || preferredName == undefined
               ? firstName
               : preferredName;
-          let gender = store.state.records[elementToChange.name].gender;
+          let gender = store.state.records[store.state.activeRecord].gender;
           let genderId;
           let genderId2;
           let genderOwnership;
