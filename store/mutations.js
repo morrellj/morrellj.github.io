@@ -6,11 +6,15 @@ let mutations = {
       return state;
     }
     for (const [thisKey, value] of Object.entries(changeObject.data)) {
-      if (
-        client[thisKey].constructor === Object &&
-        value.constructor !== Object
-      ) {
-        client[thisKey].current = value;
+      if (client.hasOwnProperty(thisKey)) {
+        if (
+          client[thisKey].constructor === Object &&
+          value.constructor !== Object
+        ) {
+          client[thisKey].current = value;
+        } else {
+          client[thisKey] = value;
+        }
       } else {
         client[thisKey] = value;
       }

@@ -125,14 +125,20 @@ class Elements {
 Elements.prototype.updateElements = function (data) {
   for (let [name, element] of Object.entries(this)) {
     if (name == "inputElementsArray") continue;
-    element.$_inputLabel.title =
-      data[name].constructor === Object ? data[name].previous : data[name];
+    element.$_inputLabel.title = !data[name]
+      ? ""
+      : data[name].constructor === Object
+      ? data[name].previous
+      : data[name];
     let dataField = element.$_dataField;
     if (dataField.tagName == "SELECT" && dataField.multiple == true) {
       this.setMultiSelectValues(dataField, data);
     } else {
-      dataField.value =
-        data[name].constructor === Object ? data[name].current : data[name];
+      dataField.value = !data[name]
+        ? ""
+        : data[name].constructor === Object
+        ? data[name].current
+        : data[name];
     }
     let thisFollowUpsCheckbox = element.$_checkBox;
     thisFollowUpsCheckbox.name = data.key;
@@ -140,6 +146,8 @@ Elements.prototype.updateElements = function (data) {
       thisFollowUpsCheckbox.checked = data.followUps.includes(name)
         ? true
         : false;
+    } else {
+      thisFollowUpsCheckbox.checked = false;
     }
   }
 };

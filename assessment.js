@@ -146,7 +146,9 @@ function popUpPop(event) {
           let preferredName =
             store.state.records[store.state.activeRecord].preferredName;
           firstName =
-            preferredName == null || preferredName == undefined
+            preferredName == "" ||
+            preferredName == null ||
+            preferredName == undefined
               ? firstName
               : preferredName;
           let gender = store.state.records[store.state.activeRecord].gender;
@@ -294,9 +296,15 @@ function consoleReview() {
   let string = "";
   for (const [key, value] of Object.entries(clientRecordFieldSettings)) {
     if (value.classes) {
-      if (value.classes.includes("review") && client[key] != null) {
+      if (
+        value.classes.includes("review") &&
+        client[key] != null &&
+        client[key] != ""
+      ) {
         let substring = value.label;
-        string = string + "\n---- " + substring + ": ----\n" + client[key];
+        let data =
+          client[key].current != undefined ? client[key].current : client[key];
+        string = string + "\n---- " + substring + ": ----\n" + data;
       }
     }
   }

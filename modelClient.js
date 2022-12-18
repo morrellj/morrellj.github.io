@@ -1523,6 +1523,11 @@ let clientRecordFieldSettings = {
     notes: ["No changes. Support plan current and effective."],
   },
   //nutrition
+  eating: {
+    tag: "textarea",
+    label: "Eating",
+    classes: ["nutrition", "largeText", "assessment"],
+  },
   nutritionalIntake: {
     tag: "textarea",
     label: "Nutritional intake",

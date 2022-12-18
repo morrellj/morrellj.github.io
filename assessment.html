@@ -63,9 +63,10 @@
       </div>
     </div>
     <div class="sticky">
-      <button id="exportButton" onclick="exportData()">Export data</button>
+      <button class="flex-item" onclick="consoleReview()">Review</button>
       <button id="cleartReviewBtn" onclick="elements.clearAndBackUpReviewFields()">Clear review</button>
       <button id="clearAssessmentBtn" onclick="elements.clearAndBackUpAssessmentFields()">Clear assessment</button>
+      <button id="exportButton" onclick="exportData()">Export data</button>
       <div class="flex-container" id="recordControl" style="display: flex;">
         <div  id = "clientListDiv">
           <input type="text" placeholder="search" id="searchBox" oninput="searchReduce()"></input>
@@ -76,7 +77,7 @@
           </div>
           <div id="clientButtonsDiv" >
             <button class="flex-item" onclick="clientDelete()">Delete</button>
-            <button class="flex-item" onclick="consoleReview()">Review</button>
+            
           </div>
         </div>
         
