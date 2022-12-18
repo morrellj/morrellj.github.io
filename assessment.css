@@ -150,6 +150,21 @@ textarea {
   float: left;
   margin-left: 8%;
 }
+.carePlan {
+  background-color: #d2f8d2;
+}
+.important {
+  background-color: #f8f8d2;
+}
+.clinical {
+  background-color: #d2d2f8;
+}
+.review {
+  background-color: #f8d2f8;
+}
+.goals {
+  background-color: "#e7ebda";
+}
 /* Responsive layout - makes a one column-layout instead of two-column layout */
 
 /*@media (max-width: 800px) {

@@ -1,9 +1,8 @@
 console.log("HI");
 let root = document.getElementById("root");
 let output = document.getElementById("output");
-// let clientList = document.getElementById("clientList");
 let clientListSelect = document.getElementById("clientListSelect");
-let client = {};
+// let client = {};
 let popUp = document.getElementById("pop-up");
 let popUpContent = document.getElementById("pop-up-content");
 let searchBox = document.getElementById("searchBox");
@@ -11,53 +10,27 @@ let recordControl = document.getElementById("recordControl");
 let controlToggle = document.getElementById("controlToggle");
 let closeSpans = document.getElementsByClassName("close");
 
-elements = new Elements(Client.schema);
+elements = new Elements(clientRecordFieldSettings);
 
-var header = document.getElementById("buttonNav");
-var btns = header.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function () {
-    var current = document.getElementsByClassName("active");
-    if (current[0]) {
-      current[0].className = current[0].className.replace(" active", "");
-    }
-    this.className += " active";
-  });
-}
-
-function setPage(heading) {
+function setPage(category) {
   let child = root.lastElementChild;
   while (child) {
     root.removeChild(child);
     child = root.lastElementChild;
   }
-  elements.addSpecifiedElementsToTargetDiv(heading, root);
+  elements.addSpecifiedElementsToTargetDiv(category, root);
   window.scroll(0, 0);
+  let current = document.getElementsByClassName("active");
+  if (current[0]) {
+    current[0].className = current[0].className.replace(" active", "");
+  }
+  document.getElementById(category + "-btn").className += " active";
 }
 
 //Fill the client selection drop down list
-Client.forEachClientInLocal(addNewClientSelectOption);
-
-function clientAdd() {
-  let firstNameField = document.getElementById("addClient-firstName");
-  let surnameNameField = document.getElementById("addClient-surname");
-  let newKey = firstNameField.value + "_" + surnameNameField.value;
-  let client = new Client(newKey, {
-    firstName: firstNameField.value,
-    surname: surnameNameField.value,
-  });
-  client.save();
+// Client.forEachClientInLocal(addNewClientSelectOption);
+for (const [key, client] of Object.entries(store.state.records)) {
   addNewClientSelectOption(client);
-  firstNameField.value = "";
-  surnameNameField.value = "";
-  clientSelectAction(client.key);
-  let options = clientListSelect.options;
-  let opt;
-  for (let i = 0, iLen = options.length; i < iLen; i++) {
-    opt = options[i];
-    opt.selected = opt.value == client.key ? true : false;
-  }
-  toggle(document.getElementById("newClientAddForm"));
 }
 function addNewClientSelectOption(client) {
   let newOption = document.createElement("option");
@@ -66,25 +39,50 @@ function addNewClientSelectOption(client) {
   clientListSelect.appendChild(newOption);
 }
 function clientSelectAction(clientKey) {
-  Client.getClient(clientKey, function (data) {
-    //clientListSelect.value
-    output.innerHTML = data.firstName + " " + data.surname;
-    document.title = data.firstName + " " + data.surname;
-    elements.updateElements(data);
-  });
+  output.innerHTML =
+    store.state.records[clientKey].firstName +
+    " " +
+    store.state.records[clientKey].surname;
+  document.title =
+    store.state.records[clientKey].firstName +
+    " " +
+    store.state.records[clientKey].surname;
+  elements.updateElements(store.dispatch("setActiveRecord", { id: clientKey }));
   controlToggle.dispatchEvent(new Event("click"));
+  setPage("demographic");
 }
 clientListSelect.onkeyup = function (e) {
   if (e.code == "Enter") {
-    Client.getClient(this.value, function (data) {
-      //clientListSelect.value
-      output.innerHTML = data.firstName + " " + data.surname;
-      document.title = data.firstName + " " + data.surname;
-      elements.updateElements(data);
-    });
+    let data = store.state.records[this.value];
+    output.innerHTML = data.firstName + " " + data.surname;
+    document.title = data.firstName + " " + data.surname;
+    elements.updateElements(
+      store.dispatch("setActiveRecord", { id: this.value })
+    );
     controlToggle.dispatchEvent(new Event("click"));
+    setPage("demographic");
   }
 };
+function clientAdd() {
+  let firstNameField = document.getElementById("addClient-firstName");
+  let surnameNameField = document.getElementById("addClient-surname");
+  let newKey = firstNameField.value + "_" + surnameNameField.value;
+  let newClient = store.dispatch("add", {
+    firstName: firstNameField.value,
+    surname: surnameNameField.value,
+  });
+  addNewClientSelectOption(newClient);
+  firstNameField.value = "";
+  surnameNameField.value = "";
+  clientSelectAction(newClient.key);
+  let options = clientListSelect.options;
+  let opt;
+  for (let i = 0, iLen = options.length; i < iLen; i++) {
+    opt = options[i];
+    opt.selected = opt.value == newClient.key ? true : false;
+  }
+  toggle(document.getElementById("newClientAddForm"));
+}
 function clientDelete() {
   alert("Open developer tools and delete manually from local storage.");
 }
@@ -98,7 +96,7 @@ function toggle(element) {
 function linkPopUpPop(event) {
   removePopUpContent();
   let category = event.target.id.split("-")[0];
-  let elementSchema = Client.supplementaryProperties.links[category].groupLinks;
+  let elementSchema = Elements.links[category].groupLinks;
   popUp.style.display = "block";
   elementSchema.forEach((ele) => {
     let linkDiv = document.createElement("div");
@@ -119,7 +117,7 @@ function linkPopUpPop(event) {
 }
 function popUpPop(event) {
   removePopUpContent();
-  let elementSchema = Client.schema[event.target.parentNode.id];
+  let elementSchema = clientRecordFieldSettings[event.target.parentNode.id];
   if (elementSchema.notes !== undefined && elementSchema.notes !== null) {
     popUp.style.display = "block";
     elementSchema.notes.forEach((ele) => {
@@ -127,7 +125,9 @@ function popUpPop(event) {
       newParagraph.innerHTML = ele;
       newParagraph.classList.add("temp");
       newParagraph.name = event.target.parentNode.id;
-      if (elements[event.target.parentNode.id].value.indexOf(ele) >= 0) {
+      if (
+        elements[event.target.parentNode.id].$_dataField.value.indexOf(ele) >= 0
+      ) {
         newParagraph.style.color = "red";
       } else {
         newParagraph.style.color = "black";
@@ -135,25 +135,23 @@ function popUpPop(event) {
       newParagraph.onclick = function () {
         let result = addOrRemovePartOfElementValue(
           this.innerHTML,
-          elements[this.name]
+          elements[this.name].$_dataField
         );
         this.style.color = result ? "red" : "black";
-        elements[this.name].dispatchEvent(new Event("input"));
+        elements[this.name].$_dataField.dispatchEvent(new Event("input"));
         function addOrRemovePartOfElementValue(partString, elementToChange) {
           let spacer = elementToChange.value == "" ? "" : "\n";
-          let firstName = JSON.parse(
-            localStorage.getItem(elementToChange.name)
-          ).firstName;
-          let preferredName = JSON.parse(
-            localStorage.getItem(elementToChange.name)
-          ).preferredName;
+          let firstName =
+            store.state.records[store.state.activeRecord].firstName;
+          let preferredName =
+            store.state.records[store.state.activeRecord].preferredName;
           firstName =
-            preferredName == null || preferredName == undefined
+            preferredName == "" ||
+            preferredName == null ||
+            preferredName == undefined
               ? firstName
               : preferredName;
-          let gender = JSON.parse(
-            localStorage.getItem(elementToChange.name)
-          ).gender;
+          let gender = store.state.records[store.state.activeRecord].gender;
           let genderId;
           let genderId2;
           let genderOwnership;
@@ -229,7 +227,6 @@ function popUpPop(event) {
     popUpContent.appendChild(newParagraph);
   }
 }
-
 controlToggle.onclick = function () {
   if (recordControl.style.display == "none") {
     recordControl.style.display = "flex";
@@ -239,7 +236,6 @@ controlToggle.onclick = function () {
     this.innerHTML = "&#9661";
   }
 };
-
 for (let i = 0; i < closeSpans.length; i++) {
   closeSpans[i].onclick = function () {
     this.closest(".pop-up").style.display = "none";
@@ -263,12 +259,12 @@ function removePopUpContent() {
     }
   });
 }
-
 window.onkeydown = function (event) {
   if (event.altKey) {
     switch (event.code) {
       case "ArrowLeft":
       case "ArrowRight":
+        event.preventDefault();
         searchBox.focus();
         searchBox.value = "";
         break;
@@ -279,53 +275,61 @@ window.onkeydown = function (event) {
     }
   }
 };
-
 function searchReduce() {
   clientListSelect.innerHTML = "";
   let searchWord = searchBox.value.toLowerCase();
   searchWord = searchWord.toLowerCase();
-  Client.getAllClients(function reduce(clients) {
-    for (const [key, client] of Object.entries(clients)) {
-      let clientName = client.firstName + " " + client.surname;
-      clientName = clientName.toLowerCase();
-      if (clientName.indexOf(searchWord) >= 0) {
-        addNewClientSelectOption(client);
-      }
+  // Client.getAllClients(function reduce(clients) {
+  let clients = store.state.records;
+  for (const [key, client] of Object.entries(clients)) {
+    let clientName = client.firstName + " " + client.surname;
+    clientName = clientName.toLowerCase();
+    if (clientName.indexOf(searchWord) >= 0) {
+      addNewClientSelectOption(client);
     }
-  });
-}
-
-function consoleReview() {
-  Client.getClient(clientListSelect.value, function (client) {
-    let string = "";
-    for (const [key, value] of Object.entries(Client.schema)) {
-      if (value.classes.includes("review") && client[key] != null) {
-        let substring = value.label;
-        string = string + "\n---- " + substring + ": ----\n" + client[key];
-      }
-    }
-    console.log(string);
-    setTimeout(
-      async () => await window.navigator.clipboard.writeText(string),
-      500
-    );
-  });
-}
-
-function getAllStorage() {
-  let values = [],
-    keys = Object.keys(localStorage),
-    i = keys.length;
-
-  while (i--) {
-    let client = JSON.parse(localStorage.getItem(keys[i]));
-    client.key = keys[i];
-    values.push(client);
   }
-
+  // });
+}
+function consoleReview() {
+  // Client.getClient(clientListSelect.value, function (client) {
+  let client = store.state.records[store.state.activeRecord];
+  let string = "";
+  for (const [key, value] of Object.entries(clientRecordFieldSettings)) {
+    if (value.classes) {
+      if (
+        value.classes.includes("review") &&
+        client[key] != null &&
+        client[key] != ""
+      ) {
+        let substring = value.label;
+        let data =
+          client[key].current != undefined ? client[key].current : client[key];
+        string = string + "\n---- " + substring + ": ----\n" + data;
+      }
+    }
+  }
+  console.log(string);
+  setTimeout(
+    async () => await window.navigator.clipboard.writeText(string),
+    500
+  );
+  // });
+}
+function getAllRecordsAsArray() {
+  let values = [];
+  for (let [key, value] of Object.entries(store.state.records)) {
+    let exportable = {};
+    for (let [fieldName, fieldValue] of Object.entries(value)) {
+      if (fieldValue.constructor === Object) {
+        exportable[fieldName] = fieldValue.current;
+      } else {
+        exportable[fieldName] = fieldValue;
+      }
+    }
+    values.push(exportable);
+  }
   return values;
 }
-
 function checkLocalStorage() {
   var _lsTotal = 0,
     _xLen,
