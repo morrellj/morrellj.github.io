@@ -227,6 +227,14 @@ function popUpPop(event) {
     popUpContent.appendChild(newParagraph);
   }
 }
+function carePlanToggle() {
+  let carePlanDiv = document.getElementById("careplan");
+  if (carePlanDiv.style.display == "none") {
+    carePlanDiv.style.display = "block";
+  } else {
+    carePlanDiv.style.display = "none";
+  }
+}
 controlToggle.onclick = function () {
   if (recordControl.style.display == "none") {
     recordControl.style.display = "flex";

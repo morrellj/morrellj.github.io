@@ -99,8 +99,12 @@ input[type="checkbox"] {
 textarea {
   width: 30vw;
   min-width: 30vw;
-  min-height: 100px;
+  min-height: 70px;
   margin: 2px;
+}
+
+textarea:focus{
+  height: 250px;
 }
 * {
   box-sizing: border-box;
@@ -150,6 +154,12 @@ textarea {
   float: left;
   margin-left: 8%;
 }
+#carePlanToggle {
+  background-color: pink;
+  float: right;
+  margin-right: 0px;
+  border-radius: 4px;
+}
 .carePlan {
   background-color: #d2f8d2;
 }
@@ -163,7 +173,7 @@ textarea {
   background-color: #f8d2f8;
 }
 .goals {
-  background-color: "#e7ebda";
+  background-color: #d2f0f8;
 }
 /* Responsive layout - makes a one column-layout instead of two-column layout */
 
