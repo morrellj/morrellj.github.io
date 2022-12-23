@@ -65,6 +65,7 @@ class Elements {
           "Dementia Australia resources",
           "https://www.dementia.org.au/resources/help-sheets",
         ],
+        ["Life history booklet", "AWA-Life-Story-Template-Draft-3-003.pdf"],
       ],
     },
     medical: {
@@ -112,6 +113,9 @@ class Elements {
         ],
       ],
     },
+    environment:{
+      loneLinks:[["Falls Home assessment tool", "Falls-HomeAssessmentTool.pdf"]]
+    },
     nutrition: {
       loneLinks: [
         [
@@ -120,6 +124,13 @@ class Elements {
         ],
       ],
     },
+    personalCare: {
+      loneLinks:[
+        [
+          "Functional Assessment and ADL Preferences","Functional Assessment and ADL Preferences.pdf"
+        ]
+      ]
+    }
   };
 }
 Elements.prototype.updateElements = function (data) {

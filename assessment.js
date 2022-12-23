@@ -270,15 +270,20 @@ function removePopUpContent() {
 window.onkeydown = function (event) {
   if (event.altKey) {
     switch (event.code) {
-      case "ArrowLeft":
-      case "ArrowRight":
+      //case "ArrowLeft":
+      //case "ArrowRight":
+      case "Digit2":
         event.preventDefault();
         searchBox.focus();
         searchBox.value = "";
         break;
-      case "ArrowUp":
-      case "ArrowDown":
+      //case "ArrowUp":
+      //case "ArrowDown":
+      case "Digit1":
         controlToggle.dispatchEvent(new Event("click"));
+        break;
+      case "Digit3":
+        carePlanToggle();
         break;
     }
   }

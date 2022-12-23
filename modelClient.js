@@ -1,7 +1,8 @@
 //wnen creating a review input textarea the first item in the class list must be "review" and
 //the second item must be the relevant category or subpage which will be the parameter for
 //setPage() function triggered by a label oncontextmenu event (right click).
-let clientRecordFieldSettings = {
+
+let demographicData = {
   ACnumber: {
     tag: "input",
     type: "text",
@@ -42,7 +43,7 @@ let clientRecordFieldSettings = {
     tag: "select",
     label: "Gender",
     selectOptions: ["Male", "Female"],
-    classes: ["demographic","important"],
+    classes: ["demographic", "important"],
   },
   streetAdress: {
     tag: "input",
@@ -295,6 +296,8 @@ let clientRecordFieldSettings = {
     ],
     multiple: true,
   },
+};
+let contactsData = {
   //contacts and medical
   nextOfKin: {
     tag: "input",
@@ -338,6 +341,8 @@ let clientRecordFieldSettings = {
     label: "GP",
     classes: ["contactsMedical", "medical", "important", "largeText"],
   },
+};
+let medicalData = {
   specialist: {
     tag: "textarea",
     label: "Specialists",
@@ -461,23 +466,8 @@ let clientRecordFieldSettings = {
   //     "Southern Plus support workers will provide assistance with transport to and from medical and other health related appointments",
   //   ],
   // },
-
-  //CHSP
-  chspGoals: {
-    tag: "textarea",
-    label: "CHSP goals",
-    classes: ["chsp", "largeText"],
-  },
-  chspTimeframe: {
-    tag: "textarea",
-    label: "CHSP time frame",
-    classes: ["chsp", "largeText"],
-  },
-  chspPlan: {
-    tag: "textarea",
-    label: "CHSP plan",
-    classes: ["chsp", "largeText"],
-  },
+};
+let scheduleData = {
   //schedule
   mondayAM: {
     tag: "input",
@@ -611,6 +601,8 @@ let clientRecordFieldSettings = {
     type: "text",
     classes: ["schedule"],
   },
+};
+let personalHistoryData = {
   //preamble
   aboutMe: {
     tag: "textarea",
@@ -647,6 +639,8 @@ let clientRecordFieldSettings = {
     label: "My likes and dislikes...",
     classes: ["preamble", "largeText"],
   },
+};
+let medicationData = {
   // medication
   medicationSupport: {
     tag: "select",
@@ -721,7 +715,8 @@ let clientRecordFieldSettings = {
       "Southern Plus support workers will provide physical assistance for client to take medications as directed by client.",
       "Southern Plus support workers will administer medications to client as per Southern Plus policy [days and times].",
       "Client's family will support client to manage and take medication in consultation with his/her GP.[days and times].",
-      "Client will continue to manage and self administer his/her own medication in consultation with his/her GP.",
+      "Client will continue to manage and self administer his/her own medication in consultation with his/her GP and pharmacist.",
+      "Client's family will support client to manage and self administer his/her own medication in consultation with his/her GP and pharmacist.",
     ],
   },
   medicationSupportPlanInterventions: {
@@ -764,6 +759,8 @@ let clientRecordFieldSettings = {
     classes: ["review", "medication", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
+};
+let communicationData = {
   //communication and sensory
   CommunicationImpairements: {
     tag: "select",
@@ -904,6 +901,8 @@ let clientRecordFieldSettings = {
     label: "Communication actions",
     classes: ["clinical", "communicationSensory", "largeText", "assessment"],
   },
+};
+let psychologicalData = {
   //psychological cognitive sleep
   sleep: {
     tag: "textarea",
@@ -919,12 +918,62 @@ let clientRecordFieldSettings = {
     tag: "textarea",
     label: "Depression",
     classes: ["largeText", "psychological", "assessment"],
+    notes: [
+      "Beyond Blue anxiety and depression checklist completed with client.",
+    ],
   },
   psychologicalOther: {
     tag: "textarea",
     label: "Psychological other",
     classes: ["largeText", "psychological", "assessment"],
-    notes: ["PAS scale completed."],
+    notes: [
+      "PAS scale completed.",
+      "Further assessment/referral required.",
+      "Assessments completed: ",
+    ],
+  },
+  abbreviatedMentalTest: {
+    tag: "textarea",
+    label: "AMTS",
+    classes: ["largeText", "psychological", "assessment"],
+    notes: [
+      "Age Correct",
+      "Age Incorrect",
+      "Time to the nearest hour Correct",
+      "Time to the nearest hour Incorrect",
+      "Address to recall – 42 West St Correct",
+      "Address to recall – 42 West St Incorrect",
+      "Current year Correct",
+      "Current year Incorrect",
+      "Current location (where are we?) Correct",
+      "Current location (where are we?) Incorrect",
+      "Recognition of two persons (Dr, nurse) Correct",
+      "Recognition of two persons (Dr, nurse) Incorrect",
+      "Date of birth Correct",
+      "Date of birth Incorrect",
+      "Years of first World War Correct",
+      "Years of first World War Incorrect",
+      "Name of current prime minister Correct",
+      "Name of current prime minister Incorrect",
+      "Count backwards from 20 by ones Correct",
+      "Count backwards from 20 by ones Incorrect",
+      "Score:___. A score of less than 8 in the AMTS implies the presence of cognitive impairment",
+    ],
+  },
+  lonlinessScale: {
+    tag: "textarea",
+    label: "6-Item Loneliness Scale",
+    classes: ["largeText", "psychological", "assessment"],
+    notes: [
+      "• Level of emotional loneliness",
+      "I experience a general sense of emptiness Yes/No/Somewhat",
+      "There are plenty of people I can rely on when I have problems Yes/No/Somewhat",
+      "There are many people I can trust completely Yes/No/Somewhat",
+      "• Level of social loneliness",
+      "I miss having people around me Yes/No/Somewhat",
+      "There are enough people I feel close to Yes/No/Somewhat",
+      "I often feel rejected Yes/No/Somewhat",
+    ],
   },
   psychologicalSupportPlanFactors: {
     tag: "textarea",
@@ -998,6 +1047,75 @@ let clientRecordFieldSettings = {
     classes: ["review", "psychological", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
+};
+let psychosocialData = {
+  //social and family
+  socialOther: {
+    tag: "textarea",
+    label: "Social other",
+    classes: ["social", "assessment"],
+    notes: [
+      "Support from family/friends: type (phone, visit etc) and frequency",
+      "Any difficulties in accessing this support?",
+      "How do you keep in contact with family, friends or others? (Consider identifying if the client has any difficulties in this area, such as using the telephone or internet)",
+      "I am still very active in my community	☐ Yes ☐ No",
+      "I would like to join or reconnect with certain activities in the community (including social/religious groups). 	☐ Yes ☐ No",
+      "I attend a Centre Based Day Care (CBDC) day centre?	☐ Yes ☐ No, Name: NA",
+      "Current arrangements for accessing the community:",
+    ],
+  },
+  socialSupportPlanFactors: {
+    tag: "textarea",
+    label: "Psycho social support plan FACTORS",
+    classes: ["carePlan", "psychological", "social", "largeText"],
+    notes: [
+      "Client is at risk of social isolation secondary to ____",
+      "Client is well supported and engages with family and friends independently.",
+      "Client requires support to engage in social activities.",
+    ],
+  },
+  socialSupportPlanGoals: {
+    tag: "textarea",
+    label: "Psycho social support plan GOALS",
+    classes: ["carePlan", "psychological", "social", "goals", "largeText"],
+    notes: [
+      "Client will report that he/she is satisfied with the amount of social interaction that he/she receives.",
+      "Client will report that frequently engage in activities and have opportunity to build and maintain the relationships that are important to him/her.",
+    ],
+  },
+  socialSP_CLient: {
+    tag: "textarea",
+    label: "Psycho social support plan CLIENT",
+    classes: ["carePlan", "psychological", "social", "largeText"],
+    notes: [
+      "Southern Plus support workers will provide extra companionship/social interaction during support services.",
+      "Client will maintain social connections and access the community with the support of family/independently.",
+    ],
+  },
+  socialSupportPlanInterventions: {
+    tag: "textarea",
+    label: "Psycho social support plan SUPPORTS",
+    classes: ["carePlan", "psychological", "social", "largeText"],
+    notes: [
+      "Southern Plus support workers will provide extra companionship/social interaction during support services.",
+      "Client will maintain social connections and access the community with the support of family/independently.",
+    ],
+  },
+  socialSP_WellnessPartner: {
+    tag: "textarea",
+    label: "Psycho social support plan WELLNESS PARTNER",
+    classes: ["carePlan", "psychological", "social", "largeText"],
+    notes: [
+      "Southern Plus support workers will provide extra companionship/social interaction during support services.",
+      "Client will maintain social connections and access the community with the support of family/independently.",
+    ],
+  },
+  socialReview: {
+    tag: "textarea",
+    label: "Psychosocial",
+    classes: ["review", "psychological", "social", "carePlan", "largeText"],
+    notes: ["No changes. Support plan current and effective."],
+  },
   /*psychoSocialSupportPlanFactors: {
     tag: "textarea",
     label: "Psychosocial support plan FACTORS",
@@ -1049,6 +1167,8 @@ let clientRecordFieldSettings = {
     classes: ["review", "psychological", "social", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },*/
+};
+let painData = {
   //Pain (falls)
   painScale: {
     tag: "select",
@@ -1094,7 +1214,9 @@ let clientRecordFieldSettings = {
     tag: "textarea",
     label: "Pain support plan GOALS",
     classes: ["carePlan", "pain", "goals", "largeText"],
-    notes: ["Client will report that his/her pain is managed effectively and that it does not prevent him/her form being engaged in meaningful activity."],
+    notes: [
+      "Client will report that his/her pain is managed effectively and that it does not prevent him/her form being engaged in meaningful activity.",
+    ],
   },
   painSP_Client: {
     tag: "textarea",
@@ -1144,6 +1266,8 @@ let clientRecordFieldSettings = {
     classes: ["review", "pain", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
+};
+let skinData = {
   //Skin care---------------------------------------------------------------------
   woundCare: {
     tag: "select",
@@ -1241,6 +1365,8 @@ let clientRecordFieldSettings = {
     classes: ["review", "skin", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
+};
+let eliminationData = {
   //elimination (falls)
   eliminationUrinary: {
     tag: "textarea",
@@ -1332,6 +1458,8 @@ let clientRecordFieldSettings = {
     classes: ["review", "elimination", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
+};
+let mobilityData = {
   //transport and mobility
   transport: {
     tag: "textarea",
@@ -1383,48 +1511,6 @@ let clientRecordFieldSettings = {
     label: "Mobility aids",
     classes: ["mobility", "falls", "assessment"],
   },
-  otherEquipmentUsed: {
-    tag: "select",
-    multiple: true,
-    selectOptions: [
-      "Shower chair/stool",
-      "Over toilet seat",
-      "High back chair",
-      "Utility chair",
-      "Recliner chair",
-      "Hospital bed",
-    ],
-    label: "Other equipment used",
-    classes: ["mobility", "environment", "falls", "assessment"],
-  },
-  otherEquipmentRequired: {
-    tag: "select",
-    multiple: true,
-    selectOptions: [
-      "Shower chair/stool",
-      "Over toilet seat",
-      "High back chair",
-      "Utility chair",
-      "Recliner chair",
-      "Hospital bed",
-    ],
-    label: "Other equipment required",
-    classes: ["mobility", "environment", "falls", "assessment"],
-  },
-  homeModificationsInstalled: {
-    tag: "select",
-    multiple: true,
-    selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
-    label: "Home modifications installed",
-    classes: ["mobility", "environment", "falls", "assessment"],
-  },
-  homeModificationsRequired: {
-    tag: "select",
-    multiple: true,
-    selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
-    label: "Home modifications required",
-    classes: ["mobility", "environment", "falls", "assessment"],
-  },
   fallsRisk: {
     tag: "textarea",
     label: "Falls risk",
@@ -1472,6 +1558,7 @@ let clientRecordFieldSettings = {
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
       "Client has experienced numerous falls recently.",
+      "Client has an icreased falls risk",
       "Client's mobility is impaired secondary to ___",
       "Client has had no falls recently.",
       "Client mobilises independently with/without mobility aids.",
@@ -1483,6 +1570,7 @@ let clientRecordFieldSettings = {
     classes: ["carePlan", "mobility", "goals", "falls", "largeText"],
     notes: [
       "Falls will be prevented.",
+      "Improvement in functional mobility and improvements in pain management.",
       "Client will report he/she feels safe and confident when ambulating.",
     ],
   },
@@ -1491,10 +1579,7 @@ let clientRecordFieldSettings = {
     label: "Mobility/transport support plan CLIENT",
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
-      "Southern Plus will facilitate referral for Physiotherapy.",
-      "Southern Plus will provide support to hire ___",
-      "Southern Plus support workers will provide standby assists with mobility ___",
-      "Southern Plus will assist client with transport needs by ___",
+      "Client will participate in his/her home exercise program as per physiotherapy plan.",
     ],
   },
   mobilitySupportPlanInterventions: {
@@ -1534,19 +1619,25 @@ let clientRecordFieldSettings = {
     tag: "textarea",
     label: "Transport GOALS",
     classes: ["mobility", "carePlan", "goals", "largeText"],
-    notes:["Client will be able to access the community to attend medical and allied health appointments."]
+    notes: [
+      "Client will be able to access the community to attend medical and allied health appointments.",
+    ],
   },
   transportSP_Client: {
     tag: "textarea",
     label: "Transport CLIENT",
     classes: ["mobility", "carePlan", "largeText"],
-    notes: ["Client will contact Southern Plus office to advise of transport requirements providing as much notice as possible for requirements to be met."]
+    notes: [
+      "Client will contact Southern Plus office to advise of transport requirements providing as much notice as possible for requirements to be met.",
+    ],
   },
   transportSupportPlanFactors: {
     tag: "textarea",
     label: "Transport SUPPORTS",
     classes: ["mobility", "carePlan", "largeText"],
-    notes:["Southern Plus support workers will provide transport to appointments as required within capacity of HCP funding."]
+    notes: [
+      "Southern Plus support workers will provide transport to appointments as required within capacity of HCP funding.",
+    ],
   },
   transportSP_WellnessPartner: {
     tag: "textarea",
@@ -1568,7 +1659,8 @@ let clientRecordFieldSettings = {
     label: "Mobility and falls actions",
     classes: ["clinical", "falls", "mobility", "largeText", "assessment"],
   },
-
+};
+let environmentPersonalSafetyData = {
   //environement and personal safety/security
   environment: {
     tag: "textarea",
@@ -1587,15 +1679,61 @@ let clientRecordFieldSettings = {
     default: "",
     classes: ["environment", "largText", "assessment"],
   },
+  otherEquipmentUsed: {
+    tag: "select",
+    multiple: true,
+    selectOptions: [
+      "Shower chair/stool",
+      "Over toilet seat",
+      "High back chair",
+      "Utility chair",
+      "Recliner chair",
+      "Hospital bed",
+    ],
+    label: "Other equipment used",
+    classes: ["mobility", "environment", "falls", "assessment"],
+  },
+  otherEquipmentRequired: {
+    tag: "select",
+    multiple: true,
+    selectOptions: [
+      "Shower chair/stool",
+      "Over toilet seat",
+      "High back chair",
+      "Utility chair",
+      "Recliner chair",
+      "Hospital bed",
+    ],
+    label: "Other equipment required",
+    classes: ["mobility", "environment", "falls", "assessment"],
+  },
+  homeModificationsInstalled: {
+    tag: "select",
+    multiple: true,
+    selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
+    label: "Home modifications installed",
+    classes: ["mobility", "environment", "falls", "assessment"],
+  },
+  homeModificationsRequired: {
+    tag: "select",
+    multiple: true,
+    selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
+    label: "Home modifications required",
+    classes: ["mobility", "environment", "falls", "assessment"],
+  },
   environmentSupportPlanFactors: {
     tag: "textarea",
     label: "Environment support plan FACTORS",
     classes: ["carePlan", "environment", "largeText"],
+    notes: [
+      "Client is at increased risk of falls and would benefit from review of his/her home and living spaces to assess and reduce risk factors.",
+    ],
   },
   environmentSupportPlanGoals: {
     tag: "textarea",
     label: "Environment support plan GOALS",
     classes: ["carePlan", "environment", "goals", "largeText"],
+    notes: ["Environmental risks will be reduced/mitigated."],
   },
   environmentSP_Client: {
     tag: "textarea",
@@ -1611,6 +1749,9 @@ let clientRecordFieldSettings = {
     tag: "textarea",
     label: "Environment support plan WELLNESS PARTNER",
     classes: ["carePlan", "environment", "largeText"],
+    notes: [
+      "Wellness Partner will make a referral to ____ for Occupation Therapy home safety assessment.",
+    ],
   },
   environmentReview: {
     tag: "textarea",
@@ -1641,7 +1782,7 @@ let clientRecordFieldSettings = {
       "largeText",
     ],
   },
-  persnalSafetySP_Client: {
+  personalSafetySP_Client: {
     tag: "textarea",
     label: "Personal safety support plan CLIENT",
     classes: [
@@ -1651,14 +1792,16 @@ let clientRecordFieldSettings = {
       "communicationSensory",
       "largeText",
     ],
+    notes: [],
   },
   personalSafetySupportPlanInterventions: {
     tag: "textarea",
     label: "Personal safety support plan SUPPORTS",
-    notes:["Support workers will prompt client to check that he/she is wearing their PERS device, it is charged and functional", 
-           "Support workers will prompt client to lock his/her security door and/or windows at the end of each visit.",
-            "Support workers will report any security concerns to the Wellness Partner."
-          ],
+    notes: [
+      "Support workers will prompt client to check that he/she is wearing their PERS device, it is charged and functional",
+      "Support workers will prompt client to lock his/her security door and/or windows at the end of each visit.",
+      "Support workers will report any security concerns to the Wellness Partner.",
+    ],
     classes: [
       "carePlan",
       "environment",
@@ -1677,6 +1820,9 @@ let clientRecordFieldSettings = {
       "communicationSensory",
       "largeText",
     ],
+    notes: [
+      "Wellness Partner will arrange for quote and purchase of wrist based PERS, with geolocating capabilities.",
+    ],
   },
   personalSafetyReview: {
     tag: "textarea",
@@ -1691,6 +1837,8 @@ let clientRecordFieldSettings = {
     ],
     notes: ["No changes. Support plan current and effective."],
   },
+};
+let carerData = {
   //carers
   carer: {
     tag: "textarea",
@@ -1738,87 +1886,77 @@ let clientRecordFieldSettings = {
     classes: ["review", "carer", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
-  //social and family
-  socialOther: {
-    tag: "textarea",
-    label: "Social other",
-    classes: ["social", "assessment"],
-  },
-  socialSupportPlanFactors: {
-    tag: "textarea",
-    label: "Psycho social support plan FACTORS",
-    classes: ["carePlan",  "psychological","social", "largeText"],
-    notes: [
-      "Client is at risk of social isolation secondary to ____",
-      "Client is well supported and engages with family and friends independently.",
-    ],
-  },
-  socialSupportPlanGoals: {
-    tag: "textarea",
-    label: "Psycho social support plan GOALS",
-    classes: ["carePlan",  "psychological","social", "goals", "largeText"],
-    notes: [
-      "Client will report that he/she is satisfied with the amount of social interaction that he/she receives.",
-      "Client will report that frequently engage in activities and have opportunity to build and maintain the relationships that are important to him/her.",
-    ],
-  },
-  socialSP_CLient: {
-    tag: "textarea",
-    label: "Psycho social support plan CLIENT",
-    classes: ["carePlan", "psychological", "social", "largeText"],
-    notes: [
-      "Southern Plus support workers will provide extra companionship/social interaction during support services.",
-      "Client will maintain social connections and access the community with the support of family/independently.",
-    ],
-  },
-  socialSupportPlanInterventions: {
-    tag: "textarea",
-    label: "Psycho social support plan SUPPORTS",
-    classes: ["carePlan", "psychological", "social", "largeText"],
-    notes: [
-      "Southern Plus support workers will provide extra companionship/social interaction during support services.",
-      "Client will maintain social connections and access the community with the support of family/independently.",
-    ],
-  },
-  socialSP_WellnessPartner: {
-    tag: "textarea",
-    label: "Psycho social support plan WELLNESS PARTNER",
-    classes: ["carePlan", "psychological", "social", "largeText"],
-    notes: [
-      "Southern Plus support workers will provide extra companionship/social interaction during support services.",
-      "Client will maintain social connections and access the community with the support of family/independently.",
-    ],
-  },
-  socialReview: {
-    tag: "textarea",
-    label: "Psycho social",
-    classes: ["review", "psychological", "social", "carePlan", "largeText"],
-    notes: ["No changes. Support plan current and effective."],
-  },
+};
+let personalCareData = {
   //personal care
   PersonalCare: {
-    tag: "textarea",
-    label: "Personal care assessment",
-    notes: [
-      "Client is independent with washing/drying",
-      "Client is independent with dressing",
-      "Client is independent with grooming",
-      "Client requires standby assistance with washing/drying",
-      "Client requires standby assistance with dressing",
-      "Client requires standby assistance with grooming",
-      "Client requires hands on assistance x 1 with washing/drying",
-      "Client requires hands on assistance x 1 with dressing",
-      "Client requires hands on assistance x 1 grooming",
-      "Client requires hands on assistance x 2 with washing/drying",
-      "Client requires hands on assistance x 2 with dressing",
-      "Client requires hands on assistance x 2 with grooming",
+    tag: "select",
+    multiple: true,
+    label: "Full support ADLs:",
+    selectOptions: [
+      "Dressing/undressing",
+      "Hygiene: washing, showering, teeth/dentures",
+      "Toileting: use of aids, clothing, cleaning, washing hands",
+      "Grooming: shaving, hair, makeup...",
+      "Putting on glasses and/or hearing aids",
+      "Eating and or drinking: cutting up meals, feeding",
+      "Meal preparation",
     ],
-    classes: ["personalCare", "largeText", "assessment"],
+    classes: [
+      "personalCare",
+      "nutrition",
+      "communication",
+      "largeText",
+      "assessment",
+    ],
+  },
+  personalCareSupportPartial: {
+    tag: "select",
+    multiple: true,
+    label: "Occasional/partial support ADLs:",
+    selectOptions: [
+      "Dressing/undressing",
+      "Hygiene: washing, showering, teeth/dentures",
+      "Toileting: use of aids, clothing, cleaning, washing hands",
+      "Grooming: shaving, hair, makeup...",
+      "Putting on glasses and/or hearing aids",
+      "Eating and or drinking: cutting up meals, feeding",
+      "Meal preparation",
+    ],
+    classes: [
+      "personalCare",
+      "nutrition",
+      "communication",
+      "largeText",
+      "assessment",
+    ],
+  },
+  personalCareSupportIndependent: {
+    tag: "select",
+    multiple: true,
+    label: "Independent ADLs:",
+    selectOptions: [
+      "Dressing/undressing",
+      "Hygiene: washing, showering, teeth/dentures",
+      "Toileting: use of aids, clothing, cleaning, washing hands",
+      "Grooming: shaving, hair, makeup...",
+      "Putting on glasses and/or hearing aids",
+      "Eating and or drinking: cutting up meals, feeding",
+      "Meal preparation",
+    ],
+    classes: [
+      "personalCare",
+      "nutrition",
+      "communication",
+      "largeText",
+      "assessment",
+    ],
   },
   PersonalCareOther: {
     tag: "textarea",
     label: "Personal care other",
     classes: ["personalCare", "largeText", "assessment"],
+    notes: [],
   },
   personalCareSupportPlanFactors: {
     tag: "textarea",
@@ -1868,11 +2006,20 @@ let clientRecordFieldSettings = {
     classes: ["review", "personalCare", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
+};
+let mealsNutritionData = {
   //meals and shopping
   financesOther: {
     tag: "textarea",
     label: "Finances other",
-    classes: ["psychological", "mealsShopping", "largeText", "assessment"],
+    classes: [
+      "domestic",
+      "psychological",
+      "mealsShopping",
+      "largeText",
+      "assessment",
+    ],
+    default: ["Person responsible for finances: Client/Spouse/EPOA"],
   },
   mealsAndShoppingOther: {
     tag: "textarea",
@@ -1920,8 +2067,9 @@ let clientRecordFieldSettings = {
       "largeText",
     ],
     notes: [
-      "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
+      "_____ complete shopping general food items and supervise Alex with her meals/nutritiional intake on a day to day basis.",
       "Client will contribute to the set up, cost of the food portion of and ongoing ordering of meals.",
+      "_____ will contribute and prepare some home cooked meals to supplement home delivered meals.",
     ],
   },
   mealsAndShoppingSupportPlanInterventions: {
@@ -1967,6 +2115,7 @@ let clientRecordFieldSettings = {
     tag: "textarea",
     label: "Eating",
     classes: ["nutrition", "largeText", "assessment"],
+    notes: [],
   },
   nutritionalIntake: {
     tag: "textarea",
@@ -2033,6 +2182,8 @@ let clientRecordFieldSettings = {
     label: "Nutrition actions",
     classes: ["clinical", "nutrition", "largeText", "assessment"],
   },
+};
+let biometricsData = {
   //Biometrics
   weight: {
     tag: "input",
@@ -2088,6 +2239,8 @@ let clientRecordFieldSettings = {
       "assessment",
     ],
   },
+};
+let domesticAssistanceData = {
   //cleaning
   cleaningAndHGM: {
     tag: "textarea",
@@ -2181,7 +2334,18 @@ let clientRecordFieldSettings = {
     classes: ["review", "domestic", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
+};
+let referralData = {
   // Referrals------------------------------------------------------
+  fullADLAxRequirement: {
+    tag: "select",
+    label: "Full ADL Assessment requirement",
+    selectOptions: [
+      "Full ADL functional assessment required.",
+      "Full ADL functional assessment NOT required.",
+    ],
+    classes: ["personalCare", "nutrition", "communicationSensory"],
+  },
   otReferral: {
     tag: "textarea",
     label: "OT referral",
@@ -2239,6 +2403,8 @@ let clientRecordFieldSettings = {
       "GP referral and follow up for review chronic disease management plans including access to urgent medical attention",
     ],
   },
+};
+let reviewData = {
   // REVIEW ______________________________________________________________
   medicalReview: {
     tag: "textarea",
@@ -2290,5 +2456,44 @@ let clientRecordFieldSettings = {
     type: "date",
     label: "Visual home safety last reviewed",
     classes: ["review"],
+  },
+};
+let clientRecordFieldSettings = {
+  ...demographicData,
+  ...contactsData,
+  ...medicalData,
+  ...scheduleData,
+  ...personalHistoryData,
+  ...medicationData,
+  ...communicationData,
+  ...psychologicalData,
+  ...psychosocialData,
+  ...painData,
+  ...skinData,
+  ...eliminationData,
+  ...mobilityData,
+  ...environmentPersonalSafetyData,
+  ...carerData,
+  ...personalCareData,
+  ...mealsNutritionData,
+  ...biometricsData,
+  ...domesticAssistanceData,
+  ...referralData,
+  ...reviewData,
+  //CHSP
+  chspGoals: {
+    tag: "textarea",
+    label: "CHSP goals",
+    classes: ["chsp", "largeText"],
+  },
+  chspTimeframe: {
+    tag: "textarea",
+    label: "CHSP time frame",
+    classes: ["chsp", "largeText"],
+  },
+  chspPlan: {
+    tag: "textarea",
+    label: "CHSP plan",
+    classes: ["chsp", "largeText"],
   },
 };
