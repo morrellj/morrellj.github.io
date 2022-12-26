@@ -1,27 +1,41 @@
 class Elements {
   constructor(schema) {
     this.inputElementsArray = [];
+    this.inputObjects = {};
+    this.variations = inputFieldVariations;
     //create data field properties
-    for (const [dataField, value] of Object.entries(schema)) {
-      let fieldSettings = Object.assign({ fieldName: dataField }, value);
-      this[dataField] = new BaseInputField({ fieldSettings: fieldSettings });
-      this.inputElementsArray.push(this[dataField].element);
+    for (const [inputField, value] of Object.entries(schema)) {
+      let fieldSettings = Object.assign({ fieldName: inputField }, value);
+      let newFields = {};
+      if (value.variation) {
+        Object.assign(
+          newFields,
+          variations[value?.variation]?.({ fieldSettings: fieldSettings }) || {}
+        );
+      } else {
+        newFields[inputField] = new BaseInputField({
+          fieldSettings: fieldSettings,
+        });
+      }
+
+      Object.assign(this.inputObjects, newFields);
+      this.inputElementsArray.push(this.inputObjects[inputField].element);
     }
     //Create links elements
-    for (const [dataField, value] of Object.entries(Elements.links)) {
+    for (const [linkField, value] of Object.entries(Elements.links)) {
       //iterate lone links
       if (value.loneLinks) {
         value.loneLinks.forEach((link) => {
           this.inputElementsArray.push(
             new LoneLinksField({
-              fieldSettings: { fieldName: dataField, link: link },
+              fieldSettings: { fieldName: linkField, link: link },
             }).element
           );
         });
       }
       if (value.groupLinks) {
         this.inputElementsArray.push(
-          new GroupLinksField({ fieldSettings: { fieldName: dataField } })
+          new GroupLinksField({ fieldSettings: { fieldName: linkField } })
             .element
         );
       }
@@ -140,8 +154,7 @@ class Elements {
   };
 }
 Elements.prototype.updateElements = function (data) {
-  for (let [name, element] of Object.entries(this)) {
-    if (name == "inputElementsArray") continue;
+  for (let [name, element] of Object.entries(this.inputObjects)) {
     element.$_inputLabel.title = !data[name]
       ? ""
       : data[name].constructor === Object
@@ -333,8 +346,7 @@ Elements.prototype.addSpecifiedElementsToTargetDiv = function (
 Elements.prototype.clearAndBackUpReviewFields = function () {
   if (!confirm("Are you sure?")) return;
   let changeObject = {};
-  for (const [key, value] of Object.entries(this)) {
-    if (key == "inputElementsArray") continue;
+  for (const [key, value] of Object.entries(this.inputObjects)) {
     if (value.$_dataField.type == "date") continue;
     if (value.$_dataField.classList) {
       if (value.$_dataField.classList.contains("review")) {
@@ -354,8 +366,7 @@ Elements.prototype.clearAndBackUpReviewFields = function () {
 Elements.prototype.clearAndBackUpAssessmentFields = function () {
   if (!confirm("Are you sure?")) return;
   let changeObject = {};
-  for (const [key, value] of Object.entries(this)) {
-    if (key == "inputElementsArray") continue;
+  for (const [key, value] of Object.entries(this.inputObjects)) {
     let oldValue =
       store.state.records[store.state.activeRecord][key].constructor === Object
         ? store.state.records[store.state.activeRecord][key].current
