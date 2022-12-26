@@ -113,8 +113,10 @@ class Elements {
         ],
       ],
     },
-    environment:{
-      loneLinks:[["Falls Home assessment tool", "Falls-HomeAssessmentTool.pdf"]]
+    environment: {
+      loneLinks: [
+        ["Falls Home assessment tool", "Falls-HomeAssessmentTool.pdf"],
+      ],
     },
     nutrition: {
       loneLinks: [
@@ -125,12 +127,16 @@ class Elements {
       ],
     },
     personalCare: {
-      loneLinks:[
+      loneLinks: [
         [
-          "Functional Assessment and ADL Preferences","Functional Assessment and ADL Preferences.pdf"
-        ]
-      ]
-    }
+          "Functional Assessment and ADL Preferences",
+          "Functional Assessment and ADL Preferences.pdf",
+        ],
+      ],
+    },
+    carer: {
+      loneLinks: [["Care Giver Strain Index", "Caregiver Strain Index.pdf"]],
+    },
   };
 }
 Elements.prototype.updateElements = function (data) {

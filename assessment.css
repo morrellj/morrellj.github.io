@@ -86,6 +86,7 @@ select {
 
 input[type="checkbox"] {
   width: auto;
+  vertical-align: bottom;
 }
 #root select[multiple="true"] {
   width: 30vw;
@@ -95,6 +96,20 @@ input[type="checkbox"] {
 #root select {
   width: 30vw;
   margin: 2px;
+}
+.inputFieldDiv {
+  width: 30vw;
+  min-width: 30vw;
+  min-height: 70px;
+  margin: 2px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid dimgray;
+  border-radius: 2px;
+}
+.singleCheckCheckBox {
+  margin-left: 10px;
 }
 textarea {
   width: 30vw;

@@ -3,18 +3,20 @@ class BaseInputField extends Builder {
     super();
     let self = this;
     self.fieldSettings = props.fieldSettings;
-    (self.schema = {
+    self.variations = baseInputFieldVariations;
+    self.schema = {
       $_baseInputField: {
         tag: "div",
         props: { id: self.fieldSettings.fieldName, classList: ["flex-item"] },
-        children: {
-          $_inputLabel: new InputLabel(self.fieldSettings).schema,
-
-          $_dataField: new DataField(self.fieldSettings).schema,
-          $_checkBox: new FollowUpCheckBox(self.fieldSettings).schema,
-        },
       },
-    }),
-      self.manufacture(self.schema);
+    };
+    self.schema.$_baseInputField.children = self.variations[
+      self.fieldSettings?.variation
+    ]?.(self.schema, self.fieldSettings) || {
+      $_inputLabel: new InputLabel(self.fieldSettings).schema,
+      $_dataField: new DataField(self.fieldSettings).schema,
+      $_checkBox: new FollowUpCheckBox(self.fieldSettings).schema,
+    };
+    self.manufacture(self.schema);
   }
 }

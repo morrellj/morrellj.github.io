@@ -2,6 +2,7 @@ class DataField {
   constructor(fieldSettings) {
     let self = this;
     self.fieldSettings = fieldSettings;
+    self.variations = dataFieldVariations;
     self.schema = {
       tag: fieldSettings.tag,
       props: {
@@ -17,15 +18,11 @@ class DataField {
     if (self.fieldSettings.default) {
       self.schema.props.value = self.fieldSettings.default;
     }
-    switch (self.fieldSettings.tag) {
-      case "select":
-        self.schema.props.multiple = self.fieldSettings.multiple;
-        self.schema.props.size = "6";
-        self.schema.children = new SelectFieldOptions(fieldSettings).schema;
-        break;
-      default:
-        break;
-    }
+    self.schema =
+      self.variations[self.fieldSettings.tag]?.(
+        self.schema,
+        self.fieldSettings
+      ) || self.schema;
   }
   dataFieldOnInput = function () {
     let changeObject = {};
