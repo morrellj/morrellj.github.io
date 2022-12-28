@@ -16,6 +16,7 @@ class Elements {
       } else {
         newFields[inputField] = new BaseInputField({
           fieldSettings: fieldSettings,
+          elementsObject: this,
         });
       }
       for (const newField of Object.values(newFields)) {

@@ -1,19 +1,21 @@
 inputFieldVariations = {
-  multipleChoiceGrid(fieldSettings, elementsObject) {
+  multipleChoiceGrid(fieldSetSettings, elementsObject) {
     let newFields = {};
     for (const [fieldName, fieldValues] of Object.entries(
-      fieldSettings.gridResponseFields
+      fieldSetSettings.gridResponseFields
     )) {
-      thisFieldSettings = {
+      let fieldSettings = {
+        fieldSetName: fieldSetSettings.fieldName,
+        label: fieldValues.label,
         fieldName: fieldName,
         tag: "select",
         multiple: true,
-        label: fieldValues.label,
-        selectOptions: fieldSettings.subjects,
-        classes: fieldSettings.classes,
+        selectOptions: fieldSetSettings.selectOptions,
+        classes: fieldSetSettings.classes,
       };
-      newFields[fieldName] = new BaseInputField({
-        fieldSettings: thisFieldSettings,
+      newFields[fieldName] = new MultipleChoiceGridField({
+        fieldSettings: fieldSettings,
+        elementsObject: elementsObject,
       });
     }
     return newFields;
