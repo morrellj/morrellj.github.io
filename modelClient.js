@@ -341,6 +341,58 @@ let contactsData = {
     label: "GP",
     classes: ["contactsMedical", "medical", "important", "largeText"],
   },
+  notHome: {
+    tag: "select",
+    label: "Not home",
+    multiple: true,
+    selectOptions: [
+      "Call my home phone",
+      "Call my mobile",
+      "Enter through the unlocked door",
+      "Use the locked box to gain entry",
+      "Call my next of kin",
+      "Ask my neighbours if they have seen me",
+    ],
+    classes: ["contactsMedical", "important", "largeText"],
+  },
+  notContactable: {
+    tag: "select",
+    label: "Not contactable",
+    multiple: true,
+    selectOptions: [
+      "Contact the emergency services (Police, Ambulance)",
+      "Do not contact emergency services",
+    ],
+    classes: ["contactsMedical", "important", "largeText"],
+  },
+  ifUnwell: {
+    tag: "select",
+    label: "If unwell",
+    multiple: true,
+    selectOptions: [
+      "Contact Ambulance services",
+      "Contact my emergency contacts",
+      "Contact my General Practitioner",
+    ],
+    classes: ["contactsMedical", "important", "largeText"],
+  },
+  keySafeLocation: {
+    tag: "input",
+    label: "Key safe location",
+    type: "text",
+    classes: ["contactsMedical", "important", "largeText"],
+  },
+  keySafeCode: {
+    tag: "input",
+    label: "Key safe code",
+    type: "text",
+    classes: ["contactsMedical", "important", "largeText"],
+  },
+  emergencyPlanningOther: {
+    tag: "textarea",
+    label: "Emergency planning other",
+    classes: ["contactsMedical", "important", "largeText"],
+  },
 };
 let medicalData = {
   specialist: {
