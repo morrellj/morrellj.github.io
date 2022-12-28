@@ -3,6 +3,7 @@ class Elements {
     this.inputElementsArray = [];
     this.inputObjects = {};
     this.variations = inputFieldVariations;
+    this.events = new PubSub();
     //create data field properties
     for (const [inputField, value] of Object.entries(schema)) {
       let fieldSettings = Object.assign({ fieldName: inputField }, value);
@@ -10,16 +11,17 @@ class Elements {
       if (value.variation) {
         Object.assign(
           newFields,
-          variations[value?.variation]?.({ fieldSettings: fieldSettings }) || {}
+          this.variations[value?.variation]?.(fieldSettings, this) || {}
         );
       } else {
         newFields[inputField] = new BaseInputField({
           fieldSettings: fieldSettings,
         });
       }
-
+      for (const newField of Object.values(newFields)) {
+        this.inputElementsArray.push(newField.element);
+      }
       Object.assign(this.inputObjects, newFields);
-      this.inputElementsArray.push(this.inputObjects[inputField].element);
     }
     //Create links elements
     for (const [linkField, value] of Object.entries(Elements.links)) {

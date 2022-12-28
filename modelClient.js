@@ -2512,15 +2512,24 @@ let additionalAssessmentData = {
   },
 };
 let additionalAssessmentGrid = {
-  additionalAssessmentsNotRequired: {
-    tag: "select",
+  additionalAssessmentGrid: {
     variation: "multipleChoiceGrid",
-    label: "Additional assessment not required",
-    multiple: true,
+    gridResponseFields: {
+      additionalAssessmentsCompleted: {
+        label: "Additional assessment completed",
+      },
+      additionalAssessmentsRequired: {
+        label: "Additional assessment required",
+      },
+      additionalAssessmentsNotRequired: {
+        label: "Additional assessment not required",
+      },
+    },
     classes: [
       "assessment",
-      "carer",
+      "bogus",
       "medical",
+      "carer",
       "communicationSensory",
       "medication",
       "psychological",
@@ -2534,18 +2543,18 @@ let additionalAssessmentGrid = {
       "clinical",
       "nutrition",
     ],
-    selectOptions: [
-      "Communication assessment not required.",
-      "Continence Assessment scale not required",
-      "Depression screening not required.",
-      "Falls Risk for Older People - community setting not required.",
-      "Functional ADL assessment not required.",
-      "Hierarchic Dementia Scale asessment not required.",
-      "Medication self management assessment not required.",
-      "MMSE not required.",
-      "Pain assessment not required.",
-      "Pressure injury risk assessment not required.",
-      "Psychogeriatric Assessment scale not required",
+    subjects: [
+      "Communication assessment",
+      "Continence Assessment",
+      "Depression screening",
+      "Falls Risk for Older People - community setting",
+      "Functional ADL assessment",
+      "Hierarchic Dementia Scale asessment",
+      "Medication self management assessment",
+      "MMSE",
+      "Pain assessment",
+      "Pressure injury risk assessment",
+      "Psychogeriatric Assessment scale",
     ],
   },
 };
@@ -2623,7 +2632,7 @@ let clientRecordFieldSettings = {
   ...mealsNutritionData,
   ...biometricsData,
   ...domesticAssistanceData,
-  ...additionalAssessmentData,
+  ...additionalAssessmentGrid,
   ...referralData,
   ...reviewData,
   //CHSP

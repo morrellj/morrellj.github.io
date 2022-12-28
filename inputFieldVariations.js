@@ -1,3 +1,0 @@
-inputFieldVariations = {
-  baseInputField() {},
-};
