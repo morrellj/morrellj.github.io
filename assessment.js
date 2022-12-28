@@ -126,7 +126,7 @@ function popUpPop(event) {
       newParagraph.classList.add("temp");
       newParagraph.name = event.target.parentNode.id;
       if (
-        elements[event.target.parentNode.id].$_dataField.value.indexOf(ele) >= 0
+        elements.inputObjects[event.target.parentNode.id].$_dataField.value.indexOf(ele) >= 0
       ) {
         newParagraph.style.color = "red";
       } else {
@@ -135,10 +135,10 @@ function popUpPop(event) {
       newParagraph.onclick = function () {
         let result = addOrRemovePartOfElementValue(
           this.innerHTML,
-          elements[this.name].$_dataField
+          elements.inputObjects[this.name].$_dataField
         );
         this.style.color = result ? "red" : "black";
-        elements[this.name].$_dataField.dispatchEvent(new Event("input"));
+        elements.inputObjects[this.name].$_dataField.dispatchEvent(new Event("input"));
         function addOrRemovePartOfElementValue(partString, elementToChange) {
           let spacer = elementToChange.value == "" ? "" : "\n";
           let firstName =
