@@ -32,7 +32,9 @@ class MultipleChoiceGridField extends Builder {
       self.fieldSettings.fieldSetName,
       function (props) {
         let sourceValues = self.getSelectValues(props.source);
-        self.removeSelectValues(self.$_dataField, sourceValues);
+        if (props.source != self.$_dataField) {
+          self.removeSelectValues(self.$_dataField, sourceValues);
+        }
       }
     );
   }
