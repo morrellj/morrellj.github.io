@@ -17,9 +17,10 @@ class Elements {
           fieldSettings: fieldSettings,
         });
       }
-
+      for (const newField of Object.values(newFields)) {
+        this.inputElementsArray.push(newField.element);
+      }
       Object.assign(this.inputObjects, newFields);
-      this.inputElementsArray.push(this.inputObjects[inputField].element);
     }
     //Create links elements
     for (const [linkField, value] of Object.entries(Elements.links)) {
