@@ -3,6 +3,7 @@ class BaseInputField extends Builder {
     super();
     let self = this;
     self.fieldSettings = props.fieldSettings;
+    self.elementsObject = props.elementsObject;
     self.schema = {
       $_baseInputField: {
         tag: "div",
