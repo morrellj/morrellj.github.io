@@ -17,6 +17,10 @@ class Elements {
         newFields[inputField] = new BaseInputField({
           fieldSettings: fieldSettings,
           elementsObject: this,
+          dataField: new DataField({
+            fieldSettings: fieldSettings,
+            elementsObject: this,
+          }).schema,
         });
       }
       for (const newField of Object.values(newFields)) {

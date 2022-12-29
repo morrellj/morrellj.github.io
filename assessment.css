@@ -108,6 +108,9 @@ input[type="checkbox"] {
   border: 1px solid dimgray;
   border-radius: 2px;
 }
+.hiddenDataField {
+  display: none;
+}
 .singleCheckCheckBox {
   margin-left: 10px;
 }
@@ -213,6 +216,9 @@ textarea:focus {
     flex-direction: column;
   }
   textarea {
+    min-width: 80vw;
+  }
+  .inputFieldDiv {
     min-width: 80vw;
   }
   #root input,

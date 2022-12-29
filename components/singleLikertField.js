@@ -1,29 +1,37 @@
-class DataField {
+class SingleLikertField {
   constructor(props) {
     let self = this;
     self.fieldSettings = props.fieldSettings;
     self.elementsObject = props.elementsObject;
-    self.variations = dataFieldVariations;
     self.schema = {
-      tag: self.fieldSettings.tag,
-      props: {
-        oninput: self.dataFieldOnInput,
-        classList: self.fieldSettings.classes,
-        name: self.fieldSettings.fieldName,
-        oncontextmenu: self.dataFieldOncontextmenuPopUpPop,
+      tag: "div",
+      props: { classList: [...self.fieldSettings.classes, "inputFieldDiv"] },
+      children: {
+        $_inputSet: {
+          tag: "div",
+          props: {},
+          children: {
+            $_question: {
+              tag: "p",
+              props: { innerHTML: self.fieldSettings.question },
+            },
+            $_responses: {
+              tag: "p",
+              props: { innerHTML: "this is the response" },
+            },
+          },
+        },
+        $_hiddenDataField: {
+          tag: "textarea",
+          props: {
+            oninput: self.dataFieldOnInput,
+            classList: ["hiddenDataField"],
+            name: self.fieldSettings.fieldName,
+            oncontextmenu: self.dataFieldOncontextmenuPopUpPop,
+          },
+        },
       },
     };
-    if (self.fieldSettings.type) {
-      self.schema.props.type = self.fieldSettings.type;
-    }
-    if (self.fieldSettings.default) {
-      self.schema.props.value = self.fieldSettings.default;
-    }
-    self.schema =
-      self.variations[self.fieldSettings.tag]?.(
-        self.schema,
-        self.fieldSettings
-      ) || self.schema;
   }
   dataFieldOnInput = function () {
     let changeObject = {};

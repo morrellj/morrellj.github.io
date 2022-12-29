@@ -1811,6 +1811,13 @@ let environmentPersonalSafetyData = {
     classes: ["review", "environment", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
+  PERS: {
+    variation: "singleLikertField",
+    label: "PERS",
+    question: ["Personal Emergeny Response System"],
+    responses: ["Installed", "Required", "Not required"],
+    classes: ["environment", "falls"],
+  },
   personalSafetySupportPlanFactors: {
     tag: "textarea",
     label: "Personal safety support plan FACTORS",
