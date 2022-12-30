@@ -1816,7 +1816,7 @@ let environmentPersonalSafetyData = {
     label: "PERS",
     question: ["Personal Emergeny Response System"],
     responses: ["Installed", "Required", "Not required"],
-    classes: ["environment", "falls"],
+    classes: ["environment", "falls", "assessment"],
   },
   personalSafetySupportPlanFactors: {
     tag: "textarea",
@@ -2397,8 +2397,11 @@ let domesticAssistanceData = {
 let referralData = {
   // Referrals------------------------------------------------------
   otReferral: {
-    tag: "textarea",
+    variation: "singleLikertField",
+    //tag: "textarea",
     label: "OT referral",
+    question: ["OT referral"],
+    responses: ["Completed", "Required", "Not required", "NA"],
     classes: [
       "skin",
       "environment",
@@ -2409,14 +2412,14 @@ let referralData = {
       "pain",
       "assessment",
     ],
-    notes: [
-      "OT referral and follow up of recommendations for pressure injury prevention/management devices",
-      "OT referral and follow up of recommendations for environmental/seating/functional home safety review",
-      "OT referral and follow up of recommendations for pain management equipment",
-      "OT referral completed",
-      "OT assessment required",
-      "OT assessment NOT required.",
-    ],
+    // notes: [
+    //   "OT referral and follow up of recommendations for pressure injury prevention/management devices",
+    //   "OT referral and follow up of recommendations for environmental/seating/functional home safety review",
+    //   "OT referral and follow up of recommendations for pain management equipment",
+    //   "OT referral completed",
+    //   "OT assessment required",
+    //   "OT assessment NOT required.",
+    // ],
   },
   ptReferral: {
     tag: "textarea",

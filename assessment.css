@@ -111,8 +111,22 @@ input[type="checkbox"] {
 .hiddenDataField {
   display: none;
 }
-.singleCheckCheckBox {
-  margin-left: 10px;
+.likertGrid {
+  float: left;
+  clear: none;
+}
+.likertLabel {
+  float: left;
+  clear: none;
+  padding: 0px 2px 0px 5px;
+}
+
+input[type="radio"],
+input.likertRadio {
+  float: left;
+  clear: none;
+  margin: 5px 0 0 2px;
+  width: 10px;
 }
 textarea {
   width: 30vw;
@@ -231,6 +245,9 @@ textarea:focus {
   }
   #root select {
     width: 80vw;
+  }
+  #root .likertRadio {
+    width: 10px;
   }
 }
 @media (max-width: 610px) {
