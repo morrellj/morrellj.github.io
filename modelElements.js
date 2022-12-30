@@ -187,6 +187,7 @@ Elements.prototype.updateElements = function (data) {
       thisFollowUpsCheckbox.checked = false;
     }
   }
+  this.events.publish("updateFieldValues");
 };
 Elements.prototype.setMultiSelectValues = function (element, clientData) {
   var options = element.options;
@@ -375,7 +376,7 @@ Elements.prototype.clearAndBackUpAssessmentFields = function () {
   let changeObject = {};
   for (const [key, value] of Object.entries(this.inputObjects)) {
     let oldValue =
-      store.state.records[store.state.activeRecord][key].constructor === Object
+      store.state.records[store.state.activeRecord][key]?.constructor === Object
         ? store.state.records[store.state.activeRecord][key].current
         : store.state.records[store.state.activeRecord][key];
     oldValue = Array.isArray(oldValue) ? [...oldValue] : oldValue;

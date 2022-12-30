@@ -8,7 +8,7 @@ class DataField {
       tag: self.fieldSettings.tag,
       props: {
         oninput: self.dataFieldOnInput,
-        classList: self.fieldSettings.classes,
+        classList: [...self.fieldSettings.classes, "rootInput"],
         name: self.fieldSettings.fieldName,
         oncontextmenu: self.dataFieldOncontextmenuPopUpPop,
       },

@@ -1,4 +1,12 @@
 let actions = {
+  fetch(context, fieldName) {
+    let client = context.state.records[context.state.activeRecord];
+    return !client[fieldName]
+      ? null
+      : client[fieldName].constructor === Object
+      ? client[fieldName].current
+      : client[fieldName];
+  },
   update(context, changeObject) {
     addDateStamps(changeObject.data);
     return context.commit("update", changeObject);

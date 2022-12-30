@@ -16,20 +16,24 @@ class SingleLikertField {
               props: { innerHTML: self.fieldSettings.question },
             },
             $_responses: {
-              tag: "p",
-              props: { innerHTML: "this is the response" },
+              tag: "form",
+              props: { classList: ["likertGrid"] },
+              children: new LikertResponseGrid({
+                fieldSettings: self.fieldSettings,
+                elementsObject: self.elementsObject,
+              }).schema,
             },
           },
         },
-        $_hiddenDataField: {
-          tag: "textarea",
-          props: {
-            oninput: self.dataFieldOnInput,
-            classList: ["hiddenDataField"],
-            name: self.fieldSettings.fieldName,
-            oncontextmenu: self.dataFieldOncontextmenuPopUpPop,
-          },
-        },
+        // $_hiddenDataField: {
+        //   tag: "textarea",
+        //   props: {
+        //     oninput: self.dataFieldOnInput,
+        //     classList: ["hiddenDataField"],
+        //     name: self.fieldSettings.fieldName,
+        //     oncontextmenu: self.dataFieldOncontextmenuPopUpPop,
+        //   },
+        // },
       },
     };
   }

@@ -72,6 +72,36 @@ inputFieldVariations = {
         elementsObject: elementsObject,
       }).schema,
     });
+    let fieldObj = newFields[fieldSettings.fieldName];
+    elementsObject.events.subscribe(`updateFieldValues`, function () {
+      fieldObj.$_responses.childNodes.forEach((element) => {
+        if (store.dispatch("fetch", [fieldSettings.fieldName])) {
+          if (
+            element.value ==
+            store.dispatch("fetch", [fieldSettings.fieldName])[1]?.trim()
+          ) {
+            element.checked = true;
+          } else {
+            element.checked = false;
+          }
+        } else {
+          element.checked = false;
+        }
+      });
+    });
+    elementsObject.events.subscribe(fieldSettings.fieldName, function (props) {
+      let changeObject = {
+        [`${fieldSettings.fieldName}`]: [
+          fieldSettings.question[0],
+          ` ${props.response}`,
+        ],
+      };
+      store.dispatch("update", {
+        id: store.state.activeRecord,
+        data: changeObject,
+      });
+      console.log(changeObject);
+    });
     return newFields;
   },
 };
