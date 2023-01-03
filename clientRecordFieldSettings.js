@@ -2513,6 +2513,46 @@ let additionalAssessmentGrid = {
     ],
   },
 };
+let additionalAssessmentRadio = {
+  additionalAssessmentLikert: {
+    variation: "multipleLikert",
+    label: "Additional Assessments",
+    questionResponseFields: [
+      [["Communication Ax"], ["Completed", "Required", "Not required"]],
+      [["Continence Ax"], ["Completed", "Required", "Not required"]],
+      [["Depression screen"], ["Completed", "Required", "Not required"]],
+      [["Falls Risk"], ["Completed", "Required", "Not required"]],
+      [["Functional ADL Ax"], ["Completed", "Required", "Not required"]],
+      [
+        ["Hierarchic Dementia Scale Ax"],
+        ["Completed", "Required", "Not required"],
+      ],
+      [["Medication management Ax"], ["Completed", "Required", "Not required"]],
+      [["MMSE"], ["Completed", "Required", "Not required"]],
+      [["Pain Ax"], ["Completed", "Required", "Not required"]],
+      [["Pressure injury risk Ax"], ["Completed", "Required", "Not required"]],
+      [["Psychogeriatric Ax scale"], ["Completed", "Required", "Not required"]],
+    ],
+    classes: [
+      "assessment",
+      "bogus",
+      "medical",
+      "carer",
+      "communicationSensory",
+      "medication",
+      "psychological",
+      "social",
+      "personalCare",
+      "mobility",
+      "pain",
+      "elimination",
+      "environment",
+      "falls",
+      "clinical",
+      "nutrition",
+    ],
+  },
+};
 let reviewData = {
   // REVIEW ______________________________________________________________
   medicalReview: {
