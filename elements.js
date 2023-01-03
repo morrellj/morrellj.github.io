@@ -20,7 +20,7 @@ class Elements {
           dataField: new DataField({
             fieldSettings: fieldSettings,
             elementsObject: this,
-          }).schema,
+          }),
         });
       }
       for (const newField of Object.values(newFields)) {
@@ -158,9 +158,14 @@ class Elements {
     carer: {
       loneLinks: [["Care Giver Strain Index", "Caregiver Strain Index.pdf"]],
     },
-    social:{
-      groupLinks:[["Social isolation nursing assessment and plan", "https://www.nursetogether.com/social-isolation-nursing-diagnosis-care-plan/"]]
-    }
+    social: {
+      groupLinks: [
+        [
+          "Social isolation nursing assessment and plan",
+          "https://www.nursetogether.com/social-isolation-nursing-diagnosis-care-plan/",
+        ],
+      ],
+    },
   };
 }
 Elements.prototype.updateElements = function (data) {
