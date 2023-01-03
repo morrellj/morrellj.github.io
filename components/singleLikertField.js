@@ -24,15 +24,6 @@ class SingleLikertField extends Builder {
             },
           },
         },
-        // $_hiddenDataField: {
-        //   tag: "textarea",
-        //   props: {
-        //     oninput: self.dataFieldOnInput,
-        //     classList: ["hiddenDataField"],
-        //     name: self.fieldSettings.fieldName,
-        //     oncontextmenu: self.dataFieldOncontextmenuPopUpPop,
-        //   },
-        // },
       },
     };
     self.manufacture(self.schema);
