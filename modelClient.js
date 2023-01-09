@@ -522,135 +522,115 @@ let medicalData = {
 let scheduleData = {
   //schedule
   mondayAM: {
-    tag: "input",
+    tag: "textarea",
     label: "Monday morning services",
-    type: "text",
     classes: ["schedule"],
   },
   mondayPM: {
-    tag: "input",
+    tag: "textarea",
     label: "Monday afternoon services",
-    type: "text",
     classes: ["schedule"],
   },
   mondayEve: {
-    tag: "input",
+    tag: "textarea",
     label: "Monday evening services",
-    type: "text",
     classes: ["schedule"],
   },
   //tue
   tuesdayAM: {
-    tag: "input",
+    tag: "textarea",
     label: "Tuesday morning services",
-    type: "text",
+
     classes: ["schedule"],
   },
   tuesdayPM: {
-    tag: "input",
+    tag: "textarea",
     label: "Tuesday afternoon services",
-    type: "text",
     classes: ["schedule"],
   },
   tuesdayEve: {
-    tag: "input",
+    tag: "textarea",
     label: "Tuesday evening services",
-    type: "text",
     classes: ["schedule"],
   },
   //wed
   wednesdayAM: {
-    tag: "input",
+    tag: "textarea",
     label: "Wednesday morning services",
-    type: "text",
     classes: ["schedule"],
   },
   wednesdayPM: {
-    tag: "input",
+    tag: "textarea",
     label: "Wednesday afternoon services",
-    type: "text",
     classes: ["schedule"],
   },
   wednesdayEve: {
-    tag: "input",
+    tag: "textarea",
     label: "Wednesday evening services",
-    type: "text",
     classes: ["schedule"],
   },
   //thu
   thursdayAM: {
-    tag: "input",
+    tag: "textarea",
     label: "Thursday morning services",
-    type: "text",
     classes: ["schedule"],
   },
   thursdayPM: {
-    tag: "input",
+    tag: "textarea",
     label: "Thursday afternoon services",
-    type: "text",
     classes: ["schedule"],
   },
   thursdayEve: {
-    tag: "input",
+    tag: "textarea",
     label: "Thursday evening services",
-    type: "text",
     classes: ["schedule"],
   },
   //fri
   fridayAM: {
-    tag: "input",
+    tag: "textarea",
     label: "Friday morning services",
-    type: "text",
     classes: ["schedule"],
   },
   fridayPM: {
-    tag: "input",
+    tag: "textarea",
     label: "Friday afternoon services",
-    type: "text",
     classes: ["schedule"],
   },
   fridayEve: {
-    tag: "input",
+    tag: "textarea",
     label: "Friday evening services",
-    type: "text",
     classes: ["schedule"],
   },
   //sat
   saturdayAM: {
-    tag: "input",
+    tag: "textarea",
     label: "Saturday morning services",
-    type: "text",
     classes: ["schedule"],
   },
   saturdayPM: {
-    tag: "input",
+    tag: "textarea",
     label: "Saturday afternoon services",
-    type: "text",
     classes: ["schedule"],
   },
   saturdayEve: {
-    tag: "input",
+    tag: "textarea",
     label: "Saturday evening services",
-    type: "text",
     classes: ["schedule"],
   },
   //sun
   sundayAM: {
-    tag: "input",
+    tag: "textarea",
     label: "Sunday morning services",
-    type: "text",
     classes: ["schedule"],
   },
   sundayPM: {
-    tag: "input",
+    tag: "textarea",
     label: "Sunday afternoon services",
-    type: "text",
     classes: ["schedule"],
   },
   sundayEve: {
-    tag: "input",
+    tag: "textarea",
     label: "Sunday evening services",
-    type: "text",
     classes: ["schedule"],
   },
 };
@@ -1140,7 +1120,6 @@ let psychosocialData = {
     label: "Psycho social support plan CLIENT",
     classes: ["carePlan", "psychological", "social", "largeText"],
     notes: [
-      "Southern Plus support workers will provide extra companionship/social interaction during support services.",
       "Client will maintain social connections and access the community with the support of family/independently.",
     ],
   },
@@ -1150,17 +1129,13 @@ let psychosocialData = {
     classes: ["carePlan", "psychological", "social", "largeText"],
     notes: [
       "Southern Plus support workers will provide extra companionship/social interaction during support services.",
-      "Client will maintain social connections and access the community with the support of family/independently.",
     ],
   },
   socialSP_WellnessPartner: {
     tag: "textarea",
     label: "Psycho social support plan WELLNESS PARTNER",
     classes: ["carePlan", "psychological", "social", "largeText"],
-    notes: [
-      "Southern Plus support workers will provide extra companionship/social interaction during support services.",
-      "Client will maintain social connections and access the community with the support of family/independently.",
-    ],
+    notes: [],
   },
   socialReview: {
     tag: "textarea",
@@ -1375,6 +1350,12 @@ let skinData = {
       "Wound care will be provided by ____",
       "Support workers will prompt and remind client to keep a stock of and apply emollient moisturiser daily.",
       "Southern Plus will facilitate purchase of skin care products for the prevention of skin tears.",
+      "S: pressure redistribution support surface in place/for OT assessment",
+      "S: Regular skin inspection to be incorporated into support plan and/or client/carer education provided",
+      "K: keep moving client/carer education provided.",
+      "I: manage incontinence - refer to continence management assessment.",
+      "N: optimise nutrition - refer to nutritional assessment.",
+      "D: dressings for prevention indicated/not indicated",
     ],
   },
   skinSupportPlanInterventions: {
@@ -1385,17 +1366,20 @@ let skinData = {
       "Wound care will be provided by ____",
       "Support workers will prompt and remind client to keep a stock of and apply emollient moisturiser daily.",
       "Southern Plus will facilitate purchase of skin care products for the prevention of skin tears.",
+      "S: pressure redistribution support surface in place/for OT assessment",
+      "S: Regular skin inspection to be incorporated into support plan and/or client/carer education provided",
+      "K: keep moving client/carer education provided.",
+      "I: manage incontinence - refer to continence management assessment.",
+      "N: optimise nutrition - refer to nutritional assessment.",
+      "D: dressings for prevention indicated/not indicated",
+      "Wound care plan to be implemented",
     ],
   },
   skinSP_WellnessPartner: {
     tag: "textarea",
     label: "Skin care support plan WELLNESS PARTNER",
     classes: ["carePlan", "skin", "largeText"],
-    notes: [
-      "Wound care will be provided by ____",
-      "Support workers will prompt and remind client to keep a stock of and apply emollient moisturiser daily.",
-      "Southern Plus will facilitate purchase of skin care products for the prevention of skin tears.",
-    ],
+    notes: [],
   },
   skinActions: {
     tag: "textarea",
@@ -1643,6 +1627,7 @@ let mobilityData = {
       "Southern Plus will provide support to hire ___",
       "Southern Plus support workers will provide standby assists with mobility ___",
       "Southern Plus will assist client with transport needs by ___",
+      "Support workers will [address medical needs to prevent falls as required]",
     ],
   },
   mobilitySP_WellnessPartner: {
@@ -1666,6 +1651,10 @@ let mobilityData = {
     tag: "textarea",
     label: "Transport FACTORS",
     classes: ["mobility", "carePlan", "largeText"],
+    notes: [
+      "Client is not able to drive secondary to ____",
+      "Client is unable to access the community without assistance secondary to _____",
+    ],
   },
   transportGoals: {
     tag: "textarea",
@@ -1681,6 +1670,7 @@ let mobilityData = {
     classes: ["mobility", "carePlan", "largeText"],
     notes: [
       "Client will contact Southern Plus office to advise of transport requirements providing as much notice as possible for requirements to be met.",
+      "____ will provide transport assistance for client.",
     ],
   },
   transportSupportPlanFactors: {
@@ -2111,7 +2101,14 @@ let mealsNutritionData = {
   mealsAndShoppingSupportPlanGoals: {
     tag: "textarea",
     label: "Meals/shopping support plan GOALS",
-    classes: ["carePlan", "mealsShopping", "mobility", "goals", "largeText"],
+    classes: [
+      "carePlan",
+      "mealsShopping",
+      "nutrition",
+      "mobility",
+      "goals",
+      "largeText",
+    ],
     notes: ["Client will be adequately nourished and hydrated."],
   },
   mealsAndShoppingSP_Client: {
@@ -2126,9 +2123,12 @@ let mealsNutritionData = {
       "largeText",
     ],
     notes: [
-      "_____ complete shopping general food items and supervise Alex with her meals/nutritiional intake on a day to day basis.",
+      "_____ will complete shopping general food items and supervise client with his/her meals/nutritional intake on a day to day basis.",
       "Client will contribute to the set up, cost of the food portion of and ongoing ordering of meals.",
       "_____ will contribute and prepare some home cooked meals to supplement home delivered meals.",
+      "Client is able to prepare his/her own simple meals and snacks.",
+      "Client's family will support client with meal preparation.",
+      "Client will contribute to the set up, cost of the food portion of and ongoing ordering of home delivered meals.",
     ],
   },
   mealsAndShoppingSupportPlanInterventions: {
@@ -2144,7 +2144,6 @@ let mealsNutritionData = {
     ],
     notes: [
       "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
-      "Client will contribute to the set up, cost of the food portion of and ongoing ordering of meals.",
     ],
   },
   mealsAndShoppingSP_WellnessPartner: {
@@ -2160,7 +2159,6 @@ let mealsNutritionData = {
     ],
     notes: [
       "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
-      "Client will contribute to the set up, cost of the food portion of and ongoing ordering of meals.",
     ],
   },
   mealsAndShoppingReview: {
@@ -2326,8 +2324,8 @@ let domesticAssistanceData = {
     label: "Cleaning support plan CLIENT",
     classes: ["carePlan", "domestic", "largeText"],
     notes: [
-      "Southern Plus support workers will provide assistance with cleaning weekly/fortnightly for __ hours.",
-      "Cleaning tasks will include\n\nSupport workers will assist with other household tasks as as requested by client as time permits and utilise any spare time to identify other jobs that need doing (empty/put out bins, tidy clean the fridge/microwave/dusting surfaces/skirting/window sills etc.)",
+      "Client will continue to ______ around the home.",
+      "Client's family will support him/her with domestic assistance by ____",
     ],
   },
   cleaningSupportPlanInterventions: {
@@ -2343,10 +2341,7 @@ let domesticAssistanceData = {
     tag: "textarea",
     label: "Cleaning support plan WELLNESS PARTNER",
     classes: ["carePlan", "domestic", "largeText"],
-    notes: [
-      "Southern Plus support workers will provide assistance with cleaning weekly/fortnightly for __ hours.",
-      "Cleaning tasks will include\n\nSupport workers will assist with other household tasks as as requested by client as time permits and utilise any spare time to identify other jobs that need doing (empty/put out bins, tidy clean the fridge/microwave/dusting surfaces/skirting/window sills etc.)",
-    ],
+    notes: [],
   },
   cleaningReview: {
     tag: "textarea",

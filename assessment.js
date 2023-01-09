@@ -20,11 +20,21 @@ function setPage(category) {
   }
   elements.addSpecifiedElementsToTargetDiv(category, root);
   window.scroll(0, 0);
+  //highlights button of active catergory
   let current = document.getElementsByClassName("active");
   if (current[0]) {
     current[0].className = current[0].className.replace(" active", "");
   }
   document.getElementById(category + "-btn").className += " active";
+  // show or hide care plans for each category
+  let setCarePlanDivState = {
+    showCarePlan: "block",
+    hideCarePlan: "none",
+  };
+  document.getElementById("careplan").style.display =
+    setCarePlanDivState[
+      document.getElementById("carePlanToggle").dataset.state
+    ];
 }
 
 //Fill the client selection drop down list
@@ -126,7 +136,9 @@ function popUpPop(event) {
       newParagraph.classList.add("temp");
       newParagraph.name = event.target.parentNode.id;
       if (
-        elements.inputObjects[event.target.parentNode.id].$_dataField.value.indexOf(ele) >= 0
+        elements.inputObjects[
+          event.target.parentNode.id
+        ].$_dataField.value.indexOf(ele) >= 0
       ) {
         newParagraph.style.color = "red";
       } else {
@@ -138,7 +150,9 @@ function popUpPop(event) {
           elements.inputObjects[this.name].$_dataField
         );
         this.style.color = result ? "red" : "black";
-        elements.inputObjects[this.name].$_dataField.dispatchEvent(new Event("input"));
+        elements.inputObjects[this.name].$_dataField.dispatchEvent(
+          new Event("input")
+        );
         function addOrRemovePartOfElementValue(partString, elementToChange) {
           let spacer = elementToChange.value == "" ? "" : "\n";
           let firstName =
@@ -229,10 +243,15 @@ function popUpPop(event) {
 }
 function carePlanToggle() {
   let carePlanDiv = document.getElementById("careplan");
+  let carePlanToggle = document.getElementById("carePlanToggle");
   if (carePlanDiv.style.display == "none") {
     carePlanDiv.style.display = "block";
+    carePlanToggle.dataset.state = "showCarePlan";
+    carePlanToggle.innerHTML = "Hide CP";
   } else {
     carePlanDiv.style.display = "none";
+    carePlanToggle.dataset.state = "hideCarePlan";
+    carePlanToggle.innerHTML = "Show CP";
   }
 }
 controlToggle.onclick = function () {
