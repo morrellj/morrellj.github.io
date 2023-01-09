@@ -98,6 +98,18 @@ class Elements {
         ],
       ],
     },
+    biometrics: {
+      loneLinks: [
+        [
+          "Nurse Labs head to toe guidlines",
+          "https://nurseslabs.com/head-to-toe-assessment-complete-physical-assessment-guide/",
+        ],
+        [
+          "Nursing Ax - Royal Childrens Hospital Melbourne",
+          "https://www.rch.org.au/rchcpg/hospital_clinical_guideline_index/Nursing_assessment/#Neurological",
+        ],
+      ],
+    },
     skin: {
       loneLinks: [
         ["Skin tear guidelines", "istap-skin-tears-aged-skin.pdf"],
@@ -158,9 +170,14 @@ class Elements {
     carer: {
       loneLinks: [["Care Giver Strain Index", "Caregiver Strain Index.pdf"]],
     },
-    social:{
-      groupLinks:[["Social isolation nursing assessment and plan", "https://www.nursetogether.com/social-isolation-nursing-diagnosis-care-plan/"]]
-    }
+    social: {
+      groupLinks: [
+        [
+          "Social isolation nursing assessment and plan",
+          "https://www.nursetogether.com/social-isolation-nursing-diagnosis-care-plan/",
+        ],
+      ],
+    },
   };
 }
 Elements.prototype.updateElements = function (data) {
