@@ -20,7 +20,7 @@ class Elements {
           dataField: new DataField({
             fieldSettings: fieldSettings,
             elementsObject: this,
-          }).schema,
+          }),
         });
       }
       for (const newField of Object.values(newFields)) {
@@ -158,12 +158,18 @@ class Elements {
     carer: {
       loneLinks: [["Care Giver Strain Index", "Caregiver Strain Index.pdf"]],
     },
-    social:{
-      groupLinks:[["Social isolation nursing assessment and plan", "https://www.nursetogether.com/social-isolation-nursing-diagnosis-care-plan/"]]
-    }
+    social: {
+      groupLinks: [
+        [
+          "Social isolation nursing assessment and plan",
+          "https://www.nursetogether.com/social-isolation-nursing-diagnosis-care-plan/",
+        ],
+      ],
+    },
   };
 }
 Elements.prototype.updateElements = function (data) {
+  if (!data) return false;
   for (let [name, element] of Object.entries(this.inputObjects)) {
     element.$_inputLabel.title = !data[name]
       ? ""
@@ -355,7 +361,19 @@ Elements.prototype.addSpecifiedElementsToTargetDiv = function (
   }
 };
 Elements.prototype.clearAndBackUpReviewFields = function () {
-  if (!confirm("Are you sure?")) return;
+  if (!store.state.activeRecord) {
+    alert("No client selected.");
+    return false;
+  }
+  if (
+    !confirm(
+      `Are you sure to remove review data from ${store.dispatch(
+        "fetch",
+        "firstName"
+      )}'s record?`
+    )
+  )
+    return;
   let changeObject = {};
   for (const [key, value] of Object.entries(this.inputObjects)) {
     if (value.$_dataField.type == "date") continue;
@@ -375,7 +393,19 @@ Elements.prototype.clearAndBackUpReviewFields = function () {
   this.updateElements(store.state.records[store.state.activeRecord]);
 };
 Elements.prototype.clearAndBackUpAssessmentFields = function () {
-  if (!confirm("Are you sure?")) return;
+  if (!store.state.activeRecord) {
+    alert("No client selected.");
+    return false;
+  }
+  if (
+    !confirm(
+      `Are you sure to remove assessment data from ${store.dispatch(
+        "fetch",
+        "firstName"
+      )}'s record?`
+    )
+  )
+    return;
   let changeObject = {};
   for (const [key, value] of Object.entries(this.inputObjects)) {
     let oldValue =
@@ -396,5 +426,6 @@ Elements.prototype.clearAndBackUpAssessmentFields = function () {
     id: store.state.activeRecord,
     data: changeObject,
   });
+  this.events.publish("assessmentClear", {});
   this.updateElements(store.state.records[store.state.activeRecord]);
 };
