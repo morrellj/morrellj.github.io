@@ -8,6 +8,10 @@ let actions = {
       : client[fieldName];
   },
   update(context, changeObject) {
+    if (!store.state?.activeRecord) {
+      alert("Select a client.");
+      return false;
+    }
     addDateStamps(changeObject.data);
     return context.commit("update", changeObject);
   },

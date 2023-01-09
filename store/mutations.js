@@ -3,7 +3,7 @@ let mutations = {
     let client = state.records[changeObject.id];
     if (!client) {
       console.error("Client record with matching key not found.");
-      return state;
+      return state.records;
     }
     for (const [thisKey, value] of Object.entries(changeObject.data)) {
       if (client.hasOwnProperty(thisKey)) {

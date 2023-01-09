@@ -5,27 +5,28 @@ class SingleLikertField extends Builder {
     self.fieldSettings = props.fieldSettings;
     self.elementsObject = props.elementsObject;
     self.schema = {
-      $_singleLikertField: {
+      $_inputSet: {
         tag: "div",
-        props: { classList: [...self.fieldSettings.classes, "inputFieldDiv"] },
-        children: {
-          $_inputSet: {
-            tag: "div",
-            props: {},
-            children: {
-              $_question: {
-                tag: "p",
-                props: { innerHTML: self.fieldSettings.question },
-              },
-              $_responses: new LikertResponseGrid({
-                fieldSettings: self.fieldSettings,
-                elementsObject: self.elementsObject,
-              }),
-            },
-          },
-        },
+        props: {},
+        children: {},
       },
     };
+    let count = 0;
+    self.fieldSettings.questionResponseFields.forEach((field) => {
+      (self.schema.$_inputSet.children[`$_question-${count}`] = {
+        tag: "p",
+        props: { innerHTML: field[0], classList: ["likertFieldLabel"] },
+      }),
+        (self.schema.$_inputSet.children[`$_responses-${count}`] =
+          new LikertResponseGrid({
+            fieldSettings: Object.assign(
+              { responses: field[1], questionIndex: count },
+              self.fieldSettings
+            ),
+            elementsObject: self.elementsObject,
+          })),
+        (count += 1);
+    });
     self.manufacture(self.schema);
   }
 }

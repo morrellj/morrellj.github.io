@@ -1814,8 +1814,12 @@ let environmentPersonalSafetyData = {
   PERS: {
     variation: "singleLikertField",
     label: "PERS",
-    question: ["Personal Emergeny Response System"],
-    responses: ["Installed", "Required", "Not required"],
+    questionResponseFields: [
+      [
+        "Personal Emergeny Response System",
+        ["Installed", "Required", "Not required"],
+      ],
+    ],
     classes: ["environment", "falls", "assessment"],
   },
   personalSafetySupportPlanFactors: {
@@ -2400,8 +2404,10 @@ let referralData = {
     variation: "singleLikertField",
     //tag: "textarea",
     label: "OT referral",
-    question: ["OT referral"],
-    responses: ["Completed", "Required", "Not required", "NA"],
+    questionResponseFields: [
+      ["OT referral", ["Completed", "Required", "Not required", "NA"]],
+    ],
+
     classes: [
       "skin",
       "environment",
@@ -2515,24 +2521,25 @@ let additionalAssessmentGrid = {
 };
 let additionalAssessmentRadio = {
   additionalAssessmentLikert: {
-    variation: "multipleLikert",
+    variation: "multiLikertField",
     label: "Additional Assessments",
     questionResponseFields: [
-      [["Communication Ax"], ["Completed", "Required", "Not required"]],
-      [["Continence Ax"], ["Completed", "Required", "Not required"]],
-      [["Depression screen"], ["Completed", "Required", "Not required"]],
-      [["Falls Risk"], ["Completed", "Required", "Not required"]],
-      [["Functional ADL Ax"], ["Completed", "Required", "Not required"]],
+      ["Communication Ax", ["Completed", "Required", "Not required"]],
+      ["Continence Ax", ["Completed", "Required", "Not required"]],
+      ["Depression screen", ["Completed", "Required", "Not required"]],
+      ["Falls Risk", ["Completed", "Required", "Not required"]],
+      ["Functional ADL Ax", ["Completed", "Required", "Not required"]],
       [
-        ["Hierarchic Dementia Scale Ax"],
+        "Hierarchic Dementia Scale Ax",
         ["Completed", "Required", "Not required"],
       ],
-      [["Medication management Ax"], ["Completed", "Required", "Not required"]],
-      [["MMSE"], ["Completed", "Required", "Not required"]],
-      [["Pain Ax"], ["Completed", "Required", "Not required"]],
-      [["Pressure injury risk Ax"], ["Completed", "Required", "Not required"]],
-      [["Psychogeriatric Ax scale"], ["Completed", "Required", "Not required"]],
+      ["Medication management Ax", ["Completed", "Required", "Not required"]],
+      ["MMSE", ["Completed", "Required", "Not required"]],
+      ["Pain Ax", ["Completed", "Required", "Not required"]],
+      ["Pressure injury risk Ax", ["Completed", "Required", "Not required"]],
+      ["Psychogeriatric Ax scale", ["Completed", "Required", "Not required"]],
     ],
+    seperateRecords: true,
     classes: [
       "assessment",
       "bogus",
@@ -2627,7 +2634,7 @@ let clientRecordFieldSettings = {
   ...mealsNutritionData,
   ...biometricsData,
   ...domesticAssistanceData,
-  ...additionalAssessmentGrid,
+  ...additionalAssessmentRadio,
   ...referralData,
   ...reviewData,
   //CHSP
