@@ -1235,7 +1235,7 @@ let painData = {
     tag: "textarea",
     label: "Pain support plan FACTORS",
     classes: ["carePlan", "pain", "largeText"],
-    notes: ["Client experiences chronic pain [location]"],
+    notes: ["Client experiences chronic pain [location]", "Pain is a big issue for client and is often the difference between a good day and a bad day."],
   },
   painSupportPlanGoals: {
     tag: "textarea",
@@ -1250,7 +1250,8 @@ let painData = {
     label: "Pain support plan CLIENT",
     classes: ["carePlan", "pain", "largeText"],
     notes: [
-      "Client self manages pain on a day to day basis in consultation with his/her GP..",
+      "Client self manages pain on a day to day basis in consultation with his/her GP and/or specialist",
+      "Client will pace his/her daily activities and rest when needed to prevent pain levels escalating beyond what is tolerable."
     ],
   },
   painSupportPlanInterventions: {
@@ -1259,6 +1260,7 @@ let painData = {
     classes: ["carePlan", "pain", "largeText"],
     notes: [
       "Client receives symptom management support by the palliative care team.",
+      "Support services provided by Southern Plus will reduce the physical burdens and heavier tasks involved with managing clients's day to day activities allowing him/her to be more rested and to exercise in moderation.",
     ],
   },
   painSP_WellnessPartner: {
@@ -1594,10 +1596,11 @@ let mobilityData = {
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
       "Client has experienced numerous falls recently.",
-      "Client has an icreased falls risk",
+      "Client has an increased falls risk",
       "Client's mobility is impaired secondary to ___",
       "Client has had no falls recently.",
       "Client mobilises independently with/without mobility aids.",
+      "Client has increased risk for deconditioning of muscle strength and functional balance."
     ],
   },
   mobilitySupportPlanGoals: {
@@ -1627,7 +1630,12 @@ let mobilityData = {
       "Southern Plus will provide support to hire ___",
       "Southern Plus support workers will provide standby assists with mobility ___",
       "Southern Plus will assist client with transport needs by ___",
+      "SUpport workers will encourage client to use her walking aid.",
       "Support workers will [address medical needs to prevent falls as required]",
+      "Support workers will check and encourage client to wear appropriate footwear (information to be included in home folder.)",
+      "Support workers will check that walkways are well lit and uncluttered/free of tripping hazards within client's home.",
+
+
     ],
   },
   mobilitySP_WellnessPartner: {
@@ -1822,6 +1830,7 @@ let environmentPersonalSafetyData = {
       "communicationSensory",
       "largeText",
     ],
+    notes:["Client is at increased risk of medical emergency and falls and is often at home alone.","Potential for delayed access to emergency services."]
   },
   personalSafetySupportPlanGoals: {
     tag: "textarea",
@@ -1834,6 +1843,7 @@ let environmentPersonalSafetyData = {
       "goals",
       "largeText",
     ],
+    notes:["Client will have the ability to gain timely access to emergency services as needed."]
   },
   personalSafetySP_Client: {
     tag: "textarea",
@@ -1845,7 +1855,7 @@ let environmentPersonalSafetyData = {
       "communicationSensory",
       "largeText",
     ],
-    notes: [],
+    notes: ["Client will wear his/her PERS pendant at all times and keep it charged.","Client will test his/her PERS pendant monthly to ensure it is functional."],
   },
   personalSafetySupportPlanInterventions: {
     tag: "textarea",
@@ -1875,6 +1885,7 @@ let environmentPersonalSafetyData = {
     ],
     notes: [
       "Wellness Partner will arrange for quote and purchase of wrist based PERS, with geolocating capabilities.",
+      "Wellness partner will review and assist client to ensure that he/she has an effective Personal Emergency Response system."
     ],
   },
   personalSafetyReview: {
