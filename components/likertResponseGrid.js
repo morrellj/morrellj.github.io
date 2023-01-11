@@ -2,10 +2,11 @@ class LikertResponseGrid extends Builder {
   constructor(props) {
     super();
     let self = this;
-    self.fieldSettings = props.fieldSettings;
+    self.question = props.question;
+    self.responses = props.responses;
+    self.propertyName = props.propertyName;
     self.elementsObject = props.elementsObject;
-    self.fieldName =
-      self.fieldSettings.fieldName + "_" + self.fieldSettings.questionIndex;
+
     self.schema = {
       $_likertResponseGrid: {
         tag: "form",
@@ -15,20 +16,24 @@ class LikertResponseGrid extends Builder {
     };
     let count = 0;
 
-    self.fieldSettings.responses.forEach((response) => {
-      self.schema.$_likertResponseGrid.children[`label_${count}`] = {
+    self.responses.forEach((response) => {
+      self.schema.$_likertResponseGrid.children[
+        `$_${self.propertyName}Label_${count}`
+      ] = {
         tag: "label",
         props: {
           classList: ["likertLabel"],
           innerHTML: response,
         },
       };
-      self.schema.$_likertResponseGrid.children[`radio_${count}`] = {
+      self.schema.$_likertResponseGrid.children[
+        `$_${self.propertyName}Radio_${count}`
+      ] = {
         tag: "input",
         props: {
-          id: `${self.fieldName}_radio_${count}`,
+          id: `${self.propertyName}_radio_${count}`,
           classList: ["likertRadio"],
-          name: self.fieldName,
+          name: self.propertyName,
           type: "radio",
           value: response,
           onclick: this.radioOnClick,
@@ -40,11 +45,12 @@ class LikertResponseGrid extends Builder {
     self.manufacture(self.schema);
 
     self.elementsObject.events.subscribe(`updateFieldValues`, function () {
-      let thisFieldName = self.fieldName;
+      let thisPropertyName = self.propertyName;
       self.element.childNodes.forEach((element) => {
-        if (store.dispatch("fetch", [thisFieldName])) {
+        if (store.dispatch("fetch", [thisPropertyName])) {
           if (
-            element.value == store.dispatch("fetch", [thisFieldName])[1]?.trim()
+            element.value ==
+            store.dispatch("fetch", [thisPropertyName])[1]?.trim()
           ) {
             element.checked = true;
           } else {
@@ -60,7 +66,7 @@ class LikertResponseGrid extends Builder {
         element.checked = false;
       });
       let changeObject = {
-        [`${self.fieldName}`]: "",
+        [`${self.propertyName}`]: "",
       };
       store.dispatch("update", {
         id: store.state.activeRecord,
@@ -68,15 +74,10 @@ class LikertResponseGrid extends Builder {
       });
     });
     self.elementsObject.events.subscribe(
-      `${self.fieldName}_change`,
+      `${self.propertyName}_change`,
       function (props) {
         let changeObject = {
-          [`${self.fieldName}`]: [
-            self.fieldSettings.questionResponseFields[
-              self.fieldSettings.questionIndex
-            ][0],
-            ` ${props.response}`,
-          ],
+          [`${self.propertyName}`]: [`${self.question} `, ` ${props.response}`],
         };
         return store.dispatch("update", {
           id: store.state.activeRecord,
@@ -87,8 +88,8 @@ class LikertResponseGrid extends Builder {
   }
 
   radioOnClick = (e) => {
-    let fieldName = e.target.name;
-    let result = !this.elementsObject.events.publish(`${fieldName}_change`, {
+    let propertyName = e.target.name;
+    let result = !this.elementsObject.events.publish(`${propertyName}_change`, {
       response: e.target.value,
     });
     // if (!result) {

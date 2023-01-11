@@ -61,7 +61,9 @@ inputFieldVariations = {
       }),
     });
     popUpLinkField.$_popUp = popUp;
-    popUpLinkField.dataField.$_inputSet.onclick = popUp.activatePopUp;
+    popUpLinkField.dataField.$_inputSet.onclick = popUp.activatePopUp(
+      document.getElementById("body")
+    );
     newFields[fieldSettings.fieldName] = popUpLinkField;
     return newFields;
   },

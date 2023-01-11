@@ -1235,7 +1235,10 @@ let painData = {
     tag: "textarea",
     label: "Pain support plan FACTORS",
     classes: ["carePlan", "pain", "largeText"],
-    notes: ["Client experiences chronic pain [location]", "Pain is a big issue for client and is often the difference between a good day and a bad day."],
+    notes: [
+      "Client experiences chronic pain [location]",
+      "Pain is a big issue for client and is often the difference between a good day and a bad day.",
+    ],
   },
   painSupportPlanGoals: {
     tag: "textarea",
@@ -1251,7 +1254,7 @@ let painData = {
     classes: ["carePlan", "pain", "largeText"],
     notes: [
       "Client self manages pain on a day to day basis in consultation with his/her GP and/or specialist",
-      "Client will pace his/her daily activities and rest when needed to prevent pain levels escalating beyond what is tolerable."
+      "Client will pace his/her daily activities and rest when needed to prevent pain levels escalating beyond what is tolerable.",
     ],
   },
   painSupportPlanInterventions: {
@@ -1600,7 +1603,7 @@ let mobilityData = {
       "Client's mobility is impaired secondary to ___",
       "Client has had no falls recently.",
       "Client mobilises independently with/without mobility aids.",
-      "Client has increased risk for deconditioning of muscle strength and functional balance."
+      "Client has increased risk for deconditioning of muscle strength and functional balance.",
     ],
   },
   mobilitySupportPlanGoals: {
@@ -1634,8 +1637,6 @@ let mobilityData = {
       "Support workers will [address medical needs to prevent falls as required]",
       "Support workers will check and encourage client to wear appropriate footwear (information to be included in home folder.)",
       "Support workers will check that walkways are well lit and uncluttered/free of tripping hazards within client's home.",
-
-
     ],
   },
   mobilitySP_WellnessPartner: {
@@ -1812,12 +1813,12 @@ let environmentPersonalSafetyData = {
   PERS: {
     variation: "singleLikertField",
     label: "PERS",
-    questionResponseFields: [
-      [
+    propertyResponseFields: {
+      persStatus: [
         "Personal Emergeny Response System",
         ["Installed", "Required", "Not required"],
       ],
-    ],
+    },
     classes: ["environment", "falls", "assessment"],
   },
   personalSafetySupportPlanFactors: {
@@ -1830,7 +1831,10 @@ let environmentPersonalSafetyData = {
       "communicationSensory",
       "largeText",
     ],
-    notes:["Client is at increased risk of medical emergency and falls and is often at home alone.","Potential for delayed access to emergency services."]
+    notes: [
+      "Client is at increased risk of medical emergency and falls and is often at home alone.",
+      "Potential for delayed access to emergency services.",
+    ],
   },
   personalSafetySupportPlanGoals: {
     tag: "textarea",
@@ -1843,7 +1847,9 @@ let environmentPersonalSafetyData = {
       "goals",
       "largeText",
     ],
-    notes:["Client will have the ability to gain timely access to emergency services as needed."]
+    notes: [
+      "Client will have the ability to gain timely access to emergency services as needed.",
+    ],
   },
   personalSafetySP_Client: {
     tag: "textarea",
@@ -1855,7 +1861,10 @@ let environmentPersonalSafetyData = {
       "communicationSensory",
       "largeText",
     ],
-    notes: ["Client will wear his/her PERS pendant at all times and keep it charged.","Client will test his/her PERS pendant monthly to ensure it is functional."],
+    notes: [
+      "Client will wear his/her PERS pendant at all times and keep it charged.",
+      "Client will test his/her PERS pendant monthly to ensure it is functional.",
+    ],
   },
   personalSafetySupportPlanInterventions: {
     tag: "textarea",
@@ -1885,7 +1894,7 @@ let environmentPersonalSafetyData = {
     ],
     notes: [
       "Wellness Partner will arrange for quote and purchase of wrist based PERS, with geolocating capabilities.",
-      "Wellness partner will review and assist client to ensure that he/she has an effective Personal Emergency Response system."
+      "Wellness partner will review and assist client to ensure that he/she has an effective Personal Emergency Response system.",
     ],
   },
   personalSafetyReview: {
@@ -2405,59 +2414,28 @@ let domesticAssistanceData = {
   },
 };
 let referralData = {
-  // Referrals------------------------------------------------------
-  otReferral: {
-    variation: "singleLikertField",
-    //tag: "textarea",
-    label: "OT referral",
-    questionResponseFields: [
-      ["OT referral", ["Completed", "Required", "Not required", "NA"]],
-    ],
-
+  referrals: {
+    variation: "multiLikertField",
+    label: "Referrals",
+    propertyResponseFields: {
+      ptReferralStatus: [
+        "PT referral",
+        ["Completed", "Required", "Not required", "NA"],
+      ],
+      otReferralStatus: [
+        "OT referral",
+        ["Completed", "Required", "Not required", "NA"],
+      ],
+      gpReferralStatus: [
+        "GP referral",
+        ["Completed", "Required", "Not required", "NA"],
+      ],
+    },
     classes: [
+      "medical",
       "skin",
       "environment",
       "mobility",
-      "falls",
-      "clinical",
-      "referral",
-      "pain",
-      "assessment",
-    ],
-    // notes: [
-    //   "OT referral and follow up of recommendations for pressure injury prevention/management devices",
-    //   "OT referral and follow up of recommendations for environmental/seating/functional home safety review",
-    //   "OT referral and follow up of recommendations for pain management equipment",
-    //   "OT referral completed",
-    //   "OT assessment required",
-    //   "OT assessment NOT required.",
-    // ],
-  },
-  ptReferral: {
-    tag: "textarea",
-    label: "PT referral",
-    classes: [
-      "mobility",
-      "falls",
-      "clinical",
-      "referral",
-      "pain",
-      "assessment",
-    ],
-    notes: [
-      "PT referral and follow up for falls prevention and mobility assessment.",
-      "PT referral and follow up for mobility equipment assessment/recommendations.",
-      "PT referral and follow up for pain management.",
-      "PT referral completed",
-      "PT assessment required",
-      "PT assessment NOT required.",
-    ],
-  },
-  gpRefferral: {
-    tag: "textarea",
-    label: "GP referral",
-    classes: [
-      "medical",
       "referral",
       "clinical",
       "falls",
@@ -2467,84 +2445,74 @@ let referralData = {
       "medication",
       "assessment",
     ],
+    notes: [],
+  },
+  referralsComments: {
+    tag: "textarea",
+    label: "Referrals comments",
+    classes: [],
+    forms: ["referrals"],
     notes: [
+      "OT referral and follow up of recommendations for pressure injury prevention/management devices",
+      "OT referral and follow up of recommendations for environmental/seating/functional home safety review",
+      "OT referral and follow up of recommendations for pain management equipment",
+      "PT referral and follow up for falls prevention and mobility assessment.",
+      "PT referral and follow up for mobility equipment assessment/recommendations.",
+      "PT referral and follow up for pain management.",
       "GP referral and follow up for HMMR - information provided to client",
       "GP referral and follow up for nutritional review",
       "GP referral and follow up for review of vaccination status.",
       "GP referral and follow up for review chronic disease management plans including access to urgent medical attention",
-      "GP referral completed",
-      "GP assessment required",
-      "GP assessment NOT required.",
     ],
   },
 };
-let additionalAssessmentGrid = {
-  additionalAssessmentGrid: {
-    variation: "multipleChoiceGrid",
-    gridResponseFields: {
-      additionalAssessmentsCompleted: {
-        label: "Additional assessment completed",
-      },
-      additionalAssessmentsRequired: {
-        label: "Additional assessment required",
-      },
-      additionalAssessmentsNotRequired: {
-        label: "Additional assessment not required",
-      },
-    },
-    classes: [
-      "assessment",
-      "bogus",
-      "medical",
-      "carer",
-      "communicationSensory",
-      "medication",
-      "psychological",
-      "social",
-      "personalCare",
-      "mobility",
-      "pain",
-      "elimination",
-      "environment",
-      "falls",
-      "clinical",
-      "nutrition",
-    ],
-    selectOptions: [
-      "Communication assessment",
-      "Continence Assessment",
-      "Depression screening",
-      "Falls Risk for Older People - community setting",
-      "Functional ADL assessment",
-      "Hierarchic Dementia Scale asessment",
-      "Medication self management assessment",
-      "MMSE",
-      "Pain assessment",
-      "Pressure injury risk assessment",
-      "Psychogeriatric Assessment scale",
-    ],
-  },
-};
-let additionalAssessmentRadio = {
-  additionalAssessmentLikert: {
+let additionalAssessments = {
+  additionalAssessments: {
     variation: "multiLikertField",
     label: "Additional Assessments",
-    questionResponseFields: [
-      ["Communication Ax", ["Completed", "Required", "Not required"]],
-      ["Continence Ax", ["Completed", "Required", "Not required"]],
-      ["Depression screen", ["Completed", "Required", "Not required"]],
-      ["Falls Risk", ["Completed", "Required", "Not required"]],
-      ["Functional ADL Ax", ["Completed", "Required", "Not required"]],
-      [
+    propertyResponseFields: {
+      communicationAssessmentStatus: [
+        "Communication Ax",
+        ["Completed", "Required", "Not required"],
+      ],
+      continenceAssessmentStatus: [
+        "Continence Ax",
+        ["Completed", "Required", "Not required"],
+      ],
+      depressionScreenStatus: [
+        "Depression screen",
+        ["Completed", "Required", "Not required"],
+      ],
+      fallsRiskAssessmentStatus: [
+        "Falls Risk",
+        ["Completed", "Required", "Not required"],
+      ],
+      functionalAdlAssessmentStatus: [
+        "Functional ADL Ax",
+        ["Completed", "Required", "Not required"],
+      ],
+      hierarchicDemetiaScaleStatus: [
         "Hierarchic Dementia Scale Ax",
         ["Completed", "Required", "Not required"],
       ],
-      ["Medication management Ax", ["Completed", "Required", "Not required"]],
-      ["MMSE", ["Completed", "Required", "Not required"]],
-      ["Pain Ax", ["Completed", "Required", "Not required"]],
-      ["Pressure injury risk Ax", ["Completed", "Required", "Not required"]],
-      ["Psychogeriatric Ax scale", ["Completed", "Required", "Not required"]],
-    ],
+      MedicationManagementAssessmentStatus: [
+        "Medication management Ax",
+        ["Completed", "Required", "Not required"],
+      ],
+      mmseStatus: ["MMSE", ["Completed", "Required", "Not required"]],
+      painAssessmentStatus: [
+        "Pain Ax",
+        ["Completed", "Required", "Not required"],
+      ],
+      pressureInjuryRiskAssessmentStatus: [
+        "Pressure injury risk Ax",
+        ["Completed", "Required", "Not required"],
+      ],
+      psychgeriatricAssessmentScaleStatus: [
+        "Psychogeriatric Ax scale",
+        ["Completed", "Required", "Not required"],
+      ],
+    },
     seperateRecords: true,
     classes: [
       "assessment",
@@ -2640,7 +2608,7 @@ let clientRecordFieldSettings = {
   ...mealsNutritionData,
   ...biometricsData,
   ...domesticAssistanceData,
-  ...additionalAssessmentRadio,
+  ...additionalAssessments,
   ...referralData,
   ...reviewData,
   //CHSP

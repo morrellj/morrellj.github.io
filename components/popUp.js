@@ -65,11 +65,20 @@ class PopUp extends Builder {
       this.$_main.remove();
     }
   };
-  activatePopUp = () => {
-    if (this.resetForm) {
-      this.resetForm();
-    }
-    this.$_main.style.display = "block";
-    document.getElementById("body").appendChild(this.$_main);
+  activatePopUp = (element) => {
+    let self = this;
+    return () => {
+      if (self.resetForm) {
+        self.resetForm();
+      }
+      //checks all input field elements for a "data-xxxx" attribute to see if they belong on the form/popUp
+      self.elementsObject.inputElementsArray.forEach((element) => {
+        if (element?.dataset[self.fieldSettings.fieldName]) {
+          self.$_contentDiv.appendChild(element);
+        }
+      });
+      self.$_main.style.display = "block";
+      element.appendChild(self.$_main);
+    };
   };
 }

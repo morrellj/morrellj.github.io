@@ -11,22 +11,25 @@ class SingleLikertField extends Builder {
         children: {},
       },
     };
-    let count = 0;
-    self.fieldSettings.questionResponseFields.forEach((field) => {
-      (self.schema.$_inputSet.children[`$_question-${count}`] = {
+
+    for (const [propertyName, questionResponse] of Object.entries(
+      self.fieldSettings.propertyResponseFields
+    )) {
+      (self.schema.$_inputSet.children[`$_${propertyName}`] = {
         tag: "p",
-        props: { innerHTML: field[0], classList: ["likertFieldLabel"] },
+        props: {
+          innerHTML: questionResponse[0],
+          classList: ["likertFieldLabel"],
+        },
       }),
-        (self.schema.$_inputSet.children[`$_responses-${count}`] =
+        (self.schema.$_inputSet.children[`$_${propertyName}_responses`] =
           new LikertResponseGrid({
-            fieldSettings: Object.assign(
-              { responses: field[1], questionIndex: count },
-              self.fieldSettings
-            ),
+            question: questionResponse[0],
+            responses: questionResponse[1],
+            propertyName: propertyName,
             elementsObject: self.elementsObject,
-          })),
-        (count += 1);
-    });
+          }));
+    }
     self.manufacture(self.schema);
   }
 }

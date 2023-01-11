@@ -128,8 +128,10 @@ function linkPopUpPop(event) {
 function popUpPop(event) {
   removePopUpContent();
   let elementSchema = clientRecordFieldSettings[event.target.parentNode.id];
-  if (elementSchema.notes !== undefined && elementSchema.notes !== null) {
+  if (elementSchema?.notes) {
     popUp.style.display = "block";
+    // needs to attach to the body otherwise will appear underneath a PopUp pop up.
+    document.getElementById("body").appendChild(popUp);
     elementSchema.notes.forEach((ele) => {
       let newParagraph = document.createElement("p");
       newParagraph.innerHTML = ele;
