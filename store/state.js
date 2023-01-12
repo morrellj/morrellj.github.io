@@ -3,7 +3,7 @@ let store;
 class Store {
   #dataBaseName = "assessment_light";
   #getData() {
-    if (JSON.parse(localStorage.getItem(this.#dataBaseName))) {
+    if (localStorage.getItem(this.#dataBaseName)) {
       return { records: JSON.parse(localStorage.getItem(this.#dataBaseName)) };
     } else {
       localStorage.setItem(this.#dataBaseName, {});
