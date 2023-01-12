@@ -6,7 +6,7 @@ class Store {
     if (localStorage.getItem(this.#dataBaseName)) {
       return { records: JSON.parse(localStorage.getItem(this.#dataBaseName)) };
     } else {
-      localStorage.setItem(this.#dataBaseName, {});
+      localStorage.setItem(this.#dataBaseName, JSON.stringify({}));
       return { records: {} };
     }
   }
