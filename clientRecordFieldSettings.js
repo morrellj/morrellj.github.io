@@ -784,6 +784,7 @@ let medicationData = {
     tag: "textarea",
     label: "Medication actions",
     classes: ["clinical", "medication", "largeText", "assessment"],
+    notes:["Support plan current and effective."]
   },
   medicationReview: {
     tag: "textarea",
@@ -1034,7 +1035,7 @@ let psychologicalData = {
     label: "Pyschological support plan CLIENT",
     classes: ["carePlan", "psychological", "largeText"],
     notes: [
-      "Clients carers and support workers will assist client to identify potential issues that are causing anxiety or agitation using the CAUSEd anacronym, take appropriate actions and report outcomes.\n\u2022 Communication issues\n\u2022 Activity (is it appropriate and available)\n\u2022 Unwell/Unmet needs\n\u2022 Story (consider what we know about client that may be a clue)\n\u2022 Environment (what environmental factors are contributing to their feelings of anxiety)\n\u2022 dementia.",
+      "Client's carers and support workers will assist client to identify potential issues that are causing anxiety or agitation using the CAUSEd acronym, take appropriate actions and report outcomes.\n\u2022 Communication issues\n\u2022 Activity (is it appropriate and available)\n\u2022 Unwell/Unmet needs\n\u2022 Story (consider what we know about client that may be a clue)\n\u2022 Environment (what environmental factors are contributing to their feelings of anxiety)\n\u2022 dementia.",
       "Support workers and carers will prompote positive self esteem",
     ],
   },
@@ -1864,6 +1865,7 @@ let environmentPersonalSafetyData = {
     notes: [
       "Client will wear his/her PERS pendant at all times and keep it charged.",
       "Client will test his/her PERS pendant monthly to ensure it is functional.",
+      "Client will wear Personal Emergency Response pendant and ensure the battery is charged and renew sim card activation each year if required."
     ],
   },
   personalSafetySupportPlanInterventions: {

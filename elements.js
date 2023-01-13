@@ -142,9 +142,13 @@ class Elements {
     medication: {
       groupLinks: [
         [
-          "Anticholinergic medications",
+          "Dementia and anticholinergic medications (PDF)",
           "https://www.dementia.org.au/sites/default/files/helpsheets/Helpsheet-DementiaQandA24_AnticholinergicDrugs_english.pdf",
         ],
+        [
+          "Home Medication Review - Health Direct",
+          "https://www.healthdirect.gov.au/home-medicines-review"
+        ]
       ],
     },
     environment: {
@@ -164,7 +168,7 @@ class Elements {
       loneLinks: [
         [
           "Functional Assessment and ADL Preferences",
-          "Functional Assessment and ADL Preferences.pdf",
+          "https://forms.office.com/Pages/ResponsePage.aspx?id=1Kl9eju510eSzvcYs1m1SiSSDYhZXZVCvftee-LgCW5UNVNCUFRGSEhCVFM5RzVaSTQ1TzlPRDE1UC4u",
         ],
       ],
     },
