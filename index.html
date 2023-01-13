@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grove Assessment Main Page</title>
+    <!--<script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/papaparse.min.js"></script>
+    <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/fileReader.js"></script> 
+    <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/modelSchema.js"></script>
+    <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/clientRecordFieldSettings.js"></script>
+    <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/elements.js"></script>
+    <link rel = "stylesheet" href="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/assessment.css"/> -->
+
+    <!----<script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/papaparse.min.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/builder.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/popUp.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/inputFieldDiv.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/dataField.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/multipleChoiceGridField.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/likertResponseGrid.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/singleLikertField.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/baseInputField.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/dataFieldVariations.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/inputFieldVariations.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/inputLabel.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/selectFieldOptions.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/loneLinksField.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/link.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/groupLinksField.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/followUpCheckBox.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/pubsub.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/fileReader.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/fileWriter.js"></script> 
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/modelSchema.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/clientRecordFieldSettings.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/elements.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/storeModifyer.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/store/actions.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/store/mutations.js"></script>
+    <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/store/state.js"></script>
+    <link rel = "stylesheet" href="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/assessment.css"/>--> 
+    
+    <!----><script src="./papaparse.min.js"></script>
+    <script src="./lib/builder.js"></script>
+    <script src="./components/popUp.js"></script>
+    <script src="./components/inputFieldDiv.js"></script>
+        <script src="./components/dataField.js"></script>
+    <script src="./components/multipleChoiceGridField.js"></script>
+    <script src="./components/likertResponseGrid.js"></script>
+    <script src="./components/singleLikertField.js"></script>
+    <script src="./components/BaseInputField.js"></script>
+    <script src="./components/dataFieldVariations.js"></script>
+    <script src="./components/inputFieldVariations.js"></script>
+    <script src="./components/inputLabel.js"></script>
+    <script src="./components/selectFieldOptions.js"></script>
+    <script src="./components/followUpCheckBox.js"></script>
+    <script src="./components/loneLinksField.js"></script>
+    <script src="./components/link.js"></script>
+    <script src="./components/groupLinksField.js"></script>
+    <script src="./lib/pubsub.js"></script>
+    <script src="./lib/fileReader.js"></script>
+    <script src="./lib/fileWriter.js"></script>
+    <script src="./elements.js"></script>
+    <script src="./clientRecordFieldSettings.js"></script>
+    <script src="./lib/storeModifyer.js"></script>
+    <script src="./store/actions.js"></script>
+    <script src="./store/mutations.js"></script>
+    <script src="./store/state.js"></script>
+    <link rel = "stylesheet" href="./assessment.css"/>-->
+
+    <!--<script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/papaparse.min.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/builder.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/popUp.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/inputFieldDiv.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/dataField.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/multipleChoiceGridField.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/likertResponseGrid.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/singleLikertField.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/baseInputField.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/dataFieldVariations.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/inputFieldVariations.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/inputLabel.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/selectFieldOptions.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/followUpCheckBox.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/loneLinksField.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/link.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/components/groupLinksField.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/pubsub.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/fileReader.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/fileWriter.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/elements.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/clientRecordFieldSettings.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/modelSchema.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/lib/storeModifyer.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/store/actions.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/store/mutations.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/store/state.js"></script>
+    <link rel = "stylesheet" href="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/assessment.css"/>-->
+  </head>
+  <body id="body">
+    <div class="pop-up" id="pop-up" style="display: none;">
+      <div class="pop-up-content" id="pop-up-content">
+        <p id="pop-up-content-header" class="pop-up-content-header">Field notes:<span class="close"> &times</span></p>
+      </div>
+    </div>
+    <div class="sticky">
+      <button class="flex-item" onclick="consoleReview()">Review</button>
+      <button id="cleartReviewBtn" onclick="elements.clearAndBackUpReviewFields()">Clear review</button>
+      <button id="clearAssessmentBtn" onclick="elements.clearAndBackUpAssessmentFields()">Clear assessment</button>
+      <button id="exportButton" onclick="exportData()">Export data</button>
+      <div class="flex-container" id="recordControl" style="display: flex;">
+        <div  id = "clientListDiv">
+          <input type="text" placeholder="search" id="searchBox" oninput="searchReduce()"></input>
+          <br />
+          <div>
+            <select size="4" class="flex-item"  onclick="clientSelectAction(this.value)" name="clientListSelect" id="clientListSelect">
+            </select>
+          </div>
+          <div id="clientButtonsDiv" >
+            <button class="flex-item" onclick="clientDelete()">Delete</button>
+            
+          </div>
+        </div>
+        
+        <div  id = "newClientAddDiv">
+          <button  onclick="toggle(newClientAddForm)">Add a client</button>
+          </label>
+          <input id="fileItem" type="file" onchange="csvFileToString()">
+          <br /><br />
+          <div id = "newClientAddForm" hidden= true>
+            <p>First name:</p>
+            <input type = "text" id = "addClient-firstName"></input>
+            <br />
+            <p>Surname:</p>
+            <input type = "text" id = "addClient-surname"></input>
+            <br /><br />
+            <button onclick="clientAdd()">Submit</button>
+            <br /><br />
+          </div>
+        </div>
+      </div>
+      <div class="flex-item" id="clientSelected">
+        <p>Client Selected:<span id="controlToggle">&#9651</span></p>
+        <p id="output" style="color:red"></p>
+      </div>
+      <nav class="flex-item" id="buttonNav">
+        <button class="btn" onclick="setPage('demographic')" id="demographic-btn">Demographic</button>
+        <button class="btn" onclick="setPage('contactsMedical')" id="contactsMedical-btn">Contacts and Medical</button>
+        <button class="btn" onclick="setPage('preamble')" id="preamble-btn">Premable</button>
+        <button class="btn" onclick="setPage('chsp')" id="chsp-btn">CHSP</button>
+        <button class="btn" onclick="setPage('schedule')" id="schedule-btn">Schedule</button>
+        <button class="btn" onclick="setPage('biometrics')" id="biometrics-btn">Biometrics</button>
+        <button class="btn" onclick="setPage('domestic')" id="domestic-btn">Domestic</button>
+        <button class="btn" onclick="setPage('communicationSensory')" id="communicationSensory-btn">Communication/Sensory</button>
+        <button class="btn" onclick="setPage('elimination')" id="elimination-btn">Elimination</button>
+        <button class="btn" onclick="setPage('environment')" id="environment-btn">Environment</button>
+        <button class="btn" onclick="setPage('falls')" id="falls-btn">Falls</button>
+        <button class="btn" onclick="setPage('mealsShopping')" id="mealsShopping-btn">Meals/shopping/social</button>
+        <button class="btn" onclick="setPage('medical')" id="medical-btn">Medical</button>
+        <button class="btn" onclick="setPage('medication')" id="medication-btn">Medication</button>
+        <button class="btn" onclick="setPage('mobility')" id="mobility-btn">Mobility</button>
+        <button class="btn" onclick="setPage('nutrition')" id="nutrition-btn">Nutrition</button>
+        <button class="btn" onclick="setPage('pain')" id="pain-btn">Pain</button>
+        <button class="btn" onclick="setPage('personalCare')" id="personalCare-btn">Personal care</button>
+        <button class="btn" onclick="setPage('psychological')" id="psychological-btn">Psych/cognition/sleep</button>
+        <button class="btn" onclick="setPage('skin')" id="skin-btn">Skin</button>
+        <button class="btn" onclick="setPage('social')" id="social-btn">Social</button>
+        <button class="btn" onclick="setPage('carer')" id="carer-btn">Carer</button>
+        <button class="btn" onclick="setPage('carePlan')" id="carePlan-btn">Care Plan</button>
+        <button class="btn" onclick="setPage('clinical')" id="clinical-btn">Clinical</button>
+        <button class="btn" onclick="setPage('review')" id="review-btn">Review</button>
+        <button class="btn" onclick="setPage('followUp')" id="followUp-btn">Follow up</button>
+        <button class="btn" onclick="carePlanToggle()" id="carePlanToggle" data-state="showCarePlan">Hide CP</button>
+      </nav>
+    </div>
+    <div id="root" class="root">
+    </div>
+  </body>
+  <!-- <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/assessment.js"></script> -->
+  <!----<script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/assessment.js"></script> -->
+  <!----><script src="./assessment.js"></script>-->
+  <!----<script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/assessment.js"></script>-->
+</html>
