@@ -996,7 +996,7 @@ let psychologicalData = {
   lonlinessScale: {
     tag: "textarea",
     label: "6-Item Loneliness Scale",
-    classes: ["largeText", "psychological", "assessment"],
+    classes: ["largeText", "social", "assessment"],
     notes: [
       "• Level of emotional loneliness",
       "I experience a general sense of emptiness Yes/No/Somewhat",
