@@ -998,10 +998,7 @@ let psychologicalData = {
     label: "6-Item Loneliness Scale",
     classes: ["social", "assessment"],
     propertyResponseFields: {
-      emotionalLonelinessSection: [
-        "Level of emotional loneliness",
-        ["Yes", "No", "Somewhat"],
-      ],
+      emotionalLonelinessSection: ["Level of emotional loneliness", []],
       emotionalLoneliness1: [
         "I experience a general sense of emptiness",
         ["Yes", "No", "Somewhat"],
