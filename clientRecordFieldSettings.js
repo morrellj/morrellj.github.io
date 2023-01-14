@@ -1506,13 +1506,7 @@ let mobilityData = {
   transport: {
     tag: "textarea",
     label: "Transport",
-    classes: [
-      "medical",
-      "mobility",
-      "mealsShopping",
-      "largeText",
-      "assessment",
-    ],
+    classes: ["medical", "mobility", "largeText", "assessment"],
   },
   transfers: {
     tag: "select",
@@ -1596,7 +1590,7 @@ let mobilityData = {
   },
   mobilitySupportPlanFactors: {
     tag: "textarea",
-    label: "Mobility/transport support plan FACTORS",
+    label: "Mobility support plan FACTORS",
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
       "Client has experienced numerous falls recently.",
@@ -1609,7 +1603,7 @@ let mobilityData = {
   },
   mobilitySupportPlanGoals: {
     tag: "textarea",
-    label: "Mobility/transport support plan GOALS",
+    label: "Mobility support plan GOALS",
     classes: ["carePlan", "mobility", "goals", "falls", "largeText"],
     notes: [
       "Falls will be prevented.",
@@ -1619,7 +1613,7 @@ let mobilityData = {
   },
   mobilitySP_Client: {
     tag: "textarea",
-    label: "Mobility/transport support plan CLIENT",
+    label: "Mobility support plan CLIENT",
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
       "Client will participate in his/her home exercise program as per physiotherapy plan.",
@@ -1627,7 +1621,7 @@ let mobilityData = {
   },
   mobilitySupportPlanInterventions: {
     tag: "textarea",
-    label: "Mobility/transport support plan SUPPORTS",
+    label: "Mobility support plan SUPPORTS",
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
       "Southern Plus will facilitate referral for Physiotherapy.",
@@ -1642,7 +1636,7 @@ let mobilityData = {
   },
   mobilitySP_WellnessPartner: {
     tag: "textarea",
-    label: "Mobility/transport support plan WELLNESS PARTNER",
+    label: "Mobility support plan WELLNESS PARTNER",
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
       "Southern Plus will facilitate referral for Physiotherapy.",
@@ -2087,38 +2081,18 @@ let mealsNutritionData = {
   financesOther: {
     tag: "textarea",
     label: "Finances other",
-    classes: [
-      "domestic",
-      "psychological",
-      "mealsShopping",
-      "largeText",
-      "assessment",
-    ],
+    classes: ["domestic", "psychological", "social", "largeText", "assessment"],
     default: ["Person responsible for finances: Client/Spouse/EPOA"],
   },
   mealsAndShoppingOther: {
     tag: "textarea",
     label: "Meals and shopping other",
-    classes: [
-      "function",
-      "mealsShopping",
-      "nutrition",
-      "mobility",
-      "largeText",
-      "assessment",
-    ],
+    classes: ["nutrition", "largeText", "assessment"],
   },
   mealsAndShoppingSupportPlanFactors: {
     tag: "textarea",
     label: "Meals/shopping support plan FACTORS",
-    classes: [
-      "carePlan",
-      "function",
-      "mealsShopping",
-      "nutrition",
-      "mobility",
-      "largeText",
-    ],
+    classes: ["carePlan", "nutrition", "largeText"],
     notes: [
       "Client is able to prepare and cook his/her own meals.",
       "Client has a self care deficit related to meal preparation secondary to ___",
@@ -2127,27 +2101,13 @@ let mealsNutritionData = {
   mealsAndShoppingSupportPlanGoals: {
     tag: "textarea",
     label: "Meals/shopping support plan GOALS",
-    classes: [
-      "carePlan",
-      "mealsShopping",
-      "nutrition",
-      "mobility",
-      "goals",
-      "largeText",
-    ],
+    classes: ["carePlan", "nutrition", "goals", "largeText"],
     notes: ["Client will be adequately nourished and hydrated."],
   },
   mealsAndShoppingSP_Client: {
     tag: "textarea",
     label: "Meals/shopping support plan CLIENT",
-    classes: [
-      "carePlan",
-      "function",
-      "mealsShopping",
-      "nutrition",
-      "mobility",
-      "largeText",
-    ],
+    classes: ["carePlan", "nutrition", "largeText"],
     notes: [
       "_____ will complete shopping general food items and supervise client with his/her meals/nutritional intake on a day to day basis.",
       "Client will contribute to the set up, cost of the food portion of and ongoing ordering of meals.",
@@ -2160,14 +2120,7 @@ let mealsNutritionData = {
   mealsAndShoppingSupportPlanInterventions: {
     tag: "textarea",
     label: "Meals/shopping support plan SUPPORTS",
-    classes: [
-      "carePlan",
-      "function",
-      "mealsShopping",
-      "nutrition",
-      "mobility",
-      "largeText",
-    ],
+    classes: ["carePlan", "nutrition", "largeText"],
     notes: [
       "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
     ],
@@ -2175,14 +2128,7 @@ let mealsNutritionData = {
   mealsAndShoppingSP_WellnessPartner: {
     tag: "textarea",
     label: "Meals/shopping support plan WELLNESS PARTNER",
-    classes: [
-      "carePlan",
-      "function",
-      "mealsShopping",
-      "nutrition",
-      "mobility",
-      "largeText",
-    ],
+    classes: ["carePlan", "nutrition", "largeText"],
     notes: [
       "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
     ],
@@ -2190,7 +2136,7 @@ let mealsNutritionData = {
   mealsAndShoppingReview: {
     tag: "textarea",
     label: "Meals and shopping",
-    classes: ["review", "mealsShopping", "mobility", "carePlan", "largeText"],
+    classes: ["review", "nutrition", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
   },
   //nutrition
