@@ -7,7 +7,7 @@ class SingleLikertField extends Builder {
     self.schema = {
       $_inputSet: {
         tag: "div",
-        props: {},
+        props: { classList: ["likertWrap"] },
         children: {},
       },
     };

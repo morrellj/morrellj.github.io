@@ -120,6 +120,10 @@ input[type="checkbox"] {
 .hiddenDataField {
   display: none;
 }
+.likertWrap {
+  display: flex;
+  flex-direction: column;
+}
 p.likertFieldLabel {
   font-weight: bold;
 }

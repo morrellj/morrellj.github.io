@@ -974,8 +974,8 @@ let psychologicalData = {
       "Age Incorrect",
       "Time to the nearest hour Correct",
       "Time to the nearest hour Incorrect",
-      "Address to recall – 42 West St Correct",
-      "Address to recall – 42 West St Incorrect",
+      "Address to recall - 42 West St Correct",
+      "Address to recall - 42 West St Incorrect",
       "Current year Correct",
       "Current year Incorrect",
       "Current location (where are we?) Correct",
@@ -994,19 +994,41 @@ let psychologicalData = {
     ],
   },
   lonlinessScale: {
-    tag: "textarea",
+    variation: "multiLikertField",
     label: "6-Item Loneliness Scale",
-    classes: ["largeText", "social", "assessment"],
-    notes: [
-      "• Level of emotional loneliness",
-      "I experience a general sense of emptiness Yes/No/Somewhat",
-      "There are plenty of people I can rely on when I have problems Yes/No/Somewhat",
-      "There are many people I can trust completely Yes/No/Somewhat",
-      "• Level of social loneliness",
-      "I miss having people around me Yes/No/Somewhat",
-      "There are enough people I feel close to Yes/No/Somewhat",
-      "I often feel rejected Yes/No/Somewhat",
-    ],
+    classes: ["social", "assessment"],
+    propertyResponseFields: {
+      emotionalLonelinessSection: [
+        "Level of emotional loneliness",
+        ["Yes", "No", "Somewhat"],
+      ],
+      emotionalLoneliness1: [
+        "I experience a general sense of emptiness",
+        ["Yes", "No", "Somewhat"],
+      ],
+      emotionalLoneliness2: [
+        "There are plenty of people I can rely on when I have problems",
+        ["Yes", "No", "Somewhat"],
+      ],
+      emotionalLoneliness3: [
+        "There are many people I can trust completely",
+        ["Yes", "No", "Somewhat"],
+      ],
+      socialLonlinessSection: [
+        "Level of social loneliness",
+        ["Yes", "No", "Somewhat"],
+      ],
+      socialLonliness1: [
+        "I miss having people around me",
+        ["Yes", "No", "Somewhat"],
+      ],
+      socialLonliness2: [
+        "There are enough people I feel close to",
+        ["Yes", "No", "Somewhat"],
+      ],
+      socialLonliness3: ["I often feel rejected", ["Yes", "No", "Somewhat"]], //
+    },
+    notes: [],
   },
   psychologicalSupportPlanFactors: {
     tag: "textarea",
