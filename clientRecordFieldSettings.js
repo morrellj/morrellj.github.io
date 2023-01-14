@@ -784,7 +784,7 @@ let medicationData = {
     tag: "textarea",
     label: "Medication actions",
     classes: ["clinical", "medication", "largeText", "assessment"],
-    notes:["Support plan current and effective."]
+    notes: ["Support plan current and effective."],
   },
   medicationReview: {
     tag: "textarea",
@@ -1865,7 +1865,7 @@ let environmentPersonalSafetyData = {
     notes: [
       "Client will wear his/her PERS pendant at all times and keep it charged.",
       "Client will test his/her PERS pendant monthly to ensure it is functional.",
-      "Client will wear Personal Emergency Response pendant and ensure the battery is charged and renew sim card activation each year if required."
+      "Client will wear Personal Emergency Response pendant and ensure the battery is charged and renew sim card activation each year if required.",
     ],
   },
   personalSafetySupportPlanInterventions: {
