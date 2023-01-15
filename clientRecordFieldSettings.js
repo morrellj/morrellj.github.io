@@ -993,7 +993,7 @@ let psychologicalData = {
       "Score:___. A score of less than 8 in the AMTS implies the presence of cognitive impairment",
     ],
   },
-  lonlinessScale: {
+  lonelinessScale: {
     variation: "multiLikertField",
     label: "6-Item Loneliness Scale",
     classes: ["social", "assessment"],
@@ -1001,31 +1001,39 @@ let psychologicalData = {
       emotionalLonelinessSection: ["Level of emotional loneliness", []],
       emotionalLoneliness1: [
         "I experience a general sense of emptiness",
-        ["Yes", "No", "Somewhat"],
+        ["Yes - 1", , "More or less - 1", "No - 0"],
       ],
       emotionalLoneliness2: [
         "There are plenty of people I can rely on when I have problems",
-        ["Yes", "No", "Somewhat"],
+        ["Yes - 1", , "More or less - 1", "No - 0"],
       ],
       emotionalLoneliness3: [
         "There are many people I can trust completely",
-        ["Yes", "No", "Somewhat"],
+        ["Yes - 1", , "More or less - 1", "No - 0"],
       ],
-      socialLonlinessSection: [
-        "Level of social loneliness",
-        ["Yes", "No", "Somewhat"],
-      ],
-      socialLonliness1: [
+      socialLonelinessSection: ["Level of social loneliness", []],
+      socialLoneliness1: [
         "I miss having people around me",
-        ["Yes", "No", "Somewhat"],
+        ["Yes - 1", , "More or less - 1", "No - 0"],
       ],
-      socialLonliness2: [
+      socialLoneliness2: [
         "There are enough people I feel close to",
-        ["Yes", "No", "Somewhat"],
+        ["Yes - 1", , "More or less - 1", "No - 0"],
       ],
-      socialLonliness3: ["I often feel rejected", ["Yes", "No", "Somewhat"]], //
+      socialLoneliness3: [
+        "I often feel rejected",
+        ["Yes - 1", , "More or less - 1", "No - 0"],
+      ], //
     },
-    notes: [],
+    notes: [
+      "We would like to ask you a few questions to enable us to measure how helpful our services are. You can choose to answer all or none of the questions, and choosing not to answer will not affect your access to any of our services in any way. When answering the questions, you could take account of the following:",
+      "•There are no right or wrong answers",
+      "•We would like you to be completely honest",
+      "•In answering the questions, it is best to think of your life as it generally is now (we all have some good or bad days)",
+      " ",
+      "Code: EL - Emotional loneliness, missing an intimate relationship  Score of 3 indicates intense emotional loneliness",
+      "Code: SL - Social loneliness, missing a wider social network.  Score of 3 indicates intense social loneliness",
+    ],
   },
   psychologicalSupportPlanFactors: {
     tag: "textarea",

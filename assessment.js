@@ -140,7 +140,7 @@ function popUpPop(event) {
       if (
         elements.inputObjects[
           event.target.parentNode.id
-        ].$_dataField.value.indexOf(ele) >= 0
+        ].$_dataField?.value?.indexOf(ele) >= 0
       ) {
         newParagraph.style.color = "red";
       } else {
