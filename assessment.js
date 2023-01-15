@@ -10,6 +10,15 @@ let recordControl = document.getElementById("recordControl");
 let controlToggle = document.getElementById("controlToggle");
 let closeSpans = document.getElementsByClassName("close");
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("/serviceWorker.js")
+      .then((res) => console.log("service worker registered"))
+      .catch((err) => console.log("service worker not registered", err));
+  });
+}
+
 elements = new Elements(clientRecordFieldSettings);
 
 function setPage(category) {

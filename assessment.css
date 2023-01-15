@@ -72,6 +72,15 @@ nav button {
   background-color: #666;
   color: white;
 }
+#butInstall {
+  float: right;
+  background-color: #c0d6ff;
+  margin-right: 0px;
+  margin-top: 1px;
+  border-radius: 4px;
+  border: none;
+  padding: 4px 9px;
+}
 p {
   margin: 6px 0px 6px;
 }
@@ -231,6 +240,9 @@ textarea:focus {
   background-color: gray;
   border: 1px solid white;
   border-radius: 3px;
+}
+.hidden {
+  display: none !important;
 }
 /* Responsive layout - makes a one column-layout instead of two-column layout */
 

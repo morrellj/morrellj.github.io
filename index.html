@@ -41,32 +41,8 @@
     <script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/store/state.js"></script>
     <link rel = "stylesheet" href="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/assessment.css"/>--> 
     
-    <!----><script src="./papaparse.min.js"></script>
-    <script src="./lib/builder.js"></script>
-    <script src="./components/popUp.js"></script>
-    <script src="./components/inputFieldDiv.js"></script>
-        <script src="./components/dataField.js"></script>
-    <script src="./components/multipleChoiceGridField.js"></script>
-    <script src="./components/likertResponseGrid.js"></script>
-    <script src="./components/singleLikertField.js"></script>
-    <script src="./components/BaseInputField.js"></script>
-    <script src="./components/dataFieldVariations.js"></script>
-    <script src="./components/inputFieldVariations.js"></script>
-    <script src="./components/inputLabel.js"></script>
-    <script src="./components/selectFieldOptions.js"></script>
-    <script src="./components/followUpCheckBox.js"></script>
-    <script src="./components/loneLinksField.js"></script>
-    <script src="./components/link.js"></script>
-    <script src="./components/groupLinksField.js"></script>
-    <script src="./lib/pubsub.js"></script>
-    <script src="./lib/fileReader.js"></script>
-    <script src="./lib/fileWriter.js"></script>
-    <script src="./elements.js"></script>
-    <script src="./clientRecordFieldSettings.js"></script>
-    <script src="./lib/storeModifyer.js"></script>
-    <script src="./store/actions.js"></script>
-    <script src="./store/mutations.js"></script>
-    <script src="./store/state.js"></script>
+    <!---->
+    <link rel="manifest" href="./manifest.json"> 
     <link rel = "stylesheet" href="./assessment.css"/>-->
 
     <!--<script src="file:///C:/Users/morre/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/papaparse.min.js"></script>
@@ -109,6 +85,7 @@
       <button id="cleartReviewBtn" onclick="elements.clearAndBackUpReviewFields()">Clear review</button>
       <button id="clearAssessmentBtn" onclick="elements.clearAndBackUpAssessmentFields()">Clear assessment</button>
       <button id="exportButton" onclick="exportData()">Export data</button>
+      <button id="butInstall" class="hidden">Install app</button>
       <div class="flex-container" id="recordControl" style="display: flex;">
         <div  id = "clientListDiv">
           <input type="text" placeholder="search" id="searchBox" oninput="searchReduce()"></input>
@@ -176,6 +153,34 @@
     <div id="root" class="root">
     </div>
   </body>
+  <script src="./serviceWorker.js"></script>
+  <script src="./pwaScripts/appInstall.js"></script>
+  <script src="./papaparse.min.js"></script>
+  <script src="./lib/builder.js"></script>
+  <script src="./components/popUp.js"></script>
+  <script src="./components/inputFieldDiv.js"></script>
+  <script src="./components/dataField.js"></script>
+  <script src="./components/multipleChoiceGridField.js"></script>
+  <script src="./components/likertResponseGrid.js"></script>
+  <script src="./components/singleLikertField.js"></script>
+  <script src="./components/BaseInputField.js"></script>
+  <script src="./components/dataFieldVariations.js"></script>
+  <script src="./components/inputFieldVariations.js"></script>
+  <script src="./components/inputLabel.js"></script>
+  <script src="./components/selectFieldOptions.js"></script>
+  <script src="./components/followUpCheckBox.js"></script>
+  <script src="./components/loneLinksField.js"></script>
+  <script src="./components/link.js"></script>
+  <script src="./components/groupLinksField.js"></script>
+  <script src="./lib/pubsub.js"></script>
+  <script src="./lib/fileReader.js"></script>
+  <script src="./lib/fileWriter.js"></script>
+  <script src="./elements.js"></script>
+  <script src="./clientRecordFieldSettings.js"></script>
+  <script src="./lib/storeModifyer.js"></script>
+  <script src="./store/actions.js"></script>
+  <script src="./store/mutations.js"></script>
+  <script src="./store/state.js"></script>
   <!-- <script src="file:///C:/Users/jmorrell/Desktop/backUp/backups%20and%20workshop/assessment%20light/assessment.js"></script> -->
   <!----<script src="file:///C:/Users/jmorrell/OneDrive%20-%20Southern%20Cross%20Care%20(WA)%20Inc/assessment-light/assessment.js"></script> -->
   <!----><script src="./assessment.js"></script>-->
