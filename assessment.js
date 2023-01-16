@@ -35,6 +35,7 @@ function setPage(category) {
     current[0].className = current[0].className.replace(" active", "");
   }
   document.getElementById(category + "-btn").className += " active";
+  menuDetach.appendChild(buttonNav);
   // show or hide care plans for each category
   let setCarePlanDivState = {
     showCarePlan: "block",
