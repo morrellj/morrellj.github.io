@@ -110,7 +110,6 @@
       <button id="cleartReviewBtn" onclick="elements.clearAndBackUpReviewFields()">Clear review</button>
       <button id="clearAssessmentBtn" onclick="elements.clearAndBackUpAssessmentFields()">Clear assessment</button>
       <button id="exportButton" onclick="exportData()">Export data</button>
-      <button id="butInstall" class="hidden">Install app</button>
       <div class="flex-container" id="recordControl" style="display: flex;">
         <div  id = "clientListDiv">
           <input type="text" placeholder="search" id="searchBox" oninput="searchReduce()"></input>
@@ -144,9 +143,9 @@
       </div>
       <div class="flex-item" id="clientSelected">
         <p>Client Selected:<span id="controlToggle">&#9651</span></p>
-        <p id="outputContainer"><span id="output" style="color:red"></span><span id="buttonNavToggle"></span></p>
+        <p id="outputContainer"><span id="output" style="color:red"></span></p>
       </div>
-      <div id="menuAttach"></div>
+      <div id="menuAttach"><p id="buttonNavToggle" class="hidden">Show Menu</p></div>
     </div>
     <div id="menuDetach" data-loaded = "true">
       <nav class="flex-item" id="buttonNav">
