@@ -35,7 +35,6 @@ function setPage(category) {
     current[0].className = current[0].className.replace(" active", "");
   }
   document.getElementById(category + "-btn").className += " active";
-  checkScreenWidth();
   // show or hide care plans for each category
   let setCarePlanDivState = {
     showCarePlan: "block",
@@ -45,6 +44,12 @@ function setPage(category) {
     setCarePlanDivState[
       document.getElementById("carePlanToggle").dataset.state
     ];
+  if (store.state.activeRecord) {
+    clientSelectDivClose();
+  }
+  setTimeout(() => {
+    setButtonNavPositionOnSetPage();
+  }, 100);
 }
 
 //Fill the client selection drop down list
@@ -268,13 +273,19 @@ function carePlanToggle() {
 }
 controlToggle.onclick = function () {
   if (recordControl.style.display == "none") {
-    recordControl.style.display = "flex";
-    this.innerHTML = "&#9651";
+    clientSelectDivOpen();
   } else {
-    recordControl.style.display = "none";
-    this.innerHTML = "&#9661";
+    clientSelectDivClose();
   }
 };
+function clientSelectDivClose() {
+  recordControl.style.display = "none";
+  controlToggle.innerHTML = "&#9661";
+}
+function clientSelectDivOpen() {
+  recordControl.style.display = "flex";
+  controlToggle.innerHTML = "&#9651";
+}
 for (let i = 0; i < closeSpans.length; i++) {
   closeSpans[i].onclick = function () {
     this.closest(".pop-up").style.display = "none";
