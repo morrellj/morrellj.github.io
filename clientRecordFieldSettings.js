@@ -998,27 +998,30 @@ let psychologicalData = {
     label: "6-Item Loneliness Scale",
     classes: ["social", "assessment"],
     propertyResponseFields: {
-      emotionalLonelinessSection: ["Level of emotional loneliness", []],
+      emotionalLonelinessSection: [
+        "Code EL: Level of emotional loneliness",
+        [],
+      ],
       emotionalLoneliness1: [
         "I experience a general sense of emptiness",
         ["Yes - 1", , "More or less - 1", "No - 0"],
       ],
       emotionalLoneliness2: [
         "There are plenty of people I can rely on when I have problems",
-        ["Yes - 1", , "More or less - 1", "No - 0"],
+        ["Yes - 0", , "More or less - 1", "No - 1"],
       ],
       emotionalLoneliness3: [
         "There are many people I can trust completely",
-        ["Yes - 1", , "More or less - 1", "No - 0"],
+        ["Yes - 0", , "More or less - 1", "No - 1"],
       ],
-      socialLonelinessSection: ["Level of social loneliness", []],
+      socialLonelinessSection: ["Code SL: Level of social loneliness", []],
       socialLoneliness1: [
         "I miss having people around me",
         ["Yes - 1", , "More or less - 1", "No - 0"],
       ],
       socialLoneliness2: [
         "There are enough people I feel close to",
-        ["Yes - 1", , "More or less - 1", "No - 0"],
+        ["Yes - 0", , "More or less - 1", "No - 1"],
       ],
       socialLoneliness3: [
         "I often feel rejected",

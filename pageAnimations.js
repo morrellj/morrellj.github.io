@@ -19,7 +19,7 @@ function activateNarrowScreenAnimations() {
 function setButtonNavPositionOnSetPage() {
   if (screenWidthNarrow()) {
     activateNarrowScreenAnimations();
-    if (window.innerWidth < 730) {
+    if (window.innerWidth < 1300) {
       if (
         !(
           document.getElementById("body").scrollHeight - window.innerHeight <
