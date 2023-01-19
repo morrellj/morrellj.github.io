@@ -38,6 +38,66 @@ body {
   border: 1px solid #888;
   width: 80%;
 }
+/* Top menu */
+/* button[disabled] { */
+/* opacity: 0.5;
+} */
+
+.menuContainer {
+  display: inline-block;
+  position: relative;
+}
+
+.menuContainer > button {
+  background-color: inherit;
+  color: inherit;
+  min-width: 48px;
+  padding: 4px 16px;
+}
+
+.menuContainer button {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.menuContainer button:focus {
+  outline: none;
+}
+
+.menuContainer .menuItemContainer {
+  /* background-color: var(--app-menu-bg); */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  position: absolute;
+  z-index: 1;
+}
+
+.menuContainer .menuItemContainer button {
+  /* background-color: var(--app-menu-bg); */
+  /* color: var(--app-menu-color); */
+  display: block;
+  padding: 16px;
+  text-align: left;
+  width: 100%;
+}
+/* 
+.menuContainer > button:hover,
+.menuContainer > button:focus,
+.menuContainer > button[aria-expanded="true"] {
+  background-color: var(--app-menu-selected);
+}
+
+.menuItemContainer button:hover,
+.menuItemContainer button:focus {
+  background-color: var(--app-menu-bg-highlight);
+} */
+
+/* .menuContainer button[aria-checked=true] {
+  background-color: var(--app-menu-toggled-bg);
+  color: var(--app-menu-toggled-color);
+} */
+/* End top menu */
 .close,
 #controlToggle {
   color: #313131;
