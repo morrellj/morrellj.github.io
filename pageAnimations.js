@@ -55,6 +55,7 @@ function displayShowButtonNavMessage() {
 function buttonNavToggleOnClick() {
   window.removeEventListener("scroll", displayShowButtonNavMessage);
   attachMenu();
+  clientSelectDivClose();
   setTimeout(() => {
     window.addEventListener("scroll", displayShowButtonNavMessage);
   }, 1000);
