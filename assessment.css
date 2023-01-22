@@ -175,6 +175,7 @@ p {
 input {
   width: 25vw;
   margin: 2px;
+  border: 1px solid lightgrey;
 }
 select {
   width: 25vw;
@@ -192,6 +193,7 @@ input[type="checkbox"] {
 }
 #root select {
   width: 30vw;
+  border: 1px solid lightgrey;
   margin: 2px;
 }
 .inputFieldDiv {
@@ -246,6 +248,7 @@ textarea {
   min-width: 30vw;
   min-height: 70px;
   margin: 2px;
+  border: 1px solid lightgrey;
 }
 
 textarea:focus {
@@ -314,7 +317,7 @@ textarea:focus {
   background-color: #d2f8d2;
 }
 .important {
-  background-color: #f8f8d2;
+  background-color: #ffffcc;
 }
 .clinical {
   background-color: #d2d2f8;
@@ -326,8 +329,8 @@ textarea:focus {
   background-color: #d2f0f8;
 }
 #assessment > div > div > p {
-  color: white;
-  background-color: gray;
+  color: darkslategrey;
+  background-color: lightgrey;
   border: 1px solid white;
   border-radius: 3px;
 }
@@ -356,6 +359,7 @@ textarea:focus {
   #root input,
   #root select {
     width: 70vw;
+    /* border: 3px solid lightgrey; */
   }
   input,
   select {

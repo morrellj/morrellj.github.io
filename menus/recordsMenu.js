@@ -6,7 +6,10 @@
     .getElementById("deleteRecordButton")
     .addEventListener("click", () => {
       appMenus.hide(menuRecords);
-      app.recordsActions.delete();
+      app.pageActions.hideAll();
+      setTimeout(() => {
+        app.recordsActions.delete();
+      }, 200);
     });
 
   document.getElementById("newRecordButton").addEventListener("click", () => {
