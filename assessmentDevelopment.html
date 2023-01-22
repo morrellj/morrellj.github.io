@@ -15,125 +15,139 @@
         <p id="pop-up-content-header" class="pop-up-content-header">Field notes:<span class="close"> &times</span></p>
       </div>
     </div>
-    <!-- Top menu -->
-    <nav class="nav" id="topMenu">
-      <div id="menuFile" class="menuContainer">
-        <button id="fileMenuButton" class="topMenuButton" aria-label="File" aria-haspopup="true" aria-expanded="false">
-          File
-        </button>
-        <div role="menu" class="menuItemContainer hidden">
-          <button id="openFsFileButton" type="menuButton" role="menuitem">
-            Open
-          </button>
-          <button id="saveToFsFile" type="menuButton" role="menuitem">
-            Save
-          </button>
-        </div>
-      </div>
-      <div id="menuPage" class="menuContainer">
-        <button id="pageMenuButton" class="topMenuButton" aria-label="Page Actions" aria-haspopup="true" aria-expanded="false">
-          Page
-        </button>
-        <div role="menu" class="menuItemContainer hidden">
-          <button id="reviewNotesButton" type="menuButton" role="menuitem">
-            Copy review notes
-          </button>
-          <button id="clearReviewNotesButton" type="menuButton" role="menuitem">
-            Clear review notes
-          </button>
-          <button id="clearAssessmentNotesButton" type="menuButton" role="menuitem">
-            Clear assessment notes
-          </button>
-        </div>
-      </div>
-      <div id="menuRecords" class="menuContainer">
-        <button id="recordsMenuButton" class="topMenuButton" aria-label="File" aria-haspopup="true" aria-expanded="false">
-          Records
-        </button>
-        <div role="menu" class="menuItemContainer hidden">
-          <button id="deleteRecordButton" type="menuButton" role="menuitem">
-            Delete current client
-          </button>
-          <button id="newRecordButton" type="menuButton" role="menuitem">
-            Add new client
-          </button>
-        </div>
-      </div>
-    </nav>
+    <!-- Does not scroll with page -->
     <div class="sticky">
-      <button class="flex-item" onclick="consoleReview()">Review</button>
+      <!-- Top menu -->
+      <nav class="nav" id="topMenu">
+        <div id="menuFile" class="menuContainer">
+          <button id="fileMenuButton" class="topMenuButton" aria-label="File" aria-haspopup="true" aria-expanded="false">
+            File
+          </button>
+          <div role="menu" class="menuItemContainer hidden">
+            <button id="openFsFileButton" type="menuButton" role="menuitem">
+              Open
+            </button>
+            <button id="saveToFsFile" type="menuButton" role="menuitem">
+              Save
+            </button>
+          </div>
+        </div>
+        <div id="menuPage" class="menuContainer">
+          <button id="pageMenuButton" class="topMenuButton" aria-label="Page Actions" aria-haspopup="true" aria-expanded="false">
+            Page
+          </button>
+          <div role="menu" class="menuItemContainer hidden">
+            <button id="reviewNotesButton" type="menuButton" role="menuitem">
+              Copy review notes
+            </button>
+            <button id="clearReviewNotesButton" type="menuButton" role="menuitem">
+              Clear review notes
+            </button>
+            <button id="clearAssessmentNotesButton" type="menuButton" role="menuitem">
+              Clear assessment notes
+            </button>
+          </div>
+        </div>
+        <div id="menuRecords" class="menuContainer">
+          <button id="recordsMenuButton" class="topMenuButton" aria-label="File" aria-haspopup="true" aria-expanded="false">
+            Records
+          </button>
+          <div role="menu" class="menuItemContainer hidden">
+            <button id="selectClientRecord" type="menuButton" role="menuitem">
+              Select client ⎇1
+            </button>
+            <button id="deleteRecordButton" type="menuButton" role="menuitem">
+              Delete current client
+            </button>
+            <button id="newRecordButton" type="menuButton" role="menuitem">
+              Add new client
+            </button>
+          </div>
+        </div>
+        
+        <button class="btn hidden" onclick="carePlanToggle()" id="carePlanToggle" data-state="hideCarePlan">Show CP ⎇3</button>
+      </nav>
+      <!-- Buttons to go -->
+      <!-- <button class="flex-item" onclick="consoleReview()">Review</button>
       <button id="cleartReviewBtn" onclick="elements.clearAndBackUpReviewFields()">Clear review</button>
       <button id="clearAssessmentBtn" onclick="elements.clearAndBackUpAssessmentFields()">Clear assessment</button>
-      <button id="exportButton" onclick="exportData()">Export data</button>
+      <button id="exportButton" onclick="exportData()">Export data</button> -->
+      <!-- Page sections -->
       <div class="flex-container" id="recordControl" style="display: flex;">
-        <div  id = "clientListDiv">
+        <div  id = "clientListDiv" class="pageSection hidden">
           <input type="text" placeholder="search" id="searchBox" oninput="searchReduce()"></input>
           <br />
           <div>
             <select size="4" class="flex-item"  onclick="clientSelectAction(this.value)" name="clientListSelect" id="clientListSelect">
             </select>
           </div>
-          <div id="clientButtonsDiv" >
+          <!-- <div id="clientButtonsDiv" >
             <button class="flex-item" onclick="clientDelete()">Delete</button>
             
-          </div>
+          </div> -->
         </div>
         
-        <div  id = "newClientAddDiv">
-          <button  onclick="toggle(newClientAddForm)">Add a client</button>
-          </label>
-          <input id="fileItem" type="file" onchange="csvFileToString()">
+        <div  id = "newClientAddDiv" class="pageSection hidden">
+          <!-- <button  onclick="toggle(newClientAddForm)">Add a client</button>
+          </label> -->
+          <!-- <input id="fileItem" type="file" onchange="csvFileToString()">
+          <br /><br /> -->
+          <p>Add new record:</p>
+          <p>First name:</p>
+          <input type = "text" id = "addClient-firstName"></input>
+          <br />
+          <p>Surname:</p>
+          <input type = "text" id = "addClient-surname"></input>
           <br /><br />
-          <div id = "newClientAddForm" hidden= true>
-            <p>First name:</p>
-            <input type = "text" id = "addClient-firstName"></input>
-            <br />
-            <p>Surname:</p>
-            <input type = "text" id = "addClient-surname"></input>
-            <br /><br />
-            <button onclick="clientAdd()">Submit</button>
-            <br /><br />
-          </div>
+          <button onclick="clientAdd()">Submit</button>
+          <button class="closeSectionButton">Close</button>
+          <br /><br />
         </div>
       </div>
+      <!-- Status panel -->
       <div class="flex-item" id="clientSelected">
-        <p>Client Selected:<span id="controlToggle">&#9651</span></p>
-        <p id="outputContainer"><span id="output" style="color:red">NO CLIENT SELECTED</span></p>
+        <p>Client Selected:</p>
+        <p id="outputContainer">
+          <span id="output" style="color:red">NO CLIENT SELECTED</span>
+        </p>
       </div>
+      <!-- Attached menu div -->
       <div id="menuAttach"><p id="buttonNavToggle" class="hidden">Show Menu</p>
-        <nav class="flex-item" id="buttonNav">
-          <button class="btn" onclick="setPage('demographic')" id="demographic-btn">Demographic</button>
-          <button class="btn" onclick="setPage('contactsMedical')" id="contactsMedical-btn">Contacts and Medical</button>
-          <button class="btn" onclick="setPage('preamble')" id="preamble-btn">Premable</button>
-          <button class="btn" onclick="setPage('chsp')" id="chsp-btn">CHSP</button>
-          <button class="btn" onclick="setPage('schedule')" id="schedule-btn">Schedule</button>
-          <button class="btn" onclick="setPage('biometrics')" id="biometrics-btn">Biometrics</button>
-          <button class="btn" onclick="setPage('domestic')" id="domestic-btn">Domestic</button>
-          <button class="btn" onclick="setPage('communicationSensory')" id="communicationSensory-btn">Communication/Sensory</button>
-          <button class="btn" onclick="setPage('elimination')" id="elimination-btn">Elimination</button>
-          <button class="btn" onclick="setPage('environment')" id="environment-btn">Environment</button>
-          <button class="btn" onclick="setPage('falls')" id="falls-btn">Falls</button>
-          <button class="btn" onclick="setPage('medical')" id="medical-btn">Medical</button>
-          <button class="btn" onclick="setPage('medication')" id="medication-btn">Medication</button>
-          <button class="btn" onclick="setPage('mobility')" id="mobility-btn">Mobility</button>
-          <button class="btn" onclick="setPage('nutrition')" id="nutrition-btn">Nutrition</button>
-          <button class="btn" onclick="setPage('pain')" id="pain-btn">Pain</button>
-          <button class="btn" onclick="setPage('personalCare')" id="personalCare-btn">Personal care</button>
-          <button class="btn" onclick="setPage('psychological')" id="psychological-btn">Psych/cognition/sleep</button>
-          <button class="btn" onclick="setPage('skin')" id="skin-btn">Skin</button>
-          <button class="btn" onclick="setPage('social')" id="social-btn">Social</button>
-          <button class="btn" onclick="setPage('carer')" id="carer-btn">Carer</button>
-          <button class="btn" onclick="setPage('carePlan')" id="carePlan-btn">Care Plan</button>
-          <button class="btn" onclick="setPage('clinical')" id="clinical-btn">Clinical</button>
-          <button class="btn" onclick="setPage('review')" id="review-btn">Review</button>
-          <button class="btn" onclick="setPage('followUp')" id="followUp-btn">Follow up</button>
-          <button class="btn" onclick="carePlanToggle()" id="carePlanToggle" data-state="hideCarePlan">Show CP</button>
-        </nav>
+        
       </div>
     </div>
-    <div id="menuDetach" data-loaded = "false"></div>
-    <div id="root" class="root">
+    <!-- Dettached menu div -->
+    <div id="menuDetach" data-loaded = "true">
+      <nav class="flex-item categoryMenuContainer" id="buttonNav" >
+        <button class="btn" onclick="setPage('demographic')" id="demographic-btn">Demographic</button>
+        <button class="btn" onclick="setPage('contactsMedical')" id="contactsMedical-btn">Contacts and Medical</button>
+        <button class="btn" onclick="setPage('preamble')" id="preamble-btn">Premable</button>
+        <button class="btn" onclick="setPage('chsp')" id="chsp-btn">CHSP</button>
+        <button class="btn" onclick="setPage('schedule')" id="schedule-btn">Schedule</button>
+        <button class="btn" onclick="setPage('biometrics')" id="biometrics-btn">Biometrics</button>
+        <button class="btn" onclick="setPage('domestic')" id="domestic-btn">Domestic</button>
+        <button class="btn" onclick="setPage('communicationSensory')" id="communicationSensory-btn">Communication/Sensory</button>
+        <button class="btn" onclick="setPage('elimination')" id="elimination-btn">Elimination</button>
+        <button class="btn" onclick="setPage('environment')" id="environment-btn">Environment</button>
+        <button class="btn" onclick="setPage('falls')" id="falls-btn">Falls</button>
+        <button class="btn" onclick="setPage('medical')" id="medical-btn">Medical</button>
+        <button class="btn" onclick="setPage('medication')" id="medication-btn">Medication</button>
+        <button class="btn" onclick="setPage('mobility')" id="mobility-btn">Mobility</button>
+        <button class="btn" onclick="setPage('nutrition')" id="nutrition-btn">Nutrition</button>
+        <button class="btn" onclick="setPage('pain')" id="pain-btn">Pain</button>
+        <button class="btn" onclick="setPage('personalCare')" id="personalCare-btn">Personal care</button>
+        <button class="btn" onclick="setPage('psychological')" id="psychological-btn">Psych/cognition/sleep</button>
+        <button class="btn" onclick="setPage('skin')" id="skin-btn">Skin</button>
+        <button class="btn" onclick="setPage('social')" id="social-btn">Social</button>
+        <button class="btn" onclick="setPage('carer')" id="carer-btn">Carer</button>
+        <button class="btn" onclick="setPage('carePlan')" id="carePlan-btn">Care Plan</button>
+        <button class="btn" onclick="setPage('clinical')" id="clinical-btn">Clinical</button>
+        <button class="btn" onclick="setPage('review')" id="review-btn">Review</button>
+        <button class="btn" onclick="setPage('followUp')" id="followUp-btn">Follow up</button>
+      </nav>
     </div>
+    <!-- Input elements loaded here -->
+    <div id="root" class="root"></div>
   </body>
   <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/papaparse.min.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/lib/builder.js"></script>
@@ -157,7 +171,10 @@
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/lib/fileWriter.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/lib/fsHelpers.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/appMain.js"></script>
-    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/menus/menusLib.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/appRecords.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/appFile.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/appPage.js"></script>
+    <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/appMenus.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/menus/fileMenu.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/menus/pageMenu.js"></script>
     <script src="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/menus/recordsMenu.js"></script>

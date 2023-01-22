@@ -7,7 +7,6 @@ let popUp = document.getElementById("pop-up");
 let popUpContent = document.getElementById("pop-up-content");
 let searchBox = document.getElementById("searchBox");
 let recordControl = document.getElementById("recordControl");
-let controlToggle = document.getElementById("controlToggle");
 let closeSpans = document.getElementsByClassName("close");
 
 if ("serviceWorker" in navigator) {
@@ -28,7 +27,7 @@ function setPage(category) {
     child = root.lastElementChild;
   }
   elements.addSpecifiedElementsToTargetDiv(category, root);
-  window.scroll(0, 0);
+  // window.scroll({ top: 0, behaviour: "smooth" });
   //highlights button of active catergory
   let current = document.getElementsByClassName("active");
   if (current[0]) {
@@ -44,9 +43,7 @@ function setPage(category) {
     setCarePlanDivState[
       document.getElementById("carePlanToggle").dataset.state
     ];
-  if (store.state.activeRecord) {
-    clientSelectDivClose();
-  }
+  app.pageActions.hideAll();
   setTimeout(() => {
     setButtonNavPositionOnSetPage();
   }, 100);
@@ -73,7 +70,6 @@ function clientSelectAction(clientKey) {
     " " +
     store.state.records[clientKey].surname;
   elements.updateElements(store.dispatch("setActiveRecord", { id: clientKey }));
-  controlToggle.dispatchEvent(new Event("click"));
   setPage("demographic");
 }
 clientListSelect.onkeyup = function (e) {
@@ -84,7 +80,7 @@ clientListSelect.onkeyup = function (e) {
     elements.updateElements(
       store.dispatch("setActiveRecord", { id: this.value })
     );
-    controlToggle.dispatchEvent(new Event("click"));
+    app.pageActions.hideAll();
     setPage("demographic");
   }
 };
@@ -106,11 +102,9 @@ function clientAdd() {
     opt = options[i];
     opt.selected = opt.value == newClient.key ? true : false;
   }
-  toggle(document.getElementById("newClientAddForm"));
+  app.pageActions.hideSection(document.getElementById("newClientAddDiv"));
 }
-function clientDelete() {
-  alert("Open developer tools and delete manually from local storage.");
-}
+
 function toggle(element) {
   if (element.hidden == false) {
     element.hidden = true;
@@ -258,46 +252,30 @@ function popUpPop(event) {
     popUpContent.appendChild(newParagraph);
   }
 }
-function carePlanToggle() {
+function carePlanToggle(force) {
   let carePlanDiv = document.getElementById("careplan");
   let carePlanToggle = document.getElementById("carePlanToggle");
   if (carePlanDiv.style.display == "none") {
+    //care plan hidden
+    //show care plan
     carePlanDiv.style.display = "block";
     carePlanToggle.dataset.state = "showCarePlan";
-    carePlanToggle.innerHTML = "Hide CP";
+    carePlanToggle.innerHTML = "Hide CP ⎇3";
   } else {
+    // hide care plan
     carePlanDiv.style.display = "none";
     carePlanToggle.dataset.state = "hideCarePlan";
-    carePlanToggle.innerHTML = "Show CP";
+    carePlanToggle.innerHTML = "Show CP ⎇3";
   }
 }
-controlToggle.onclick = function () {
-  if (recordControl.style.display == "none") {
-    clientSelectDivOpen();
-  } else {
-    clientSelectDivClose();
-  }
-};
-function clientSelectDivClose() {
-  recordControl.style.display = "none";
-  controlToggle.innerHTML = "&#9661";
-}
-function clientSelectDivOpen() {
-  recordControl.style.display = "flex";
-  controlToggle.innerHTML = "&#9651";
-}
+
 for (let i = 0; i < closeSpans.length; i++) {
   closeSpans[i].onclick = function () {
     this.closest(".pop-up").style.display = "none";
     removePopUpContent();
   };
 }
-window.onclick = function (event) {
-  if (event.target.classList.contains("pop-up")) {
-    event.target.style.display = "none";
-    removePopUpContent();
-  }
-};
+
 function removePopUpContent() {
   let contentList = Array.from(popUpContent.childNodes).reverse();
   contentList.forEach((node) => {
@@ -309,27 +287,7 @@ function removePopUpContent() {
     }
   });
 }
-window.onkeydown = function (event) {
-  if (event.altKey) {
-    switch (event.code) {
-      //case "ArrowLeft":
-      //case "ArrowRight":
-      case "Digit2":
-        event.preventDefault();
-        searchBox.focus();
-        searchBox.value = "";
-        break;
-      //case "ArrowUp":
-      //case "ArrowDown":
-      case "Digit1":
-        controlToggle.dispatchEvent(new Event("click"));
-        break;
-      case "Digit3":
-        carePlanToggle();
-        break;
-    }
-  }
-};
+
 function searchReduce() {
   clientListSelect.innerHTML = "";
   let searchWord = searchBox.value.toLowerCase();

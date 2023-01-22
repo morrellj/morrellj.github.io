@@ -1,20 +1,20 @@
 "use strict";
 
-const menusLib = {};
+const appMenus = {};
 
 /**
  * Initializes a drop down menu.
  *
  * @param {Element} container Container element with the drop down menu.
  */
-menusLib.setup = (container) => {
+appMenus.setup = (container) => {
   const toggleButton = container.querySelector("button.topMenuButton");
   toggleButton.addEventListener("click", () => {
-    menusLib._toggle(toggleButton);
+    appMenus._toggle(toggleButton);
   });
   container.addEventListener("keydown", (e) => {
     if (e.keyCode === 27) {
-      menusLib.hideAll();
+      appMenus.hideAll();
       return;
     }
     if (e.keyCode === 40) {
@@ -43,10 +43,10 @@ menusLib.setup = (container) => {
 /**
  * Hides all visible menus.
  */
-menusLib.hideAll = () => {
+appMenus.hideAll = () => {
   const elems = document.querySelectorAll(".menuContainer");
   elems.forEach((elem) => {
-    menusLib.hide(elem);
+    appMenus.hide(elem);
   });
 };
 
@@ -55,7 +55,7 @@ menusLib.hideAll = () => {
  *
  * @param {Element} menuContainer Container element with the drop down menu.
  */
-menusLib.hide = (menuContainer) => {
+appMenus.hide = (menuContainer) => {
   const button = menuContainer.querySelector(".topMenuButton");
   button.setAttribute("aria-expanded", false);
   const panel = menuContainer.querySelector(".menuItemContainer");
@@ -69,15 +69,15 @@ menusLib.hide = (menuContainer) => {
  *
  * @param {Element} menuContainer Container element with the drop down menu.
  */
-menusLib.show = (menuContainer) => {
-  menusLib.hideAll();
+appMenus.show = (menuContainer) => {
+  appMenus.hideAll();
   const button = menuContainer.querySelector(".topMenuButton");
   button.setAttribute("aria-expanded", true);
   const panel = menuContainer.querySelector(".menuItemContainer");
   panel.classList.toggle("hidden", false);
   const firstButton = panel.querySelector("button");
   if (!firstButton) {
-    menusLib.hideAll();
+    appMenus.hideAll();
     return;
   }
   firstButton.focus();
@@ -89,7 +89,7 @@ menusLib.show = (menuContainer) => {
  * @param {string} label Label for button
  * @return {Button} Returns an HTML button.
  */
-menusLib.createButton = (label) => {
+appMenus.createButton = (label) => {
   const butt = document.createElement("button");
   butt.innerText = label;
   butt.setAttribute("type", "button");
@@ -103,7 +103,7 @@ menusLib.createButton = (label) => {
  * @param {Element} menuContainer Container element with the drop down menu.
  * @param {Element} elem Element to add to the menu container.
  */
-menusLib.addElement = (menuContainer, elem) => {
+appMenus.addElement = (menuContainer, elem) => {
   const container = menuContainer.querySelector(".menuItemContainer");
   container.appendChild(elem);
 };
@@ -113,7 +113,7 @@ menusLib.addElement = (menuContainer, elem) => {
  *
  * @param {Element} menuContainer Container element with the drop down menu.
  */
-menusLib.clearMenu = (menuContainer) => {
+appMenus.clearMenu = (menuContainer) => {
   const container = menuContainer.querySelector(".menuItemContainer");
   container.innerHTML = "";
 };
@@ -124,12 +124,12 @@ menusLib.clearMenu = (menuContainer) => {
  * @private
  * @param {Element} button Toggle button to show/hide menu.
  */
-menusLib._toggle = (button) => {
+appMenus._toggle = (button) => {
   const parent = button.parentElement;
   const expanded = button.getAttribute("aria-expanded");
   if (expanded === "true") {
-    menusLib.hide(parent);
+    appMenus.hide(parent);
   } else {
-    menusLib.show(parent);
+    appMenus.show(parent);
   }
 };

@@ -10,7 +10,7 @@ body {
   min-height: 100px;
 } */
 #outputContainer {
-  padding: 0px 0px 10px;
+  padding: 0px 0px 10px 16px;
 }
 #output {
   padding-bottom: 10px;
@@ -39,29 +39,41 @@ body {
   width: 80%;
 }
 /* Top menu */
+
 /* button[disabled] { */
 /* opacity: 0.5;
 } */
-
-.menuContainer {
-  display: inline-block;
-  position: relative;
+#topMenu {
+  background-color: white;
 }
 
-.menuContainer > button {
+.menuContainer,
+.categoryMenuContainer {
+  display: inline-block;
+  /* position: relative; */
+  background-color: white;
+}
+
+.menuContainer > button,
+.categoryMenuContainer > button,
+#carePlanToggle {
   background-color: inherit;
   color: inherit;
   min-width: 48px;
   padding: 4px 16px;
 }
 
-.menuContainer button {
+.menuContainer button,
+.categoryMenuContainer button,
+#carePlanToggle {
   border: none;
   cursor: pointer;
   font-size: 16px;
 }
 
-.menuContainer button:focus {
+.menuContainer button:focus,
+.categoryMenuContainer button:focus,
+#carePlanToggle button:focus {
   outline: none;
 }
 
@@ -74,7 +86,7 @@ body {
 }
 
 .menuContainer .menuItemContainer button {
-  /* background-color: var(--app-menu-bg); */
+  background-color: white;
   /* color: var(--app-menu-color); */
   display: block;
   padding: 16px;
@@ -98,15 +110,11 @@ body {
   color: var(--app-menu-toggled-color);
 } */
 /* End top menu */
-.close,
-#controlToggle {
+.close {
   color: #313131;
   float: right;
   font-size: 28px;
   font-weight: bold;
-}
-#controlToggle {
-  margin-right: 20px;
 }
 #menuAttach {
   padding: 0px 0px 10px;
@@ -115,10 +123,12 @@ body {
 #buttonNavToggle {
   padding-top: 4px;
   padding-bottom: 4px;
-  color: gray;
+  margin: 0px -15px 0px -15px;
+  /* color: gray; */
   text-align: center;
-  border: 2px solid gray;
-  border-radius: 4px;
+  /* border: 2px solid gray; */
+  /* border-radius: 4px; */
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
 }
 .text-close {
   text-decoration: underline;
@@ -126,9 +136,7 @@ body {
   color: #0088cc;
 }
 .close:hover,
-.close:focus,
-#controlToggle:hover,
-#controlToggle:focus {
+.close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -161,6 +169,7 @@ nav button {
   padding: 4px 9px;
 }
 p {
+  padding-left: 16px;
   margin: 6px 0px 6px;
 }
 input {
@@ -291,12 +300,15 @@ textarea:focus {
   margin-left: 8%;
 }
 #carePlanToggle {
-  background-color: pink;
-  margin-right: 0px;
+  /* background-color: pink; */
+  /* margin-right: 0px;
   margin-top: 1px;
   border-radius: 4px;
   border: none;
-  padding: 4px 9px;
+  padding: 4px 9px; */
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+  display: inline;
+  float: right;
 }
 .carePlan {
   background-color: #d2f8d2;
