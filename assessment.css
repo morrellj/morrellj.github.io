@@ -47,6 +47,10 @@ body {
   background-color: white;
 }
 
+.categoryMenuContainer {
+  box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 20%);
+}
+
 .menuContainer,
 .categoryMenuContainer {
   display: inline-block;
@@ -68,7 +72,7 @@ body {
 #carePlanToggle {
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .menuContainer button:focus,
@@ -117,17 +121,12 @@ body {
   font-weight: bold;
 }
 #menuAttach {
-  padding: 0px 0px 10px;
   background-color: white;
 }
 #buttonNavToggle {
   padding-top: 4px;
   padding-bottom: 4px;
-  margin: 0px -15px 0px -15px;
-  /* color: gray; */
   text-align: center;
-  /* border: 2px solid gray; */
-  /* border-radius: 4px; */
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
 }
 .text-close {
@@ -149,7 +148,7 @@ nav {
   background-color: white;
 }
 nav button {
-  margin-right: 10px;
+  margin-right: 8px;
 }
 .btn {
   margin-bottom: 10px;
@@ -159,14 +158,10 @@ nav button {
   background-color: #666;
   color: white;
 }
-#butInstall {
-  float: right;
-  background-color: #c0d6ff;
+#appInstallButton {
+  background-color: #c0d6ff !important;
   margin-right: 0px;
-  margin-top: 1px;
-  border-radius: 4px;
-  border: none;
-  padding: 4px 9px;
+  padding: 4px 11px;
 }
 p {
   padding-left: 16px;
@@ -303,15 +298,11 @@ textarea:focus {
   margin-left: 8%;
 }
 #carePlanToggle {
-  /* background-color: pink; */
-  /* margin-right: 0px;
-  margin-top: 1px;
-  border-radius: 4px;
-  border: none;
-  padding: 4px 9px; */
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
   display: inline;
   float: right;
+  margin-right: 100px;
+  margin-top: -8px;
 }
 .carePlan {
   background-color: #d2f8d2;
@@ -379,5 +370,8 @@ textarea:focus {
   input,
   select {
     width: 70vw;
+  }
+  #carePlanToggle {
+    margin-right: 5px;
   }
 }

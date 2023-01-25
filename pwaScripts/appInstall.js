@@ -1,6 +1,6 @@
 let pwa = {};
 (function (app) {
-  const butInstall = document.getElementById("butInstall");
+  const butInstall = document.getElementById("appInstallButton");
 
   //   butInstall.setAttribute('disabled', true);
   /**

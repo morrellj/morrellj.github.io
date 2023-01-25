@@ -261,6 +261,9 @@ function carePlanToggle(force) {
     carePlanDiv.style.display = "block";
     carePlanToggle.dataset.state = "showCarePlan";
     carePlanToggle.innerHTML = "Hide CP ⎇3";
+    setTimeout(() => {
+      setButtonNavPositionOnSetPage();
+    }, 100);
   } else {
     // hide care plan
     carePlanDiv.style.display = "none";

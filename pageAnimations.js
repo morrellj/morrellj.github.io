@@ -26,6 +26,8 @@ function setButtonNavPositionOnSetPage() {
     detachMenu();
     window.scroll({ top: menuDetach.offsetHeight + 5, behavior: "smooth" });
     activateNarrowScreenAnimations();
+  } else {
+    window.scroll({ top: 0, behavior: "smooth" });
   }
 }
 

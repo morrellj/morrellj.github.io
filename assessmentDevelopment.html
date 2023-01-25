@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Grove Assessment Main Page</title>
-    
     <link rel = "stylesheet" href="file:///C:/Users/morre/OneDrive/JON/Proffessional/Code/assessment%20light/assessment.css"/>
  </head>
   <body id="body">
@@ -64,8 +63,11 @@
             </button>
           </div>
         </div>
-        
-        <button class="btn hidden" onclick="carePlanToggle()" id="carePlanToggle" data-state="hideCarePlan">Show CP ⎇3</button>
+        <div id="menuApp" class="menuContainer">
+          <button id="appInstallButton" class="hidden topMenuButton" aria-label="File" aria-haspopup="false">
+            Install
+          </button>
+        </div>
       </nav>
       <!-- Buttons to go -->
       <!-- <button class="flex-item" onclick="consoleReview()">Review</button>
@@ -81,10 +83,6 @@
             <select size="4" class="flex-item"  onclick="clientSelectAction(this.value)" name="clientListSelect" id="clientListSelect">
             </select>
           </div>
-          <!-- <div id="clientButtonsDiv" >
-            <button class="flex-item" onclick="clientDelete()">Delete</button>
-            
-          </div> -->
         </div>
         
         <div  id = "newClientAddDiv" class="pageSection hidden">
@@ -109,6 +107,7 @@
         <p>Client Selected:</p>
         <p id="outputContainer">
           <span id="output" style="color:red">NO CLIENT SELECTED</span>
+          <button class="btn hidden" onclick="carePlanToggle()" id="carePlanToggle" data-state="hideCarePlan">Show CP ⎇3</button>
         </p>
       </div>
       <!-- Attached menu div -->
