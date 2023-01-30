@@ -30,4 +30,16 @@
         searchBox.value = "";
       }
     });
+
+  document
+    .getElementById("clearReviewNotesButton")
+    .addEventListener("click", () => {
+      app.elements.clearAndBackUpReviewFields();
+    });
+
+  document
+    .getElementById("clearAssessmentNotesButton")
+    .addEventListener("click", () => {
+      app.elements.clearAndBackUpAssessmentFields();
+    });
 })(app);

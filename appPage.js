@@ -33,6 +33,8 @@
         case "Digit3":
           carePlanToggle();
           break;
+        case "KeyM":
+          document.getElementById("buttonNavToggle").click();
       }
     }
   };

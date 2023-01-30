@@ -4,11 +4,13 @@
 
   document.getElementById("openFsFileButton").addEventListener("click", () => {
     appMenus.hide(menuFile);
-    app.openFile();
+    // app.openFile();
+    csvFileToString();
   });
 
   document.getElementById("saveToFsFile").addEventListener("click", () => {
     appMenus.hide(menuFile);
-    app.saveFile();
+    // app.saveFile();
+    exportData();
   });
 })(app);
