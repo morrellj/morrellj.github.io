@@ -6,7 +6,7 @@ const menuDetach = document.getElementById("menuDetach");
 buttonNavToggle.addEventListener("click", buttonNavToggleOnClick);
 
 function screenWidthNarrow() {
-  return window.innerWidth < 1200 ? true : false;
+  return window.innerWidth < 1000 ? true : false;
 }
 
 if (screenWidthNarrow()) {
