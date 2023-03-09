@@ -1049,6 +1049,8 @@ let psychologicalData = {
       "Disturbed Thought Process",
       "Impaired Memory",
       "Wandering",
+      "Client is alert and orientated and able to communicate effectively.",
+      "No cognitive impairments."
     ],
   },
   psychologicalSupportPlanGoals: {
@@ -1294,7 +1296,7 @@ let painData = {
     classes: ["carePlan", "pain", "largeText"],
     notes: [
       "Client receives symptom management support by the palliative care team.",
-      "Support services provided by Southern Plus will reduce the physical burdens and heavier tasks involved with managing clients's day to day activities allowing him/her to be more rested and to exercise in moderation.",
+      "Support services provided by Southern Plus will reduce the physical burdens and heavier tasks involved with managing client's day to day activities allowing him/her to be more rested and to exercise in moderation.",
     ],
   },
   painSP_WellnessPartner: {
@@ -1492,8 +1494,7 @@ let eliminationData = {
     label: "Elimination support plan CLIENT",
     classes: ["carePlan", "elimination", "largeText"],
     notes: [
-      "Southern Plus will assist with provision of incontinence aids within the capacity of the budget.",
-      "Southern Plus will provide support to access continence assessment services through - ",
+      "Client will notify her Wellness Partner when she requires a supply of incontinence aids giving them 2 weeks notice for delivery.",
     ],
   },
   eliminationSupportPlanInterventions: {
@@ -1510,8 +1511,7 @@ let eliminationData = {
     label: "Elimination support plan WELLNESS PARTNER",
     classes: ["carePlan", "elimination", "largeText"],
     notes: [
-      "Southern Plus will assist with provision of incontinence aids within the capacity of the budget.",
-      "Southern Plus will provide support to access continence assessment services through - ",
+      "The Wellness Partner will order pads as and when requested to ensure delivery within 2 weeks time frame.",
     ],
   },
   eliminationNeeds: {
@@ -1647,6 +1647,7 @@ let mobilityData = {
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
       "Client will participate in his/her home exercise program as per physiotherapy plan.",
+      "Client will use his/her mobility aid as recommended by his/her Physiotherapist."
     ],
   },
   mobilitySupportPlanInterventions: {
@@ -1657,7 +1658,6 @@ let mobilityData = {
       "Southern Plus will facilitate referral for Physiotherapy.",
       "Southern Plus will provide support to hire ___",
       "Southern Plus support workers will provide standby assists with mobility ___",
-      "Southern Plus will assist client with transport needs by ___",
       "SUpport workers will encourage client to use her walking aid.",
       "Support workers will [address medical needs to prevent falls as required]",
       "Support workers will check and encourage client to wear appropriate footwear (information to be included in home folder.)",
@@ -1671,7 +1671,6 @@ let mobilityData = {
     notes: [
       "Southern Plus will facilitate referral for Physiotherapy.",
       "Southern Plus will provide support to hire ___",
-      "Southern Plus support workers will provide standby assists with mobility ___",
       "Southern Plus will assist client with transport needs by ___",
     ],
   },
@@ -1724,6 +1723,7 @@ let mobilityData = {
     tag: "textarea",
     label: "Transport",
     classes: ["review", "mobility", "carePlan", "largeText"],
+    notes:["Care plan current and effective."]
   },
   mobilityFallsNeeds: {
     tag: "textarea",
@@ -1959,6 +1959,7 @@ let carerData = {
     classes: ["carePlan", "carer", "goals", "largeText"],
     notes: [
       "Carer will report that they feel less burdened, have more time to attend to their own health, social and or personal needs and goals.",
+      "Client and his/her carer will both report that their relationship is effective/supportive and sustainable."
     ],
   },
   carerSP_CLient: {
@@ -2064,6 +2065,7 @@ let personalCareData = {
     notes: [
       "Client has difficulty completing self care tasks independently secondary to ___",
       "Client is independent with all personal care tasks.",
+      "Client uses railing and Showering equipment to help him/her maintain his/her independence and safety while attending to his/her own personal care."
     ],
   },
   personalCareSupportPlanGoals: {
@@ -2080,7 +2082,7 @@ let personalCareData = {
     label: "Personal care support plan CLIENT",
     classes: ["carePlan", "personalCare", "largeText"],
     notes: [
-      "Southern Plus support workers will assist client with personal care x days per week.",
+      "Client will contiune to attend to his/her own personal care.",
     ],
   },
   personalCareSupportPlanInterventions: {
@@ -2089,6 +2091,7 @@ let personalCareData = {
     classes: ["carePlan", "personalCare", "largeText"],
     notes: [
       "Southern Plus support workers will assist client with personal care x days per week.",
+      "Southern Plus will arrange for home visiting podiatry approx 8 weekly."
     ],
   },
   personalCareSP_WellnessPartner: {
@@ -2126,6 +2129,7 @@ let mealsNutritionData = {
     notes: [
       "Client is able to prepare and cook his/her own meals.",
       "Client has a self care deficit related to meal preparation secondary to ___",
+      "Client has a self care deficit related to shopping secondary to ___"
     ],
   },
   mealsAndShoppingSupportPlanGoals: {
@@ -2153,6 +2157,7 @@ let mealsNutritionData = {
     classes: ["carePlan", "nutrition", "largeText"],
     notes: [
       "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
+      "Southern Plus suppport workers will assist client with shopping by list each week/fortnight."
     ],
   },
   mealsAndShoppingSP_WellnessPartner: {
