@@ -35,7 +35,7 @@ class DataField extends Builder {
     if (store.state.activeRecord) {
       changeObject[this.name] =
         this.tagName == "SELECT"
-          ? elements.getMultiSelectValues(this)
+          ? app.elements.getMultiSelectValues(this)
           : this.value;
       store.dispatch("update", {
         id: store.state.activeRecord,

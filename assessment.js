@@ -7,7 +7,6 @@ let popUp = document.getElementById("pop-up");
 let popUpContent = document.getElementById("pop-up-content");
 let searchBox = document.getElementById("searchBox");
 let recordControl = document.getElementById("recordControl");
-let controlToggle = document.getElementById("controlToggle");
 let closeSpans = document.getElementsByClassName("close");
 
 if ("serviceWorker" in navigator) {
@@ -19,7 +18,7 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-elements = new Elements(clientRecordFieldSettings);
+// elements = new Elements(clientRecordFieldSettings);
 
 function setPage(category) {
   let child = root.lastElementChild;
@@ -27,8 +26,8 @@ function setPage(category) {
     root.removeChild(child);
     child = root.lastElementChild;
   }
-  elements.addSpecifiedElementsToTargetDiv(category, root);
-  window.scroll(0, 0);
+  app.elements.addSpecifiedElementsToTargetDiv(category, root);
+  // window.scroll({ top: 0, behaviour: "smooth" });
   //highlights button of active catergory
   let current = document.getElementsByClassName("active");
   if (current[0]) {
@@ -44,9 +43,7 @@ function setPage(category) {
     setCarePlanDivState[
       document.getElementById("carePlanToggle").dataset.state
     ];
-  if (store.state.activeRecord) {
-    clientSelectDivClose();
-  }
+  app.pageActions.hideAll();
   setTimeout(() => {
     setButtonNavPositionOnSetPage();
   }, 100);
@@ -72,8 +69,9 @@ function clientSelectAction(clientKey) {
     store.state.records[clientKey].firstName +
     " " +
     store.state.records[clientKey].surname;
-  elements.updateElements(store.dispatch("setActiveRecord", { id: clientKey }));
-  controlToggle.dispatchEvent(new Event("click"));
+  app.elements.updateElements(
+    store.dispatch("setActiveRecord", { id: clientKey })
+  );
   setPage("demographic");
 }
 clientListSelect.onkeyup = function (e) {
@@ -81,10 +79,10 @@ clientListSelect.onkeyup = function (e) {
     let data = store.state.records[this.value];
     output.innerHTML = data.firstName + " " + data.surname;
     document.title = data.firstName + " " + data.surname;
-    elements.updateElements(
+    app.elements.updateElements(
       store.dispatch("setActiveRecord", { id: this.value })
     );
-    controlToggle.dispatchEvent(new Event("click"));
+    app.pageActions.hideAll();
     setPage("demographic");
   }
 };
@@ -106,11 +104,9 @@ function clientAdd() {
     opt = options[i];
     opt.selected = opt.value == newClient.key ? true : false;
   }
-  toggle(document.getElementById("newClientAddForm"));
+  app.pageActions.hideSection(document.getElementById("newClientAddDiv"));
 }
-function clientDelete() {
-  alert("Open developer tools and delete manually from local storage.");
-}
+
 function toggle(element) {
   if (element.hidden == false) {
     element.hidden = true;
@@ -118,186 +114,34 @@ function toggle(element) {
     element.hidden = false;
   }
 }
-function linkPopUpPop(event) {
-  removePopUpContent();
-  let category = event.target.id.split("-")[0];
-  let elementSchema = Elements.links[category].groupLinks;
-  popUp.style.display = "block";
-  elementSchema.forEach((ele) => {
-    let linkDiv = document.createElement("div");
-    let linkElement = document.createElement("a");
-    linkDiv.classList.add("link");
-    linkDiv.appendChild(linkElement);
-    linkElement.innerHTML = ele[0];
-    linkElement.target = "_blank";
-    let linkAddy =
-      ele[1].indexOf("http") >= 0
-        ? ele[1]
-        : window.location.href.slice(0, window.location.href.lastIndexOf("/")) +
-          "/documents/" +
-          ele[1];
-    linkElement.href = linkAddy;
-    popUpContent.appendChild(linkDiv);
-  });
-}
-function popUpPop(event) {
-  removePopUpContent();
-  let elementSchema = clientRecordFieldSettings[event.target.parentNode.id];
-  if (elementSchema?.notes) {
-    popUp.style.display = "block";
-    // needs to attach to the body otherwise will appear underneath a PopUp pop up.
-    document.getElementById("body").appendChild(popUp);
-    elementSchema.notes.forEach((ele) => {
-      let newParagraph = document.createElement("p");
-      newParagraph.innerHTML = ele;
-      newParagraph.classList.add("temp");
-      newParagraph.name = event.target.parentNode.id;
-      if (
-        elements.inputObjects[
-          event.target.parentNode.id
-        ].$_dataField?.value?.indexOf(ele) >= 0
-      ) {
-        newParagraph.style.color = "red";
-      } else {
-        newParagraph.style.color = "black";
-      }
-      newParagraph.onclick = function () {
-        let result = addOrRemovePartOfElementValue(
-          this.innerHTML,
-          elements.inputObjects[this.name].$_dataField
-        );
-        this.style.color = result ? "red" : "black";
-        elements.inputObjects[this.name].$_dataField.dispatchEvent(
-          new Event("input")
-        );
-        function addOrRemovePartOfElementValue(partString, elementToChange) {
-          let spacer = elementToChange.value == "" ? "" : "\n";
-          let firstName =
-            store.state.records[store.state.activeRecord].firstName;
-          let preferredName =
-            store.state.records[store.state.activeRecord].preferredName;
-          firstName =
-            preferredName == "" ||
-            preferredName == null ||
-            preferredName == undefined
-              ? firstName
-              : preferredName;
-          let gender = store.state.records[store.state.activeRecord].gender;
-          let genderId;
-          let genderId2;
-          let genderOwnership;
-          if (!gender) {
-            alert("Gender has not been specified");
-            genderId = "TBA";
-            genderId2 = "TBA";
-            genderOwnership = "TBA";
-            return false;
-          } else {
-            genderId = gender == "Male" ? "he" : "she";
-            genderOwnership = gender == "Male" ? "his" : "her";
-            genderId2 = gender == "Male" ? "him" : "her";
-          }
-          let personalPartString = partString.replaceAll("client", firstName);
-          personalPartString = personalPartString.replaceAll(
-            "Client",
-            firstName
-          );
-          personalPartString = personalPartString.replaceAll(
-            "he/she",
-            genderId
-          );
-          personalPartString = personalPartString.replaceAll(
-            "him/her",
-            genderId2
-          );
-          personalPartString = personalPartString.replaceAll(
-            "his/her",
-            genderOwnership
-          );
-          if (elementToChange.value.indexOf(personalPartString) >= 0) {
-            let stringWithoutCarriageReturn = elementToChange.value;
-            if (
-              elementToChange.value[
-                elementToChange.value.indexOf(personalPartString) - 1
-              ] == "\n"
-            ) {
-              stringWithoutCarriageReturn = elementToChange.value
-                .slice(0, elementToChange.value.indexOf(personalPartString) - 1)
-                .concat(
-                  "",
-                  elementToChange.value.slice(
-                    elementToChange.value.indexOf(personalPartString)
-                  )
-                );
-            }
 
-            if (
-              stringWithoutCarriageReturn.length === personalPartString.length
-            ) {
-              elementToChange.value = "";
-            } else {
-              elementToChange.value = stringWithoutCarriageReturn
-                .replace(personalPartString, "")
-                .trim();
-            }
-            return false;
-          } else {
-            elementToChange.value =
-              elementToChange.value + spacer + personalPartString.trim();
-            return true;
-          }
-        }
-      };
-      popUpContent.appendChild(newParagraph);
-    });
-  } else {
-    popUp.style.display = "block";
-    let newParagraph = document.createElement("p");
-    newParagraph.innerHTML = "There are no notes for this field";
-    newParagraph.classList.add("temp");
-    popUpContent.appendChild(newParagraph);
-  }
-}
-function carePlanToggle() {
+function carePlanToggle(force) {
   let carePlanDiv = document.getElementById("careplan");
   let carePlanToggle = document.getElementById("carePlanToggle");
   if (carePlanDiv.style.display == "none") {
+    //care plan hidden
+    //show care plan
     carePlanDiv.style.display = "block";
     carePlanToggle.dataset.state = "showCarePlan";
-    carePlanToggle.innerHTML = "Hide CP";
+    carePlanToggle.innerHTML = "Hide CP ⎇3";
+    setTimeout(() => {
+      setButtonNavPositionOnSetPage();
+    }, 100);
   } else {
+    // hide care plan
     carePlanDiv.style.display = "none";
     carePlanToggle.dataset.state = "hideCarePlan";
-    carePlanToggle.innerHTML = "Show CP";
+    carePlanToggle.innerHTML = "Show CP ⎇3";
   }
 }
-controlToggle.onclick = function () {
-  if (recordControl.style.display == "none") {
-    clientSelectDivOpen();
-  } else {
-    clientSelectDivClose();
-  }
-};
-function clientSelectDivClose() {
-  recordControl.style.display = "none";
-  controlToggle.innerHTML = "&#9661";
-}
-function clientSelectDivOpen() {
-  recordControl.style.display = "flex";
-  controlToggle.innerHTML = "&#9651";
-}
+
 for (let i = 0; i < closeSpans.length; i++) {
   closeSpans[i].onclick = function () {
     this.closest(".pop-up").style.display = "none";
     removePopUpContent();
   };
 }
-window.onclick = function (event) {
-  if (event.target.classList.contains("pop-up")) {
-    event.target.style.display = "none";
-    removePopUpContent();
-  }
-};
+
 function removePopUpContent() {
   let contentList = Array.from(popUpContent.childNodes).reverse();
   contentList.forEach((node) => {
@@ -309,27 +153,7 @@ function removePopUpContent() {
     }
   });
 }
-window.onkeydown = function (event) {
-  if (event.altKey) {
-    switch (event.code) {
-      //case "ArrowLeft":
-      //case "ArrowRight":
-      case "Digit2":
-        event.preventDefault();
-        searchBox.focus();
-        searchBox.value = "";
-        break;
-      //case "ArrowUp":
-      //case "ArrowDown":
-      case "Digit1":
-        controlToggle.dispatchEvent(new Event("click"));
-        break;
-      case "Digit3":
-        carePlanToggle();
-        break;
-    }
-  }
-};
+
 function searchReduce() {
   clientListSelect.innerHTML = "";
   let searchWord = searchBox.value.toLowerCase();
@@ -343,31 +167,6 @@ function searchReduce() {
       addNewClientSelectOption(client);
     }
   }
-  // });
-}
-function consoleReview() {
-  // Client.getClient(clientListSelect.value, function (client) {
-  let client = store.state.records[store.state.activeRecord];
-  let string = "";
-  for (const [key, value] of Object.entries(clientRecordFieldSettings)) {
-    if (value.classes) {
-      if (
-        value.classes.includes("review") &&
-        client[key] != null &&
-        client[key] != ""
-      ) {
-        let substring = value.label;
-        let data =
-          client[key].current != undefined ? client[key].current : client[key];
-        string = string + "\n---- " + substring + ": ----\n" + data;
-      }
-    }
-  }
-  console.log(string);
-  setTimeout(
-    async () => await window.navigator.clipboard.writeText(string),
-    500
-  );
   // });
 }
 function getAllRecordsAsArray() {

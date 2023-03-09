@@ -10,7 +10,7 @@ body {
   min-height: 100px;
 } */
 #outputContainer {
-  padding: 0px 0px 10px;
+  padding: 0px 0px 10px 16px;
 }
 #output {
   padding-bottom: 10px;
@@ -38,27 +38,96 @@ body {
   border: 1px solid #888;
   width: 80%;
 }
-.close,
-#controlToggle {
+/* Top menu */
+
+/* button[disabled] { */
+/* opacity: 0.5;
+} */
+#topMenu {
+  background-color: white;
+}
+
+.categoryMenuContainer {
+  box-shadow: 0px 1px 3px 0px rgb(0 0 0 / 20%);
+}
+
+.menuContainer,
+.categoryMenuContainer {
+  display: inline-block;
+  /* position: relative; */
+  background-color: white;
+}
+
+.menuContainer > button,
+.categoryMenuContainer > button,
+#carePlanToggle {
+  background-color: inherit;
+  color: inherit;
+  min-width: 48px;
+  padding: 4px 16px;
+}
+
+.menuContainer button,
+.categoryMenuContainer button,
+#carePlanToggle {
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.menuContainer button:focus,
+.categoryMenuContainer button:focus,
+#carePlanToggle button:focus {
+  outline: none;
+}
+
+.menuContainer .menuItemContainer {
+  /* background-color: var(--app-menu-bg); */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  min-width: 180px;
+  position: absolute;
+  z-index: 1;
+}
+
+.menuContainer .menuItemContainer button {
+  background-color: white;
+  /* color: var(--app-menu-color); */
+  display: block;
+  padding: 16px;
+  text-align: left;
+  width: 100%;
+}
+/* 
+.menuContainer > button:hover,
+.menuContainer > button:focus,
+.menuContainer > button[aria-expanded="true"] {
+  background-color: var(--app-menu-selected);
+}
+
+.menuItemContainer button:hover,
+.menuItemContainer button:focus {
+  background-color: var(--app-menu-bg-highlight);
+} */
+
+/* .menuContainer button[aria-checked=true] {
+  background-color: var(--app-menu-toggled-bg);
+  color: var(--app-menu-toggled-color);
+} */
+/* End top menu */
+.close {
   color: #313131;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
-#controlToggle {
-  margin-right: 20px;
-}
 #menuAttach {
-  padding: 0px 0px 10px;
   background-color: white;
 }
 #buttonNavToggle {
   padding-top: 4px;
   padding-bottom: 4px;
-  color: gray;
   text-align: center;
-  border: 2px solid gray;
-  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
 }
 .text-close {
   text-decoration: underline;
@@ -66,9 +135,7 @@ body {
   color: #0088cc;
 }
 .close:hover,
-.close:focus,
-#controlToggle:hover,
-#controlToggle:focus {
+.close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -81,31 +148,29 @@ nav {
   background-color: white;
 }
 nav button {
-  margin-right: 10px;
+  margin-right: 8px;
 }
 .btn {
   margin-bottom: 10px;
 }
-.active,
+#buttonNav .active,
 .btn:hover {
   background-color: #666;
   color: white;
 }
-#butInstall {
-  float: right;
-  background-color: #c0d6ff;
+#appInstallButton {
+  background-color: #c0d6ff !important;
   margin-right: 0px;
-  margin-top: 1px;
-  border-radius: 4px;
-  border: none;
-  padding: 4px 9px;
+  padding: 4px 11px;
 }
 p {
+  padding-left: 16px;
   margin: 6px 0px 6px;
 }
 input {
   width: 25vw;
   margin: 2px;
+  border: 1px solid lightgrey;
 }
 select {
   width: 25vw;
@@ -123,6 +188,7 @@ input[type="checkbox"] {
 }
 #root select {
   width: 30vw;
+  border: 1px solid lightgrey;
   margin: 2px;
 }
 .inputFieldDiv {
@@ -177,6 +243,7 @@ textarea {
   min-width: 30vw;
   min-height: 70px;
   margin: 2px;
+  border: 1px solid lightgrey;
 }
 
 textarea:focus {
@@ -231,18 +298,17 @@ textarea:focus {
   margin-left: 8%;
 }
 #carePlanToggle {
-  background-color: pink;
-  margin-right: 0px;
-  margin-top: 1px;
-  border-radius: 4px;
-  border: none;
-  padding: 4px 9px;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+  display: inline;
+  float: right;
+  margin-right: 100px;
+  margin-top: -8px;
 }
 .carePlan {
   background-color: #d2f8d2;
 }
 .important {
-  background-color: #f8f8d2;
+  background-color: #ffffcc;
 }
 .clinical {
   background-color: #d2d2f8;
@@ -254,8 +320,8 @@ textarea:focus {
   background-color: #d2f0f8;
 }
 #assessment > div > div > p {
-  color: white;
-  background-color: gray;
+  color: darkslategrey;
+  background-color: lightgrey;
   border: 1px solid white;
   border-radius: 3px;
 }
@@ -284,6 +350,7 @@ textarea:focus {
   #root input,
   #root select {
     width: 70vw;
+    /* border: 3px solid lightgrey; */
   }
   input,
   select {
@@ -303,5 +370,8 @@ textarea:focus {
   input,
   select {
     width: 70vw;
+  }
+  #carePlanToggle {
+    margin-right: 5px;
   }
 }

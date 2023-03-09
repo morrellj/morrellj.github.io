@@ -6,58 +6,47 @@ const menuDetach = document.getElementById("menuDetach");
 buttonNavToggle.addEventListener("click", buttonNavToggleOnClick);
 
 function screenWidthNarrow() {
-  return window.innerWidth < 1285 ? true : false;
+  return window.innerWidth < 1000 ? true : false;
 }
 
-if (screenWidthNarrow()) activateNarrowScreenAnimations();
+if (screenWidthNarrow()) {
+  activateNarrowScreenAnimations();
+} else {
+  attachMenu();
+}
 
 function activateNarrowScreenAnimations() {
-  window.addEventListener("scroll", displayShowButtonNavMessage);
+  window.addEventListener("scroll", hideButtonNav);
   detachMenu();
 }
 
 function setButtonNavPositionOnSetPage() {
+  window.removeEventListener("scroll", hideButtonNav);
   if (screenWidthNarrow()) {
+    detachMenu();
+    window.scroll({ top: menuDetach.offsetHeight + 5, behavior: "smooth" });
     activateNarrowScreenAnimations();
-    if (window.innerWidth < 1300) {
-      if (
-        !(
-          document.getElementById("body").scrollHeight - window.innerHeight <
-          menuDetach.offsetHeight
-        )
-      ) {
-        window.scroll({ top: menuDetach.offsetHeight + 5, behavior: "auto" });
-      }
-    }
+  } else {
+    window.scroll({ top: 0, behavior: "smooth" });
   }
 }
 
-function displayShowButtonNavMessage() {
-  window.removeEventListener("scroll", displayShowButtonNavMessage);
+function hideButtonNav() {
+  window.removeEventListener("scroll", hideButtonNav);
   if (menuDetach.dataset.loaded == "false") {
     detachMenu();
   }
-  if (
-    window.scrollY < menuDetach.offsetHeight &&
-    !buttonNavToggle.classList.contains("hidden")
-  ) {
-    buttonNavToggle.classList.add("hidden");
-  }
-  if (
-    window.scrollY > menuDetach.offsetHeight &&
-    buttonNavToggle.classList.contains("hidden")
-  ) {
-    buttonNavToggle.classList.remove("hidden");
-  }
-  window.addEventListener("scroll", displayShowButtonNavMessage);
+  setButtonNavTogglePosition();
+  window.addEventListener("scroll", hideButtonNav);
 }
 
-function buttonNavToggleOnClick() {
-  window.removeEventListener("scroll", displayShowButtonNavMessage);
+function buttonNavToggleOnClick(e) {
+  e.stopPropagation();
+  window.removeEventListener("scroll", hideButtonNav);
   attachMenu();
-  clientSelectDivClose();
+  app.pageActions.hideAll();
   setTimeout(() => {
-    window.addEventListener("scroll", displayShowButtonNavMessage);
+    window.addEventListener("scroll", hideButtonNav);
   }, 1000);
 }
 
@@ -70,4 +59,20 @@ function attachMenu() {
 function detachMenu() {
   menuDetach.appendChild(buttonNav);
   menuDetach.dataset.loaded = "true";
+  setButtonNavTogglePosition();
+}
+
+function setButtonNavTogglePosition() {
+  if (
+    window.scrollY < menuDetach.offsetHeight - 10 &&
+    !buttonNavToggle.classList.contains("hidden")
+  ) {
+    buttonNavToggle.classList.add("hidden");
+  }
+  if (
+    window.scrollY > menuDetach.offsetHeight - 35 &&
+    buttonNavToggle.classList.contains("hidden")
+  ) {
+    buttonNavToggle.classList.remove("hidden");
+  }
 }

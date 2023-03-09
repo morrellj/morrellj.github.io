@@ -1,6 +1,6 @@
 {
-  "name": "Assessment Light",
-  "short_name": "LightAss",
+  "name": "Grove Assessment Light",
+  "short_name": "Grove",
   "description": "Aged care assessment and careplanning tool.",
   "start_url": "./",
   "display": "standalone",

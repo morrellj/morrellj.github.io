@@ -147,8 +147,8 @@ class Elements {
         ],
         [
           "Home Medication Review - Health Direct",
-          "https://www.healthdirect.gov.au/home-medicines-review"
-        ]
+          "https://www.healthdirect.gov.au/home-medicines-review",
+        ],
       ],
     },
     environment: {
@@ -282,7 +282,8 @@ Elements.prototype.addSpecifiedElementsToTargetDiv = function (
     let id = div.id.slice(0, -2);
     document.getElementById(id).appendChild(div);
   });
-
+  let carePlanToggle = document.getElementById("carePlanToggle");
+  carePlanToggle.classList.toggle("hidden", true);
   this.inputElementsArray.forEach(function (element) {
     switch (category) {
       case "followUp":
@@ -316,6 +317,7 @@ Elements.prototype.addSpecifiedElementsToTargetDiv = function (
         let classList = element.childNodes[1].classList;
         if (classList.contains(category)) {
           if (classList.contains("carePlan") || classList.contains("review")) {
+            carePlanToggle.classList.toggle("hidden", false);
             carePlanDiv.appendChild(element);
             if (divFull(carePlanDiv)) {
               carePlanDiv = getNextDiv(carePlanDiv);
