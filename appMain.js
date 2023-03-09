@@ -59,12 +59,13 @@ function popUpPop(event) {
       if (
         app.elements.inputObjects[
           event.target.parentNode.id
-        ].$_dataField?.value?.indexOf(ele) >= 0
+        ].$_dataField?.value?.indexOf(personaliseStatement(ele)) >= 0
       ) {
         newParagraph.style.color = "red";
       } else {
         newParagraph.style.color = "black";
       }
+
       newParagraph.onclick = function () {
         let result = addOrRemovePartOfElementValue(
           this.innerHTML,
@@ -74,80 +75,49 @@ function popUpPop(event) {
         app.elements.inputObjects[this.name].$_dataField.dispatchEvent(
           new Event("input")
         );
-        function addOrRemovePartOfElementValue(partString, elementToChange) {
+
+        function addOrRemovePartOfElementValue(
+          initialStatement,
+          elementToChange
+        ) {
           let spacer = elementToChange.value == "" ? "" : "\n";
-          let firstName =
-            store.state.records[store.state.activeRecord].firstName;
-          let preferredName =
-            store.state.records[store.state.activeRecord].preferredName;
-          firstName =
-            preferredName == "" ||
-            preferredName == null ||
-            preferredName == undefined
-              ? firstName
-              : preferredName;
-          let gender = store.state.records[store.state.activeRecord].gender;
-          let genderId;
-          let genderId2;
-          let genderOwnership;
-          if (!gender) {
-            alert("Gender has not been specified");
-            genderId = "TBA";
-            genderId2 = "TBA";
-            genderOwnership = "TBA";
-            return false;
-          } else {
-            genderId = gender == "Male" ? "he" : "she";
-            genderOwnership = gender == "Male" ? "his" : "her";
-            genderId2 = gender == "Male" ? "him" : "her";
-          }
-          let personalPartString = partString.replaceAll("client", firstName);
-          personalPartString = personalPartString.replaceAll(
-            "Client",
-            firstName
-          );
-          personalPartString = personalPartString.replaceAll(
-            "he/she",
-            genderId
-          );
-          personalPartString = personalPartString.replaceAll(
-            "him/her",
-            genderId2
-          );
-          personalPartString = personalPartString.replaceAll(
-            "his/her",
-            genderOwnership
-          );
-          if (elementToChange.value.indexOf(personalPartString) >= 0) {
+
+          let personalisedStatement = personaliseStatement(initialStatement);
+
+          if (elementToChange.value.indexOf(personalisedStatement) >= 0) {
             let stringWithoutCarriageReturn = elementToChange.value;
             if (
               elementToChange.value[
-                elementToChange.value.indexOf(personalPartString) - 1
+                elementToChange.value.indexOf(personalisedStatement) - 1
               ] == "\n"
             ) {
               stringWithoutCarriageReturn = elementToChange.value
-                .slice(0, elementToChange.value.indexOf(personalPartString) - 1)
+                .slice(
+                  0,
+                  elementToChange.value.indexOf(personalisedStatement) - 1
+                )
                 .concat(
                   "",
                   elementToChange.value.slice(
-                    elementToChange.value.indexOf(personalPartString)
+                    elementToChange.value.indexOf(personalisedStatement)
                   )
                 );
             }
 
             if (
-              stringWithoutCarriageReturn.length === personalPartString.length
+              stringWithoutCarriageReturn.length ===
+              personalisedStatement.length
             ) {
               elementToChange.value = "";
             } else {
               elementToChange.value = stringWithoutCarriageReturn
-                .replace(personalPartString, "")
+                .replace(personalisedStatement, "")
                 .trim();
             }
             return false;
           } else {
             elementToChange.value =
-              elementToChange.value + spacer + personalPartString.trim();
+              elementToChange.value + spacer + personalisedStatement.trim();
             return true;
           }
         }
@@ -161,6 +131,40 @@ function popUpPop(event) {
     newParagraph.classList.add("temp");
     popUpContent.appendChild(newParagraph);
   }
+}
+
+function personaliseStatement(statement) {
+  let firstName = store.state.records[store.state.activeRecord].firstName;
+  let preferredName =
+    store.state.records[store.state.activeRecord].preferredName;
+  firstName =
+    preferredName == "" || preferredName == null || preferredName == undefined
+      ? firstName
+      : preferredName;
+  let gender = store.state.records[store.state.activeRecord].gender;
+  let genderId;
+  let genderId2;
+  let genderOwnership;
+  if (!gender) {
+    alert("Gender has not been specified");
+    genderId = "TBA";
+    genderId2 = "TBA";
+    genderOwnership = "TBA";
+    return false;
+  } else {
+    genderId = gender == "Male" ? "he" : "she";
+    genderOwnership = gender == "Male" ? "his" : "her";
+    genderId2 = gender == "Male" ? "him" : "her";
+  }
+  let personalPartString = statement.replaceAll("client", firstName);
+  personalPartString = personalPartString.replaceAll("Client", firstName);
+  personalPartString = personalPartString.replaceAll("he/she", genderId);
+  personalPartString = personalPartString.replaceAll("him/her", genderId2);
+  personalPartString = personalPartString.replaceAll(
+    "his/her",
+    genderOwnership
+  );
+  return personalPartString;
 }
 
 app.elements = new Elements(clientRecordFieldSettings);
