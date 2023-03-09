@@ -1050,7 +1050,7 @@ let psychologicalData = {
       "Impaired Memory",
       "Wandering",
       "Client is alert and orientated and able to communicate effectively.",
-      "No cognitive impairments."
+      "No cognitive impairments.",
     ],
   },
   psychologicalSupportPlanGoals: {
@@ -1060,6 +1060,7 @@ let psychologicalData = {
     notes: [
       "Client will report he/she feels safe and secure most of the time.",
       "Clients carers and support workers will identify what frequently triggers certain behaviours, anxiety and insecurity, what interventions are effective and the outcomes.",
+      "Client will engage in meaningful activity on a daily basis and effectively complete all of his/her activities of daily living.",
     ],
   },
   psychologicalSP_Client: {
@@ -1647,7 +1648,7 @@ let mobilityData = {
     classes: ["carePlan", "mobility", "falls", "largeText"],
     notes: [
       "Client will participate in his/her home exercise program as per physiotherapy plan.",
-      "Client will use his/her mobility aid as recommended by his/her Physiotherapist."
+      "Client will use his/her mobility aid as recommended by his/her Physiotherapist.",
     ],
   },
   mobilitySupportPlanInterventions: {
@@ -1723,7 +1724,7 @@ let mobilityData = {
     tag: "textarea",
     label: "Transport",
     classes: ["review", "mobility", "carePlan", "largeText"],
-    notes:["Care plan current and effective."]
+    notes: ["Care plan current and effective."],
   },
   mobilityFallsNeeds: {
     tag: "textarea",
@@ -1959,7 +1960,7 @@ let carerData = {
     classes: ["carePlan", "carer", "goals", "largeText"],
     notes: [
       "Carer will report that they feel less burdened, have more time to attend to their own health, social and or personal needs and goals.",
-      "Client and his/her carer will both report that their relationship is effective/supportive and sustainable."
+      "Client and his/her carer will both report that their relationship is effective/supportive and sustainable.",
     ],
   },
   carerSP_CLient: {
@@ -2065,7 +2066,7 @@ let personalCareData = {
     notes: [
       "Client has difficulty completing self care tasks independently secondary to ___",
       "Client is independent with all personal care tasks.",
-      "Client uses railing and Showering equipment to help him/her maintain his/her independence and safety while attending to his/her own personal care."
+      "Client uses railing and Showering equipment to help him/her maintain his/her independence and safety while attending to his/her own personal care.",
     ],
   },
   personalCareSupportPlanGoals: {
@@ -2081,9 +2082,7 @@ let personalCareData = {
     tag: "textarea",
     label: "Personal care support plan CLIENT",
     classes: ["carePlan", "personalCare", "largeText"],
-    notes: [
-      "Client will contiune to attend to his/her own personal care.",
-    ],
+    notes: ["Client will contiune to attend to his/her own personal care."],
   },
   personalCareSupportPlanInterventions: {
     tag: "textarea",
@@ -2091,7 +2090,7 @@ let personalCareData = {
     classes: ["carePlan", "personalCare", "largeText"],
     notes: [
       "Southern Plus support workers will assist client with personal care x days per week.",
-      "Southern Plus will arrange for home visiting podiatry approx 8 weekly."
+      "Southern Plus will arrange for home visiting podiatry approx 8 weekly.",
     ],
   },
   personalCareSP_WellnessPartner: {
@@ -2129,7 +2128,7 @@ let mealsNutritionData = {
     notes: [
       "Client is able to prepare and cook his/her own meals.",
       "Client has a self care deficit related to meal preparation secondary to ___",
-      "Client has a self care deficit related to shopping secondary to ___"
+      "Client has a self care deficit related to shopping secondary to ___",
     ],
   },
   mealsAndShoppingSupportPlanGoals: {
@@ -2157,7 +2156,7 @@ let mealsNutritionData = {
     classes: ["carePlan", "nutrition", "largeText"],
     notes: [
       "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
-      "Southern Plus suppport workers will assist client with shopping by list each week/fortnight."
+      "Southern Plus suppport workers will assist client with shopping by list each week/fortnight.",
     ],
   },
   mealsAndShoppingSP_WellnessPartner: {
