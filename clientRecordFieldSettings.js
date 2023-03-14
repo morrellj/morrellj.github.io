@@ -2412,6 +2412,10 @@ let referralData = {
         "GP referral",
         ["Completed", "Required", "Not required", "NA"],
       ],
+      podiatryReferralStatus: [
+        "Podiatry referral",
+        ["Completed", "Required", "Not required", "NA"],
+      ],
     },
     classes: [
       "medical",
