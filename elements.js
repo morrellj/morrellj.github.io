@@ -162,6 +162,10 @@ class Elements {
           "Eating Assessment Tool (EAT-10)",
           "https://www.nestlehealthscience.com/health-management/gastro-intestinal/dysphagia/eat-10",
         ],
+        [
+          "Oral Health Assessment",
+          "https://www.dental.sa.gov.au/professionals/oral-health-resources/care-for-older-people-toolkit/home-care/oral-health-assessment",
+        ],
       ],
     },
     personalCare: {

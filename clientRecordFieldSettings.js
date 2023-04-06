@@ -327,9 +327,8 @@ let contactsData = {
   epaEpgAcp: {
     tag: "textarea",
     label: "EPA/EPG/ACP",
-    classes: ["contactsMedical", "largeText"],
+    classes: ["contactsMedical", "important", "largeText"],
   },
-
   pharmacy: {
     tag: "input",
     label: "Pharmacy",
@@ -650,6 +649,7 @@ let personalHistoryData = {
     tag: "textarea",
     label: "What matters to me?",
     classes: ["largeText", "preamble"],
+    notes:["• What sorts of things might improve my day-to-day life?","• What do I enjoy doing most?","• What support do I need to stay safe?","• Where and when do I want support?","• How does this fit in with the help I already have?"]
   },
   goodDay: {
     tag: "textarea",
@@ -1688,6 +1688,7 @@ let mobilityData = {
     notes: [
       "Client is not able to drive secondary to ____",
       "Client is unable to access the community without assistance secondary to _____",
+      "Client is currently accessing the TUSS."
     ],
   },
   transportGoals: {
@@ -1713,6 +1714,7 @@ let mobilityData = {
     classes: ["mobility", "carePlan", "largeText"],
     notes: [
       "Southern Plus support workers will provide transport to appointments as required within capacity of HCP funding.",
+      "Southern Plus will facilitate payment for wheelchair taxi services when these are not co funded by TUSS."
     ],
   },
   transportSP_WellnessPartner: {
@@ -1747,6 +1749,7 @@ let environmentPersonalSafetyData = {
       "Walkways uncluttered and clear of tripping hazards and rooms well lit.",
       "Client reports that he/she is able to sit to stand without undue effort to and from toilet/chairs and bed.",
       "Unmitigated hazards present (identify) and discussed with client who has/has_not agreed to occupational therapy referral or rectification.",
+      "Dementia/Age related risks emergency response plans/exiting the home/responding to alarms..."
     ],
     classes: ["mobility", "environment", "falls", "largText", "assessment"],
   },
@@ -1827,7 +1830,7 @@ let environmentPersonalSafetyData = {
     label: "Environment support plan WELLNESS PARTNER",
     classes: ["carePlan", "environment", "largeText"],
     notes: [
-      "Wellness Partner will make a referral to ____ for Occupation Therapy home safety assessment.",
+      "Wellness Partner will make a referral to ___ for Occupation Therapy home safety assessment and facilitate provision of home modifications and equipment according to HCP inclusion/exclusion framework.",
     ],
   },
   environmentReview: {
@@ -2542,6 +2545,12 @@ let reviewData = {
     tag: "textarea",
     label: "Service preferences",
     classes: ["chsp", "carePlan", "largeText"],
+  },
+   advancedCarePlanReview:{
+    tag: "input",
+    label: "ACP last reviewed",
+    type: "date",
+    classes: ["review"]
   },
   budgetLastSigned: {
     tag: "input",
