@@ -1807,13 +1807,16 @@ let environmentPersonalSafetyData = {
     classes: ["carePlan", "environment", "largeText"],
     notes: [
       "Client is at increased risk of falls and would benefit from review of his/her home and living spaces to assess and reduce risk factors.",
+      "Client uses home oxygen.",
+      "Client's home is well designed and laid out.",
+      "Client maintains his/her home in a safe condition."
     ],
   },
   environmentSupportPlanGoals: {
     tag: "textarea",
     label: "Environment support plan GOALS",
     classes: ["carePlan", "environment", "goals", "largeText"],
-    notes: ["Environmental risks will be reduced/mitigated."],
+    notes: ["Environmental risks will be identified, reduced/mitigated."],
   },
   environmentSP_Client: {
     tag: "textarea",
@@ -1824,6 +1827,7 @@ let environmentPersonalSafetyData = {
     tag: "textarea",
     label: "Environment support plan SUPPORTS",
     classes: ["carePlan", "environment", "largeText"],
+    notes:["Interventions applicable for home oxygen use."]
   },
   environmentSP_WellnessPartner: {
     tag: "textarea",
@@ -1878,6 +1882,7 @@ let environmentPersonalSafetyData = {
     ],
     notes: [
       "Client will have the ability to gain timely access to emergency services as needed.",
+      "Client's PERS will be functional when tested."
     ],
   },
   personalSafetySP_Client: {
@@ -1982,7 +1987,7 @@ let carerData = {
     tag: "textarea",
     label: "Carer support plan WELLNESS PARTNER",
     classes: ["carePlan", "carer", "largeText"],
-    notes: [],
+    notes: ["Wellness Partner will provide guidance and support for ________  to access Carers Gateway resources including Care Gateway Coaching."],
   },
   carerReview: {
     tag: "textarea",
@@ -2138,7 +2143,7 @@ let mealsNutritionData = {
     tag: "textarea",
     label: "Meals/shopping support plan GOALS",
     classes: ["carePlan", "nutrition", "goals", "largeText"],
-    notes: ["Client will be adequately nourished and hydrated."],
+    notes: ["Client will be adequately nourished and hydrated.","Client will report he/she is able to access the community to do his/her weekly shopping."],
   },
   mealsAndShoppingSP_Client: {
     tag: "textarea",
@@ -2159,7 +2164,7 @@ let mealsNutritionData = {
     classes: ["carePlan", "nutrition", "largeText"],
     notes: [
       "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
-      "Southern Plus suppport workers will assist client with shopping by list each week/fortnight.",
+      "Southern Plus support workers will assist client with shopping by list each week/fortnight.",
     ],
   },
   mealsAndShoppingSP_WellnessPartner: {
