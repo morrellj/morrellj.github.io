@@ -1755,7 +1755,7 @@ let environmentPersonalSafetyData = {
       "Walkways uncluttered and clear of tripping hazards and rooms well lit.",
       "Client reports that he/she is able to sit to stand without undue effort to and from toilet/chairs and bed.",
       "Unmitigated hazards present (identify) and discussed with client who has/has_not agreed to occupational therapy referral or rectification.",
-      "Dementia/Age related risks emergency response plans/exiting the home/responding to alarms...",
+      "Dementia/Age related risks and emergency response plans/exiting the home/responding to alarms etc....",
     ],
     classes: ["mobility", "environment", "falls", "largText", "assessment"],
   },
@@ -1873,6 +1873,7 @@ let environmentPersonalSafetyData = {
     notes: [
       "Client is at increased risk of medical emergency and falls and is often at home alone.",
       "Potential for delayed access to emergency services.",
+      "Potential emergency situations: ",
     ],
   },
   personalSafetySupportPlanGoals: {
@@ -1889,6 +1890,7 @@ let environmentPersonalSafetyData = {
     notes: [
       "Client will have the ability to gain timely access to emergency services as needed.",
       "Client's PERS will be functional when tested.",
+      "Client will be demonstrate emergency response preparedness and have a plan in place in the event of a fire or other emergency situation.",
     ],
   },
   personalSafetySP_Client: {
@@ -1905,6 +1907,7 @@ let environmentPersonalSafetyData = {
       "Client will wear his/her PERS pendant at all times and keep it charged.",
       "Client will test his/her PERS pendant monthly to ensure it is functional.",
       "Client will wear Personal Emergency Response pendant and ensure the battery is charged and renew sim card activation each year if required.",
+      "Client identify potential emergency situations and make a plan to enact in case of an emergency and ensure that preperations are made accordingly.",
     ],
   },
   personalSafetySupportPlanInterventions: {
@@ -1914,6 +1917,7 @@ let environmentPersonalSafetyData = {
       "Support workers will prompt client to check that he/she is wearing their PERS device, it is charged and functional",
       "Support workers will prompt client to lock his/her security door and/or windows at the end of each visit.",
       "Support workers will report any security concerns to the Wellness Partner.",
+      "Support workers will be aware of clients emergency response plans and support clients to enact them in the event of an emergency if they are present.",
     ],
     classes: [
       "carePlan",
@@ -1936,6 +1940,7 @@ let environmentPersonalSafetyData = {
     notes: [
       "Wellness Partner will arrange for quote and purchase of wrist based PERS, with geolocating capabilities.",
       "Wellness partner will review and assist client to ensure that he/she has an effective Personal Emergency Response system.",
+      "Wellness partner will work with client to identify potential emergency situations and support them to make emergency response plans and be prepared for the eventuality.",
     ],
   },
   personalSafetyReview: {
