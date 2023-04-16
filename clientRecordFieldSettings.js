@@ -649,7 +649,13 @@ let personalHistoryData = {
     tag: "textarea",
     label: "What matters to me?",
     classes: ["largeText", "preamble"],
-    notes:["• What sorts of things might improve my day-to-day life?","• What do I enjoy doing most?","• What support do I need to stay safe?","• Where and when do I want support?","• How does this fit in with the help I already have?"]
+    notes: [
+      "• What sorts of things might improve my day-to-day life?",
+      "• What do I enjoy doing most?",
+      "• What support do I need to stay safe?",
+      "• Where and when do I want support?",
+      "• How does this fit in with the help I already have?",
+    ],
   },
   goodDay: {
     tag: "textarea",
@@ -1688,7 +1694,7 @@ let mobilityData = {
     notes: [
       "Client is not able to drive secondary to ____",
       "Client is unable to access the community without assistance secondary to _____",
-      "Client is currently accessing the TUSS."
+      "Client is currently accessing the TUSS.",
     ],
   },
   transportGoals: {
@@ -1714,7 +1720,7 @@ let mobilityData = {
     classes: ["mobility", "carePlan", "largeText"],
     notes: [
       "Southern Plus support workers will provide transport to appointments as required within capacity of HCP funding.",
-      "Southern Plus will facilitate payment for wheelchair taxi services when these are not co funded by TUSS."
+      "Southern Plus will facilitate payment for wheelchair taxi services when these are not co funded by TUSS.",
     ],
   },
   transportSP_WellnessPartner: {
@@ -1749,7 +1755,7 @@ let environmentPersonalSafetyData = {
       "Walkways uncluttered and clear of tripping hazards and rooms well lit.",
       "Client reports that he/she is able to sit to stand without undue effort to and from toilet/chairs and bed.",
       "Unmitigated hazards present (identify) and discussed with client who has/has_not agreed to occupational therapy referral or rectification.",
-      "Dementia/Age related risks emergency response plans/exiting the home/responding to alarms..."
+      "Dementia/Age related risks emergency response plans/exiting the home/responding to alarms...",
     ],
     classes: ["mobility", "environment", "falls", "largText", "assessment"],
   },
@@ -1809,7 +1815,7 @@ let environmentPersonalSafetyData = {
       "Client is at increased risk of falls and would benefit from review of his/her home and living spaces to assess and reduce risk factors.",
       "Client uses home oxygen.",
       "Client's home is well designed and laid out.",
-      "Client maintains his/her home in a safe condition."
+      "Client maintains his/her home in a safe condition.",
     ],
   },
   environmentSupportPlanGoals: {
@@ -1827,7 +1833,7 @@ let environmentPersonalSafetyData = {
     tag: "textarea",
     label: "Environment support plan SUPPORTS",
     classes: ["carePlan", "environment", "largeText"],
-    notes:["Interventions applicable for home oxygen use."]
+    notes: ["Interventions applicable for home oxygen use."],
   },
   environmentSP_WellnessPartner: {
     tag: "textarea",
@@ -1882,7 +1888,7 @@ let environmentPersonalSafetyData = {
     ],
     notes: [
       "Client will have the ability to gain timely access to emergency services as needed.",
-      "Client's PERS will be functional when tested."
+      "Client's PERS will be functional when tested.",
     ],
   },
   personalSafetySP_Client: {
@@ -1987,7 +1993,9 @@ let carerData = {
     tag: "textarea",
     label: "Carer support plan WELLNESS PARTNER",
     classes: ["carePlan", "carer", "largeText"],
-    notes: ["Wellness Partner will provide guidance and support for ________  to access Carers Gateway resources including Care Gateway Coaching."],
+    notes: [
+      "Wellness Partner will provide guidance and support for ________  to access Carers Gateway resources including Care Gateway Coaching.",
+    ],
   },
   carerReview: {
     tag: "textarea",
@@ -2143,7 +2151,10 @@ let mealsNutritionData = {
     tag: "textarea",
     label: "Meals/shopping support plan GOALS",
     classes: ["carePlan", "nutrition", "goals", "largeText"],
-    notes: ["Client will be adequately nourished and hydrated.","Client will report he/she is able to access the community to do his/her weekly shopping."],
+    notes: [
+      "Client will be adequately nourished and hydrated.",
+      "Client will report he/she is able to access the community to do his/her weekly shopping.",
+    ],
   },
   mealsAndShoppingSP_Client: {
     tag: "textarea",
@@ -2445,7 +2456,7 @@ let referralData = {
     tag: "textarea",
     label: "Referrals comments",
     classes: [],
-    forms: ["referrals"],
+    forms: ["referrals", "newForm"],
     notes: [
       "OT referral and follow up of recommendations for pressure injury prevention/management devices",
       "OT referral and follow up of recommendations for environmental/seating/functional home safety review",
@@ -2551,11 +2562,11 @@ let reviewData = {
     label: "Service preferences",
     classes: ["chsp", "carePlan", "largeText"],
   },
-   advancedCarePlanReview:{
+  advancedCarePlanReview: {
     tag: "input",
     label: "ACP last reviewed",
     type: "date",
-    classes: ["review"]
+    classes: ["review"],
   },
   budgetLastSigned: {
     tag: "input",

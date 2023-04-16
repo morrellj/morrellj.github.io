@@ -187,14 +187,14 @@ class Elements {
         ],
       ],
     },
-    eliminaton:{
-      groupLinks:[
+    eliminaton: {
+      groupLinks: [
         [
           "Bowel Care Guidelines",
-          "https://www.kemh.health.wa.gov.au/~/media/HSPs/NMHS/Hospitals/WNHS/Documents/Clinical-guidelines/Obs-Gyn-Guidelines/Bowel-Care.pdf?thn=0"
-        ]
-      ]
-    }
+          "https://www.kemh.health.wa.gov.au/~/media/HSPs/NMHS/Hospitals/WNHS/Documents/Clinical-guidelines/Obs-Gyn-Guidelines/Bowel-Care.pdf?thn=0",
+        ],
+      ],
+    },
   };
 }
 Elements.prototype.updateElements = function (data) {
