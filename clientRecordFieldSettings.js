@@ -1,6 +1,6 @@
 //wnen creating a review input textarea the first item in the class list must be "review" and
 //the second item must be the relevant category or subpage which will be the parameter for
-//setPage() function triggered by a label oncontextmenu event (right click).
+//app.pageActions.setPage() function triggered by a label oncontextmenu event (right click).
 
 let demographicData = {
   ACnumber: {

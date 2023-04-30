@@ -66,4 +66,32 @@
     app.pageActions.hideAll();
     section.classList.toggle("hidden", !hidden);
   };
+  app.pageActions.setPage = function (category) {
+    let child = root.lastElementChild;
+    while (child) {
+      root.removeChild(child);
+      child = root.lastElementChild;
+    }
+    app.elements.addSpecifiedElementsToTargetDiv(category, root);
+    // window.scroll({ top: 0, behaviour: "smooth" });
+    //highlights button of active catergory
+    let current = document.getElementsByClassName("active");
+    if (current[0]) {
+      current[0].className = current[0].className.replace(" active", "");
+    }
+    document.getElementById(category + "-btn").className += " active";
+    // show or hide care plans for each category
+    let setCarePlanDivState = {
+      showCarePlan: "block",
+      hideCarePlan: "none",
+    };
+    document.getElementById("careplan").style.display =
+      setCarePlanDivState[
+        document.getElementById("carePlanToggle").dataset.state
+      ];
+    app.pageActions.hideAll();
+    setTimeout(() => {
+      setButtonNavPositionOnSetPage();
+    }, 100);
+  };
 })(app);

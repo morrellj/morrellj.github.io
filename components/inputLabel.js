@@ -16,7 +16,7 @@ class InputLabel {
       if (this.fieldSettings.classes.length > 2) {
         // return function (event) {
         event.preventDefault();
-        setPage(this.fieldSettings.classes[1]);
+        app.pageActions.setPage(this.fieldSettings.classes[1]);
         // };
       } else {
         return null;
