@@ -1,5 +1,6 @@
 (function (app) {
   app.pageActions = {};
+  app.root = document.getElementById("root");
   let searchBox = document.getElementById("searchBox");
   let clientListDiv = document.getElementById("clientListDiv");
   window.onclick = function (event) {
@@ -67,12 +68,12 @@
     section.classList.toggle("hidden", !hidden);
   };
   app.pageActions.setPage = function (category) {
-    let child = root.lastElementChild;
+    let child = app.root.lastElementChild;
     while (child) {
-      root.removeChild(child);
-      child = root.lastElementChild;
+      app.root.removeChild(child);
+      child = app.root.lastElementChild;
     }
-    app.elements.addSpecifiedElementsToTargetDiv(category, root);
+    app.elements.addSpecifiedElementsToTargetDiv(category, app.root);
     // window.scroll({ top: 0, behaviour: "smooth" });
     //highlights button of active catergory
     let current = document.getElementsByClassName("active");

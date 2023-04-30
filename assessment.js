@@ -1,5 +1,4 @@
 console.log("HI");
-let root = document.getElementById("root");
 let output = document.getElementById("output");
 let clientListSelect = document.getElementById("clientListSelect");
 // let client = {};
