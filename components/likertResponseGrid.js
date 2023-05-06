@@ -44,46 +44,23 @@ class LikertResponseGrid extends Builder {
 
     self.manufacture(self.schema);
 
-    self.elementsObject.events.subscribe(`updateFieldValues`, function () {
-      let thisPropertyName = self.propertyName;
-      self.element.childNodes.forEach((element) => {
-        if (store.dispatch("fetch", [thisPropertyName])) {
-          if (
-            element.value ==
-            store.dispatch("fetch", [thisPropertyName])[1]?.trim()
-          ) {
-            element.checked = true;
-          } else {
-            element.checked = false;
-          }
-        } else {
-          element.checked = false;
-        }
-      });
-    });
-    self.elementsObject.events.subscribe("assessmentClear", function () {
-      self.element.childNodes.forEach((element) => {
-        element.checked = false;
-      });
-      let changeObject = {
-        [`${self.propertyName}`]: "",
-      };
-      store.dispatch("update", {
-        id: store.state.activeRecord,
-        data: changeObject,
-      });
-    });
+    // insert if props.fieldSettings.consilidateRecords = true
+    // save the data in a storage property that has multiple properties pertaining to the form
+    //
+
+    self.elementsObject.events.subscribe(
+      `updateFieldValues`,
+      self.elementsObject.formFieldUpdaters.nakedLikertResponseGrid.bind(self)
+    );
+    self.elementsObject.events.subscribe(
+      "assessmentClear",
+      self.elementsObject.recordsUpdaters.clearNakedLikertResponseField.bind(
+        self
+      )
+    );
     self.elementsObject.events.subscribe(
       `${self.propertyName}_change`,
-      function (props) {
-        let changeObject = {
-          [`${self.propertyName}`]: [`${self.question} `, ` ${props.response}`],
-        };
-        return store.dispatch("update", {
-          id: store.state.activeRecord,
-          data: changeObject,
-        });
-      }
+      self.elementsObject.recordsUpdaters.nakedLikertResponseGrid.bind(self)
     );
   }
 

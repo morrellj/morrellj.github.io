@@ -27,6 +27,7 @@ class SingleLikertField extends Builder {
             question: questionResponse[0],
             responses: questionResponse[1],
             propertyName: propertyName,
+            fieldSettings: self.fieldSettings,
             elementsObject: self.elementsObject,
           }));
     }

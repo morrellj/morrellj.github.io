@@ -4,11 +4,10 @@ class Elements {
     this.inputObjects = {};
     this.variations = inputFieldVariations;
     this.events = new PubSub();
-    //create data field properties
-    for (const [inputField, value] of Object.entries(schema)) {
+    this.elementsBuilder = (inputField, value) => {
       let fieldSettings = Object.assign({ fieldName: inputField }, value);
       let newFields = {};
-      if (value.variation) {
+      if (value?.variation) {
         Object.assign(
           newFields,
           this.variations[value?.variation]?.(fieldSettings, this) || {}
@@ -23,10 +22,18 @@ class Elements {
           }),
         });
       }
+      return newFields;
+    };
+    this.addElements = (newFields) => {
       for (const newField of Object.values(newFields)) {
         this.inputElementsArray.push(newField.element);
       }
       Object.assign(this.inputObjects, newFields);
+    };
+    //create data field properties
+    for (const [inputField, value] of Object.entries(schema)) {
+      let newFields = this.elementsBuilder(inputField, value);
+      this.addElements(newFields);
     }
     //Create links elements
     for (const [linkField, value] of Object.entries(Elements.links)) {
@@ -459,4 +466,47 @@ Elements.prototype.clearAndBackUpAssessmentFields = function () {
   });
   this.events.publish("assessmentClear", {});
   this.updateElements(store.state.records[store.state.activeRecord]);
+};
+Elements.prototype.formFieldUpdaters = {
+  textField: function () {},
+  nakedLikertResponseGrid: function () {
+    let thisPropertyName = this.propertyName;
+    this.element.childNodes.forEach((element) => {
+      if (store.dispatch("fetch", [thisPropertyName])) {
+        if (
+          element.value ==
+          store.dispatch("fetch", [thisPropertyName])[1]?.trim()
+        ) {
+          element.checked = true;
+        } else {
+          element.checked = false;
+        }
+      } else {
+        element.checked = false;
+      }
+    });
+  },
+};
+Elements.prototype.recordsUpdaters = {
+  nakedLikertResponseGrid: function (props) {
+    let changeObject = {
+      [`${this.propertyName}`]: [`${this.question} `, ` ${props.response}`],
+    };
+    return store.dispatch("update", {
+      id: store.state.activeRecord,
+      data: changeObject,
+    });
+  },
+  clearNakedLikertResponseField: function () {
+    // this.element.childNodes.forEach((element) => {
+    //   element.checked = false;
+    // });
+    let changeObject = {
+      [`${this.propertyName}`]: "",
+    };
+    store.dispatch("update", {
+      id: store.state.activeRecord,
+      data: changeObject,
+    });
+  },
 };
