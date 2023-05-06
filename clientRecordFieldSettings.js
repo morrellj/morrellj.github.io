@@ -457,7 +457,8 @@ let medicalData = {
   vaccinations: {
     tag: "textarea",
     label: "Vaccinations",
-    classes: ["medical", "largeText", "assessment"],
+    classes: ["medical", "largeText"],
+    assessmentClear: true,
     notes: [
       "COVID vaccinations up to date",
       "COVID vaccinations pending",
@@ -470,17 +471,20 @@ let medicalData = {
       "Tetnus vaccinations up to date.",
       "Tetnus vaccinations pending.",
     ],
+    assessmentClear: true,
   },
   oxygen: {
     tag: "textarea",
     label: "Oxygen",
     default: "Needs:NA\nSupplement:NA",
-    classes: ["medical", "assessment"],
+    classes: ["medical"],
+    assessmentClear: true,
   },
   drugsAlcohol: {
     tag: "textarea",
     label: "Drugs and alcohol",
-    classes: ["medical", "falls", "assessment"],
+    classes: ["medical", "falls"],
+    assessmentClear: true,
   },
   acatDate: {
     tag: "input",
@@ -491,18 +495,20 @@ let medicalData = {
   medicalNeeds: {
     tag: "textarea",
     label: "Medical needs",
-    classes: ["clinical", "medical", "largeText", "assessment"],
+    classes: ["clinical", "medical", "largeText"],
     notes: [
       "Client articulates/has a documented chronic disease management plan including access to urgent medical support",
     ],
+    assessmentClear: true,
   },
   medicalNeedsActions: {
     tag: "textarea",
     label: "Medical actions",
-    classes: ["clinical", "medical", "largeText", "assessment"],
+    classes: ["clinical", "medical", "largeText"],
     notes: [
       "Southern Plus nurse to provide further support/education/referral to establish chronic disease management plan",
     ],
+    assessmentClear: true,
   },
   // medicalSupportPlanGoals: {
   //   tag: "textarea",
@@ -683,18 +689,20 @@ let medicationData = {
   medicationSupport: {
     tag: "select",
     label: "Medication support",
-    classes: ["medication", "assessment"],
+    classes: ["medication"],
     selectOptions: [
       "No support required",
       "Carer supports client with medication",
       "Formal support services required administration/prompt",
     ],
+    assessmentClear: true,
   },
 
   medicationList: {
     tag: "textarea",
     label: "Medication list",
-    classes: ["medication", "largeText", "assessment"],
+    classes: ["medication", "largeText"],
+    assessmentClear: true,
   },
   highRiskMedications: {
     tag: "textarea",
@@ -709,23 +717,26 @@ let medicationData = {
       "Hypnotics",
       "Anti cholinergic burden",
     ],
-    classes: ["medication", "largeText", "falls", "assessment"],
+    classes: ["medication", "largeText", "falls"],
+    assessmentClear: true,
   },
   hmr: {
     tag: "select",
     multiple: true,
     label: "HMR",
-    classes: ["medication", "assessment"],
+    classes: ["medication"],
     selectOptions: [
       "HMR recently completed",
       "HMR discussed",
       "Client/carer to follow up HMR with GP",
     ],
+    assessmentClear: true,
   },
   medicationOther: {
     tag: "textarea",
     label: "Medication other",
-    classes: ["medication", "largeText", "assessment"],
+    classes: ["medication", "largeText"],
+    assessmentClear: true,
   },
 
   medicationSupportPlanFactors: {
@@ -784,12 +795,14 @@ let medicationData = {
   medicationNeeds: {
     tag: "textarea",
     label: "Medication needs",
-    classes: ["clinical", "medication", "largeText", "assessment"],
+    classes: ["clinical", "medication", "largeText"],
+    assessmentClear: true,
   },
   medicationNeedsActions: {
     tag: "textarea",
     label: "Medication actions",
-    classes: ["clinical", "medication", "largeText", "assessment"],
+    classes: ["clinical", "medication", "largeText"],
+    assessmentClear: true,
     notes: ["Support plan current and effective."],
   },
   medicationReview: {
@@ -797,6 +810,7 @@ let medicationData = {
     label: "Medication",
     classes: ["review", "medication", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let communicationData = {
@@ -804,7 +818,8 @@ let communicationData = {
   CommunicationImpairements: {
     tag: "select",
     label: "Communication impairements",
-    classes: ["communicationSensory", "falls", "assessment"],
+    classes: ["communicationSensory", "falls"],
+    assessmentClear: true,
     selectOptions: [
       "Hearing impaired",
       "Vision impaired (glasses)",
@@ -817,7 +832,8 @@ let communicationData = {
   CommunicationAids: {
     tag: "select",
     label: "Communication aids",
-    classes: ["communicationSensory", "assessment"],
+    classes: ["communicationSensory"],
+    assessmentClear: true,
     selectOptions: [
       "Wears hearing aids",
       "Wears reading glasses",
@@ -829,7 +845,8 @@ let communicationData = {
   sensory: {
     tag: "select",
     label: "Sensory",
-    classes: ["communicationSensory", "falls", "assessment"],
+    classes: ["communicationSensory", "falls"],
+    assessmentClear: true,
     selectOptions: [
       "Sense of smell present",
       "Feels light touch in peripheries",
@@ -841,7 +858,8 @@ let communicationData = {
   sensoryOther: {
     tag: "textarea",
     label: "Communication and sensory other",
-    classes: ["communicationSensory", "largeText", "assessment"],
+    classes: ["communicationSensory", "largeText"],
+    assessmentClear: true,
     notes: [
       "Client passed whisper test bilaterally.",
       "Client failed whisper test Right/Left/Both ear/s.",
@@ -929,16 +947,19 @@ let communicationData = {
     label: "Communication",
     classes: ["review", "communicationSensory", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
   communicationNeeds: {
     tag: "textarea",
     label: "Communication needs",
-    classes: ["clinical", "communicationSensory", "largeText", "assessment"],
+    classes: ["clinical", "communicationSensory", "largeText"],
+    assessmentClear: true,
   },
   communicationActions: {
     tag: "textarea",
     label: "Communication actions",
-    classes: ["clinical", "communicationSensory", "largeText", "assessment"],
+    classes: ["clinical", "communicationSensory", "largeText"],
+    assessmentClear: true,
   },
 };
 let psychologicalData = {
@@ -946,17 +967,20 @@ let psychologicalData = {
   sleep: {
     tag: "textarea",
     label: "Sleep",
-    classes: ["largeText", "psychological", "assessment"],
+    classes: ["largeText", "psychological"],
+    assessmentClear: true,
   },
   cognitionNeurological: {
     tag: "textarea",
     label: "Cognition and neurological",
-    classes: ["largeText", "psychological", "assessment"],
+    classes: ["largeText", "psychological"],
+    assessmentClear: true,
   },
   depression: {
     tag: "textarea",
     label: "Depression",
-    classes: ["largeText", "psychological", "assessment"],
+    classes: ["largeText", "psychological"],
+    assessmentClear: true,
     notes: [
       "Beyond Blue anxiety and depression checklist completed with client.",
     ],
@@ -964,7 +988,8 @@ let psychologicalData = {
   psychologicalOther: {
     tag: "textarea",
     label: "Psychological other",
-    classes: ["largeText", "psychological", "assessment"],
+    classes: ["largeText", "psychological"],
+    assessmentClear: true,
     notes: [
       "PAS scale completed.",
       "Further assessment/referral required.",
@@ -974,7 +999,8 @@ let psychologicalData = {
   abbreviatedMentalTest: {
     tag: "textarea",
     label: "AMTS",
-    classes: ["largeText", "psychological", "assessment"],
+    classes: ["largeText", "psychological"],
+    assessmentClear: true,
     notes: [
       "Age Correct",
       "Age Incorrect",
@@ -1002,7 +1028,8 @@ let psychologicalData = {
   lonelinessScale: {
     variation: "multiLikertField",
     label: "6-Item Loneliness Scale",
-    classes: ["social", "assessment"],
+    classes: ["social"],
+    assessmentClear: true,
     propertyResponseFields: {
       emotionalLonelinessSection: [
         "Code EL: Level of emotional loneliness",
@@ -1099,12 +1126,14 @@ let psychologicalData = {
   pyscholigicalNeeds: {
     tag: "textarea",
     label: "Psychological needs",
-    classes: ["clinical", "psychological", "largeText", "assessment"],
+    classes: ["clinical", "psychological", "largeText"],
+    assessmentClear: true,
   },
   psychologicalActions: {
     tag: "textarea",
     label: "Psychological actions",
-    classes: ["clinical", "psychological", "largeText", "assessment"],
+    classes: ["clinical", "psychological", "largeText"],
+    assessmentClear: true,
     notes: [
       "Add dementia specific interventions to support plan",
       "Southern Plus clinical team to conduct further dementia specific assessment and care planning (ie HDR scale, behaviour management)",
@@ -1118,6 +1147,7 @@ let psychologicalData = {
     label: "Psychological",
     classes: ["review", "psychological", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let psychosocialData = {
@@ -1125,7 +1155,8 @@ let psychosocialData = {
   socialOther: {
     tag: "textarea",
     label: "Social other",
-    classes: ["social", "assessment"],
+    classes: ["social"],
+    assessmentClear: true,
     notes: [
       "Support from family/friends: type (phone, visit etc) and frequency",
       "Any difficulties in accessing this support?",
@@ -1182,6 +1213,7 @@ let psychosocialData = {
     label: "Psychosocial",
     classes: ["review", "psychological", "social", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
   /*psychoSocialSupportPlanFactors: {
     tag: "textarea",
@@ -1233,6 +1265,7 @@ let psychosocialData = {
     label: "Psychosocial",
     classes: ["review", "psychological", "social", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },*/
 };
 let painData = {
@@ -1240,7 +1273,8 @@ let painData = {
   painScale: {
     tag: "select",
     label: "Pain scale",
-    classes: ["pain", "falls", "assessment"],
+    classes: ["pain", "falls"],
+    assessmentClear: true,
     selectOptions: [
       "0 No pain",
       "1 Tolerable (and does not prevent any activities)",
@@ -1253,7 +1287,8 @@ let painData = {
   painLocation: {
     tag: "textarea",
     label: "Pain location",
-    classes: ["largeText", "pain", "falls", "assessment"],
+    classes: ["largeText", "pain", "falls"],
+    assessmentClear: true,
   },
   painFutherAssessment: {
     tag: "select",
@@ -1263,12 +1298,14 @@ let painData = {
       "Further pain assessment required",
       "Further pain assessment not required",
     ],
-    classes: ["pain", "assessment"],
+    classes: ["pain"],
+    assessmentClear: true,
   },
   painOther: {
     tag: "textarea",
     label: "Pain other",
-    classes: ["pain", "assessment"],
+    classes: ["pain"],
+    assessmentClear: true,
     notes: ["Pain scale completed."],
   },
   painSupportPlanFactors: {
@@ -1318,12 +1355,14 @@ let painData = {
   painNeeds: {
     tag: "textarea",
     label: "Pain needs",
-    classes: ["clinical", "pain", "largeText", "assessment"],
+    classes: ["clinical", "pain", "largeText"],
+    assessmentClear: true,
   },
   painActions: {
     tag: "textarea",
     label: "Pain actions",
-    classes: ["clinical", "pain", "largeText", "assessment"],
+    classes: ["clinical", "pain", "largeText"],
+    assessmentClear: true,
     notes: [
       "Client receives symptom management support by the palliative care team.",
       "No further intervention required by Southern Plus at this time.",
@@ -1337,6 +1376,7 @@ let painData = {
     label: "Pain",
     classes: ["review", "pain", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let skinData = {
@@ -1344,7 +1384,8 @@ let skinData = {
   woundCare: {
     tag: "select",
     label: "Wound Care",
-    selectOptions: ["No wounds", "Wound assessment required", "assessment"],
+    selectOptions: ["No wounds", "Wound assessment required"],
+    assessmentClear: true,
     classes: ["skin"],
   },
   pressureInjury: {
@@ -1354,12 +1395,14 @@ let skinData = {
       "Pressure injury risk assessment completed",
     ],
     label: "Pressure injury",
-    classes: ["skin", "assessment"],
+    classes: ["skin"],
+    assessmentClear: true,
   },
   skinIntegrity: {
     tag: "textarea",
     label: "Skin integrity",
-    classes: ["skin", "assessment"],
+    classes: ["skin"],
+    assessmentClear: true,
     notes: [
       "Uses medications that increase risk of skin tears: corticosteroids, anticoagulants, polypharmacy.",
       "Assessment indicates high risk for pressure injury.",
@@ -1429,7 +1472,8 @@ let skinData = {
   skinActions: {
     tag: "textarea",
     label: "Skin care clinical actions",
-    classes: ["skin", "clinical", "largeText", "assessment"],
+    classes: ["skin", "clinical", "largeText"],
+    assessmentClear: true,
     notes: [
       "S: pressure redistribution support surface in place/for OT assessment",
       "S: Regular skin inspection to be incorporated into support plan and/or client/carer education provided",
@@ -1445,6 +1489,7 @@ let skinData = {
     label: "Skin review",
     classes: ["review", "skin", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let eliminationData = {
@@ -1452,12 +1497,14 @@ let eliminationData = {
   eliminationUrinary: {
     tag: "textarea",
     label: "Urinary",
-    classes: ["elimination", "falls", "assessment"],
+    classes: ["elimination", "falls"],
+    assessmentClear: true,
   },
   eliminationBowel: {
     tag: "textarea",
     label: "Bowel",
-    classes: ["elimination", "falls", "assessment"],
+    classes: ["elimination", "falls"],
+    assessmentClear: true,
   },
   Toileting: {
     tag: "select",
@@ -1467,17 +1514,20 @@ let eliminationData = {
       "Requires assistance with toileting",
     ],
     label: "Toileting",
-    classes: ["elimination", "assessment"],
+    classes: ["elimination"],
+    assessmentClear: true,
   },
   incontinenceAids: {
     tag: "textarea",
     label: "Incontinence aids",
-    classes: ["elimination", "assessment"],
+    classes: ["elimination"],
+    assessmentClear: true,
   },
   eliminationOther: {
     tag: "textarea",
     label: "Elimination other",
-    classes: ["elimination", "falls", "assessment"],
+    classes: ["elimination", "falls"],
+    assessmentClear: true,
   },
   eliminationSupportPlanFactors: {
     tag: "textarea",
@@ -1524,18 +1574,21 @@ let eliminationData = {
   eliminationNeeds: {
     tag: "textarea",
     label: "Elimination needs",
-    classes: ["clinical", "elimination", "largeText", "assessment"],
+    classes: ["clinical", "elimination", "largeText"],
+    assessmentClear: true,
   },
   eliminationActions: {
     tag: "textarea",
     label: "Elimination actions",
-    classes: ["clinical", "elimination", "largeText", "assessment"],
+    classes: ["clinical", "elimination", "largeText"],
+    assessmentClear: true,
   },
   eliminationReview: {
     tag: "textarea",
     label: "Elimination",
     classes: ["review", "elimination", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let mobilityData = {
@@ -1543,7 +1596,8 @@ let mobilityData = {
   transport: {
     tag: "textarea",
     label: "Transport",
-    classes: ["medical", "mobility", "largeText", "assessment"],
+    classes: ["medical", "mobility", "largeText"],
+    assessmentClear: true,
   },
   transfers: {
     tag: "select",
@@ -1555,7 +1609,8 @@ let mobilityData = {
       "Not weight bearing",
     ],
     label: "Transfers",
-    classes: ["mobility", "falls", "assessment"],
+    classes: ["mobility", "falls"],
+    assessmentClear: true,
   },
   ambulation: {
     tag: "select",
@@ -1566,7 +1621,8 @@ let mobilityData = {
       "Physical assist xv2 ambulation",
     ],
     label: "Ambulation",
-    classes: ["mobility", "falls", "assessment"],
+    classes: ["mobility", "falls"],
+    assessmentClear: true,
   },
   mobilityAids: {
     tag: "select",
@@ -1582,7 +1638,8 @@ let mobilityData = {
       "Cradle hoist",
     ],
     label: "Mobility aids",
-    classes: ["mobility", "falls", "assessment"],
+    classes: ["mobility", "falls"],
+    assessmentClear: true,
   },
   fallsRisk: {
     tag: "textarea",
@@ -1606,7 +1663,8 @@ let mobilityData = {
       "0 - 3 Low risk of falls - Further assessment and management if functional/balance problem identified",
       "4 - 9 High risk of falls - Perform the Full FROP-Com assessment and / or corresponding management recommendations",
     ],
-    classes: ["falls", "mobility", "assessment"],
+    classes: ["falls", "mobility"],
+    assessmentClear: true,
   },
   fallsOther: {
     tag: "textarea",
@@ -1618,12 +1676,14 @@ let mobilityData = {
       "Client requires PERS",
     ],
     label: "Falls other",
-    classes: ["mobility", "environment", "falls", "assessment"],
+    classes: ["mobility", "environment", "falls"],
+    assessmentClear: true,
   },
   mobilityOther: {
     tag: "textarea",
     label: "Mobility other",
-    classes: ["mobility", "falls", "largeText", "assessment"],
+    classes: ["mobility", "falls", "largeText"],
+    assessmentClear: true,
   },
   mobilitySupportPlanFactors: {
     tag: "textarea",
@@ -1686,6 +1746,7 @@ let mobilityData = {
     label: "Mobility",
     classes: ["review", "mobility", "falls", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
   transportFactors: {
     tag: "textarea",
@@ -1733,16 +1794,19 @@ let mobilityData = {
     label: "Transport",
     classes: ["review", "mobility", "carePlan", "largeText"],
     notes: ["Care plan current and effective."],
+    reviewClear: true,
   },
   mobilityFallsNeeds: {
     tag: "textarea",
     label: "Mobility and falls needs",
-    classes: ["clinical", "falls", "mobility", "largeText", "assessment"],
+    classes: ["clinical", "falls", "mobility", "largeText"],
+    assessmentClear: true,
   },
   mobilityFallsActions: {
     tag: "textarea",
     label: "Mobility and falls actions",
-    classes: ["clinical", "falls", "mobility", "largeText", "assessment"],
+    classes: ["clinical", "falls", "mobility", "largeText"],
+    assessmentClear: true,
   },
 };
 let environmentPersonalSafetyData = {
@@ -1757,13 +1821,15 @@ let environmentPersonalSafetyData = {
       "Unmitigated hazards present (identify) and discussed with client who has/has_not agreed to occupational therapy referral or rectification.",
       "Dementia/Age related risks and emergency response plans/exiting the home/responding to alarms etc....",
     ],
-    classes: ["mobility", "environment", "falls", "largText", "assessment"],
+    classes: ["mobility", "environment", "falls", "largText"],
+    assessmentClear: true,
   },
   environmentFunctionalSafety: {
     tag: "textarea",
     label: "Environment Functional safety",
     default: "",
-    classes: ["environment", "largText", "assessment"],
+    classes: ["environment", "largText"],
+    assessmentClear: true,
   },
   otherEquipmentUsed: {
     tag: "select",
@@ -1777,7 +1843,8 @@ let environmentPersonalSafetyData = {
       "Hospital bed",
     ],
     label: "Other equipment used",
-    classes: ["mobility", "environment", "falls", "assessment"],
+    classes: ["mobility", "environment", "falls"],
+    assessmentClear: true,
   },
   otherEquipmentRequired: {
     tag: "select",
@@ -1791,21 +1858,24 @@ let environmentPersonalSafetyData = {
       "Hospital bed",
     ],
     label: "Other equipment required",
-    classes: ["mobility", "environment", "falls", "assessment"],
+    classes: ["mobility", "environment", "falls"],
+    assessmentClear: true,
   },
   homeModificationsInstalled: {
     tag: "select",
     multiple: true,
     selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
     label: "Home modifications installed",
-    classes: ["mobility", "environment", "falls", "assessment"],
+    classes: ["mobility", "environment", "falls"],
+    assessmentClear: true,
   },
   homeModificationsRequired: {
     tag: "select",
     multiple: true,
     selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
     label: "Home modifications required",
-    classes: ["mobility", "environment", "falls", "assessment"],
+    classes: ["mobility", "environment", "falls"],
+    assessmentClear: true,
   },
   environmentSupportPlanFactors: {
     tag: "textarea",
@@ -1848,6 +1918,7 @@ let environmentPersonalSafetyData = {
     label: "Environment",
     classes: ["review", "environment", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
   PERS: {
     variation: "singleLikertField",
@@ -1858,7 +1929,8 @@ let environmentPersonalSafetyData = {
         ["Installed", "Required", "Not required"],
       ],
     },
-    classes: ["environment", "falls", "assessment"],
+    classes: ["environment", "falls"],
+    assessmentClear: true,
   },
   personalSafetySupportPlanFactors: {
     tag: "textarea",
@@ -1955,6 +2027,7 @@ let environmentPersonalSafetyData = {
       "largeText",
     ],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let carerData = {
@@ -1962,7 +2035,8 @@ let carerData = {
   carer: {
     tag: "textarea",
     label: "Carer factors/carer strain",
-    classes: ["carer", "assessment"],
+    classes: ["carer"],
+    assessmentClear: true,
   },
   carerSupportPlanFactors: {
     tag: "textarea",
@@ -2007,6 +2081,7 @@ let carerData = {
     label: "Carer",
     classes: ["review", "carer", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let personalCareData = {
@@ -2077,7 +2152,8 @@ let personalCareData = {
   PersonalCareOther: {
     tag: "textarea",
     label: "Personal care other",
-    classes: ["personalCare", "largeText", "assessment"],
+    classes: ["personalCare", "largeText"],
+    assessmentClear: true,
     notes: [],
   },
   personalCareSupportPlanFactors: {
@@ -2127,6 +2203,7 @@ let personalCareData = {
     label: "Personal care",
     classes: ["review", "personalCare", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let mealsNutritionData = {
@@ -2134,13 +2211,15 @@ let mealsNutritionData = {
   financesOther: {
     tag: "textarea",
     label: "Finances other",
-    classes: ["domestic", "psychological", "social", "largeText", "assessment"],
+    classes: ["domestic", "psychological", "social", "largeText"],
+    assessmentClear: true,
     default: ["Person responsible for finances: Client/Spouse/EPOA"],
   },
   mealsAndShoppingOther: {
     tag: "textarea",
     label: "Meals and shopping other",
-    classes: ["nutrition", "largeText", "assessment"],
+    classes: ["nutrition", "largeText"],
+    assessmentClear: true,
   },
   mealsAndShoppingSupportPlanFactors: {
     tag: "textarea",
@@ -2196,12 +2275,14 @@ let mealsNutritionData = {
     label: "Meals and shopping",
     classes: ["review", "nutrition", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
   //nutrition
   eating: {
     tag: "textarea",
     label: "Eating",
-    classes: ["nutrition", "largeText", "assessment"],
+    classes: ["nutrition", "largeText"],
+    assessmentClear: true,
     notes: [],
   },
   nutritionalIntake: {
@@ -2213,7 +2294,8 @@ let mealsNutritionData = {
       "Food frequency questionnaire",
       "Food group questionnaire",
     ],
-    classes: ["nutrition", "falls", "largeText", "assessment"],
+    classes: ["nutrition", "falls", "largeText"],
+    assessmentClear: true,
   },
   mst: {
     tag: "textarea",
@@ -2234,7 +2316,8 @@ let mealsNutritionData = {
       "3-5 High risk of malnutrition - is eating poorly AND experienced recent weight loss of more than 5kg",
     ],
     label: "MST",
-    classes: ["nutrition", "largeText", "assessment"],
+    classes: ["nutrition", "largeText"],
+    assessmentClear: true,
     default:
       "The significance of the amount of weight loss will depend on the body weight of the resident.  For instance, a 3kg weight loss in a 40kg resident is significant",
   },
@@ -2247,12 +2330,14 @@ let mealsNutritionData = {
       "Client has partial denture",
       "No dental or oral issues.",
     ],
-    classes: ["nutrition", "assessment"],
+    classes: ["nutrition"],
+    assessmentClear: true,
   },
   swallow: {
     tag: "textarea",
     label: "Swallow",
-    classes: ["nutrition", "assessment"],
+    classes: ["nutrition"],
+    assessmentClear: true,
     notes: [
       "Client reports no swallowing problem.",
       "Further assessment/swallowing screen indicated.",
@@ -2262,12 +2347,14 @@ let mealsNutritionData = {
   nutritionNeeds: {
     tag: "textarea",
     label: "Nutrition needs",
-    classes: ["clinical", "nutrition", "largeText", "assessment"],
+    classes: ["clinical", "nutrition", "largeText"],
+    assessmentClear: true,
   },
   nutritionNeedsActions: {
     tag: "textarea",
     label: "Nutrition actions",
-    classes: ["clinical", "nutrition", "largeText", "assessment"],
+    classes: ["clinical", "nutrition", "largeText"],
+    assessmentClear: true,
   },
 };
 let biometricsData = {
@@ -2276,43 +2363,50 @@ let biometricsData = {
     tag: "input",
     label: "Weight",
     type: "text",
-    classes: ["biometrics", "nutrition", "assessment"],
+    classes: ["biometrics", "nutrition"],
+    assessmentClear: true,
   },
   pulse: {
     tag: "input",
     label: "Pulse",
     type: "text",
-    classes: ["biometrics", "assessment"],
+    classes: ["biometrics"],
+    assessmentClear: true,
   },
   temperature: {
     tag: "input",
     label: "Temperature",
     type: "text",
-    classes: ["biometrics", "assessment"],
+    classes: ["biometrics"],
+    assessmentClear: true,
   },
   respiratoryRate: {
     tag: "input",
     label: "Respiratory rate",
     type: "text",
-    classes: ["biometrics", "assessment"],
+    classes: ["biometrics"],
+    assessmentClear: true,
   },
   bloodPressure: {
     tag: "input",
     label: "Blood pressure",
     type: "text",
-    classes: ["biometrics", "assessment"],
+    classes: ["biometrics"],
+    assessmentClear: true,
   },
   bloodGlucose: {
     tag: "input",
     label: "Blood glucose",
     type: "text",
-    classes: ["biometrics", "assessment"],
+    classes: ["biometrics"],
+    assessmentClear: true,
   },
   oxygenSaturation: {
     tag: "input",
     label: "Oxygen saturation",
     type: "text",
-    classes: ["biometrics", "assessment"],
+    classes: ["biometrics"],
+    assessmentClear: true,
   },
   headToToe: {
     tag: "textarea",
@@ -2333,7 +2427,8 @@ let domesticAssistanceData = {
     tag: "textarea",
     label: "Cleaning and HGM",
     default: "",
-    classes: ["domestic", "largText", "assessment"],
+    classes: ["domestic", "largText"],
+    assessmentClear: true,
   },
   cleaningSupportPlanFactors: {
     tag: "textarea",
@@ -2378,6 +2473,7 @@ let domesticAssistanceData = {
     label: "Cleaning",
     classes: ["review", "domestic", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
   //HGM
   HGMSupportPlanFactors: {
@@ -2417,6 +2513,7 @@ let domesticAssistanceData = {
     label: "Home and Garden",
     classes: ["review", "domestic", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
 };
 let referralData = {
@@ -2456,6 +2553,7 @@ let referralData = {
       "assessment",
     ],
     notes: [],
+    assessmentClear: true,
   },
   referralsComments: {
     tag: "textarea",
@@ -2542,6 +2640,7 @@ let additionalAssessments = {
       "clinical",
       "nutrition",
     ],
+    assessmentClear: true,
   },
 };
 let reviewData = {
@@ -2551,16 +2650,19 @@ let reviewData = {
     label: "Medical",
     classes: ["review", "medical", "largeText"],
     notes: ["No changes. Support plan current and effective."],
+    reviewClear: true,
   },
   otherReviewNotes: {
     tag: "textarea",
     label: "Other review notes",
     classes: ["review", "largeText"],
+    reviewClear: true,
   },
   followUpsElement: {
     tag: "textarea",
     label: "Follow up notes.",
     classes: ["followUp", "review", "largeText"],
+    reviewClear: true,
   },
   servicePreferences: {
     tag: "textarea",

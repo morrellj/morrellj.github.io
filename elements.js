@@ -205,33 +205,6 @@ class Elements {
   };
 }
 Elements.prototype.updateElements = function (data) {
-  if (!data) return false;
-  for (let [name, element] of Object.entries(this.inputObjects)) {
-    element.$_inputLabel.title = !data[name]
-      ? ""
-      : data[name].constructor === Object
-      ? data[name].previous
-      : data[name];
-    let dataField = element.$_dataField;
-    if (dataField.tagName == "SELECT" && dataField.multiple == true) {
-      this.setMultiSelectValues(dataField, data);
-    } else {
-      dataField.value = !data[name]
-        ? ""
-        : data[name].constructor === Object
-        ? data[name].current
-        : data[name];
-    }
-    let thisFollowUpsCheckbox = element.$_checkBox;
-    thisFollowUpsCheckbox.name = data.key;
-    if (data.followUps) {
-      thisFollowUpsCheckbox.checked = data.followUps.includes(name)
-        ? true
-        : false;
-    } else {
-      thisFollowUpsCheckbox.checked = false;
-    }
-  }
   this.events.publish("updateFieldValues");
 };
 Elements.prototype.setMultiSelectValues = function (element, clientData) {
@@ -241,26 +214,22 @@ Elements.prototype.setMultiSelectValues = function (element, clientData) {
   for (var i = 0, iLen = options.length; i < iLen; i++) {
     options[i].selected = false;
   }
-  if (clientData[fieldName]) {
-    let fieldValue =
-      clientData[fieldName].constructor === Object
-        ? clientData[fieldName].current
-        : clientData[fieldName];
-    if (Array.isArray(fieldValue)) {
-      fieldValue.map((value) => {
-        for (var i = 0, iLen = options.length; i < iLen; i++) {
-          opt = options[i];
-          if (opt.value == value) {
-            opt.selected = true;
-          }
-        }
-      });
-    } else if (typeof fieldValue === "string") {
+  let fieldValue =
+    clientData?.constructor === Object ? clientData.current : clientData;
+  if (Array.isArray(fieldValue)) {
+    fieldValue.map((value) => {
       for (var i = 0, iLen = options.length; i < iLen; i++) {
         opt = options[i];
-        if (opt.value == fieldValue) {
+        if (opt.value == value) {
           opt.selected = true;
         }
+      }
+    });
+  } else if (typeof fieldValue === "string") {
+    for (var i = 0, iLen = options.length; i < iLen; i++) {
+      opt = options[i];
+      if (opt.value == fieldValue) {
+        opt.selected = true;
       }
     }
   }
@@ -412,24 +381,10 @@ Elements.prototype.clearAndBackUpReviewFields = function () {
     )
   )
     return;
-  let changeObject = {};
-  for (const [key, value] of Object.entries(this.inputObjects)) {
-    if (value.$_dataField.type == "date") continue;
-    if (value.$_dataField.classList) {
-      if (value.$_dataField.classList.contains("review")) {
-        changeObject[`${key}`] = {
-          current: "",
-          previous: value.$_dataField.value,
-        };
-      }
-    }
-  }
-  store.dispatch("update", {
-    id: store.state.activeRecord,
-    data: changeObject,
-  });
+  this.events.publish("reviewClear", {});
   this.updateElements(store.state.records[store.state.activeRecord]);
 };
+
 Elements.prototype.clearAndBackUpAssessmentFields = function () {
   if (!store.state.activeRecord) {
     alert("No client selected.");
@@ -444,31 +399,43 @@ Elements.prototype.clearAndBackUpAssessmentFields = function () {
     )
   )
     return;
-  let changeObject = {};
-  for (const [key, value] of Object.entries(this.inputObjects)) {
-    let oldValue =
-      store.state.records[store.state.activeRecord][key]?.constructor === Object
-        ? store.state.records[store.state.activeRecord][key].current
-        : store.state.records[store.state.activeRecord][key];
-    oldValue = Array.isArray(oldValue) ? [...oldValue] : oldValue;
-    if (value.$_dataField.classList) {
-      if (value.$_dataField.classList.contains("assessment")) {
-        changeObject[`${key}`] = {
-          current: "",
-          previous: oldValue,
-        };
-      }
-    }
-  }
-  store.dispatch("update", {
-    id: store.state.activeRecord,
-    data: changeObject,
-  });
   this.events.publish("assessmentClear", {});
   this.updateElements(store.state.records[store.state.activeRecord]);
 };
 Elements.prototype.formFieldUpdaters = {
-  textField: function () {},
+  nakedDataField: function () {
+    let fieldRecordData =
+      store.state.records[store.state.activeRecord][
+        this.fieldSettings.fieldName
+      ];
+    let inputObject =
+      this.elementsObject.inputObjects[this.fieldSettings.fieldName];
+    inputObject.$_inputLabel.title =
+      fieldRecordData?.constructor === Object
+        ? fieldRecordData.previous
+        : fieldRecordData;
+    let dataField = this.$_dataField;
+    if (dataField.tagName == "SELECT" && dataField.multiple == true) {
+      this.elementsObject.setMultiSelectValues(dataField, fieldRecordData);
+    } else {
+      dataField.value =
+        fieldRecordData?.constructor === Object
+          ? fieldRecordData.current
+          : fieldRecordData;
+    }
+    let thisFollowUpsCheckbox = inputObject.$_checkBox;
+    thisFollowUpsCheckbox.name = store.state.activeRecord;
+    let followUps = store.dispatch("fetch", "followUps");
+    if (store.dispatch("fetch", "followUps")) {
+      thisFollowUpsCheckbox.checked = followUps?.includes(
+        this.fieldSettings.fieldName
+      );
+      // ? true
+      // : false;
+    } else {
+      thisFollowUpsCheckbox.checked = false;
+    }
+  },
   nakedLikertResponseGrid: function () {
     let thisPropertyName = this.propertyName;
     this.element.childNodes.forEach((element) => {
@@ -488,6 +455,21 @@ Elements.prototype.formFieldUpdaters = {
   },
 };
 Elements.prototype.recordsUpdaters = {
+  nakedDataField: function (event) {
+    let changeObject = {};
+    if (store.state.activeRecord) {
+      changeObject[event.target.name] =
+        event.target.tagName == "SELECT"
+          ? this.elementsObject.getMultiSelectValues(event.target)
+          : event.target.value;
+      store.dispatch("update", {
+        id: store.state.activeRecord,
+        data: changeObject,
+      });
+    } else {
+      alert("Select a client");
+    }
+  },
   nakedLikertResponseGrid: function (props) {
     let changeObject = {
       [`${this.propertyName}`]: [`${this.question} `, ` ${props.response}`],
@@ -498,11 +480,54 @@ Elements.prototype.recordsUpdaters = {
     });
   },
   clearNakedLikertResponseField: function () {
-    // this.element.childNodes.forEach((element) => {
-    //   element.checked = false;
-    // });
     let changeObject = {
       [`${this.propertyName}`]: "",
+    };
+    store.dispatch("update", {
+      id: store.state.activeRecord,
+      data: changeObject,
+    });
+  },
+  clearAssessmentData: function () {
+    let changeObject = {};
+    let oldValue =
+      store.state.records[store.state.activeRecord][
+        this.fieldSettings.fieldName
+      ]?.constructor === Object
+        ? store.state.records[store.state.activeRecord][
+            this.fieldSettings.fieldName
+          ].current
+        : store.state.records[store.state.activeRecord][
+            this.fieldSettings.fieldName
+          ];
+    oldValue = Array.isArray(oldValue) ? [...oldValue] : oldValue;
+
+    changeObject[`${this.fieldSettings.fieldName}`] = {
+      current: "",
+      previous: oldValue,
+    };
+
+    store.dispatch("update", {
+      id: store.state.activeRecord,
+      data: changeObject,
+    });
+  },
+  clearReviewData: function () {
+    let changeObject = {};
+    let oldValue =
+      store.state.records[store.state.activeRecord][
+        this.fieldSettings.fieldName
+      ]?.constructor === Object
+        ? store.state.records[store.state.activeRecord][
+            this.fieldSettings.fieldName
+          ].current
+        : store.state.records[store.state.activeRecord][
+            this.fieldSettings.fieldName
+          ];
+    oldValue = Array.isArray(oldValue) ? [...oldValue] : oldValue;
+    changeObject[`${this.fieldSettings.fieldName}`] = {
+      current: "",
+      previous: oldValue,
     };
     store.dispatch("update", {
       id: store.state.activeRecord,

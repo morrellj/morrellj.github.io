@@ -4,6 +4,7 @@ class LikertResponseGrid extends Builder {
     let self = this;
     self.question = props.question;
     self.responses = props.responses;
+    self.fieldSettings = props.fieldSettings;
     self.propertyName = props.propertyName;
     self.elementsObject = props.elementsObject;
 
@@ -52,12 +53,14 @@ class LikertResponseGrid extends Builder {
       `updateFieldValues`,
       self.elementsObject.formFieldUpdaters.nakedLikertResponseGrid.bind(self)
     );
-    self.elementsObject.events.subscribe(
-      "assessmentClear",
-      self.elementsObject.recordsUpdaters.clearNakedLikertResponseField.bind(
-        self
-      )
-    );
+    if (self.fieldSettings?.assessmentClear) {
+      self.elementsObject.events.subscribe(
+        "assessmentClear",
+        self.elementsObject.recordsUpdaters.clearNakedLikertResponseField.bind(
+          self
+        )
+      );
+    }
     self.elementsObject.events.subscribe(
       `${self.propertyName}_change`,
       self.elementsObject.recordsUpdaters.nakedLikertResponseGrid.bind(self)
@@ -69,9 +72,6 @@ class LikertResponseGrid extends Builder {
     let result = !this.elementsObject.events.publish(`${propertyName}_change`, {
       response: e.target.value,
     });
-    // if (!result) {
-    //   e.target.checked = false;
-    // }
   };
 }
 // i l0ve y0u you crazy son of an accountant

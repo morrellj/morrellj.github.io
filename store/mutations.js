@@ -8,7 +8,7 @@ let mutations = {
     for (const [thisKey, value] of Object.entries(changeObject.data)) {
       if (client.hasOwnProperty(thisKey)) {
         if (
-          client[thisKey].constructor === Object &&
+          client[thisKey]?.constructor === Object &&
           value.constructor !== Object
         ) {
           client[thisKey].current = value;

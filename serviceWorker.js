@@ -9,7 +9,6 @@ const assets = [
   "./components/popUp.js",
   "./components/inputFieldDiv.js",
   "./components/dataField.js",
-  "./components/multipleChoiceGridField.js",
   "./components/likertResponseGrid.js",
   "./components/singleLikertField.js",
   "./components/BaseInputField.js",

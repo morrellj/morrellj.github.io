@@ -29,21 +29,33 @@ class DataField extends Builder {
       ) || self.schema;
 
     self.manufacture(self.schema);
-  }
-  dataFieldOnInput = function () {
-    let changeObject = {};
-    if (store.state.activeRecord) {
-      changeObject[this.name] =
-        this.tagName == "SELECT"
-          ? app.elements.getMultiSelectValues(this)
-          : this.value;
-      store.dispatch("update", {
-        id: store.state.activeRecord,
-        data: changeObject,
-      });
-    } else {
-      alert("Select a client");
+    if (self.fieldSettings?.assessmentClear) {
+      self.elementsObject.events.subscribe(
+        "assessmentClear",
+        self.elementsObject.recordsUpdaters.clearAssessmentData.bind(self)
+      );
     }
+    if (self.fieldSettings?.reviewClear) {
+      self.elementsObject.events.subscribe(
+        "reviewClear",
+        self.elementsObject.recordsUpdaters.clearReviewData.bind(self)
+      );
+    }
+    self.elementsObject.events.subscribe(
+      "updateFieldValues",
+      self.elementsObject.formFieldUpdaters.nakedDataField.bind(self)
+    );
+    //if(standAloneFieldOnly){self.elementsObject.events.subscribe("thisFieldName_Change",self.elementsObject.recordsUpdaters.standAloneFieldOnlyUpdateFunctoin.bind(this))
+    self.elementsObject.events.subscribe(
+      `${self.fieldSettings.fieldName}_Change`,
+      self.elementsObject.recordsUpdaters.nakedDataField.bind(this)
+    );
+    //if(consolidatedFieldOnly){self.elementsObject.events.subscribe("thisFieldName_Change",self.elementsObject.recordsUpdaters.consolidatedFieldOnlyUpdateFunctoin.bind(this))
+    //if(mixedField){self.elementsObject.events.subscribe("thisFieldName_Change",self.elementsObject.recordsUpdaters.mixedFieldUpdateFunctoin.bind(this))
+  }
+  dataFieldOnInput = (e) => {
+    let propertyName = e.target.name;
+    this.elementsObject.events.publish(`${propertyName}_Change`, e);
   };
   dataFieldOncontextmenuPopUpPop = function (event) {
     if (
