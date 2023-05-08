@@ -22,6 +22,36 @@ let mutations = {
     state.records[changeObject.id] = client;
     return state.records;
   },
+  updateConsolidated(state, changeObject) {
+    let client = state.records[changeObject.id];
+    if (!client) {
+      console.error("Client record with matching key not found.");
+      return state.records;
+    }
+    store.dispatch("update", { id: changeObject.id, data: {} });
+    client[changeObject.accessProperties.formName] =
+      client[changeObject.accessProperties.formName] || {};
+    for (const [thisKey, value] of Object.entries(changeObject.data)) {
+      if (
+        client[changeObject.accessProperties.formName].hasOwnProperty(thisKey)
+      ) {
+        if (
+          client[changeObject.accessProperties.formName][thisKey]
+            ?.constructor === Object &&
+          value.constructor !== Object
+        ) {
+          client[changeObject.accessProperties.formName][thisKey].current =
+            value;
+        } else {
+          client[changeObject.accessProperties.formName][thisKey] = value;
+        }
+      } else {
+        client[changeObject.accessProperties.formName][thisKey] = value;
+      }
+    }
+    state.records[changeObject.id] = client;
+    return state.records;
+  },
   add(state, newObject) {
     if (state.records[newObject.id]) {
       console.error(

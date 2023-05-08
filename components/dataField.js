@@ -12,7 +12,7 @@ class DataField extends Builder {
           oninput: self.dataFieldOnInput,
           classList: [...self.fieldSettings.classes, "rootInput"],
           name: self.fieldSettings.fieldName,
-          oncontextmenu: self.dataFieldOncontextmenuPopUpPop,
+          // oncontextmenu: self.dataFieldOncontextmenuPopUpPop,
         },
       },
     };
@@ -29,29 +29,98 @@ class DataField extends Builder {
       ) || self.schema;
 
     self.manufacture(self.schema);
-    if (self.fieldSettings?.assessmentClear) {
+
+    // field is not a part of a form
+    if (!self.fieldSettings?.form) {
       self.elementsObject.events.subscribe(
-        "assessmentClear",
-        self.elementsObject.recordsUpdaters.clearAssessmentData.bind(self)
+        "updateFieldValues",
+        self.elementsObject.formFieldUpdaters.nakedDataField.bind(self)
       );
-    }
-    if (self.fieldSettings?.reviewClear) {
       self.elementsObject.events.subscribe(
-        "reviewClear",
-        self.elementsObject.recordsUpdaters.clearReviewData.bind(self)
+        `${self.fieldSettings.fieldName}_Change`,
+        self.elementsObject.recordsUpdaters.nakedDataField.bind(self)
       );
+      if (self.fieldSettings?.assessmentClear) {
+        self.elementsObject.events.subscribe(
+          "assessmentClear",
+          self.elementsObject.recordsUpdaters.clearAssessmentData.bind(self)
+        );
+      }
+      if (self.fieldSettings?.reviewClear) {
+        self.elementsObject.events.subscribe(
+          "reviewClear",
+          self.elementsObject.recordsUpdaters.clearReviewData.bind(self)
+        );
+      }
+      //field is part of a form and a standalone field as well
+    } else if (self.fieldSettings?.hasOwnField) {
+      //form field updater
+      self.elementsObject.events.subscribe(
+        "updateFieldValues",
+        self.elementsObject.formFieldUpdaters.nakedDataField.bind(self)
+      );
+      //records updaters
+      self.elementsObject.events.subscribe(
+        `${self.fieldSettings.fieldName}_Change`,
+        self.elementsObject.recordsUpdaters.nakedDataField.bind(self)
+      );
+      self.elementsObject.events.subscribe(
+        `${self.fieldSettings.fieldName}_Change`,
+        self.elementsObject.recordsUpdaters.consolidatedDataField.bind(self)
+      );
+      //form reseters
+      if (self.fieldSettings?.assessmentClear) {
+        self.elementsObject.events.subscribe(
+          "assessmentClear",
+          self.elementsObject.recordsUpdaters.clearAssessmentData.bind(self)
+        );
+        self.elementsObject.events.subscribe(
+          "assessmentClear",
+          self.elementsObject.recordsUpdaters.clearAssessmentDataConsolidated.bind(
+            self
+          )
+        );
+      }
+      if (self.fieldSettings?.reviewClear) {
+        self.elementsObject.events.subscribe(
+          "reviewClear",
+          self.elementsObject.recordsUpdaters.clearReviewData.bind(self)
+        );
+        self.elementsObject.events.subscribe(
+          "reviewClear",
+          self.elementsObject.recordsUpdaters.clearReviewDataConsolidated.bind(
+            self
+          )
+        );
+      }
+      //field is only a part of a form
+    } else {
+      self.elementsObject.events.subscribe(
+        "updateFieldValues",
+        self.elementsObject.formFieldUpdaters.consolidatedDataField.bind(self)
+      );
+      self.elementsObject.events.subscribe(
+        `${self.fieldSettings.fieldName}_Change`,
+        self.elementsObject.recordsUpdaters.consolidatedDataField.bind(self)
+      );
+      //form resetters
+      if (self.fieldSettings?.assessmentClear) {
+        self.elementsObject.events.subscribe(
+          "assessmentClear",
+          self.elementsObject.recordsUpdaters.clearAssessmentDataConsolidated.bind(
+            self
+          )
+        );
+      }
+      if (self.fieldSettings?.reviewClear) {
+        self.elementsObject.events.subscribe(
+          "reviewClear",
+          self.elementsObject.recordsUpdaters.clearReviewDataConsolidated.bind(
+            self
+          )
+        );
+      }
     }
-    self.elementsObject.events.subscribe(
-      "updateFieldValues",
-      self.elementsObject.formFieldUpdaters.nakedDataField.bind(self)
-    );
-    //if(standAloneFieldOnly){self.elementsObject.events.subscribe("thisFieldName_Change",self.elementsObject.recordsUpdaters.standAloneFieldOnlyUpdateFunctoin.bind(this))
-    self.elementsObject.events.subscribe(
-      `${self.fieldSettings.fieldName}_Change`,
-      self.elementsObject.recordsUpdaters.nakedDataField.bind(this)
-    );
-    //if(consolidatedFieldOnly){self.elementsObject.events.subscribe("thisFieldName_Change",self.elementsObject.recordsUpdaters.consolidatedFieldOnlyUpdateFunctoin.bind(this))
-    //if(mixedField){self.elementsObject.events.subscribe("thisFieldName_Change",self.elementsObject.recordsUpdaters.mixedFieldUpdateFunctoin.bind(this))
   }
   dataFieldOnInput = (e) => {
     let propertyName = e.target.name;

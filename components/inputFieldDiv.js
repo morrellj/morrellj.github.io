@@ -14,5 +14,9 @@ class InputFieldDiv extends Builder {
       },
     };
     self.manufacture(self.schema);
+    self.elementsObject.events.subscribe(
+      "updateFieldValues",
+      self.elementsObject.formFieldUpdaters.nakedDataField.bind(self)
+    );
   }
 }

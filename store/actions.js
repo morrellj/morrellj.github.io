@@ -1,11 +1,22 @@
 let actions = {
-  fetch(context, fieldName) {
+  fetchCurrentValue(context, fieldName) {
     let client = context.state.records[context.state.activeRecord];
     return !client[fieldName]
       ? null
       : client[fieldName].constructor === Object
       ? client[fieldName].current
       : client[fieldName];
+  },
+  fetchGrossData(context, fieldName) {
+    let client = context.state.records[context.state.activeRecord];
+    return !client[fieldName] ? null : client[fieldName];
+  },
+  updateConsolidated(context, changeObject) {
+    if (!store.state?.activeRecord) {
+      alert("Select a client.");
+      return false;
+    }
+    return context.commit("updateConsolidated", changeObject);
   },
   update(context, changeObject) {
     if (!store.state?.activeRecord) {

@@ -5,7 +5,6 @@ class InputLabel {
     self.schema = {
       tag: "p",
       props: {
-        onclick: popUpPop,
         oncontextmenu: this.contextClick,
         innerHTML: self.fieldSettings.label,
       },

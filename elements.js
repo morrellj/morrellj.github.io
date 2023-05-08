@@ -3,6 +3,7 @@ class Elements {
     this.inputElementsArray = [];
     this.inputObjects = {};
     this.variations = inputFieldVariations;
+    this.additionalRecordFields = {};
     this.events = new PubSub();
     this.elementsBuilder = (inputField, value) => {
       let fieldSettings = Object.assign({ fieldName: inputField }, value);
@@ -54,6 +55,7 @@ class Elements {
         );
       }
     }
+    Object.assign(schema, this.additionalRecordFields);
   }
   static links = {
     mobility: {
@@ -375,7 +377,7 @@ Elements.prototype.clearAndBackUpReviewFields = function () {
   if (
     !confirm(
       `Are you sure to remove review data from ${store.dispatch(
-        "fetch",
+        "fetchCurrentValue",
         "firstName"
       )}'s record?`
     )
@@ -384,7 +386,6 @@ Elements.prototype.clearAndBackUpReviewFields = function () {
   this.events.publish("reviewClear", {});
   this.updateElements(store.state.records[store.state.activeRecord]);
 };
-
 Elements.prototype.clearAndBackUpAssessmentFields = function () {
   if (!store.state.activeRecord) {
     alert("No client selected.");
@@ -393,7 +394,7 @@ Elements.prototype.clearAndBackUpAssessmentFields = function () {
   if (
     !confirm(
       `Are you sure to remove assessment data from ${store.dispatch(
-        "fetch",
+        "fetchCurrentValue",
         "firstName"
       )}'s record?`
     )
@@ -404,17 +405,17 @@ Elements.prototype.clearAndBackUpAssessmentFields = function () {
 };
 Elements.prototype.formFieldUpdaters = {
   nakedDataField: function () {
-    let fieldRecordData =
-      store.state.records[store.state.activeRecord][
-        this.fieldSettings.fieldName
-      ];
+    let fieldRecordData = store.dispatch(
+      "fetchGrossData",
+      this.fieldSettings.fieldName
+    );
     let inputObject =
       this.elementsObject.inputObjects[this.fieldSettings.fieldName];
     inputObject.$_inputLabel.title =
       fieldRecordData?.constructor === Object
         ? fieldRecordData.previous
         : fieldRecordData;
-    let dataField = this.$_dataField;
+    let dataField = this.$_dataField || this.$_inputFieldDiv;
     if (dataField.tagName == "SELECT" && dataField.multiple == true) {
       this.elementsObject.setMultiSelectValues(dataField, fieldRecordData);
     } else {
@@ -425,8 +426,43 @@ Elements.prototype.formFieldUpdaters = {
     }
     let thisFollowUpsCheckbox = inputObject.$_checkBox;
     thisFollowUpsCheckbox.name = store.state.activeRecord;
-    let followUps = store.dispatch("fetch", "followUps");
-    if (store.dispatch("fetch", "followUps")) {
+    let followUps = store.dispatch("fetchCurrentValue", "followUps");
+    if (followUps) {
+      thisFollowUpsCheckbox.checked = followUps?.includes(
+        this.fieldSettings.fieldName
+      );
+      // ? true
+      // : false;
+    } else {
+      thisFollowUpsCheckbox.checked = false;
+    }
+  },
+  consolidatedDataField: function () {
+    let fieldName = this.fieldSettings.fieldName;
+    let formName = this.fieldSettings.form;
+    let fieldRecordData = store.dispatch("fetchGrossData", formName) || {};
+    let inputObject =
+      this.elementsObject.inputObjects[this.fieldSettings.fieldName];
+    inputObject.$_inputLabel.title =
+      fieldRecordData[fieldName]?.constructor === Object
+        ? fieldRecordData[fieldName].previous
+        : fieldRecordData[fieldName] || "";
+    let dataField = this.$_dataField;
+    if (dataField.tagName == "SELECT" && dataField.multiple == true) {
+      this.elementsObject.setMultiSelectValues(
+        dataField,
+        fieldRecordData[fieldName]
+      );
+    } else {
+      dataField.value =
+        fieldRecordData[fieldName]?.constructor === Object
+          ? fieldRecordData[fieldName].current
+          : fieldRecordData[fieldName] || "";
+    }
+    let thisFollowUpsCheckbox = inputObject.$_checkBox;
+    thisFollowUpsCheckbox.name = store.state.activeRecord;
+    let followUps = store.dispatch("fetchCurrentValue", "followUps");
+    if (followUps) {
       thisFollowUpsCheckbox.checked = followUps?.includes(
         this.fieldSettings.fieldName
       );
@@ -439,10 +475,10 @@ Elements.prototype.formFieldUpdaters = {
   nakedLikertResponseGrid: function () {
     let thisPropertyName = this.propertyName;
     this.element.childNodes.forEach((element) => {
-      if (store.dispatch("fetch", [thisPropertyName])) {
+      if (store.dispatch("fetchCurrentValue", [thisPropertyName])) {
         if (
           element.value ==
-          store.dispatch("fetch", [thisPropertyName])[1]?.trim()
+          store.dispatch("fetchCurrentValue", [thisPropertyName])[1]?.trim()
         ) {
           element.checked = true;
         } else {
@@ -465,6 +501,24 @@ Elements.prototype.recordsUpdaters = {
       store.dispatch("update", {
         id: store.state.activeRecord,
         data: changeObject,
+      });
+    } else {
+      alert("Select a client");
+    }
+  },
+  consolidatedDataField: function (event) {
+    let fieldName = this.fieldSettings.fieldName;
+    let formName = this.fieldSettings.form;
+    let changeObject = {};
+    if (store.state.activeRecord) {
+      changeObject[fieldName] =
+        event.target.tagName == "SELECT"
+          ? this.elementsObject.getMultiSelectValues(event.target)
+          : event.target.value;
+      store.dispatch("updateConsolidated", {
+        id: store.state.activeRecord,
+        data: changeObject,
+        accessProperties: { formName: formName, fieldName: fieldName },
       });
     } else {
       alert("Select a client");
@@ -512,6 +566,17 @@ Elements.prototype.recordsUpdaters = {
       data: changeObject,
     });
   },
+  clearAssessmentDataConsolidated: function () {
+    let fieldName = this.fieldSettings.fieldName;
+    let formName = this.fieldSettings.form;
+    let changeObject = {};
+    changeObject[fieldName] = "";
+    store.dispatch("updateConsolidated", {
+      id: store.state.activeRecord,
+      data: changeObject,
+      accessProperties: { formName: formName, fieldName: fieldName },
+    });
+  },
   clearReviewData: function () {
     let changeObject = {};
     let oldValue =
@@ -534,4 +599,104 @@ Elements.prototype.recordsUpdaters = {
       data: changeObject,
     });
   },
+  clearReviewDataConsolidated: function () {
+    let fieldName = this.fieldSettings.fieldName;
+    let formName = this.fieldSettings.form;
+    let changeObject = {};
+    changeObject[fieldName] = "";
+    store.dispatch("updateConsolidated", {
+      id: store.state.activeRecord,
+      data: changeObject,
+      accessProperties: { formName: formName, fieldName: fieldName },
+    });
+  },
+};
+Elements.prototype.popUpPop = function (event) {
+  removePopUpContent();
+  // let elementSchema = clientRecordFieldSettings[event.target.parentNode.id];
+  let elementSchema = this.fieldSettings;
+  if (elementSchema?.notes) {
+    popUp.style.display = "block";
+    // needs to attach to the body otherwise will appear underneath a PopUp pop up.
+    document.getElementById("body").appendChild(popUp);
+    elementSchema.notes.forEach((ele) => {
+      let newParagraph = document.createElement("p");
+      newParagraph.innerHTML = ele;
+      newParagraph.classList.add("temp");
+      newParagraph.name = event.target.parentNode.id;
+      if (
+        app.elements.inputObjects[
+          event.target.parentNode.id
+        ].$_dataField?.value?.indexOf(personaliseStatement(ele)) >= 0
+      ) {
+        newParagraph.style.color = "red";
+      } else {
+        newParagraph.style.color = "black";
+      }
+
+      newParagraph.onclick = function () {
+        let result = addOrRemovePartOfElementValue(
+          this.innerHTML,
+          app.elements.inputObjects[this.name].$_dataField
+        );
+        this.style.color = result ? "red" : "black";
+        app.elements.inputObjects[this.name].$_dataField.dispatchEvent(
+          new Event("input")
+        );
+
+        function addOrRemovePartOfElementValue(
+          initialStatement,
+          elementToChange
+        ) {
+          let spacer = elementToChange.value == "" ? "" : "\n";
+
+          let personalisedStatement = personaliseStatement(initialStatement);
+
+          if (elementToChange.value.indexOf(personalisedStatement) >= 0) {
+            let stringWithoutCarriageReturn = elementToChange.value;
+            if (
+              elementToChange.value[
+                elementToChange.value.indexOf(personalisedStatement) - 1
+              ] == "\n"
+            ) {
+              stringWithoutCarriageReturn = elementToChange.value
+                .slice(
+                  0,
+                  elementToChange.value.indexOf(personalisedStatement) - 1
+                )
+                .concat(
+                  "",
+                  elementToChange.value.slice(
+                    elementToChange.value.indexOf(personalisedStatement)
+                  )
+                );
+            }
+
+            if (
+              stringWithoutCarriageReturn.length ===
+              personalisedStatement.length
+            ) {
+              elementToChange.value = "";
+            } else {
+              elementToChange.value = stringWithoutCarriageReturn
+                .replace(personalisedStatement, "")
+                .trim();
+            }
+            return false;
+          } else {
+            elementToChange.value =
+              elementToChange.value + spacer + personalisedStatement.trim();
+            return true;
+          }
+        }
+      };
+      popUpContent.appendChild(newParagraph);
+    });
+  } else {
+    popUp.style.display = "block";
+    let newParagraph = document.createElement("p");
+    newParagraph.innerHTML = "There are no notes for this field";
+    newParagraph.classList.add("temp");
+    popUpContent.appendChild(newParagraph);
+  }
 };

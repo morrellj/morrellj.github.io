@@ -67,20 +67,20 @@
     app.pageActions.hideAll();
     section.classList.toggle("hidden", !hidden);
   };
-  app.pageActions.setPage = function (category) {
+  app.pageActions.setPage = function (category, options) {
     let child = app.root.lastElementChild;
     while (child) {
       app.root.removeChild(child);
       child = app.root.lastElementChild;
     }
     app.elements.addSpecifiedElementsToTargetDiv(category, app.root);
-    // window.scroll({ top: 0, behaviour: "smooth" });
-    //highlights button of active catergory
     let current = document.getElementsByClassName("active");
     if (current[0]) {
       current[0].className = current[0].className.replace(" active", "");
     }
-    document.getElementById(category + "-btn").className += " active";
+    document.getElementById(category + "-btn")
+      ? (document.getElementById(category + "-btn").className += " active")
+      : false;
     // show or hide care plans for each category
     let setCarePlanDivState = {
       showCarePlan: "block",
@@ -90,6 +90,9 @@
       setCarePlanDivState[
         document.getElementById("carePlanToggle").dataset.state
       ];
+    options?.showCarePlan
+      ? (document.getElementById("careplan").style.display = "block")
+      : false;
     app.pageActions.hideAll();
     setTimeout(() => {
       setButtonNavPositionOnSetPage();

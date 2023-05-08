@@ -6,20 +6,24 @@
     appMenus.hide(menuPage);
     let client = store.state.records[store.state.activeRecord];
     let string = "";
-    for (const [key, value] of Object.entries(clientRecordFieldSettings)) {
-      if (value.classes) {
-        if (
-          value.classes.includes("review") &&
-          client[key] != null &&
-          client[key] != ""
-        ) {
-          let substring = value.label;
-          let data =
-            client[key].current != undefined
-              ? client[key].current
-              : client[key];
-          string = string + "\n---- " + substring + ": ----\n" + data;
+    for (const [key, fieldModel] of Object.entries(clientRecordFieldSettings)) {
+      if (fieldModel?.reviewPrint) {
+        if (client[key].constructor === Object) {
+          if (client[key].hasOwnProperty("current")) {
+            data = client[key].current;
+          } else {
+            let string = formatConsolidatedField(
+              key,
+              store.dispatch("fetchGrossData", key)
+            );
+            data = string;
+          }
+        } else {
+          data = client[key];
         }
+
+        let substring = fieldModel.label;
+        if (data) string = string + "\n---- " + substring + ": ----\n" + data;
       }
     }
     console.log(string);

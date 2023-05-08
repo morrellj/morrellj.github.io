@@ -1,8 +1,8 @@
 //wnen creating a review input textarea the first item in the class list must be "review" and
 //the second item must be the relevant category or subpage which will be the parameter for
 //app.pageActions.setPage() function triggered by a label oncontextmenu event (right click).
-
-let demographicData = {
+let recordsModel = {};
+recordsModel.demographicData = {
   ACnumber: {
     tag: "input",
     type: "text",
@@ -297,7 +297,7 @@ let demographicData = {
     multiple: true,
   },
 };
-let contactsData = {
+recordsModel.contactsData = {
   //contacts and medical
   nextOfKin: {
     tag: "input",
@@ -393,7 +393,7 @@ let contactsData = {
     classes: ["contactsMedical", "important", "largeText"],
   },
 };
-let medicalData = {
+recordsModel.medicalData = {
   specialist: {
     tag: "textarea",
     label: "Specialists",
@@ -432,7 +432,8 @@ let medicalData = {
   medicalCurrent: {
     tag: "textarea",
     label: "Medical current",
-    classes: ["contactsMedical", "medical", "important", "largeText"],
+    classes: ["contactsMedical", "review", "medical", "important", "largeText"],
+    reviewPrint: true,
   },
   medicalHistory: {
     tag: "textarea",
@@ -524,7 +525,7 @@ let medicalData = {
   //   ],
   // },
 };
-let scheduleData = {
+recordsModel.scheduleData = {
   //schedule
   mondayAM: {
     tag: "textarea",
@@ -639,7 +640,7 @@ let scheduleData = {
     classes: ["schedule"],
   },
 };
-let personalHistoryData = {
+recordsModel.personalHistoryData = {
   //preamble
   aboutMe: {
     tag: "textarea",
@@ -684,7 +685,7 @@ let personalHistoryData = {
     classes: ["preamble", "largeText"],
   },
 };
-let medicationData = {
+recordsModel.medicationData = {
   // medication
   medicationSupport: {
     tag: "select",
@@ -811,9 +812,10 @@ let medicationData = {
     classes: ["review", "medication", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let communicationData = {
+recordsModel.communicationData = {
   //communication and sensory
   CommunicationImpairements: {
     tag: "select",
@@ -948,6 +950,7 @@ let communicationData = {
     classes: ["review", "communicationSensory", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
   communicationNeeds: {
     tag: "textarea",
@@ -962,7 +965,7 @@ let communicationData = {
     assessmentClear: true,
   },
 };
-let psychologicalData = {
+recordsModel.psychologicalData = {
   //psychological cognitive sleep
   sleep: {
     tag: "textarea",
@@ -1148,9 +1151,10 @@ let psychologicalData = {
     classes: ["review", "psychological", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let psychosocialData = {
+recordsModel.psychosocialData = {
   //social and family
   socialOther: {
     tag: "textarea",
@@ -1214,6 +1218,7 @@ let psychosocialData = {
     classes: ["review", "psychological", "social", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
   /*psychoSocialSupportPlanFactors: {
     tag: "textarea",
@@ -1268,7 +1273,7 @@ let psychosocialData = {
     reviewClear: true,
   },*/
 };
-let painData = {
+recordsModel.painData = {
   //Pain (falls)
   painScale: {
     tag: "select",
@@ -1377,9 +1382,10 @@ let painData = {
     classes: ["review", "pain", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let skinData = {
+recordsModel.skinData = {
   //Skin care---------------------------------------------------------------------
   woundCare: {
     tag: "select",
@@ -1490,9 +1496,10 @@ let skinData = {
     classes: ["review", "skin", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let eliminationData = {
+recordsModel.eliminationData = {
   //elimination (falls)
   eliminationUrinary: {
     tag: "textarea",
@@ -1589,9 +1596,10 @@ let eliminationData = {
     classes: ["review", "elimination", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let mobilityData = {
+recordsModel.mobilityData = {
   //transport and mobility
   transport: {
     tag: "textarea",
@@ -1747,6 +1755,7 @@ let mobilityData = {
     classes: ["review", "mobility", "falls", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
   transportFactors: {
     tag: "textarea",
@@ -1795,6 +1804,7 @@ let mobilityData = {
     classes: ["review", "mobility", "carePlan", "largeText"],
     notes: ["Care plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
   mobilityFallsNeeds: {
     tag: "textarea",
@@ -1809,7 +1819,7 @@ let mobilityData = {
     assessmentClear: true,
   },
 };
-let environmentPersonalSafetyData = {
+recordsModel.environmentPersonalSafetyData = {
   //environement and personal safety/security
   environment: {
     tag: "textarea",
@@ -1919,6 +1929,7 @@ let environmentPersonalSafetyData = {
     classes: ["review", "environment", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
   PERS: {
     variation: "singleLikertField",
@@ -2028,9 +2039,10 @@ let environmentPersonalSafetyData = {
     ],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let carerData = {
+recordsModel.carerData = {
   //carers
   carer: {
     tag: "textarea",
@@ -2082,9 +2094,10 @@ let carerData = {
     classes: ["review", "carer", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let personalCareData = {
+recordsModel.personalCareData = {
   //personal care
   PersonalCare: {
     tag: "select",
@@ -2204,9 +2217,10 @@ let personalCareData = {
     classes: ["review", "personalCare", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let mealsNutritionData = {
+recordsModel.mealsNutritionData = {
   //meals and shopping
   financesOther: {
     tag: "textarea",
@@ -2276,6 +2290,7 @@ let mealsNutritionData = {
     classes: ["review", "nutrition", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
   //nutrition
   eating: {
@@ -2357,7 +2372,7 @@ let mealsNutritionData = {
     assessmentClear: true,
   },
 };
-let biometricsData = {
+recordsModel.biometricsData = {
   //Biometrics
   weight: {
     tag: "input",
@@ -2421,7 +2436,7 @@ let biometricsData = {
     ],
   },
 };
-let domesticAssistanceData = {
+recordsModel.domesticAssistanceData = {
   //cleaning
   cleaningAndHGM: {
     tag: "textarea",
@@ -2474,6 +2489,7 @@ let domesticAssistanceData = {
     classes: ["review", "domestic", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
   //HGM
   HGMSupportPlanFactors: {
@@ -2514,9 +2530,10 @@ let domesticAssistanceData = {
     classes: ["review", "domestic", "carePlan", "largeText"],
     notes: ["No changes. Support plan current and effective."],
     reviewClear: true,
+    reviewPrint: true,
   },
 };
-let referralData = {
+recordsModel.referralData = {
   referrals: {
     variation: "multiLikertField",
     label: "Referrals",
@@ -2574,7 +2591,7 @@ let referralData = {
     ],
   },
 };
-let additionalAssessments = {
+recordsModel.additionalAssessments = {
   additionalAssessments: {
     variation: "multiLikertField",
     label: "Additional Assessments",
@@ -2621,7 +2638,7 @@ let additionalAssessments = {
         ["Completed", "Required", "Not required"],
       ],
     },
-    seperateRecords: true,
+    consolidateRecords: false,
     classes: [
       "assessment",
       "bogus",
@@ -2643,92 +2660,156 @@ let additionalAssessments = {
     assessmentClear: true,
   },
 };
-let reviewData = {
-  // REVIEW ______________________________________________________________
-  medicalReview: {
-    tag: "textarea",
-    label: "Medical",
-    classes: ["review", "medical", "largeText"],
-    notes: ["No changes. Support plan current and effective."],
-    reviewClear: true,
+recordsModel.forms = {
+  frailtyIndicators: {
+    variation: "form",
+    label: "Quick review (frailty changes)",
+    formFields: {
+      mobilityChanges: {
+        tag: "textarea",
+        label: "Mobility changes",
+        classes: ["carer"],
+        notes: ["Client reports no changes to mobility"],
+        hasOwnField: true,
+        assessmentClear: true,
+      },
+      acuteIllnessRecent: {
+        tag: "textarea",
+        label: "Recent acute illness",
+        notes: [
+          "Client reports hospital: ",
+          "Client reports new medical issues: ",
+          "Client reports chronic illness exacerbations: ",
+          "No new issues.",
+        ],
+        assessmentClear: true,
+      },
+      recentFalls: {
+        tag: "textarea",
+        label: "Recent falls",
+        notes: ["Client reports no new falls incidents since last review"],
+        assessmentClear: true,
+      },
+      dietaryChanges: {
+        tag: "textarea",
+        label: "Dietary changes",
+        notes: [
+          "Client reports appetite: ",
+          "Client reports food and Fluid intake: ",
+          "Client reports weight changes: ",
+          "Client reports no new changes, dietary intake and weight stable.",
+        ],
+        assessmentClear: true,
+      },
+    },
+    classes: ["review"],
+    reviewPrint: true,
   },
+};
+recordsModel.reviewData = {
+  // REVIEW ______________________________________________________________
+  // medicalReview: {
+  //   tag: "textarea",
+  //   label: "Medical",
+  //   classes: ["review", "medical", "largeText"],
+  //   notes: ["No changes. Support plan current and effective."],
+  //   reviewClear: true,
+  // },
   otherReviewNotes: {
     tag: "textarea",
     label: "Other review notes",
-    classes: ["review", "largeText"],
+    classes: ["review", "largeText", "frailtyIndicators"],
+    notes: [
+      "PCT client.",
+      "PCT client's NOK. ",
+      "Client alert and orientated at time of interview.",
+      "Client reports that his/her care needs and goals as per support plan are being met.",
+    ],
     reviewClear: true,
+    form: "frailtyIndicators",
+    hasOwnField: true,
   },
   followUpsElement: {
     tag: "textarea",
     label: "Follow up notes.",
     classes: ["followUp", "review", "largeText"],
     reviewClear: true,
+    reviewPrint: true,
   },
   servicePreferences: {
     tag: "textarea",
     label: "Service preferences",
     classes: ["chsp", "carePlan", "largeText"],
   },
+
   advancedCarePlanReview: {
     tag: "input",
     label: "ACP last reviewed",
     type: "date",
     classes: ["review"],
+    reviewPrint: true,
   },
   budgetLastSigned: {
     tag: "input",
     type: "date",
     label: "Budget last signed",
     classes: ["review"],
+    reviewPrint: true,
   },
   supportPlanLastSigned: {
     tag: "input",
     type: "date",
     label: "Support plan last signed",
     classes: ["review"],
+    reviewPrint: true,
   },
   readyForHospitalReview: {
     tag: "input",
     type: "date",
     label: "Ready for hospital reviewed",
     classes: ["review"],
+    reviewPrint: true,
   },
   emergencyPlanReviewed: {
     tag: "input",
     type: "date",
     label: "Emergency plan last reviewed",
     classes: ["review"],
+    reviewPrint: true,
   },
   visualHomeSafetyReviewed: {
     tag: "input",
     type: "date",
     label: "Visual home safety last reviewed",
     classes: ["review"],
+    reviewPrint: true,
   },
 };
+
 let clientRecordFieldSettings = {
-  ...demographicData,
-  ...contactsData,
-  ...medicalData,
-  ...scheduleData,
-  ...personalHistoryData,
-  ...medicationData,
-  ...communicationData,
-  ...psychologicalData,
-  ...psychosocialData,
-  ...painData,
-  ...skinData,
-  ...eliminationData,
-  ...mobilityData,
-  ...environmentPersonalSafetyData,
-  ...carerData,
-  ...personalCareData,
-  ...mealsNutritionData,
-  ...biometricsData,
-  ...domesticAssistanceData,
-  ...additionalAssessments,
-  ...referralData,
-  ...reviewData,
+  ...recordsModel.demographicData,
+  ...recordsModel.contactsData,
+  ...recordsModel.medicalData,
+  ...recordsModel.scheduleData,
+  ...recordsModel.personalHistoryData,
+  ...recordsModel.medicationData,
+  ...recordsModel.communicationData,
+  ...recordsModel.psychologicalData,
+  ...recordsModel.psychosocialData,
+  ...recordsModel.painData,
+  ...recordsModel.skinData,
+  ...recordsModel.eliminationData,
+  ...recordsModel.mobilityData,
+  ...recordsModel.environmentPersonalSafetyData,
+  ...recordsModel.carerData,
+  ...recordsModel.personalCareData,
+  ...recordsModel.mealsNutritionData,
+  ...recordsModel.biometricsData,
+  ...recordsModel.domesticAssistanceData,
+  ...recordsModel.additionalAssessments,
+  ...recordsModel.referralData,
+  ...recordsModel.forms,
+  ...recordsModel.reviewData,
   //CHSP
   chspGoals: {
     tag: "textarea",

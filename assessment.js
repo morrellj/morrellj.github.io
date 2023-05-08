@@ -139,13 +139,40 @@ function searchReduce() {
   }
   // });
 }
+function formatConsolidatedField(formName, formFields) {
+  let model = clientRecordFieldSettings[formName];
+  let comma = "";
+  let string = "";
+  let fields = formFields ? Object.entries(formFields) : [];
+  fields.forEach(([fieldName, data]) => {
+    try {
+      //try for data as formFields object of clientRecordFieldSettings "form" variant
+      if (data) {
+        string += `${comma}${model.formFields[fieldName].label}: ${data}`;
+        comma = ", ";
+      }
+    } catch (e) {
+      // if not assume data is from a standalone clientRecordFieldSettings field
+      if (data) {
+        string += `${comma}${clientRecordFieldSettings[fieldName].label}: ${data}`;
+        comma = ", ";
+      }
+    }
+  });
+  return string;
+}
 function getAllRecordsAsArray() {
   let values = [];
   for (let [key, value] of Object.entries(store.state.records)) {
     let exportable = {};
     for (let [fieldName, fieldValue] of Object.entries(value)) {
       if (fieldValue.constructor === Object) {
-        exportable[fieldName] = fieldValue.current;
+        if (fieldValue.hasOwnProperty("current")) {
+          exportable[fieldName] = fieldValue.current;
+        } else {
+          let string = formatConsolidatedField(fieldName, fieldValue);
+          exportable[fieldName] = string;
+        }
       } else {
         exportable[fieldName] = fieldValue;
       }
