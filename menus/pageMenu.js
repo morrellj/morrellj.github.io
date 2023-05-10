@@ -8,7 +8,7 @@
     let string = "";
     for (const [key, fieldModel] of Object.entries(clientRecordFieldSettings)) {
       if (fieldModel?.reviewPrint) {
-        if (client[key].constructor === Object) {
+        if (client[key]?.constructor === Object) {
           if (client[key].hasOwnProperty("current")) {
             data = client[key].current;
           } else {

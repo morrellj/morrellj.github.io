@@ -2072,7 +2072,7 @@ recordsModel.carerData = {
     tag: "textarea",
     label: "Carer support plan CLIENT",
     classes: ["carePlan", "carer", "largeText"],
-    notes: [],
+    notes: ["Client and client's family will report and seek assistance via Carers Gateway 1800 422 737, \r\n Southern Plus - for respite services\r\nif the caring role is becoming stressful",],
   },
   carerSupportPlanInterventions: {
     tag: "textarea",
@@ -2085,7 +2085,7 @@ recordsModel.carerData = {
     label: "Carer support plan WELLNESS PARTNER",
     classes: ["carePlan", "carer", "largeText"],
     notes: [
-      "Wellness Partner will provide guidance and support for ________  to access Carers Gateway resources including Care Gateway Coaching.",
+      "Wellness Partner will provide guidance and support for ________  to access Carers Gateway resources including Care Gateway Coaching.", "Southern Plus - to arrange respite services if required/requested"
     ],
   },
   carerReview: {
@@ -2668,10 +2668,9 @@ recordsModel.forms = {
       mobilityChanges: {
         tag: "textarea",
         label: "Mobility changes",
-        classes: ["carer"],
         notes: ["Client reports no changes to mobility"],
-        hasOwnField: true,
         assessmentClear: true,
+        reviewClear: true,
       },
       acuteIllnessRecent: {
         tag: "textarea",
@@ -2683,12 +2682,14 @@ recordsModel.forms = {
           "No new issues.",
         ],
         assessmentClear: true,
+        reviewClear: true,
       },
       recentFalls: {
         tag: "textarea",
         label: "Recent falls",
         notes: ["Client reports no new falls incidents since last review"],
         assessmentClear: true,
+        reviewClear: true,
       },
       dietaryChanges: {
         tag: "textarea",
@@ -2700,6 +2701,7 @@ recordsModel.forms = {
           "Client reports no new changes, dietary intake and weight stable.",
         ],
         assessmentClear: true,
+        reviewClear: true,
       },
     },
     classes: ["review"],
