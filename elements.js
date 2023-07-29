@@ -58,13 +58,16 @@ class Elements {
     Object.assign(schema, this.additionalRecordFields);
   }
   static links = {
-    mobility: {
+    falls: {
       loneLinks: [
         [
-          "FROP",
-          "https://www.nari.net.au/Handlers/Download.ashx?IDMF=6c6b3e92-19e7-4e63-9c2d-e920fa6a7b71",
+          "FRAT",
+          "https://southerncrosscarewa.sharepoint.com/formsanddocuments/SFG0101/Forms/AllItems.aspx?id=%2Fformsanddocuments%2FSFG0101%2FFalls%20Risk%20Assessment%20Tool%20FRAT%2Epdf&parent=%2Fformsanddocuments%2FSFG0101",
         ],
       ],
+      groupLinks: [["Shoe Safety Checklist","https://www.injurymatters.org.au/wp-content/uploads/2021/05/SOYF-Shoe-Safety-Checklist-A4-v3-HIGHRES.pdf"],[
+        "Medications that increase falls risk","https://www.unmc.edu/patient-safety/_documents/meds-with-fall-risk-brand-generic-table-2013.pdf"
+      ]]
     },
     pain: {
       loneLinks: [
@@ -72,6 +75,7 @@ class Elements {
           "Functional pain scale",
           "https://www.caltcm.org/assets/Pain-file/functional%20pain%20scale%20u%20of%20iowa_2001.pdf",
         ],
+        ["Abbey Pain Scale", "https://southerncrosscarewa.sharepoint.com/:w:/r/formsanddocuments/_layouts/15/Doc.aspx?sourcedoc=%7BB7D8CCA6-5C76-4219-8FD6-258FC56AFC0F%7D&file=RC%20-%20Abbey%20Pain%20Scale.DOCX&action=default&mobileredirect=true&DefaultItemOpen=1"]
       ],
     },
     psychological: {
@@ -166,15 +170,21 @@ class Elements {
       ],
     },
     nutrition: {
-      loneLinks: [
+      groupLinks: [
         [
           "Eating Assessment Tool (EAT-10)",
           "https://www.nestlehealthscience.com/health-management/gastro-intestinal/dysphagia/eat-10",
         ],
         [
-          "Oral Health Assessment",
-          "https://www.dental.sa.gov.au/professionals/oral-health-resources/care-for-older-people-toolkit/home-care/oral-health-assessment",
+          "SP Oral Health Assessment",
+          "https://southerncrosscarewa.sharepoint.com/:w:/r/formsanddocuments/_layouts/15/Doc.aspx?sourcedoc=%7B6638488F-4C41-40DE-B45F-918D16FD5330%7D&file=RC%20-%20Oral%20Assessment.DOCX&action=default&mobileredirect=true&DefaultItemOpen=1",
         ],
+        ["Aged Care Quality food and dinning preferences.",
+          "https://www.agedcarequality.gov.au/sites/default/files/media/c-food_and_dining_preferences_sheet.pdf"
+        ],[
+          "SP nutrition hydration assessment",
+          "https://southerncrosscarewa.sharepoint.com/:w:/r/formsanddocuments/_layouts/15/Doc.aspx?sourcedoc=%7B405E8775-2E20-49D9-99D3-6D9740C39D9A%7D&file=RC%20-%20Nutrition%20and%20Hydration%20Assessment.DOCX&action=default&mobileredirect=true&DefaultItemOpen=1"
+        ]
       ],
     },
     personalCare: {

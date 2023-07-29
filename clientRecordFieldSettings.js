@@ -1610,23 +1610,54 @@ recordsModel.mobilityData = {
   transfers: {
     tag: "select",
     selectOptions: [
-      "Independent transfers",
-      "Standby assist transfers",
-      "Physical assist transfers",
-      "Physical assist x2 transfers",
-      "Not weight bearing",
+      "Independent transfers inside the home.",
+      "Supervise transfers inside the home.",
+      "Standby assist transfers inside the home.",
+      "Physical assist transfers inside the home.",
+      "Physical assist x2 transfers inside the home.",
+      "Not weight bearing inside the home.",
     ],
-    label: "Transfers",
+    label: "Transfers outside",
     classes: ["mobility", "falls"],
     assessmentClear: true,
   },
   ambulation: {
     tag: "select",
+    multiple: true,
     selectOptions: [
-      "Independent ambulation",
-      "Standby assist ambulation",
-      "Physical assist ambulation",
-      "Physical assist xv2 ambulation",
+      "Independent ambulation inside the home.",
+      "Supervise ambulation inside the home.",
+      "Standby assist ambulation inside the home.",
+      "Physical assist ambulation inside the home.",
+      "Physical assist xv2 ambulation inside the home.",
+    ],
+    label: "Ambulation outside",
+    classes: ["mobility", "falls"],
+    assessmentClear: true,
+  },
+  transfersOutside: {
+    tag: "select",
+    selectOptions: [
+      "Independent transfers outside the home.",
+      "Supervise transfers outside the home.",
+      "Standby assist transfers outside the home.",
+      "Physical assist transfers outside the home.",
+      "Physical assist x2 transfers outside the home.",
+      "Not weight bearing outside the home.",
+    ],
+    label: "Transfers",
+    classes: ["mobility", "falls"],
+    assessmentClear: true,
+  },
+  ambulationOutside: {
+    tag: "select",
+    multiple: true,
+    selectOptions: [
+      "Independent ambulation outside the home.",
+      "Supervise ambulation outside the home.",
+      "Standby assist ambulation outside the home.",
+      "Physical assist ambulation outside the home.",
+      "Physical assist xv2 ambulation outside the home.",
     ],
     label: "Ambulation",
     classes: ["mobility", "falls"],
@@ -1987,10 +2018,10 @@ recordsModel.environmentPersonalSafetyData = {
       "largeText",
     ],
     notes: [
-      "Client will wear his/her PERS pendant at all times and keep it charged.",
+      "Client will wear his/her PERS pendant at all times and keep it charged if needed.",
       "Client will test his/her PERS pendant monthly to ensure it is functional.",
       "Client will wear Personal Emergency Response pendant and ensure the battery is charged and renew sim card activation each year if required.",
-      "Client identify potential emergency situations and make a plan to enact in case of an emergency and ensure that preperations are made accordingly.",
+      "Client identify potential emergency situations and make a plan to enact in case of an emergency and ensure that preparations are made accordingly.",
     ],
   },
   personalSafetySupportPlanInterventions: {
@@ -2072,7 +2103,9 @@ recordsModel.carerData = {
     tag: "textarea",
     label: "Carer support plan CLIENT",
     classes: ["carePlan", "carer", "largeText"],
-    notes: ["Client and client's family will report and seek assistance via Carers Gateway 1800 422 737, \r\n Southern Plus - for respite services\r\nif the caring role is becoming stressful",],
+    notes: [
+      "Client and client's family will report and seek assistance via Carers Gateway 1800 422 737, \r\n Southern Plus - for respite services\r\nif the caring role is becoming stressful",
+    ],
   },
   carerSupportPlanInterventions: {
     tag: "textarea",
@@ -2085,7 +2118,8 @@ recordsModel.carerData = {
     label: "Carer support plan WELLNESS PARTNER",
     classes: ["carePlan", "carer", "largeText"],
     notes: [
-      "Wellness Partner will provide guidance and support for ________  to access Carers Gateway resources including Care Gateway Coaching.", "Southern Plus - to arrange respite services if required/requested"
+      "Wellness Partner will provide guidance and support for ________  to access Carers Gateway resources including Care Gateway Coaching.",
+      "Southern Plus - to arrange respite services if required/requested",
     ],
   },
   carerReview: {
@@ -2201,6 +2235,7 @@ recordsModel.personalCareData = {
     notes: [
       "Southern Plus support workers will assist client with personal care x days per week.",
       "Southern Plus will arrange for home visiting podiatry approx 8 weekly.",
+      "Southern Plus support workers will SET and MONITOR WATER TEMPERATURE AND FLUCTUATIONS AT ALL TIMES.",
     ],
   },
   personalCareSP_WellnessPartner: {
@@ -2668,7 +2703,10 @@ recordsModel.forms = {
       mobilityChanges: {
         tag: "textarea",
         label: "Mobility changes",
-        notes: ["Client reports no changes to mobility"],
+        notes: [
+          "Client reports no changes to mobility",
+          "WP/RN has observed client mobilising as per baseline.",
+        ],
         assessmentClear: true,
         reviewClear: true,
       },
@@ -2680,6 +2718,17 @@ recordsModel.forms = {
           "Client reports new medical issues: ",
           "Client reports chronic illness exacerbations: ",
           "No new issues.",
+          "Client describes his/her health as excellent/very good/good/fair/poor.",
+        ],
+        assessmentClear: true,
+        reviewClear: true,
+      },
+      medicationChanges: {
+        tag: "textarea",
+        label: "Medication changes",
+        notes: [
+          "Client reports no medication changes.",
+          "Medication changes: ",
         ],
         assessmentClear: true,
         reviewClear: true,
@@ -2695,10 +2744,62 @@ recordsModel.forms = {
         tag: "textarea",
         label: "Dietary changes",
         notes: [
-          "Client reports appetite: ",
-          "Client reports food and Fluid intake: ",
+          "Client reports changes to appetite: ",
+          "Client reports changes food and Fluid intake: ",
           "Client reports weight changes: ",
           "Client reports no new changes, dietary intake and weight stable.",
+        ],
+        assessmentClear: true,
+        reviewClear: true,
+      },
+      fatigue: {
+        tag: "textarea",
+        label: "Fatigue",
+        notes: [
+          "Client reports feeling tired all or most of the time.",
+          "Client reports feeling tired some, little or none of the time.",
+        ],
+        assessmentClear: true,
+        reviewClear: true,
+      },
+      socialSupport: {
+        tag: "textarea",
+        label: "Social support",
+        notes: [
+          "Client reports there is someone who he/she can count on who is willing and able to meet his/her needs.",
+          "Client reports there has been changes to his/her level of social support:",
+        ],
+        assessmentClear: true,
+        reviewClear: true,
+      },
+      functionalIndependence: {
+        tag: "textarea",
+        label: "Functional independence",
+        notes: [
+          "Client reports there has been no changes to what he/she can and cannot do independently.",
+          "Client reports there has been changes what he/she can and cannot do independently:",
+        ],
+        assessmentClear: true,
+        reviewClear: true,
+      },
+      moodMentation: {
+        tag: "textarea",
+        label: "Mood and Mentation",
+        notes: [
+          "Client is alert and orientated",
+          "Cllient denies any cognitive changes.",
+          "Client reports there has been no changes to his/her mood.",
+          "Client reports there has been changes to his/her mood:",
+        ],
+        assessmentClear: true,
+        reviewClear: true,
+      },
+      continence: {
+        tag: "textarea",
+        label: "Continence",
+        notes: [
+          "Client reports he/she is not experincing any new incontinence.",
+          "Client reports there has been changes to his/her continence:",
         ],
         assessmentClear: true,
         reviewClear: true,
