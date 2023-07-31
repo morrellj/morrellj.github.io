@@ -90,11 +90,48 @@ inputFieldVariations = {
         },
       }),
     });
+    // let formClear = new BaseInputField({
+    //   fieldSettings: fieldSettings,
+    //   elementsObject: elementsObject,
+    //   dataField: new InputFieldDiv({
+    //     fieldSettings: fieldSettings,
+    //     elementsObject: elementsObject,
+    //     inputSet: {
+    //       tag: "p",
+    //       props: {
+    //         classList: [fieldSettings.fieldName, "form-link"],
+    //         innerHTML: "Clear form",
+    //       },
+    //     },
+    //   }),
+    // });
+    // let returnFromFormLink = new BaseInputField({
+    //   fieldSettings: fieldSettings,
+    //   elementsObject: elementsObject,
+    //   dataField: new InputFieldDiv({
+    //     fieldSettings: fieldSettings,
+    //     elementsObject: elementsObject,
+    //     inputSet: {
+    //       tag: "p",
+    //       props: {
+    //         classList: [
+    //           fieldSettings.fieldName
+    //         ],
+    //         innerHTML: "Return",
+    //       },
+    //     },
+    //   }),
+    // });
+    // returnFromFormLink.dataField.$_inputSet.onclick = () => {
+    //   return app.pageActions.setPage()
+    // }
     formLinkField.dataField.$_inputSet.onclick = () => {
       return app.pageActions.setPage(fieldSettings.fieldName, {
         showCarePlan: true,
       });
     };
+    // formFields[`${fieldSettings.fieldName}_return`] = returnFromFormLink;
+    // formFields[`${fieldSettings.fieldName}_clear`] = formClear;
     formFields[fieldSettings.fieldName] = formLinkField;
     formLinkField.$_inputLabel.oncontextmenu = (e) => {
       e.preventDefault();
