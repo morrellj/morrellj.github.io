@@ -896,13 +896,13 @@ recordsModel.communicationData = {
       "Support workers will prompt client to wear his/her hearing aids and glasses.",
       "Suport workers will assist client to ensure that his/her hearing aids are working effectively.",
       "Support workers will assist client to put on his/her glasses and hearing aids.",
-      "Be flexible and always allow plenty oftime for a response.",
+      "Be flexible and always allow plenty of time for a response.",
       "Use touch to keep the client’s attention and to communicate feelings of warmth and affection",
       "Remain calm and talk in a gentle, matter of fact way",
       "Keep sentences short and simple, focusing on one idea at a time",
       "Always allow plenty of time for what you have said to be understood",
       "Use non verbal cues to aid communication (touch, pointing, hold hands to maintain attention, smile.",
-      "Ensure environment is condusive to communication (avoid loud competing noises TV or radio, stay still and within line of sight, maintain routines and familiar surroundings/people)",
+      "Ensure environment is conducive to communication (avoid loud competing noises TV or radio, stay still and within line of sight, maintain routines and familiar surroundings/people)",
       "Utilise communication techniques that enable people living with dementia. Refer to help sheet.",
     ],
   },
@@ -1559,6 +1559,7 @@ recordsModel.eliminationData = {
     classes: ["carePlan", "elimination", "largeText"],
     notes: [
       "Client will notify her Wellness Partner when she requires a supply of incontinence aids giving them 2 weeks notice for delivery.",
+      "Client accesses financial support for incontinence aids via the Continence Aids Payment Scheme.",
     ],
   },
   eliminationSupportPlanInterventions: {
@@ -1675,6 +1676,7 @@ recordsModel.mobilityData = {
       "Standing hoist",
       "Sara steady (or equiv)",
       "Cradle hoist",
+      "No mobility aids",
     ],
     label: "Mobility aids",
     classes: ["mobility", "falls"],
@@ -1822,6 +1824,7 @@ recordsModel.mobilityData = {
     notes: [
       "Southern Plus support workers will provide transport to appointments as required within capacity of HCP funding.",
       "Southern Plus will facilitate payment for wheelchair taxi services when these are not co funded by TUSS.",
+      "Southern Plus Support workers will prompt/assist client to stay up to date with his/her medical/health related appointments and prompt him/her /assist him/her to notify the office to schedule transport.",
     ],
   },
   transportSP_WellnessPartner: {
@@ -1927,24 +1930,38 @@ recordsModel.environmentPersonalSafetyData = {
       "Client uses home oxygen.",
       "Client's home is well designed and laid out.",
       "Client maintains his/her home in a safe condition.",
+      "Client does/does not live in a high fire risk area.",
+      "Fire risk factors include: ",
+      "Client is at increased risk of heat related illness secondary to age related physiological and functional decline.",
     ],
   },
   environmentSupportPlanGoals: {
     tag: "textarea",
     label: "Environment support plan GOALS",
     classes: ["carePlan", "environment", "goals", "largeText"],
-    notes: ["Environmental risks will be identified, reduced/mitigated."],
+    notes: [
+      "Environmental risks will be identified, reduced/mitigated.",
+      "Client will be able to explain what strategies he/she plans to employ to stay cool and hydrated during extreme hot weather conditions.",
+      "Client will be able to articulate her action plan to stay informed about fire emergency's and when and how she will evacuate if required.",
+    ],
   },
   environmentSP_Client: {
     tag: "textarea",
     label: "Environment support plan CLIENT",
     classes: ["carePlan", "environment", "largeText"],
+    notes: [
+      "Client will take precautions to prevent overheating and dehydration during extreme heat weather conditions.",
+      "Client will make emergency plan's to stay informed during high risk fire season and when and how to evacuate if required.  Client will review these annually.",
+    ],
   },
   environmentSupportPlanInterventions: {
     tag: "textarea",
     label: "Environment support plan SUPPORTS",
     classes: ["carePlan", "environment", "largeText"],
-    notes: ["Interventions applicable for home oxygen use."],
+    notes: [
+      "Interventions applicable for home oxygen use.",
+      "Southern Plus support workers will prompt and support Client to action strategies to keep cool and hydrated during extreme heat weather conditions.",
+    ],
   },
   environmentSP_WellnessPartner: {
     tag: "textarea",
@@ -1952,6 +1969,7 @@ recordsModel.environmentPersonalSafetyData = {
     classes: ["carePlan", "environment", "largeText"],
     notes: [
       "Wellness Partner will make a referral to ___ for Occupation Therapy home safety assessment and facilitate provision of home modifications and equipment according to HCP inclusion/exclusion framework.",
+      "Wellness Partener will discuss fire and emergency plans with client on admission and review annually.",
     ],
   },
   environmentReview: {
@@ -1988,6 +2006,7 @@ recordsModel.environmentPersonalSafetyData = {
       "Client is at increased risk of medical emergency and falls and is often at home alone.",
       "Potential for delayed access to emergency services.",
       "Potential emergency situations: ",
+      "Client has increased vulnerability during the hot weather season.",
     ],
   },
   personalSafetySupportPlanGoals: {
@@ -2300,6 +2319,7 @@ recordsModel.mealsNutritionData = {
       "Client is able to prepare his/her own simple meals and snacks.",
       "Client's family will support client with meal preparation.",
       "Client will contribute to the set up, cost of the food portion of and ongoing ordering of home delivered meals.",
+      "Client will participate in weekly/fortnightly shopping by - ",
     ],
   },
   mealsAndShoppingSupportPlanInterventions: {
@@ -2309,6 +2329,7 @@ recordsModel.mealsNutritionData = {
     notes: [
       "Southern Plus will facilitate the provision of prepared and home delivered meals through ___.",
       "Southern Plus support workers will assist client with shopping by list each week/fortnight.",
+      "Southern Plus support workers will assist Client with shopping each week on <day> by supporting him/her to make a list, do the shopping and put away at home.",
     ],
   },
   mealsAndShoppingSP_WellnessPartner: {
@@ -2844,20 +2865,6 @@ recordsModel.forms = {
         assessmentClear: true,
         reviewClear: true,
       },
-      name: {
-        tag: "textarea",
-        label: "label",
-        notes: [""],
-        assessmentClear: true,
-        reviewClear: true,
-      },
-      name: {
-        tag: "textarea",
-        label: "label",
-        notes: [""],
-        assessmentClear: true,
-        reviewClear: true,
-      },
       woundCareActions: {
         tag: "textarea",
         label: "Actions",
@@ -2867,6 +2874,44 @@ recordsModel.forms = {
       },
     },
     classes: ["skin"],
+  },
+  dignityOfRisk: {
+    variation: "form",
+    label: "Dignity of risk",
+    formFields: {
+      sharedRiskActivity: {
+        tag: "textarea",
+        label: "Shared Risk Activities",
+        notes: [
+          "Clarify risk(s) consider options and mitigation strategies.",
+          "What I (or client name) would like to do/not do",
+        ],
+      },
+      sharedRiskGoal: {
+        tag: "textarea",
+        label: "Shared risk goal",
+        notes: [
+          "Support individual preference and dignity of risk, maximise quality of life and care and reduce potential for harm. ",
+          "Why I have chosen this and what I hope to achieve: ",
+        ],
+      },
+      sharedRiskRisks: {
+        tag: "textarea",
+        label: "Shared risk: Assoc risks",
+        notes: [],
+      },
+      sharedRiskStrategies: {
+        tag: "textarea",
+        label: "Shared risk: Strategies",
+        notes: [],
+      },
+      sharedRiskReviewDate: {
+        tag: "input",
+        type: "date",
+        label: "Review date.",
+      },
+    },
+    classes: ["carePlan", "review"],
   },
 };
 recordsModel.reviewData = {
@@ -2967,7 +3012,7 @@ recordsModel.clinicalCarePlan = {
       "skin",
       "largeText",
     ],
-    notes: [""],
+    notes: ["AHD status"],
   },
   clinicalSupportPlanGoals: {
     tag: "textarea",
@@ -2988,7 +3033,9 @@ recordsModel.clinicalCarePlan = {
       "goals",
       "largeText",
     ],
-    notes: [""],
+    notes: [
+      "Client will experience good long term foot health.  Foot complications, such as infections will be prevented or identified early and treated.",
+    ],
   },
   clinicalSP_Client: {
     tag: "textarea",
@@ -3028,7 +3075,9 @@ recordsModel.clinicalCarePlan = {
       "skin",
       "largeText",
     ],
-    notes: [""],
+    notes: [
+      "Southern Plus will facilitate regular 8 weekly podiatry services.",
+    ],
   },
   clinicalSP_WellnessPartner: {
     tag: "textarea",
@@ -3074,6 +3123,7 @@ recordsModel.clinicalCarePlan = {
     reviewPrint: true,
   },
 };
+
 let clientRecordFieldSettings = {
   ...recordsModel.demographicData,
   ...recordsModel.contactsData,

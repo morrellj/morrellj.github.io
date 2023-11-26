@@ -104,6 +104,7 @@ class Elements {
     },
     medical: {
       groupLinks: [
+        ["Non-Motor Symptoms in Parkinsons", "https://www.movementdisorders.org/MDS-Files1/Education/Rating-Scales/NMSQ.pdf"],
         ["COPD-Action-Plan", "COPD-Action-Plan.pdf"],
         [
           "Reducing ICS in Asthma sufferers",
