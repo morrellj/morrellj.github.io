@@ -2886,6 +2886,7 @@ recordsModel.forms = {
           "Clarify risk(s) consider options and mitigation strategies.",
           "What I (or client name) would like to do/not do",
         ],
+        hasOwnField: true,
       },
       sharedRiskGoal: {
         tag: "textarea",
@@ -2894,21 +2895,25 @@ recordsModel.forms = {
           "Support individual preference and dignity of risk, maximise quality of life and care and reduce potential for harm. ",
           "Why I have chosen this and what I hope to achieve: ",
         ],
+        hasOwnField: true,
       },
       sharedRiskRisks: {
         tag: "textarea",
         label: "Shared risk: Assoc risks",
         notes: [],
+        hasOwnField: true,
       },
       sharedRiskStrategies: {
         tag: "textarea",
         label: "Shared risk: Strategies",
         notes: [],
+        hasOwnField: true,
       },
       sharedRiskReviewDate: {
         tag: "input",
         type: "date",
         label: "Review date.",
+        hasOwnField: true,
       },
     },
     classes: ["carePlan", "review"],
