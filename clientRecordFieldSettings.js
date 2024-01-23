@@ -328,6 +328,7 @@ recordsModel.contactsData = {
     tag: "textarea",
     label: "EPA/EPG/ACP",
     classes: ["contactsMedical", "important", "largeText"],
+    reviewPrint: true,
   },
   pharmacy: {
     tag: "input",
@@ -904,6 +905,8 @@ recordsModel.communicationData = {
       "Use non verbal cues to aid communication (touch, pointing, hold hands to maintain attention, smile.",
       "Ensure environment is conducive to communication (avoid loud competing noises TV or radio, stay still and within line of sight, maintain routines and familiar surroundings/people)",
       "Utilise communication techniques that enable people living with dementia. Refer to help sheet.",
+      "Client's carer will support him/her to ensure he/she stays up to date with vision and hearing checks and other sensory check ups including podiatry if required.",
+      "Client will manage own hearing and vision check up and other sensory check ups including podiatry if required appointments."
     ],
   },
   communicationSupportPlanInterventions: {
@@ -930,18 +933,7 @@ recordsModel.communicationData = {
     label: "Communication support plan WELLNESS PARTNER",
     classes: ["carePlan", "communicationSensory", "largeText"],
     notes: [
-      "Support workers will support client with communication by speaking clearly and not shouting, facing client when speaking, reducing the  distance between them and client, reducing background noise, rephrase the sentence as needed, checking to see that client has understood what has been communicated.",
-      "Support workers will prompt client to wear his/her hearing aids and glasses.",
-      "Suport workers will assist client to ensure that his/her hearing aids are working effectively.",
-      "Support workers will assist client to put on his/her glasses and hearing aids.",
-      "Be flexible and always allow plenty oftime for a response.",
-      "Use touch to keep the client’s attention and to communicate feelings of warmth and affection",
-      "Remain calm and talk in a gentle, matter of fact way",
-      "Keep sentences short and simple, focusing on one idea at a time",
-      "Always allow plenty of time for what you have said to be understood",
-      "Use non verbal cues to aid communication (touch, pointing, hold hands to maintain attention, smile.",
-      "Ensure environment is condusive to communication (avoid loud competing noises TV or radio, stay still and within line of sight, maintain routines and familiar surroundings/people)",
-      "Utilise communication techniques that enable people living with dementia. Refer to help sheet.",
+      "WP will prompt client and facilitate supports as required to maintain regular hearing, vision and other sensory check ups including podiatry if required.",
     ],
   },
   communicationReview: {
@@ -1105,7 +1097,7 @@ recordsModel.psychologicalData = {
     classes: ["carePlan", "psychological", "largeText"],
     notes: [
       "Client's carers and support workers will assist client to identify potential issues that are causing anxiety or agitation using the CAUSEd acronym, take appropriate actions and report outcomes.\n\u2022 Communication issues\n\u2022 Activity (is it appropriate and available)\n\u2022 Unwell/Unmet needs\n\u2022 Story (consider what we know about client that may be a clue)\n\u2022 Environment (what environmental factors are contributing to their feelings of anxiety)\n\u2022 dementia.",
-      "Support workers and carers will prompote positive self esteem",
+      "Other services available for Client to reach out to for strategies to manage depression and anxiety and in times of crisis. - Beyond Blue Support Service, 1300 22 46 36 and Web Chat; - Lifeline, 13 11 14; - Suicide Call Back Service, 1300 659 467",
     ],
   },
   psychologicalSupportPlanInterventions: {
@@ -1114,7 +1106,7 @@ recordsModel.psychologicalData = {
     classes: ["carePlan", "psychological", "largeText"],
     notes: [
       "Clients carers and support workers will assist client to identify potential issues that are causing anxiety or agitation using the CAUSEd anacronym, take appropriate actions and report outcomes.\n\u2022 Communication issues\n\u2022 Activity (is it appropriate and available)\n\u2022 Unwell/Unmet needs\n\u2022 Story (consider what we know about client that may be a clue)\n\u2022 Environment (what environmental factors are contributing to their feelings of anxiety)\n\u2022 dementia.",
-      "Support workers and carers will prompote positive self esteem",
+      "Support workers and carers will promote positive self esteem",
     ],
   },
   psychologicalSP_WellnessPartner: {
@@ -1450,6 +1442,8 @@ recordsModel.skinData = {
       "I: manage incontinence - refer to continence management assessment.",
       "N: optimise nutrition - refer to nutritional assessment.",
       "D: dressings for prevention indicated/not indicated",
+      "Client will manage any incontinence associated dermatitis with good personal hygiene, regular cleaning and use of barrier creams and seeking further health advice when self care is not effective.",
+      "Client will continue to manage his/her own skin care including regular moisturizing, monitoring for skin breakdown and seeking health services when not able to self manage."
     ],
   },
   skinSupportPlanInterventions: {
@@ -1930,7 +1924,7 @@ recordsModel.environmentPersonalSafetyData = {
       "Client uses home oxygen.",
       "Client's home is well designed and laid out.",
       "Client maintains his/her home in a safe condition.",
-      "Client does/does not live in a high fire risk area.",
+      "Client does not live in a bush fire prone area.",
       "Fire risk factors include: ",
       "Client is at increased risk of heat related illness secondary to age related physiological and functional decline.",
     ],
@@ -2006,7 +2000,6 @@ recordsModel.environmentPersonalSafetyData = {
       "Client is at increased risk of medical emergency and falls and is often at home alone.",
       "Potential for delayed access to emergency services.",
       "Potential emergency situations: ",
-      "Client has increased vulnerability during the hot weather season.",
     ],
   },
   personalSafetySupportPlanGoals: {
@@ -2051,6 +2044,7 @@ recordsModel.environmentPersonalSafetyData = {
       "Support workers will prompt client to lock his/her security door and/or windows at the end of each visit.",
       "Support workers will report any security concerns to the Wellness Partner.",
       "Support workers will be aware of clients emergency response plans and support clients to enact them in the event of an emergency if they are present.",
+      "Southern Plus will facilitate the hire of a mobile pendant PERS that is monitored through Blue Assist."
     ],
     classes: [
       "carePlan",
@@ -2245,7 +2239,7 @@ recordsModel.personalCareData = {
     tag: "textarea",
     label: "Personal care support plan CLIENT",
     classes: ["carePlan", "personalCare", "largeText"],
-    notes: ["Client will contiune to attend to his/her own personal care."],
+    notes: ["Client will contiune to attend to his/her own personal care.","Client will wait for the support worker and shower when they are present when he/she feels unsafe to do it on his/her own."],
   },
   personalCareSupportPlanInterventions: {
     tag: "textarea",
@@ -2320,6 +2314,7 @@ recordsModel.mealsNutritionData = {
       "Client's family will support client with meal preparation.",
       "Client will contribute to the set up, cost of the food portion of and ongoing ordering of home delivered meals.",
       "Client will participate in weekly/fortnightly shopping by - ",
+      "Client will make a weekly shopping list in preperation for shopping service."
     ],
   },
   mealsAndShoppingSupportPlanInterventions: {
@@ -2882,6 +2877,7 @@ recordsModel.forms = {
       sharedRiskActivity: {
         tag: "textarea",
         label: "Shared Risk Activities",
+        default: "NA",
         notes: [
           "Clarify risk(s) consider options and mitigation strategies.",
           "What I (or client name) would like to do/not do",
@@ -2891,6 +2887,7 @@ recordsModel.forms = {
       sharedRiskGoal: {
         tag: "textarea",
         label: "Shared risk goal",
+        default: "NA",
         notes: [
           "Support individual preference and dignity of risk, maximise quality of life and care and reduce potential for harm. ",
           "Why I have chosen this and what I hope to achieve: ",
@@ -2900,12 +2897,14 @@ recordsModel.forms = {
       sharedRiskRisks: {
         tag: "textarea",
         label: "Shared risk: Assoc risks",
+        default: "NA",
         notes: [],
         hasOwnField: true,
       },
       sharedRiskStrategies: {
         tag: "textarea",
         label: "Shared risk: Strategies",
+        default: "NA",
         notes: [],
         hasOwnField: true,
       },
