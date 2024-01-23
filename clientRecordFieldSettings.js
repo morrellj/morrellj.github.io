@@ -906,7 +906,7 @@ recordsModel.communicationData = {
       "Ensure environment is conducive to communication (avoid loud competing noises TV or radio, stay still and within line of sight, maintain routines and familiar surroundings/people)",
       "Utilise communication techniques that enable people living with dementia. Refer to help sheet.",
       "Client's carer will support him/her to ensure he/she stays up to date with vision and hearing checks and other sensory check ups including podiatry if required.",
-      "Client will manage own hearing and vision check up and other sensory check ups including podiatry if required appointments."
+      "Client will manage own hearing and vision check up and other sensory check ups including podiatry if required appointments.",
     ],
   },
   communicationSupportPlanInterventions: {
@@ -1443,7 +1443,7 @@ recordsModel.skinData = {
       "N: optimise nutrition - refer to nutritional assessment.",
       "D: dressings for prevention indicated/not indicated",
       "Client will manage any incontinence associated dermatitis with good personal hygiene, regular cleaning and use of barrier creams and seeking further health advice when self care is not effective.",
-      "Client will continue to manage his/her own skin care including regular moisturizing, monitoring for skin breakdown and seeking health services when not able to self manage."
+      "Client will continue to manage his/her own skin care including regular moisturizing, monitoring for skin breakdown and seeking health services when not able to self manage.",
     ],
   },
   skinSupportPlanInterventions: {
@@ -1614,7 +1614,7 @@ recordsModel.mobilityData = {
     ],
     label: "Transfers outside",
     classes: ["mobility", "falls"],
-    assessmentClear: true,
+    assessmentClear: false,
   },
   ambulation: {
     tag: "select",
@@ -1628,7 +1628,7 @@ recordsModel.mobilityData = {
     ],
     label: "Ambulation outside",
     classes: ["mobility", "falls"],
-    assessmentClear: true,
+    assessmentClear: false,
   },
   transfersOutside: {
     tag: "select",
@@ -1642,7 +1642,7 @@ recordsModel.mobilityData = {
     ],
     label: "Transfers",
     classes: ["mobility", "falls"],
-    assessmentClear: true,
+    assessmentClear: false,
   },
   ambulationOutside: {
     tag: "select",
@@ -1656,7 +1656,7 @@ recordsModel.mobilityData = {
     ],
     label: "Ambulation",
     classes: ["mobility", "falls"],
-    assessmentClear: true,
+    assessmentClear: false,
   },
   mobilityAids: {
     tag: "select",
@@ -1674,7 +1674,7 @@ recordsModel.mobilityData = {
     ],
     label: "Mobility aids",
     classes: ["mobility", "falls"],
-    assessmentClear: true,
+    assessmentClear: false,
   },
   fallsRisk: {
     tag: "textarea",
@@ -2044,7 +2044,7 @@ recordsModel.environmentPersonalSafetyData = {
       "Support workers will prompt client to lock his/her security door and/or windows at the end of each visit.",
       "Support workers will report any security concerns to the Wellness Partner.",
       "Support workers will be aware of clients emergency response plans and support clients to enact them in the event of an emergency if they are present.",
-      "Southern Plus will facilitate the hire of a mobile pendant PERS that is monitored through Blue Assist."
+      "Southern Plus will facilitate the hire of a mobile pendant PERS that is monitored through Blue Assist.",
     ],
     classes: [
       "carePlan",
@@ -2239,7 +2239,10 @@ recordsModel.personalCareData = {
     tag: "textarea",
     label: "Personal care support plan CLIENT",
     classes: ["carePlan", "personalCare", "largeText"],
-    notes: ["Client will contiune to attend to his/her own personal care.","Client will wait for the support worker and shower when they are present when he/she feels unsafe to do it on his/her own."],
+    notes: [
+      "Client will contiune to attend to his/her own personal care.",
+      "Client will wait for the support worker and shower when they are present when he/she feels unsafe to do it on his/her own.",
+    ],
   },
   personalCareSupportPlanInterventions: {
     tag: "textarea",
@@ -2314,7 +2317,7 @@ recordsModel.mealsNutritionData = {
       "Client's family will support client with meal preparation.",
       "Client will contribute to the set up, cost of the food portion of and ongoing ordering of home delivered meals.",
       "Client will participate in weekly/fortnightly shopping by - ",
-      "Client will make a weekly shopping list in preperation for shopping service."
+      "Client will make a weekly shopping list in preperation for shopping service.",
     ],
   },
   mealsAndShoppingSupportPlanInterventions: {

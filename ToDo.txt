@@ -1,11 +1,7 @@
 
-multipe links per div.
+local fieldsettings
+backup json of client data
 
-assessment class to identify elements to be cleared and backed up to previous
-Oncontextmenu for dataField to popup previous.
-
-
-add a property to fields setting for clear assessment data true/false as opposed to having a class.
 
 IDEAS
 Advance care planning
