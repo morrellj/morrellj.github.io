@@ -327,8 +327,10 @@ recordsModel.contactsData = {
   epaEpgAcp: {
     tag: "textarea",
     label: "EPA/EPG/ACP",
-    classes: ["contactsMedical", "important", "largeText"],
+    classes: ["contactsMedical", "important", "largeText",'review'],
+    notes:['Information reviewed and discussed with client as per department of health guidelines, no changes','Information review and discussed with client, changes updated in the system including: '],
     reviewPrint: true,
+    reviewClear:false
   },
   pharmacy: {
     tag: "input",
@@ -457,23 +459,46 @@ recordsModel.medicalData = {
     classes: ["contactsMedical", "medical", "largeText"],
   },
   vaccinations: {
-    tag: "textarea",
+    variation: "multiLikertField",
     label: "Vaccinations",
-    classes: ["medical", "largeText"],
-    assessmentClear: true,
-    notes: [
-      "COVID vaccinations up to date",
-      "COVID vaccinations pending",
-      "Flu vaccinations up to date.",
-      "Flu vaccinations pending.",
-      "Shingles vacinations up to date.",
-      "Shingles vacinations pending.",
-      "Pneumovax vaccinations up to date",
-      "Pneumovax vaccinations pending",
-      "Tetnus vaccinations up to date.",
-      "Tetnus vaccinations pending.",
+    propertyResponseFields: {
+      covidStatus: [
+        "Covid status",
+        ["Current", "Due", "Other"],
+      ],
+      fluVaxStatus: [
+        "Flu vaccine status",
+        ["Current", "Due", "Other"],
+      ],
+      shinglesVaxStatus: [
+        "Shingles vaccine status",
+        ["Current", "Due", "Other"],
+      ],
+      pneumovaxStatus: [
+        "Pnuemovax status",
+        ["Current", "Due", "Other"],
+      ],
+      tetnusStatus: [
+        "Tetnus vaccine status",
+        ["Current", "Due", "Other"],
+      ],
+    },
+    consolidateRecords: true,
+    classes: [
+      "medical",
     ],
+    notes: [],
     assessmentClear: true,
+  },
+  vaccineComments: {
+    tag: "textarea",
+    label: "Vaccination comments",
+    classes: [],
+    forms: ["vaccinations"],
+    notes: [
+      'Vaccinations discussed with client/family who report that they will follow up with GP annually.',
+      'Clinical referral required'
+    ],
   },
   oxygen: {
     tag: "textarea",
@@ -832,6 +857,32 @@ recordsModel.communicationData = {
     ],
     multiple: true,
   },
+  makingSelfUnderstood: {
+    tag: 'select',
+    label: 'Making self understood',
+    classes:['communicationSensory'],
+    assessmentClear: true,
+    selectOptions:[
+      "Understood – expresses ideas without difficulty", 
+      "Usually understood – difficulty finding words or finishing thoughts but if given time, little or no prompting required", 
+      "Often understood – difficulty finding words or finishing thoughts and prompting usually required",
+      "Sometimes understood – ability is limited to making concrete requests",
+      "Rarely or never understood"
+    ]
+  },
+  understandingOthers: {
+    tag: 'select',
+    label: 'Understanding Others',
+    classes:['communicationSensory'],
+    assessmentClear: true,
+    selectOptions:[
+      "Understands – understands ideas without difficulty",
+      "Usually understands– " ,
+      "Often understands – ",
+      "Sometimes understands – " ,
+      "Rarely or never understands",
+    ]
+  },
   CommunicationAids: {
     tag: "select",
     label: "Communication aids",
@@ -844,6 +895,13 @@ recordsModel.communicationData = {
       "Wears bifocal glasses",
     ],
     multiple: true,
+  },
+  OtherLanuguages:{
+    tag: "input",
+    type: "text",
+    label: "Other languages",
+    classes: ["communicationSensory"],
+    assessmentClear: true,
   },
   sensory: {
     tag: "select",
@@ -867,6 +925,16 @@ recordsModel.communicationData = {
       "Client passed whisper test bilaterally.",
       "Client failed whisper test Right/Left/Both ear/s.",
     ],
+  },
+  mobilePhoneUse:{
+    tag:'select',
+    label:'Mobile phone use',
+    classes:['communicationSensory'],
+    assessmentClear: true,
+    selectOptions:[
+      'Independent – No help, setup, or supervision',
+     ' Assistance required'
+    ]
   },
   communicationSupportPlanFactors: {
     tag: "textarea",
@@ -964,6 +1032,9 @@ recordsModel.psychologicalData = {
     label: "Sleep",
     classes: ["largeText", "psychological"],
     assessmentClear: true,
+    notes:[ "Nocturia","Night time sleep hours: ", "Day time sleep hours: ", "Sleeping aids: ", "Sleep disorders: "
+
+    ]
   },
   cognitionNeurological: {
     tag: "textarea",
@@ -1086,7 +1157,7 @@ recordsModel.psychologicalData = {
     label: "Pyschological support plan GOALS",
     classes: ["carePlan", "psychological", "goals", "largeText"],
     notes: [
-      "Client will report he/she feels safe and secure most of the time.",
+      "Client will report he/she feels safe and secure at all times.",
       "Clients carers and support workers will identify what frequently triggers certain behaviours, anxiety and insecurity, what interventions are effective and the outcomes.",
       "Client will engage in meaningful activity on a daily basis and effectively complete all of his/her activities of daily living.",
     ],
@@ -1178,7 +1249,7 @@ recordsModel.psychosocialData = {
     label: "Psycho social support plan GOALS",
     classes: ["carePlan", "psychological", "social", "goals", "largeText"],
     notes: [
-      "Client will report that he/she is satisfied with the amount of social interaction that he/she receives.",
+      "Client will report that he/she is satisfied with the amount of social interaction that he/she engages in.",
       "Client will report that frequently engage in activities and have opportunity to build and maintain the relationships that are important to him/her.",
     ],
   },
@@ -1500,12 +1571,14 @@ recordsModel.eliminationData = {
     label: "Urinary",
     classes: ["elimination", "falls"],
     assessmentClear: true,
+    notes:['No bladder issues identified', "Client is continent"]
   },
   eliminationBowel: {
     tag: "textarea",
     label: "Bowel",
     classes: ["elimination", "falls"],
     assessmentClear: true,
+    notes:['No bowel issues identified', "Client is continent"]
   },
   Toileting: {
     tag: "select",
@@ -1571,6 +1644,7 @@ recordsModel.eliminationData = {
     classes: ["carePlan", "elimination", "largeText"],
     notes: [
       "The Wellness Partner will order pads as and when requested to ensure delivery within 2 weeks time frame.",
+      "The Wellness Partner will facilitate continence assessment when there are changes to Clients care needs."
     ],
   },
   eliminationNeeds: {
@@ -1602,6 +1676,16 @@ recordsModel.mobilityData = {
     classes: ["medical", "mobility", "largeText"],
     assessmentClear: true,
   },
+  Driving: {
+    tag:'select',
+    label:'Driving',
+    classes:['mobility'],
+    assessmentClear:true,
+    selectOptions:[
+      "Yes",
+      'No'
+    ]
+  },
   transfers: {
     tag: "select",
     selectOptions: [
@@ -1613,7 +1697,7 @@ recordsModel.mobilityData = {
       "Not weight bearing inside the home.",
     ],
     label: "Transfers outside",
-    classes: ["mobility", "falls"],
+    classes: ["mobility"],
     assessmentClear: false,
   },
   ambulation: {
@@ -1624,10 +1708,10 @@ recordsModel.mobilityData = {
       "Supervise ambulation inside the home.",
       "Standby assist ambulation inside the home.",
       "Physical assist ambulation inside the home.",
-      "Physical assist xv2 ambulation inside the home.",
+      "Physical assist x 2 ambulation inside the home.",
     ],
     label: "Ambulation outside",
-    classes: ["mobility", "falls"],
+    classes: ["mobility"],
     assessmentClear: false,
   },
   transfersOutside: {
@@ -1641,7 +1725,7 @@ recordsModel.mobilityData = {
       "Not weight bearing outside the home.",
     ],
     label: "Transfers",
-    classes: ["mobility", "falls"],
+    classes: ["mobility"],
     assessmentClear: false,
   },
   ambulationOutside: {
@@ -1655,7 +1739,7 @@ recordsModel.mobilityData = {
       "Physical assist xv2 ambulation outside the home.",
     ],
     label: "Ambulation",
-    classes: ["mobility", "falls"],
+    classes: ["mobility"],
     assessmentClear: false,
   },
   mobilityAids: {
@@ -1673,8 +1757,62 @@ recordsModel.mobilityData = {
       "No mobility aids",
     ],
     label: "Mobility aids",
-    classes: ["mobility", "falls"],
+    classes: ["mobility"],
     assessmentClear: false,
+  },
+  mobilityAidsOutside: {
+    tag: "select",
+    multiple: true,
+    selectOptions: [
+      "Zimmer frame",
+      "Walking stick",
+      "Four wheeled Walker",
+      "Wheel chair for all ambulation",
+      "Wheel chair for longer distances",
+      "Standing hoist",
+      "Sara steady (or equiv)",
+      "Cradle hoist",
+      "No mobility aids",
+    ],
+    label: "Mobility aids outside",
+    classes: ["mobility"],
+    assessmentClear: false,
+  },
+  DistanceToWalk:{
+    tag:"select",
+    label: "Distance to walk",
+    classes:["mobility"],
+    assessmentClear: true,
+    selectOptions: [
+    "Did not walk",
+    "less than 5 meters",
+    "5-49 meters",
+    "50-99 meters",
+    "100 meters +"
+    ]
+  },
+  Stairs:{
+    tag:"select",
+    label:"Stairs",
+    classes:["mobility"],
+    selectOptions:[
+      "Independent – e.g., able to navigate up to flight 12/14 stairs",
+      "Assistance- e.g., with grab rail or mobility aides standby etc",
+      "Dependant- stair-chairlift",
+
+    ],
+    assessmentClear:true
+  },
+  BedMobility:{
+    tag:'select',
+    label:'Bed mobility',
+    classes: ['mobility'],
+    assessmentClear: true,
+    selectOptions:[
+      'Independent – No help, setup, or supervision',
+      'Assistance required',
+      'Dependant'
+    ]
   },
   fallsRisk: {
     tag: "textarea",
@@ -1700,6 +1838,30 @@ recordsModel.mobilityData = {
     ],
     classes: ["falls", "mobility"],
     assessmentClear: true,
+  },
+  fallsRiskFactors: {
+    variation: "multiLikertField",
+    label: "Falls Risk Factors",
+    propertyResponseFields: {
+      fallsRiskFactorVision: [
+        "Vision",
+        ["Yes","No"],
+      ],
+      fallsRiskFactorMobility: [
+        "Mobility",
+        ["Yes","No"],
+      ],
+      fallsRiskFactorTransfers: [
+        "Transfers",
+        ["Yes","No"],
+      ],
+    },
+    classes:["falls","mobility"],
+    notes:["VISION/HEARING:  Reports/observed difficulty seeing - objects/signs/finding way around; uncorrected visual impairment/does not wear visual aids as recommended",
+            "MOBILITY:  Mobility status unknown or appears unsafe/impulsive/forgets gait aid/requires assistance",
+            "TRANSFERS:  Transfer status unknown or appears unsafe i.e., over-reaches, impulsive; Requires assistance with transfers"
+      ],
+    assessmentClear:true
   },
   fallsOther: {
     tag: "textarea",
@@ -1750,6 +1912,7 @@ recordsModel.mobilityData = {
     notes: [
       "Client will participate in his/her home exercise program as per physiotherapy plan.",
       "Client will use his/her mobility aid as recommended by his/her Physiotherapist.",
+      "Client to wear appropriate footwear (as per Stay on Your Feet information)"
     ],
   },
   mobilitySupportPlanInterventions: {
@@ -1879,6 +2042,7 @@ recordsModel.environmentPersonalSafetyData = {
       "Utility chair",
       "Recliner chair",
       "Hospital bed",
+      "None"
     ],
     label: "Other equipment used",
     classes: ["mobility", "environment", "falls"],
@@ -1894,6 +2058,7 @@ recordsModel.environmentPersonalSafetyData = {
       "Utility chair",
       "Recliner chair",
       "Hospital bed",
+      "None"
     ],
     label: "Other equipment required",
     classes: ["mobility", "environment", "falls"],
@@ -1902,7 +2067,7 @@ recordsModel.environmentPersonalSafetyData = {
   homeModificationsInstalled: {
     tag: "select",
     multiple: true,
-    selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
+    selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other", "None"],
     label: "Home modifications installed",
     classes: ["mobility", "environment", "falls"],
     assessmentClear: true,
@@ -1910,7 +2075,7 @@ recordsModel.environmentPersonalSafetyData = {
   homeModificationsRequired: {
     tag: "select",
     multiple: true,
-    selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other"],
+    selectOptions: ["Railing toilet", "Railing bathroom", "Ramps", "Other", "None"],
     label: "Home modifications required",
     classes: ["mobility", "environment", "falls"],
     assessmentClear: true,
@@ -1946,15 +2111,18 @@ recordsModel.environmentPersonalSafetyData = {
     notes: [
       "Client will take precautions to prevent overheating and dehydration during extreme heat weather conditions.",
       "Client will make emergency plan's to stay informed during high risk fire season and when and how to evacuate if required.  Client will review these annually.",
+      "Client will perform their own risk and hazard assessments and seek support from WP to manage these when identified."
     ],
   },
   environmentSupportPlanInterventions: {
     tag: "textarea",
     label: "Environment support plan SUPPORTS",
-    classes: ["carePlan", "environment", "largeText"],
+    classes: ["carePlan", "environment", "largeText"], 
     notes: [
       "Interventions applicable for home oxygen use.",
       "Southern Plus support workers will prompt and support Client to action strategies to keep cool and hydrated during extreme heat weather conditions.",
+      "SCC staff will conduct risk assessment at each home visit and report hazards and incidents.",
+      "SCC staff will follow guidelines for safety in the home when oxygen concentrator/bottles are in use."
     ],
   },
   environmentSP_WellnessPartner: {
@@ -1964,6 +2132,8 @@ recordsModel.environmentPersonalSafetyData = {
     notes: [
       "Wellness Partner will make a referral to ___ for Occupation Therapy home safety assessment and facilitate provision of home modifications and equipment according to HCP inclusion/exclusion framework.",
       "Wellness Partener will discuss fire and emergency plans with client on admission and review annually.",
+      "Wellness Partner will ensure that client has current up to date information about fire safety in the home or information on where to access this.",
+      "Wellness Partner will ensure that client has current up to date information about oxygen use safety in the home or information on where to access this."
     ],
   },
   environmentReview: {
@@ -2280,9 +2450,15 @@ recordsModel.mealsNutritionData = {
     assessmentClear: true,
     default: ["Person responsible for finances: Client/Spouse/EPOA"],
   },
-  mealsAndShoppingOther: {
+  shoppingOther: {
     tag: "textarea",
-    label: "Meals and shopping other",
+    label: "Shopping other",
+    classes: ["nutrition", "largeText"],
+    assessmentClear: true,
+  },
+  mealsOther: {
+    tag: "textarea",
+    label: "Meals other",
     classes: ["nutrition", "largeText"],
     assessmentClear: true,
   },
@@ -2483,7 +2659,6 @@ recordsModel.biometricsData = {
     classes: [
       "biometrics",
       "skin",
-      "falls",
       "communicationSensory",
       "largeText",
       "assessment",
@@ -2608,6 +2783,18 @@ recordsModel.referralData = {
         "Podiatry referral",
         ["Completed", "Required", "Not required", "NA"],
       ],
+      dieticianReferralStatus: [
+        "Dietician referral",
+        ["Completed", "Required", "Not required", "NA"],
+      ],
+      speachReferralStatus: [
+        "Speach pathologist referral",
+        ["Completed", "Required", "Not required", "NA"],
+      ],
+      nursingReferralStatus: [
+        "Nursing referral",
+        ["Completed", "Required", "Not required", "NA"]
+      ]
     },
     classes: [
       "medical",
@@ -2920,7 +3107,36 @@ recordsModel.forms = {
     },
     classes: ["carePlan", "review"],
   },
+  
 };
+recordsModel.advanceCarePlanning={
+  advanceCarePlanningDocuments:{
+    variation:"multiLikertField",
+    label:'Advanced care plannning documents',
+    classes:['contactsMedical'],
+    propertyResponseFields:{
+      epaStatus: [
+        "Client has EPA?",
+        ["Yes, details provided", "No, information/referral provided"],
+      ],
+      epgStatus: [
+        "Client has EPG?",
+        ["Yes, details provided", "No, information/referral provided"],
+      ],
+      ahdStatus: [
+        "Client has AHD?",
+        ["Yes, details provided", "No, information/referral provided","No, dignity of risk"],
+      ]
+    },
+  },
+  advanceCarePlanningComments:{
+    tag:'textarea',
+    label:'ACP comments',
+    forms:['advanceCarePlanningDocuments'],
+    classes:['largeText'],
+    notes:["Advanced careplanning information provided re availability of EPA/EPG and AHD."]
+  }
+},
 recordsModel.reviewData = {
   // REVIEW ______________________________________________________________
   // medicalReview: {
@@ -3156,6 +3372,7 @@ let clientRecordFieldSettings = {
   ...recordsModel.referralData,
   ...recordsModel.forms,
   ...recordsModel.reviewData,
+  ...recordsModel.advanceCarePlanning,
   //CHSP
   chspGoals: {
     tag: "textarea",

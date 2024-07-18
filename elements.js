@@ -58,6 +58,20 @@ class Elements {
     Object.assign(schema, this.additionalRecordFields);
   }
   static links = {
+    followUp: {
+        groupLinks:[
+            [
+                "Empower (OT)", "https://calc.southernplus.org.au/calculator/review-and-save"
+            ]
+        ]
+    },
+    mobility: {
+        loneLinks:[
+            [
+            "Wheelchair assessment", "https://www.motivation.org.au/wp-content/uploads/2020/08/Basic-wheelchair-assessment-form.pdf"
+            ],
+        ],
+    },
     falls: {
       loneLinks: [
         [
@@ -103,6 +117,9 @@ class Elements {
       ],
     },
     medical: {
+      loneLinks:[
+        ["Advance Care Planning", "Advance Care Planning.pdf"]
+      ],
       groupLinks: [
         ["Non-Motor Symptoms in Parkinsons", "https://www.movementdisorders.org/MDS-Files1/Education/Rating-Scales/NMSQ.pdf"],
         ["COPD-Action-Plan", "COPD-Action-Plan.pdf"],
