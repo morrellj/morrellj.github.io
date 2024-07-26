@@ -166,7 +166,9 @@ function getAllRecordsAsArray() {
   for (let [key, value] of Object.entries(store.state.records)) {
     let exportable = {};
     for (let [fieldName, fieldValue] of Object.entries(value)) {
+      //check if field is a string (pre cleared) or object (with current and previous property's)
       if (fieldValue.constructor === Object) {
+        //check if field is single value field or is a consolidated field i.e. form or multikert
         if (fieldValue.hasOwnProperty("current")) {
           exportable[fieldName] = fieldValue.current;
         } else {

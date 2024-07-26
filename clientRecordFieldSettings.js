@@ -1580,16 +1580,37 @@ recordsModel.eliminationData = {
     assessmentClear: true,
     notes:['No bowel issues identified', "Client is continent"]
   },
-  Toileting: {
-    tag: "select",
-    multiple: true,
-    selectOptions: [
-      "Independent toileting",
-      "Requires assistance with toileting",
-    ],
+  toiletingAssist: {
+    variation: "multiLikertField",
     label: "Toileting",
-    classes: ["elimination"],
+    propertyResponseFields: {
+      overallToiletingAssist: [
+        "Toileting overall level of support required: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      toiletPositioningAssist: [
+        "Toilet positioning level of support required: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      toiletHygieneAssist: [
+        "Toileting hygiene level of support required: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      toiletClothingAdustmentAssist: [
+        "Clothing adjustment level of support required: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+    },
+    classes:["elimination"],
     assessmentClear: true,
+    consolidateRecords: true
+  },
+  toiletingSupportComments:{
+    tag:"textarea",
+    label:"Toileting support comments",
+    classes:[],
+    assessmentClear:true,
+    forms:["toiletingAssist"]
   },
   incontinenceAids: {
     tag: "textarea",
@@ -2316,6 +2337,94 @@ recordsModel.carerData = {
 };
 recordsModel.personalCareData = {
   //personal care
+  personalCareAssessment:{
+    variation: "multiLikertField",
+    label: "Personal Care Assessment",
+    propertyResponseFields: {
+      overallPersonalCareAssist: [
+        "Overall: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      upperBodyDressingAssist: [
+        "Upper body dressing: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      lowerBodyDressingAssist: [
+        "Lower body dressing: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      shoesAndSocksAssist: [
+        "Shoes and socks: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      zipsButtonsAssist:[
+        "Zips and buttons assist: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      setUpShowerAssist: [
+        "Initiate/set up for shower: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      selectClothingAssist: [
+        "Select clothing: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      adjustWaterTempAssist: [
+        "Adjust water temperature: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      washingGeneralAssist: [
+        "Washing overall: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      washingHardToReachAssist: [
+        "Washing hard to reach areas (feet/back): ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      dryingOverallAssist: [
+        "Drying overall: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      dryingHardToReachAssist: [
+        "Drying hard to reach areas (feet/back): ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      perinealHygieneAssist: [
+        "Perineal hygiene: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      mouthCare: [
+        "Mouth/teeth care: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      hairWashAssist: [
+        "Hair washing: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      shaveAssist: [
+        "Shaving: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist", "NA"],
+      ],
+      fingerNailCareAssist: [
+        "Finger nail care: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
+      ],
+      toeNailCare: [
+        "Toe nail care: ",
+        ["Independent","Supervise/standby assist", "Partial assist", "Full assist","Podiatrist"],
+      ],
+    },
+    classes:["personalCare"],
+    assessmentClear: true,
+    consolidateRecords: true
+  },
+  personalCareAids:{
+    tag:"textarea",
+    label:"Personal Care Aids",
+    classes:[],
+    forms:["personalCareAssessment"],
+    assessmentClear: true
+  },
   PersonalCare: {
     tag: "select",
     multiple: true,
@@ -2381,10 +2490,11 @@ recordsModel.personalCareData = {
   },
   PersonalCareOther: {
     tag: "textarea",
-    label: "Personal care other",
+    label: "Personal care comments",
     classes: ["personalCare", "largeText"],
     assessmentClear: true,
     notes: [],
+    forms:["personalCareAssessment"],
   },
   personalCareSupportPlanFactors: {
     tag: "textarea",
@@ -2879,7 +2989,7 @@ recordsModel.additionalAssessments = {
         ["Completed", "Required", "Not required"],
       ],
     },
-    consolidateRecords: false,
+    consolidateRecords: true,
     classes: [
       "assessment",
       "bogus",
@@ -3137,15 +3247,27 @@ recordsModel.advanceCarePlanning={
     notes:["Advanced careplanning information provided re availability of EPA/EPG and AHD."]
   }
 },
+recordsModel.reviewHeader = {
+    
+  reviewDate:{
+    tag:"input",
+    type:"date",
+    label: "Review date",
+    classes: ["review"],
+    reviewPrint: true,
+    reviewClear: true
+  },
+  reviewAttendees:{
+    tag:"textarea",
+    label:"Type/Attendees",
+    classes:["review"],
+    reviewClear:true,
+    reviewPrint:true,
+    notes:["Home visit: ", "Telephone review: "]
+  }
+}
 recordsModel.reviewData = {
   // REVIEW ______________________________________________________________
-  // medicalReview: {
-  //   tag: "textarea",
-  //   label: "Medical",
-  //   classes: ["review", "medical", "largeText"],
-  //   notes: ["No changes. Support plan current and effective."],
-  //   reviewClear: true,
-  // },
   otherReviewNotes: {
     tag: "textarea",
     label: "Other review notes",
@@ -3159,6 +3281,14 @@ recordsModel.reviewData = {
     reviewClear: true,
     form: "frailtyIndicators",
     hasOwnField: true,
+  },
+  clientFeedback: {
+    tag: "textarea",
+    label: "Client feedback",
+    classes: ["review", "largeText"],
+    reviewClear: true,
+    reviewPrint: true,
+    notes:["Feedback form and complaints discussed and client encouraged to provide feedback","Client stated he/she did not currently have any particular compliments or complaints","Compliments: ", "Complaints: "]
   },
   followUpsElement: {
     tag: "textarea",
@@ -3348,6 +3478,7 @@ recordsModel.clinicalCarePlan = {
 };
 
 let clientRecordFieldSettings = {
+  ...recordsModel.reviewHeader,
   ...recordsModel.demographicData,
   ...recordsModel.contactsData,
   ...recordsModel.medicalData,
