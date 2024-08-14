@@ -48,6 +48,24 @@ class LikertResponseGrid extends Builder {
     // insert if props.fieldSettings.consilidateRecords = true
     // save the data in a storage property that has multiple properties pertaining to the form
     //
+    if (props.fieldSettings.consolidateRecords) {
+      self.elementsObject.events.subscribe(
+        `${self.propertyName}_change`,
+        self.elementsObject.recordsUpdaters.consolidatedNakedLikertResponseGrid.bind(self)
+      );
+      if(props.fieldSettings.assessmentClear){
+        self.elementsObject.events.subscribe(
+          "assessmentClear",
+          self.elementsObject.recordsUpdaters.clearNakedLikertResponseFieldConsolidated.bind(self)
+        )
+      }
+      if(props.fieldSettings.reviewClear){
+        self.elementsObject.events.subscribe(
+          "reviewClear",
+          self.elementsObject.recordsUpdaters.clearNakedLikertResponseFieldConsolidated.bind(self)
+        )
+      }
+    }
 
     self.elementsObject.events.subscribe(
       `updateFieldValues`,
@@ -56,6 +74,14 @@ class LikertResponseGrid extends Builder {
     if (self.fieldSettings?.assessmentClear) {
       self.elementsObject.events.subscribe(
         "assessmentClear",
+        self.elementsObject.recordsUpdaters.clearNakedLikertResponseField.bind(
+          self
+        )
+      );
+    }
+    if (self.fieldSettings?.reviewClear) {
+      self.elementsObject.events.subscribe(
+        "reviewClear",
         self.elementsObject.recordsUpdaters.clearNakedLikertResponseField.bind(
           self
         )

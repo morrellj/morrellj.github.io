@@ -546,6 +546,24 @@ Elements.prototype.recordsUpdaters = {
       data: changeObject,
     });
   },
+  consolidatedNakedLikertResponseGrid: function(props){ //need a different way to process database for consolidated multilertfields as they do not read like regular fields in the settings model.
+    let fieldName = `${this.propertyName}`;
+    let formName = this.fieldSettings.fieldName;
+    let changeObject = {};
+    if(store.state.activeRecord){
+      changeObject = {
+        [`${this.propertyName}`]: [`${this.question} `, ` ${props.response}`],
+      };
+      console.log({id: store.state.activeRecord, data: changeObject, accessProperties:{formName: formName,fieldName:fieldName}})
+      store.dispatch("updateConsolidated", {
+        id: store.state.activeRecord,
+        data: changeObject,
+        accessProperties: { formName: formName, fieldName: fieldName },
+      });
+    } else {
+      alert("Select a client");
+    }
+  },
   clearNakedLikertResponseField: function () {
     let changeObject = {
       [`${this.propertyName}`]: "",
@@ -555,28 +573,18 @@ Elements.prototype.recordsUpdaters = {
       data: changeObject,
     });
   },
-  clearAssessmentData: function () {  //merge all clear functions TO DO:::::::::::::
+  clearNakedLikertResponseFieldConsolidated: function() {
+    let fieldName = `${this.propertyName}`
+    let formName = this.fieldSettings.fieldName;
     let changeObject = {};
-    
-    changeObject[`${this.fieldSettings.fieldName}`] = "" 
-
-    store.dispatch("update", {
-      id: store.state.activeRecord,
-      data: changeObject,
-    });
-  },
-  clearAssessmentDataConsolidated: function () {
-    let fieldName = this.fieldSettings.fieldName;
-    let formName = this.fieldSettings.form;
-    let changeObject = {};
-    changeObject[fieldName] = "";
+    changeObject[`${this.propertyName}`] = ""
     store.dispatch("updateConsolidated", {
       id: store.state.activeRecord,
       data: changeObject,
       accessProperties: { formName: formName, fieldName: fieldName },
     });
   },
-  clearReviewData: function () {
+  clearData: function () {
     let changeObject = {};
     changeObject[`${this.fieldSettings.fieldName}`] = ""
     store.dispatch("update", {
@@ -584,7 +592,7 @@ Elements.prototype.recordsUpdaters = {
       data: changeObject,
     });
   },
-  clearReviewDataConsolidated: function () {
+  clearDataConsolidated: function () {
     let fieldName = this.fieldSettings.fieldName;
     let formName = this.fieldSettings.form;
     let changeObject = {};

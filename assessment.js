@@ -1,4 +1,3 @@
-console.log("HI");
 let output = document.getElementById("output");
 let clientListSelect = document.getElementById("clientListSelect");
 // let client = {};
@@ -148,13 +147,15 @@ function formatConsolidatedField(formName, formFields) {
     try {
       //try for data as formFields object of clientRecordFieldSettings "form" variant
       if (data) {
-        string += `${comma}${model.formFields[fieldName].label}: ${data}`;
+        //string += `${comma}${model.formFields[fieldName].label}: ${data}`;
+        string += `${comma}${data[0]}: ${data[1]}`;
         comma = ", ";
       }
     } catch (e) {
       // if not assume data is from a standalone clientRecordFieldSettings field
       if (data) {
-        string += `${comma}${clientRecordFieldSettings[fieldName].label}: ${data}`;
+        //string += `${comma}${fieldName}: ${data}`;
+        string += `${comma}${data[0]}: ${data[1]}`;
         comma = ", ";
       }
     }
@@ -171,6 +172,7 @@ function getAllRecordsAsArray() {
           let string = formatConsolidatedField(fieldName, fieldValue);
           exportable[fieldName] = string;
       } else {
+
         exportable[fieldName] = fieldValue;
       }
     }
