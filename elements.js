@@ -244,8 +244,7 @@ Elements.prototype.setMultiSelectValues = function (element, clientData) {
   for (var i = 0, iLen = options.length; i < iLen; i++) {
     options[i].selected = false;
   }
-  let fieldValue =
-    clientData?.constructor === Object ? clientData.current : clientData;
+  let fieldValue = clientData;
   if (Array.isArray(fieldValue)) {
     fieldValue.map((value) => {
       for (var i = 0, iLen = options.length; i < iLen; i++) {
@@ -439,18 +438,11 @@ Elements.prototype.formFieldUpdaters = {
     );
     let inputObject =
       this.elementsObject.inputObjects[this.fieldSettings.fieldName];
-    inputObject.$_inputLabel.title =
-      fieldRecordData?.constructor === Object
-        ? fieldRecordData.previous
-        : fieldRecordData;
     let dataField = this.$_dataField || this.$_inputFieldDiv;
     if (dataField.tagName == "SELECT" && dataField.multiple == true) {
       this.elementsObject.setMultiSelectValues(dataField, fieldRecordData);
     } else {
-      dataField.value =
-        fieldRecordData?.constructor === Object
-          ? fieldRecordData.current
-          : fieldRecordData;
+      dataField.value = fieldRecordData;
     }
     let thisFollowUpsCheckbox = inputObject.$_checkBox;
     thisFollowUpsCheckbox.name = store.state.activeRecord;
@@ -471,10 +463,6 @@ Elements.prototype.formFieldUpdaters = {
     let fieldRecordData = store.dispatch("fetchGrossData", formName) || {};
     let inputObject =
       this.elementsObject.inputObjects[this.fieldSettings.fieldName];
-    inputObject.$_inputLabel.title =
-      fieldRecordData[fieldName]?.constructor === Object
-        ? fieldRecordData[fieldName].previous
-        : fieldRecordData[fieldName] || "";
     let dataField = this.$_dataField;
     if (dataField.tagName == "SELECT" && dataField.multiple == true) {
       this.elementsObject.setMultiSelectValues(
@@ -482,10 +470,7 @@ Elements.prototype.formFieldUpdaters = {
         fieldRecordData[fieldName]
       );
     } else {
-      dataField.value =
-        fieldRecordData[fieldName]?.constructor === Object
-          ? fieldRecordData[fieldName].current
-          : fieldRecordData[fieldName] || "";
+      dataField.value = fieldRecordData[fieldName] || "";
     }
     let thisFollowUpsCheckbox = inputObject.$_checkBox;
     thisFollowUpsCheckbox.name = store.state.activeRecord;
@@ -570,24 +555,10 @@ Elements.prototype.recordsUpdaters = {
       data: changeObject,
     });
   },
-  clearAssessmentData: function () {
+  clearAssessmentData: function () {  //merge all clear functions TO DO:::::::::::::
     let changeObject = {};
-    let oldValue =
-      store.state.records[store.state.activeRecord][
-        this.fieldSettings.fieldName
-      ]?.constructor === Object
-        ? store.state.records[store.state.activeRecord][
-            this.fieldSettings.fieldName
-          ].current
-        : store.state.records[store.state.activeRecord][
-            this.fieldSettings.fieldName
-          ];
-    oldValue = Array.isArray(oldValue) ? [...oldValue] : oldValue;
-
-    changeObject[`${this.fieldSettings.fieldName}`] = {
-      current: "",
-      previous: oldValue,
-    };
+    
+    changeObject[`${this.fieldSettings.fieldName}`] = "" 
 
     store.dispatch("update", {
       id: store.state.activeRecord,
@@ -607,21 +578,7 @@ Elements.prototype.recordsUpdaters = {
   },
   clearReviewData: function () {
     let changeObject = {};
-    let oldValue =
-      store.state.records[store.state.activeRecord][
-        this.fieldSettings.fieldName
-      ]?.constructor === Object
-        ? store.state.records[store.state.activeRecord][
-            this.fieldSettings.fieldName
-          ].current
-        : store.state.records[store.state.activeRecord][
-            this.fieldSettings.fieldName
-          ];
-    oldValue = Array.isArray(oldValue) ? [...oldValue] : oldValue;
-    changeObject[`${this.fieldSettings.fieldName}`] = {
-      current: "",
-      previous: oldValue,
-    };
+    changeObject[`${this.fieldSettings.fieldName}`] = ""
     store.dispatch("update", {
       id: store.state.activeRecord,
       data: changeObject,

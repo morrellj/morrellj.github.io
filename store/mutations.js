@@ -6,18 +6,7 @@ let mutations = {
       return state.records;
     }
     for (const [thisKey, value] of Object.entries(changeObject.data)) {
-      if (client.hasOwnProperty(thisKey)) {
-        if (
-          client[thisKey]?.constructor === Object &&
-          value.constructor !== Object
-        ) {
-          client[thisKey].current = value;
-        } else {
-          client[thisKey] = value;
-        }
-      } else {
         client[thisKey] = value;
-      }
     }
     state.records[changeObject.id] = client;
     return state.records;
@@ -28,26 +17,11 @@ let mutations = {
       console.error("Client record with matching key not found.");
       return state.records;
     }
-    store.dispatch("update", { id: changeObject.id, data: {} });
+    store.dispatch("update", { id: changeObject.id, data: {} });//why?
     client[changeObject.accessProperties.formName] =
-      client[changeObject.accessProperties.formName] || {};
-    for (const [thisKey, value] of Object.entries(changeObject.data)) {
-      if (
-        client[changeObject.accessProperties.formName].hasOwnProperty(thisKey)
-      ) {
-        if (
-          client[changeObject.accessProperties.formName][thisKey]
-            ?.constructor === Object &&
-          value.constructor !== Object
-        ) {
-          client[changeObject.accessProperties.formName][thisKey].current =
-            value;
-        } else {
+      client[changeObject.accessProperties.formName] || {};//create an empty object if not already one there.
+    for (const [thisKey, value] of Object.entries(changeObject.data)) {//iterate change object data object and update database
           client[changeObject.accessProperties.formName][thisKey] = value;
-        }
-      } else {
-        client[changeObject.accessProperties.formName][thisKey] = value;
-      }
     }
     state.records[changeObject.id] = client;
     return state.records;
