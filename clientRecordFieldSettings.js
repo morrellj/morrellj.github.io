@@ -974,7 +974,7 @@ recordsModel.communicationData = {
       "Ensure environment is conducive to communication (avoid loud competing noises TV or radio, stay still and within line of sight, maintain routines and familiar surroundings/people)",
       "Utilise communication techniques that enable people living with dementia. Refer to help sheet.",
       "Client's carer will support him/her to ensure he/she stays up to date with vision and hearing checks and other sensory check ups including podiatry if required.",
-      "Client will manage own hearing and vision check up and other sensory check ups including podiatry if required appointments.",
+      "Client will manage own hearing, vision and other sensory check up appointments, including podiatry if required.",
     ],
   },
   communicationSupportPlanInterventions: {
@@ -991,6 +991,9 @@ recordsModel.communicationData = {
       "Remain calm and talk in a gentle, matter of fact way",
       "Keep sentences short and simple, focusing on one idea at a time",
       "Always allow plenty of time for what you have said to be understood",
+      "Help client identify their strengths- e.g. he/she might only be forgetful of some things but not others. Point out the things they are still really good at to boost his/her self-esteem and confidence in his/her ability to cope",
+       "Involve client in the decision making process - he/she is more likely to accept the plan moving forward if he/she is involved in making the decisions (where possible).",
+       "Check understanding- Ask client to tell you what he/she understands about what is going on and what his/her main concerns are. This can help you see if there has been any misunderstanding of the facts and help you clarify the information if necessary e.g. 'can you tell me what you understand about what this means for you?'",
       "Use non verbal cues to aid communication (touch, pointing, hold hands to maintain attention, smile.",
       "Ensure environment is condusive to communication (avoid loud competing noises TV or radio, stay still and within line of sight, maintain routines and familiar surroundings/people)",
       "Utilise communication techniques that enable people living with dementia. Refer to help sheet.",
@@ -1437,6 +1440,7 @@ recordsModel.painData = {
       "Client self manages pain.",
       "Southern Plus will facility referral for physiotherapy assessment.",
       "Southern Plus will facilitate ongoing Physiotherapy for pain management.",
+      "Information and support provided for client to access pain management education: i.e Pain Spot (see links)",
     ],
   },
   painReview: {
@@ -1585,19 +1589,19 @@ recordsModel.eliminationData = {
     label: "Toileting",
     propertyResponseFields: {
       overallToiletingAssist: [
-        "Toileting overall level of support required: ",
+        "Toileting overall level of support required",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       toiletPositioningAssist: [
-        "Toilet positioning level of support required: ",
+        "Toilet positioning level of support required",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       toiletHygieneAssist: [
-        "Toileting hygiene level of support required: ",
+        "Toileting hygiene level of support required",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       toiletClothingAdustmentAssist: [
-        "Clothing adjustment level of support required: ",
+        "Clothing adjustment level of support required",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
     },
@@ -1731,7 +1735,7 @@ recordsModel.mobilityData = {
       "Physical assist ambulation inside the home.",
       "Physical assist x 2 ambulation inside the home.",
     ],
-    label: "Ambulation outside",
+    label: "Ambulation",
     classes: ["mobility"],
     assessmentClear: false,
   },
@@ -1759,7 +1763,7 @@ recordsModel.mobilityData = {
       "Physical assist ambulation outside the home.",
       "Physical assist xv2 ambulation outside the home.",
     ],
-    label: "Ambulation",
+    label: "Ambulation outside",
     classes: ["mobility"],
     assessmentClear: false,
   },
@@ -2132,7 +2136,8 @@ recordsModel.environmentPersonalSafetyData = {
     notes: [
       "Client will take precautions to prevent overheating and dehydration during extreme heat weather conditions.",
       "Client will make emergency plan's to stay informed during high risk fire season and when and how to evacuate if required.  Client will review these annually.",
-      "Client will perform their own risk and hazard assessments and seek support from WP to manage these when identified."
+      "Client will perform his/her own risk and hazard assessments and seek support from WP to manage these when identified.",
+      "Client will arrange safety checks to ensure that smoke alarms and RCD are functioning correctly."
     ],
   },
   environmentSupportPlanInterventions: {
@@ -2225,6 +2230,7 @@ recordsModel.environmentPersonalSafetyData = {
       "Client will test his/her PERS pendant monthly to ensure it is functional.",
       "Client will wear Personal Emergency Response pendant and ensure the battery is charged and renew sim card activation each year if required.",
       "Client identify potential emergency situations and make a plan to enact in case of an emergency and ensure that preparations are made accordingly.",
+      "Client will test smoke alarms and RCD devices annual and arrange for maintenance as required.",
     ],
   },
   personalSafetySupportPlanInterventions: {
@@ -2342,75 +2348,75 @@ recordsModel.personalCareData = {
     label: "Personal Care Assessment",
     propertyResponseFields: {
       overallPersonalCareAssist: [
-        "Overall: ",
+        "Overall personal care",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       upperBodyDressingAssist: [
-        "Upper body dressing: ",
+        "Upper body dressing",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       lowerBodyDressingAssist: [
-        "Lower body dressing: ",
+        "Lower body dressing",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       shoesAndSocksAssist: [
-        "Shoes and socks: ",
+        "Shoes and socks",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       zipsButtonsAssist:[
-        "Zips and buttons assist: ",
+        "Zips and buttons assist",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       setUpShowerAssist: [
-        "Initiate/set up for shower: ",
+        "Initiate/set up for shower",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       selectClothingAssist: [
-        "Select clothing: ",
+        "Select clothing",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       adjustWaterTempAssist: [
-        "Adjust water temperature: ",
+        "Adjust water temperature",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       washingGeneralAssist: [
-        "Washing overall: ",
+        "Washing overall",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       washingHardToReachAssist: [
-        "Washing hard to reach areas (feet/back): ",
+        "Washing hard to reach areas (feet/back)",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       dryingOverallAssist: [
-        "Drying overall: ",
+        "Drying overall",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       dryingHardToReachAssist: [
-        "Drying hard to reach areas (feet/back): ",
+        "Drying hard to reach areas (feet/back)",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       perinealHygieneAssist: [
-        "Perineal hygiene: ",
+        "Perineal hygiene",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       mouthCare: [
-        "Mouth/teeth care: ",
+        "Mouth/teeth care",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       hairWashAssist: [
-        "Hair washing: ",
+        "Hair washing",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       shaveAssist: [
-        "Shaving: ",
+        "Shaving",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist", "NA"],
       ],
       fingerNailCareAssist: [
-        "Finger nail care: ",
+        "Finger nail care",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       toeNailCare: [
-        "Toe nail care: ",
+        "Toe nail care",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist","Podiatrist"],
       ],
     },
@@ -2558,7 +2564,7 @@ recordsModel.mealsNutritionData = {
     label: "Finances other",
     classes: ["domestic", "psychological", "social", "largeText"],
     assessmentClear: true,
-    default: ["Person responsible for finances: Client/Spouse/EPOA"],
+    notes: ["Client manages his/her own finances."],
   },
   shoppingOther: {
     tag: "textarea",
@@ -2673,8 +2679,7 @@ recordsModel.mealsNutritionData = {
     label: "MST",
     classes: ["nutrition", "largeText"],
     assessmentClear: true,
-    default:
-      "The significance of the amount of weight loss will depend on the body weight of the resident.  For instance, a 3kg weight loss in a 40kg resident is significant",
+    default: "",
   },
   oral: {
     tag: "textarea",

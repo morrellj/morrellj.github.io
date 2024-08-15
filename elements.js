@@ -91,6 +91,9 @@ class Elements {
         ],
         ["Abbey Pain Scale", "https://southerncrosscarewa.sharepoint.com/:w:/r/formsanddocuments/_layouts/15/Doc.aspx?sourcedoc=%7BB7D8CCA6-5C76-4219-8FD6-258FC56AFC0F%7D&file=RC%20-%20Abbey%20Pain%20Scale.DOCX&action=default&mobileredirect=true&DefaultItemOpen=1"]
       ],
+      groupLinks:[
+        ["Mind Spot - pain course", "https://www.mindspot.org.au/treatment/our-courses/pain-course/"]
+      ]
     },
     psychological: {
       loneLinks: [
