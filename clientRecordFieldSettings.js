@@ -2342,75 +2342,75 @@ recordsModel.personalCareData = {
     label: "Personal Care Assessment",
     propertyResponseFields: {
       overallPersonalCareAssist: [
-        "Overall: ",
+        "Overall",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       upperBodyDressingAssist: [
-        "Upper body dressing: ",
+        "Upper body dressing",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       lowerBodyDressingAssist: [
-        "Lower body dressing: ",
+        "Lower body dressing",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       shoesAndSocksAssist: [
-        "Shoes and socks: ",
+        "Shoes and socks",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       zipsButtonsAssist:[
-        "Zips and buttons assist: ",
+        "Zips and buttons assist",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       setUpShowerAssist: [
-        "Initiate/set up for shower: ",
+        "Initiate/set up for shower",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       selectClothingAssist: [
-        "Select clothing: ",
+        "Select clothing",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       adjustWaterTempAssist: [
-        "Adjust water temperature: ",
+        "Adjust water temperature",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       washingGeneralAssist: [
-        "Washing overall: ",
+        "Washing overall",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       washingHardToReachAssist: [
-        "Washing hard to reach areas (feet/back): ",
+        "Washing hard to reach areas (feet/back)",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       dryingOverallAssist: [
-        "Drying overall: ",
+        "Drying overall",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       dryingHardToReachAssist: [
-        "Drying hard to reach areas (feet/back): ",
+        "Drying hard to reach areas (feet/back)",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       perinealHygieneAssist: [
-        "Perineal hygiene: ",
+        "Perineal hygiene",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       mouthCare: [
-        "Mouth/teeth care: ",
+        "Mouth/teeth care",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       hairWashAssist: [
-        "Hair washing: ",
+        "Hair washing",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       shaveAssist: [
-        "Shaving: ",
+        "Shaving",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist", "NA"],
       ],
       fingerNailCareAssist: [
-        "Finger nail care: ",
+        "Finger nail care",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       toeNailCare: [
-        "Toe nail care: ",
+        "Toe nail care",
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist","Podiatrist"],
       ],
     },
@@ -3176,7 +3176,7 @@ recordsModel.forms = {
     formFields: {
       sharedRiskActivity: {
         tag: "textarea",
-        label: "Shared Risk Activities",
+        label: "Shared Risk activities",
         default: "NA",
         notes: [
           "Clarify risk(s) consider options and mitigation strategies.",
@@ -3196,14 +3196,14 @@ recordsModel.forms = {
       },
       sharedRiskRisks: {
         tag: "textarea",
-        label: "Shared risk: Assoc risks",
+        label: "Shared risk, associated risks",
         default: "NA",
         notes: [],
         hasOwnField: true,
       },
       sharedRiskStrategies: {
         tag: "textarea",
-        label: "Shared risk: Strategies",
+        label: "Shared risk strategies",
         default: "NA",
         notes: [],
         hasOwnField: true,

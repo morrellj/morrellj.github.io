@@ -491,7 +491,7 @@ Elements.prototype.formFieldUpdaters = {
       if (store.dispatch("fetchCurrentValue", [thisPropertyName])) {
         if (
           element.value ==
-          store.dispatch("fetchCurrentValue", [thisPropertyName])[1]?.trim()
+          store.dispatch("fetchCurrentValue", [thisPropertyName]).value[1]?.trim()
         ) {
           element.checked = true;
         } else {
@@ -539,7 +539,7 @@ Elements.prototype.recordsUpdaters = {
   },
   nakedLikertResponseGrid: function (props) {
     let changeObject = {
-      [`${this.propertyName}`]: [`${this.question} `, ` ${props.response}`],
+      [`${this.propertyName}`]: {value:[`${this.question} `, ` ${props.response}`]}
     };
     return store.dispatch("update", {
       id: store.state.activeRecord,
