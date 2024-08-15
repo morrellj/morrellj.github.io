@@ -2348,7 +2348,11 @@ recordsModel.personalCareData = {
     label: "Personal Care Assessment",
     propertyResponseFields: {
       overallPersonalCareAssist: [
+<<<<<<< HEAD
         "Overall personal care",
+=======
+        "Overall",
+>>>>>>> 7b98d1fe7756b294939174cd0f37a0e00c6ee1b4
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       upperBodyDressingAssist: [
@@ -3181,7 +3185,7 @@ recordsModel.forms = {
     formFields: {
       sharedRiskActivity: {
         tag: "textarea",
-        label: "Shared Risk Activities",
+        label: "Shared Risk activities",
         default: "NA",
         notes: [
           "Clarify risk(s) consider options and mitigation strategies.",
@@ -3201,14 +3205,14 @@ recordsModel.forms = {
       },
       sharedRiskRisks: {
         tag: "textarea",
-        label: "Shared risk: Assoc risks",
+        label: "Shared risk, associated risks",
         default: "NA",
         notes: [],
         hasOwnField: true,
       },
       sharedRiskStrategies: {
         tag: "textarea",
-        label: "Shared risk: Strategies",
+        label: "Shared risk strategies",
         default: "NA",
         notes: [],
         hasOwnField: true,

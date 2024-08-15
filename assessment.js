@@ -1,4 +1,3 @@
-console.log("HI");
 let output = document.getElementById("output");
 let clientListSelect = document.getElementById("clientListSelect");
 // let client = {};
@@ -146,15 +145,20 @@ function formatConsolidatedField(formName, formFields) {
   let fields = formFields ? Object.entries(formFields) : [];
   fields.forEach(([fieldName, data]) => {
     try {
-      //try for data as formFields object of clientRecordFieldSettings "form" variant
-      if (data) {
+      if (data){
+        if(typeof data == 'string' ) {//try for data as formFields object of clientRecordFieldSettings "form" variant
         string += `${comma}${model.formFields[fieldName].label}: ${data}`;
         comma = ", ";
+        }
+        else{ //as not a string assumed to be an array ['question','response']
+        string += `${comma}${data[0]}: ${data[1]}`;
+        comma = ", ";
+        }
       }
     } catch (e) {
       // if not assume data is from a standalone clientRecordFieldSettings field
       if (data) {
-        string += `${comma}${clientRecordFieldSettings[fieldName].label}: ${data}`;
+        string += `${comma}${fieldName}: ${data}`;
         comma = ", ";
       }
     }
@@ -166,15 +170,10 @@ function getAllRecordsAsArray() {
   for (let [key, value] of Object.entries(store.state.records)) {
     let exportable = {};
     for (let [fieldName, fieldValue] of Object.entries(value)) {
-      //check if field is a string (pre cleared) or object (with current and previous property's)
+      //check if field is a string (pre cleared) or object (consolidated data field)
       if (fieldValue.constructor === Object) {
-        //check if field is single value field or is a consolidated field i.e. form or multikert
-        if (fieldValue.hasOwnProperty("current")) {
-          exportable[fieldName] = fieldValue.current;
-        } else {
           let string = formatConsolidatedField(fieldName, fieldValue);
           exportable[fieldName] = string;
-        }
       } else {
         exportable[fieldName] = fieldValue;
       }

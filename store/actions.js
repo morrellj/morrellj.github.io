@@ -3,8 +3,6 @@ let actions = {
     let client = context.state.records[context.state.activeRecord];
     return !client[fieldName]
       ? null
-      : client[fieldName].constructor === Object
-      ? client[fieldName].current
       : client[fieldName];
   },
   fetchGrossData(context, fieldName) {

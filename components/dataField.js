@@ -43,13 +43,13 @@ class DataField extends Builder {
       if (self.fieldSettings?.assessmentClear) {
         self.elementsObject.events.subscribe(
           "assessmentClear",
-          self.elementsObject.recordsUpdaters.clearAssessmentData.bind(self)
+          self.elementsObject.recordsUpdaters.clearData.bind(self)
         );
       }
       if (self.fieldSettings?.reviewClear) {
         self.elementsObject.events.subscribe(
           "reviewClear",
-          self.elementsObject.recordsUpdaters.clearReviewData.bind(self)
+          self.elementsObject.recordsUpdaters.clearData.bind(self)
         );
       }
       //field is part of a form and a standalone field as well
@@ -72,11 +72,11 @@ class DataField extends Builder {
       if (self.fieldSettings?.assessmentClear) {
         self.elementsObject.events.subscribe(
           "assessmentClear",
-          self.elementsObject.recordsUpdaters.clearAssessmentData.bind(self)
+          self.elementsObject.recordsUpdaters.clearData.bind(self)
         );
         self.elementsObject.events.subscribe(
           "assessmentClear",
-          self.elementsObject.recordsUpdaters.clearAssessmentDataConsolidated.bind(
+          self.elementsObject.recordsUpdaters.clearDataConsolidated.bind(
             self
           )
         );
@@ -84,11 +84,11 @@ class DataField extends Builder {
       if (self.fieldSettings?.reviewClear) {
         self.elementsObject.events.subscribe(
           "reviewClear",
-          self.elementsObject.recordsUpdaters.clearReviewData.bind(self)
+          self.elementsObject.recordsUpdaters.clearData.bind(self)
         );
         self.elementsObject.events.subscribe(
           "reviewClear",
-          self.elementsObject.recordsUpdaters.clearReviewDataConsolidated.bind(
+          self.elementsObject.recordsUpdaters.clearDataConsolidated.bind(
             self
           )
         );
@@ -107,7 +107,7 @@ class DataField extends Builder {
       if (self.fieldSettings?.assessmentClear) {
         self.elementsObject.events.subscribe(
           "assessmentClear",
-          self.elementsObject.recordsUpdaters.clearAssessmentDataConsolidated.bind(
+          self.elementsObject.recordsUpdaters.clearDataConsolidated.bind(
             self
           )
         );
@@ -115,7 +115,7 @@ class DataField extends Builder {
       if (self.fieldSettings?.reviewClear) {
         self.elementsObject.events.subscribe(
           "reviewClear",
-          self.elementsObject.recordsUpdaters.clearReviewDataConsolidated.bind(
+          self.elementsObject.recordsUpdaters.clearDataConsolidated.bind(
             self
           )
         );
