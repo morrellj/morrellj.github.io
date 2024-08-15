@@ -2348,11 +2348,7 @@ recordsModel.personalCareData = {
     label: "Personal Care Assessment",
     propertyResponseFields: {
       overallPersonalCareAssist: [
-<<<<<<< HEAD
         "Overall personal care",
-=======
-        "Overall",
->>>>>>> 7b98d1fe7756b294939174cd0f37a0e00c6ee1b4
         ["Independent","Supervise/standby assist", "Partial assist", "Full assist"],
       ],
       upperBodyDressingAssist: [
