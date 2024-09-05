@@ -18,15 +18,7 @@ class LikertResponseGrid extends Builder {
     let count = 0;
 
     self.responses.forEach((response) => {
-      self.schema.$_likertResponseGrid.children[
-        `$_${self.propertyName}Label_${count}`
-      ] = {
-        tag: "label",
-        props: {
-          classList: ["likertLabel"],
-          innerHTML: response,
-        },
-      };
+      
       self.schema.$_likertResponseGrid.children[
         `$_${self.propertyName}Radio_${count}`
       ] = {
@@ -38,6 +30,15 @@ class LikertResponseGrid extends Builder {
           type: "radio",
           value: response,
           onclick: this.radioOnClick,
+        },
+      };
+      self.schema.$_likertResponseGrid.children[
+        `$_${self.propertyName}Label_${count}`
+      ] = {
+        tag: "label",
+        props: {
+          classList: ["likertLabel"],
+          innerHTML: response,
         },
       };
       count += 1;
