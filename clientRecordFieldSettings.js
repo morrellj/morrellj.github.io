@@ -1467,9 +1467,26 @@ recordsModel.skinData = {
       "Pressure injury risk assessment pending",
       "Pressure injury risk assessment completed",
     ],
-    label: "Pressure injury",
-    classes: ["skin"],
+    label: "Pressure injury comments",
+    classes:[],
+    forms: ["bradenScale"],
     assessmentClear: true,
+  },
+  bradenScale:{
+    variation:"multiLikertField",
+    label: "Braden Scale",
+    propertyResponseFields:{
+    bradenMoisture:["Moisture",["Constantly moist - 1","Very moist - 2", "Occassionally moist - 3","Rarely moist - 4"]],
+    bradenSensory:["Sensory perception",["Completely limited - 1", "Very limited - 2", "Slightly limited - 3", "No impairment - 4"]],
+    bradenActivity:["Activity",["Bedfast - 1", "Chairfast - 2", "Walks Occassionally - 3", "Walks frequently - 4"]],
+    bradenMobility:["Mobility",["Completely limited - 1", "Very limited - 2", "Slightly limited - 3", "No impairment"]],
+    bradenNutrition:["Nutrition",["Very Poor - 1", "Probably indadequate - 2", "Adequate - 3", "Excellent - 4"]],
+    bradenFriction:["Friction and sheer",["Problem - 1", "Potential problem - 2", "No apparent problem - 3"]],
+    bradenScore:["SCORE",["No risk greater than 18","Mild risk 15-18","Moderate risk 13-14","High risk 10-12","Severe risk less than 9"]],
+    },
+    classes:["skin"],
+    consolidateRecords: true,
+    assessmentClear: true
   },
   skinIntegrity: {
     tag: "textarea",

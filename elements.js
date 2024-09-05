@@ -150,7 +150,7 @@ class Elements {
         ["Skin tear guidelines", "istap-skin-tears-aged-skin.pdf"],
         [
           "Braden scale",
-          "RC - Braden Scale - Predicting Pressure Sore Risk.DOCX",
+          "https://wtcs.pressbooks.pub/nursingfundamentals/chapter/10-5-braden-scale/",
         ],
         ["Pressure injury guidelines", "ACSQHC_factsheet_pressureinjury.pdf"],
         [
@@ -491,7 +491,7 @@ Elements.prototype.formFieldUpdaters = {
   nakedLikertResponseGrid: function () {
     let thisPropertyName = this.propertyName;
     this.element.childNodes.forEach((element) => {
-      if (store.dispatch("fetchCurrentValue", [thisPropertyName])) {
+      if (store.dispatch("fetchCurrentValue", [thisPropertyName].value)) {
         if (
           element.value ==
           store.dispatch("fetchCurrentValue", [thisPropertyName]).value[1]?.trim()
