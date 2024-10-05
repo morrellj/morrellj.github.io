@@ -1254,6 +1254,8 @@ recordsModel.psychosocialData = {
     notes: [
       "Client will report that he/she is satisfied with the amount of social interaction that he/she engages in.",
       "Client will report that frequently engage in activities and have opportunity to build and maintain the relationships that are important to him/her.",
+      "Client will report that he/she is satisfied with her level of social and community involvement.",
+      "Client will report that he/she is not bored or lonely."
     ],
   },
   socialSP_CLient: {
@@ -1482,7 +1484,7 @@ recordsModel.skinData = {
     bradenMobility:["Mobility",["Completely limited - 1", "Very limited - 2", "Slightly limited - 3", "No impairment"]],
     bradenNutrition:["Nutrition",["Very Poor - 1", "Probably indadequate - 2", "Adequate - 3", "Excellent - 4"]],
     bradenFriction:["Friction and sheer",["Problem - 1", "Potential problem - 2", "No apparent problem - 3"]],
-    bradenScore:["SCORE",["No risk greater than 18","Mild risk 15-18","Moderate risk 13-14","High risk 10-12","Severe risk less than 9"]],
+    bradenScore:["SCORE",["No risk - score > 18","Mild risk 15-18","Moderate risk 13-14","High risk 10-12","Severe risk less than 9"]],
     },
     classes:["skin"],
     consolidateRecords: true,
@@ -1587,19 +1589,20 @@ recordsModel.skinData = {
 };
 recordsModel.eliminationData = {
   //elimination (falls)
+
   eliminationUrinary: {
     tag: "textarea",
     label: "Urinary",
     classes: ["elimination", "falls"],
     assessmentClear: true,
-    notes:['No bladder issues identified', "Client is continent"]
+    notes:['No bladder issues identified', "Client is continent","Continence assessment has been completed on (date):  by: ", "Continence assessment details have/will be supplied to client for care planning purposes.", "Client is experiencing incontinence but has not had a formal continence assessment."]
   },
   eliminationBowel: {
     tag: "textarea",
     label: "Bowel",
     classes: ["elimination", "falls"],
     assessmentClear: true,
-    notes:['No bowel issues identified', "Client is continent"]
+    notes:['No bowel issues identified', "Client is continent", "Continence assessment has been completed on (date):  by: ", "Continence assessment details have/will be supplied to client for care planning purposes.", "Client is experiencing incontinence but has not had a formal continence assessment."]
   },
   toiletingAssist: {
     variation: "multiLikertField",
@@ -1643,6 +1646,7 @@ recordsModel.eliminationData = {
     tag: "textarea",
     label: "Elimination other",
     classes: ["elimination", "falls"],
+    notes:["Client has a urinary catheter. Date inserted: ,Current care needs: ,Care provided by: ", "Client has a stoma. Date created: ,Current care needs: ,Care provided by: "],
     assessmentClear: true,
   },
   eliminationSupportPlanFactors: {
