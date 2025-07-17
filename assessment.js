@@ -148,11 +148,11 @@ function formatConsolidatedField(formName, formFields) {
       if (data){
         if(typeof data == 'string' ) {//try for data as formFields object of clientRecordFieldSettings "form" variant
         string += `${comma}${model.formFields[fieldName].label}: ${data}`;
-        comma = ", ";
+        comma = "\n";
         }
         else{ //as not a string assumed to be an array ['question','response']
         string += `${comma}${data[0]}: ${data[1]}`;
-        comma = ", ";
+        comma = "\n";
         }
       }
     } catch (e) {

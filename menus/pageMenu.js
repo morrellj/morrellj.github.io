@@ -6,15 +6,15 @@
     appMenus.hide(menuPage);
     let client = store.state.records[store.state.activeRecord];
     let string = "";
-    for (const [key, fieldModel] of Object.entries(clientRecordFieldSettings)) {
-      if (fieldModel?.reviewPrint) {
-        if (client[key]?.constructor === Object) {
+    for (const [key, fieldModel] of Object.entries(clientRecordFieldSettings)) {//checks all fields
+      if (fieldModel?.reviewPrint) {//is it flagged to be included in the review notes copy to paste function?yes:then
+        if (client[key]?.constructor === Object) {//check for consolidated field and process accordingly
             let string = formatConsolidatedField(
               key,
               store.dispatch("fetchGrossData", key)
             );
             data = string;
-        } else {
+        } else {//treat as string field
           data = client[key];
         }
 
