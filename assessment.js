@@ -158,7 +158,7 @@ function formatConsolidatedField(formName, formFields) {
     } catch (e) {
       // if not assume data is from a standalone clientRecordFieldSettings field
       if (data) {
-        string += `${comma}${fieldName}: ${data}`;
+        string += `${comma}${clientRecordFieldSettings[fieldName].label}: ${data}`;
         comma = ", ";
       }
     }

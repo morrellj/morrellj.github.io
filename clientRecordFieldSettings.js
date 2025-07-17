@@ -3297,7 +3297,7 @@ recordsModel.reviewData = {
   otherReviewNotes: {
     tag: "textarea",
     label: "Other review notes",
-    classes: ["review", "largeText", "frailtyIndicators"],
+    classes: ["review", "largeText",],
     notes: [
       "PCT client.",
       "PCT client's NOK. ",
@@ -3305,7 +3305,7 @@ recordsModel.reviewData = {
       "Client reports that his/her care needs and goals as per support plan are being met.",
     ],
     reviewClear: true,
-    form: "frailtyIndicators",
+    reviewPrint:true,
     hasOwnField: true,
   },
   clientFeedback: {
