@@ -3040,7 +3040,7 @@ recordsModel.additionalAssessments = {
 recordsModel.forms = {
   frailtyIndicators: {
     variation: "form",
-    label: "Quick review (frailty changes)",
+    label: "Other review notes",
     formFields: {
       mobilityChanges: {
         tag: "textarea",
