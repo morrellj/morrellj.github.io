@@ -23,7 +23,7 @@
   <FormSettings>
     <Form xsi:type="ItemRead">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://morrellj.github.io/taskpane.html"/>
+        <SourceLocation DefaultValue="https://morrellj.github.io/index.html"/>
         <RequestedHeight>250</RequestedHeight>
       </DesktopSettings>
     </Form>
@@ -90,8 +90,8 @@
         <bt:Image id="Icon.80x80" DefaultValue="https://morrellj.github.io/assets/icon-80.png"/>
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Commands.Url" DefaultValue="https://morrellj.github.io/commands.html"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://morrellj.github.io/taskpane.html"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://morrellj.github.io/commands/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://morrellj.github.io/index.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GroupLabel" DefaultValue="Contoso Add-in"/>
