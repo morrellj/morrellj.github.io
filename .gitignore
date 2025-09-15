@@ -1,7 +1,1 @@
 node_modules
-.vscode
-.eslintrc.json
-babel.config.json
-package-lock.json
-package.json
-webpack.config.js
