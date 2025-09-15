@@ -1,0 +1,19 @@
+Congratulations! Your add-in has been created! Your next steps:
+
+      1. Go the directory where your project was created:
+
+         cd "C:\Users\morre\OneDrive\JON\Git Hub\doc-tamer-io\doc-tamer"
+
+      2. Start the local web server and sideload the add-in:
+
+         npm start
+
+      3. Open the project in VS Code:
+
+         code .
+
+         For more information, visit http://code.visualstudio.com.
+
+      Please visit https://learn.microsoft.com/office/dev/add-ins for more information about Office Add-ins.
+
+      Please visit https://learn.microsoft.com/office/dev/add-ins/outlook/sideload-outlook-add-ins-for-testing for more information about Outlook sideloading.
